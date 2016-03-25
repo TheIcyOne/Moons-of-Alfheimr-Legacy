@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "check_decay=false,decayable=false,variant=beech": { "model": "alfheimrsmoons:leaves_beech" },
+        "check_decay=true,decayable=false,variant=beech": { "model": "alfheimrsmoons:leaves_beech" },
+        "check_decay=true,decayable=true,variant=beech": { "model": "alfheimrsmoons:leaves_beech" },
+        "check_decay=false,decayable=true,variant=beech": { "model": "alfheimrsmoons:leaves_beech" },
+        "check_decay=false,decayable=false,variant=elm": { "model": "alfheimrsmoons:leaves_elm" },
+        "check_decay=true,decayable=false,variant=elm": { "model": "alfheimrsmoons:leaves_elm" },
+        "check_decay=true,decayable=true,variant=elm": { "model": "alfheimrsmoons:leaves_elm" },
+        "check_decay=false,decayable=true,variant=elm": { "model": "alfheimrsmoons:leaves_elm" },
+        "check_decay=false,decayable=false,variant=red_bud": { "model": "alfheimrsmoons:leaves_red_bud" },
+        "check_decay=true,decayable=false,variant=red_bud": { "model": "alfheimrsmoons:leaves_red_bud" },
+        "check_decay=true,decayable=true,variant=red_bud": { "model": "alfheimrsmoons:leaves_red_bud" },
+        "check_decay=false,decayable=true,variant=red_bud": { "model": "alfheimrsmoons:leaves_red_bud" },
+        "check_decay=false,decayable=false,variant=larch": { "model": "alfheimrsmoons:leaves_larch" },
+        "check_decay=true,decayable=false,variant=larch": { "model": "alfheimrsmoons:leaves_larch" },
+        "check_decay=true,decayable=true,variant=larch": { "model": "alfheimrsmoons:leaves_larch" },
+        "check_decay=false,decayable=true,variant=larch": { "model": "alfheimrsmoons:leaves_larch" }
+    }
+}

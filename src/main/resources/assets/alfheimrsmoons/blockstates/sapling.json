@@ -1,0 +1,12 @@
+{
+    "variants": {
+            "stage=0,variant=beech":  { "model": "alfheimrsmoons:sapling_beech" },
+            "stage=1,variant=beech":   { "model": "alfheimrsmoons:sapling_beech" },
+            "stage=0,variant=elm":     { "model": "alfheimrsmoons:sapling_elm" },
+            "stage=1,variant=elm":     { "model": "alfheimrsmoons:sapling_elm" },
+            "stage=0,variant=red_bud": { "model": "alfheimrsmoons:sapling_red_bud" },
+            "stage=1,variant=red_bud": { "model": "alfheimrsmoons:sapling_red_bud" },
+            "stage=0,variant=larch":   { "model": "alfheimrsmoons:sapling_larch" },
+            "stage=1,variant=larch":   { "model": "alfheimrsmoons:sapling_larch" }
+    }
+}

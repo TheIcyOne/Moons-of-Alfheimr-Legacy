@@ -1,0 +1,20 @@
+{
+    "variants": {
+            "axis=y,variant=beech":    { "model": "alfheimrsmoons:log_beech" },
+            "axis=z,variant=beech":    { "model": "alfheimrsmoons:log_beech_side" },
+            "axis=x,variant=beech":    { "model": "alfheimrsmoons:log_beech_side", "y": 90 },
+            "axis=none,variant=beech": { "model": "alfheimrsmoons:log_beech_bark" },
+            "axis=y,variant=elm":    { "model": "alfheimrsmoons:log_elm" },
+            "axis=z,variant=elm":    { "model": "alfheimrsmoons:log_elm_side" },
+            "axis=x,variant=elm":    { "model": "alfheimrsmoons:log_elm_side", "y": 90 },
+            "axis=none,variant=elm": { "model": "alfheimrsmoons:log_elm_bark" },
+            "axis=y,variant=red_bud":    { "model": "alfheimrsmoons:log_red_bud" },
+            "axis=z,variant=red_bud":    { "model": "alfheimrsmoons:log_red_bud_side" },
+            "axis=x,variant=red_bud":    { "model": "alfheimrsmoons:log_red_bud_side", "y": 90 },
+            "axis=none,variant=red_bud": { "model": "alfheimrsmoons:log_red_bud_bark" },
+            "axis=y,variant=larch":    { "model": "alfheimrsmoons:log_larch" },
+            "axis=z,variant=larch":    { "model": "alfheimrsmoons:log_larch_side" },
+            "axis=x,variant=larch":    { "model": "alfheimrsmoons:log_larch_side", "y": 90 },
+            "axis=none,variant=larch": { "model": "alfheimrsmoons:log_larch_bark" }
+    }
+}

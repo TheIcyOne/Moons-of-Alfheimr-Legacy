@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "up": "alfheimrsmoons:blocks/grass_niflheimr_top",
+        "down": "alfheimrsmoons:blocks/soil_niflheimr",
+        "north": "alfheimrsmoons:blocks/grass_niflheimr_side",
+        "east": "alfheimrsmoons:blocks/grass_niflheimr_side",
+        "south": "alfheimrsmoons:blocks/grass_niflheimr_side",
+        "west": "alfheimrsmoons:blocks/grass_niflheimr_side",
+        "particle": "alfheimrsmoons:blocks/grass_niflheimr_top"
+    }
+}

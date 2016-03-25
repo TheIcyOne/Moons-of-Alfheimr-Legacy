@@ -1,0 +1,82 @@
+itemGroup.tabcreativeTab.name=Alfheimr's Moons
+
+item.food_onion.name=Onion
+
+item.branch.name=Branch
+item.crystal.kasolite.name=Kasolite Crystal
+item.crystal.nitro.name=Nitro Crystal
+item.crystal.corrodium.name=Corrodium Ingot
+item.powder_nitro.name=Nitro Powder
+item.bucket_something.name=Bucket of Something
+
+item.kasolite_helmet.name=Kasolite Helmet 
+item.kasolite_chestplate.name=Kasolite Chestplate
+item.kasolite_leggings.name=Kasolite Leggings
+item.kasolite_boots.name=Kasolite Boots
+
+item.kasolite_sword.name=Kasolite Sword
+item.kasolite_pickaxe.name=Kasolite Pickaxe
+item.kasolite_axe.name=Kasolite Axe
+item.kasolite_spade.name=Kasolite Spade
+item.kasolite_hoe.name=Kasolite Hoe
+
+item.corrodium_sword.name=Corrodium Sword
+item.corrodium_pickaxe.name=Corrodium Pickaxe
+item.corrodium_axe.name=Corrodium Axe
+item.corrodium_spade.name=Corrodium Spade
+item.corrodium_hoe.name=Corrodium Hoe
+
+tile.grassy_soil.name=Grassy Soil
+tile.soil.name=Soil
+
+tile.soil.normal.name=Soil
+tile.grass.normal.name=Grassy Soil
+tile.soil.niflheimr.name=Barren Soil
+tile.grass.niflheimr.name=Doomed Soil
+
+tile.crystal_ore.kasolite.name=Kasolite Ore
+tile.crystal_ore.nitro.name=Nitro Ore
+tile.crystal_ore.corrodium.name=Corrodium Ore
+
+tile.storage.kasolite.name=Kasolite Block
+tile.storage.nitro.name=Nitro Block
+tile.storage.corrodium.name=Corrodium Block
+
+tile.nitro_torch.name=Nitro Torch
+
+tile.sapling.beech.name=Beech Sapling
+tile.sapling.elm.name=Elm Sapling
+tile.sapling.red_bud.name=Redbud Sapling
+tile.sapling.larch.name=Larch Sapling
+tile.log.beech.name=Beech Log
+tile.log.elm.name=Elm Log
+tile.log.red_bud.name=Redbud Log
+tile.log.larch.name=Larch Log
+tile.planks.beech.name=Beech Planks
+tile.planks.elm.name=Elm Planks
+tile.planks.red_bud.name=Redbud Planks
+tile.planks.larch.name=Larch Planks
+tile.leaves.beech.name=Beech Leaves
+tile.leaves.elm.name=Elm Leaves
+tile.leaves.red_bud.name=Redbud Leaves
+tile.leaves.larch.name=Larch Leaves
+
+tile.sediment_glass.name=Sediment Glass
+
+## not implemented yet
+tile.lush_grass.name=Lush Grass
+tile.lush_sedge.name=Lush Sedge
+
+tile.meteorite.name=Meteorite
+tile.meteorite_brick.name=Meteorite Bricks
+tile.meteorite_brick_rune.name=Meteorite Bricks Runes
+tile.meteorite_carved.name=Meteorite Carved
+tile.meteorite_smooth.name=Smooth Meteorite
+
+tile.sediment.name=Sediment
+
+tile.shale.name=Shale 
+tile.shale_brick_packed.name=Packed Shale Bricks
+tile.shale_packed.name=Packed Shale
+tile.shale_polished.name=Polished Shale
+tile.shale_brick.name=Shale Bricks

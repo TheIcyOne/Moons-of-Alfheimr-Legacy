@@ -1,0 +1,17 @@
+[
+{
+  "modid": "alfheimrsmoons",
+  "name": "Alfheimr's Moons",
+  "description": "New Dimensions!",
+  "version": "${version}",
+  "credits": "",
+  "logoFile": "logo.png",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Fairwolf", "Cow"],
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "alfheimrsmoons:blocks/log_beech_top",
+        "side": "alfheimrsmoons:blocks/log_beech"
+    }
+}

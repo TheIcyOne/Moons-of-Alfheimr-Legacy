@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=normal": { "model": "alfheimrsmoons:soil_normal" },
+        "variant=niflheimr": { "model": "alfheimrsmoons:soil_niflheimr" }
+    }
+}

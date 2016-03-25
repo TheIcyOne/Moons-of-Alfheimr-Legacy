@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=kasolite": { "model": "alfheimrsmoons:crystal_ore_kasolite" },
+        "variant=nitro": { "model": "alfheimrsmoons:crystal_ore_nitro" },
+        "variant=corrodium": { "model": "alfheimrsmoons:crystal_ore_corrodium" }
+    }
+}

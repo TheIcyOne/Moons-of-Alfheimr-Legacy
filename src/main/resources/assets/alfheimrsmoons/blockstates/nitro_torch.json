@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "facing=up": { "model": "alfheimrsmoons:normal_nitro_torch" },
+        "facing=east": { "model": "alfheimrsmoons:normal_nitro_torch_wall" },
+        "facing=south": { "model": "alfheimrsmoons:normal_nitro_torch_wall", "y": 90 },
+        "facing=west": { "model": "alfheimrsmoons:normal_nitro_torch_wall", "y": 180 },
+        "facing=north": { "model": "alfheimrsmoons:normal_nitro_torch_wall", "y": 270 }
+    }
+}

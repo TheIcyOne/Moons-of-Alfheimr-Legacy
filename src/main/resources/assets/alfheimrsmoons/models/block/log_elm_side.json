@@ -1,0 +1,7 @@
+{
+    "parent": "block/column_side",
+    "textures": {
+        "end": "alfheimrsmoons:blocks/log_elm_top",
+        "side": "alfheimrsmoons:blocks/log_elm"
+    }
+}

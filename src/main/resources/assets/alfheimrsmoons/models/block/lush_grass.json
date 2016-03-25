@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "alfheimrsmoons:blocks/lush_grass",
+		"particle": "alfheimrsmoons:blocks/lush_grass"
+    }
+}

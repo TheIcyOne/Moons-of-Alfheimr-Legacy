@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube",
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "alfheimrsmoons:blocks/shale_polished"
+    }
+}

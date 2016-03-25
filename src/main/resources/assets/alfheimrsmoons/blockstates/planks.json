@@ -1,0 +1,8 @@
+{
+    "variants": {
+            "variant=beech":    { "model": "alfheimrsmoons:planks_beech" },
+            "variant=elm":    { "model": "alfheimrsmoons:planks_elm" },
+            "variant=red_bud":    { "model": "alfheimrsmoons:planks_red_bud" },
+            "variant=larch":    { "model": "alfheimrsmoons:planks_larch" }
+    }
+}

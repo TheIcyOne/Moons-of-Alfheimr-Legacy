@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "variant=kasolite": { "model": "alfheimrsmoons:storage_kasolite" },
+        "variant=nitro": { "model": "alfheimrsmoons:storage_nitro" },
+        "variant=corrodium": { "model": "alfheimrsmoons:storage_corrodium" }
+    }
+}
