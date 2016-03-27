@@ -32,8 +32,8 @@ public class ModRecipes {
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.kasoliteSpade, "K", "B", "B", 'K', crystalKasolite, 'B', branch));
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.kasoliteHoe, "KK", " B", " B", 'K', crystalKasolite, 'B', branch));
 
-        GameRegistry.addSmelting(new ItemStack(ModBlocks.crystalOre, 1, BlockCrystalOre.EnumType.CORRDIUM.ordinal()),
-                new ItemStack(ModItems.crystal, 1, BlockCrystalOre.EnumType.CORRDIUM.ordinal()), 2F);
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.crystalOre, 1, BlockCrystalOre.EnumType.CORRODIUM.ordinal()),
+                new ItemStack(ModItems.crystal, 1, BlockCrystalOre.EnumType.CORRODIUM.ordinal()), 2F);
 
         for (BlockCrystalOre.EnumType t : BlockCrystalOre.EnumType.values()) {
             GameRegistry.addRecipe(

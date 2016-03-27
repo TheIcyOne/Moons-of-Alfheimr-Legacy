@@ -63,13 +63,10 @@ public class BlockCrystalOre extends Block {
         this.setHardness(3.0F);
         this.setResistance(5.0F);
         this.setStepSound(Block.soundTypePiston);
-        this.setHarvestLevel("pickaxe", 2);
 
-        // TODO set custom harvestLevels, new var in enum; then for-each
-        // this.setHarvestLevel("pickaxe", 3,
-        // this.blockState.getBaseState().withProperty(VARIANT,
-        // EnumType.KASOLITE));
-
+        for (EnumType type : EnumType.values()) {
+            this.setHarvestLevel("pickaxe", type.getHarvestLevel(), getStateFromMeta(type.getMetadata()));
+        }
     }
 
     /**
@@ -92,7 +89,7 @@ public class BlockCrystalOre extends Block {
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return ((EnumType) state.getValue(VARIANT)).ordinal();
+        return ((EnumType) state.getValue(VARIANT)).getMetadata();
     }
 
     // The 3 functions below, getItemDropped, quantityDroppedWithBonus and
@@ -141,23 +138,25 @@ public class BlockCrystalOre extends Block {
     }
 
     public static enum EnumType implements IStringSerializable {
-        KASOLITE(0, "kasolite", false), NITRO(1, "nitro", false), CORRDIUM(2, "corrodium", true);
+        KASOLITE(0, "kasolite", false, 3), NITRO(1, "nitro", false, 2), CORRODIUM(2, "corrodium", true, 2);
 
         private static final BlockCrystalOre.EnumType[] META_LOOKUP = new BlockCrystalOre.EnumType[values().length];
         private final int meta;
         private final String name;
         private final String unlocalizedName;
         private final boolean dropsAsOre;
+        private final int harvestLevel;
 
-        private EnumType(int meta, String name, boolean dropAsOre) {
-            this(meta, name, name, dropAsOre);
+        private EnumType(int meta, String name, boolean dropAsOre, int harvestLevel) {
+            this(meta, name, name, dropAsOre, harvestLevel);
         }
 
-        private EnumType(int meta, String name, String unlocalizedName, boolean dropsAsOre) {
+        private EnumType(int meta, String name, String unlocalizedName, boolean dropsAsOre, int harvestLevel) {
             this.meta = meta;
             this.name = name;
             this.unlocalizedName = unlocalizedName;
             this.dropsAsOre = dropsAsOre;
+            this.harvestLevel = harvestLevel;
         }
 
         public int getMetadata() {
@@ -186,6 +185,10 @@ public class BlockCrystalOre extends Block {
 
         public boolean dropsAsOre() {
             return this.dropsAsOre;
+        }
+
+        public int getHarvestLevel() {
+            return this.harvestLevel;
         }
 
         static {

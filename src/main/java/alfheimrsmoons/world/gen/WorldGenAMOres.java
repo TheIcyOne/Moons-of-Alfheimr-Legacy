@@ -35,7 +35,7 @@ public class WorldGenAMOres implements IWorldGenerator {
     private void generateSurface(World world, Random random, int x, int z) {
         this.addOreSpawn(ModBlocks.crystalOre.getStateFromMeta(BlockCrystalOre.EnumType.KASOLITE.ordinal()), world, random, x, z, 16, 16, 4 + random.nextInt(6), 15, 20, 40);
         this.addOreSpawn(ModBlocks.crystalOre.getStateFromMeta(BlockCrystalOre.EnumType.NITRO.ordinal()), world, random, x, z, 16, 16, 5 + random.nextInt(7), 15, 20, 60);
-        this.addOreSpawn(ModBlocks.crystalOre.getStateFromMeta(BlockCrystalOre.EnumType.CORRDIUM.ordinal()), world, random, x, z, 16, 16, 5 + random.nextInt(7), 15, 20, 60);
+        this.addOreSpawn(ModBlocks.crystalOre.getStateFromMeta(BlockCrystalOre.EnumType.CORRODIUM.ordinal()), world, random, x, z, 16, 16, 5 + random.nextInt(7), 15, 20, 60);
     }
 
     private void generateNether(World world, Random random, int x, int z) {
