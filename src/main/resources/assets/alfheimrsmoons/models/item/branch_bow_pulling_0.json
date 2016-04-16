@@ -1,0 +1,6 @@
+{
+    "parent": "alfheimrsmoons:item/branch_bow",
+    "textures": {
+        "layer0": "alfheimrsmoons:items/branch_bow_pulling_0"
+    }
+}
