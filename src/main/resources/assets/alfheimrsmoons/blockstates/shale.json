@@ -1,5 +1,10 @@
 {
     "variants": {
-        "normal": { "model": "alfheimrsmoons:shale" }
+        "normal": [
+            { "model": "alfheimrsmoons:shale" },
+            { "model": "alfheimrsmoons:shale_mirrored" },
+            { "model": "alfheimrsmoons:shale", "y": 180 },
+            { "model": "alfheimrsmoons:shale_mirrored", "y": 180 }
+        ]
     }
 }
