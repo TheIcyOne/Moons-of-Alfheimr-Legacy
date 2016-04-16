@@ -21,6 +21,7 @@ public class BlockSoil extends BlockDirt {
         setDefaultState(blockState.getBaseState());
         setHardness(0.5F);
         setStepSound(SoundType.GROUND);
+        setHarvestLevel("shovel", 0);
     }
 
     @Override

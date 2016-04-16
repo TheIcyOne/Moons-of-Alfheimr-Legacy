@@ -20,6 +20,7 @@ public class BlockShale extends BlockStone {
         setHardness(1.5F);
         setResistance(10.0F);
         setStepSound(SoundType.STONE);
+        setHarvestLevel("pickaxe", 1);
     }
 
     @Override
