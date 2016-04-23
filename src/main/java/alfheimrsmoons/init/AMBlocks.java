@@ -1,7 +1,6 @@
 package alfheimrsmoons.init;
 
-import alfheimrsmoons.block.BlockShale;
-import alfheimrsmoons.block.BlockSoil;
+import alfheimrsmoons.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -11,7 +10,7 @@ public class AMBlocks {
     public static final Block soil = new BlockSoil().setUnlocalizedName("soil").setRegistryName("soil");
     public static final Block shale = new BlockShale().setUnlocalizedName("shale").setRegistryName("shale");
 
-    public static void register() {
+    public static void registerBlocks() {
         registerItemBlock(soil);
         registerItemBlock(shale);
     }

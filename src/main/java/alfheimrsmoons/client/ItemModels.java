@@ -9,10 +9,11 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 
 public class ItemModels {
-    public static void register() {
+    public static void registerModels() {
         registerBlock(AMBlocks.soil);
         registerBlock(AMBlocks.shale);
         registerItem(AMItems.branch_bow);
+        registerItem(AMItems.rock_arrow);
     }
 
     private static void registerItem(Item itm, int subType, String identifier) {

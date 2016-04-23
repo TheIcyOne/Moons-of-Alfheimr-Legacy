@@ -5,6 +5,7 @@ import alfheimrsmoons.network.Proxy;
 public class ProxyClient extends Proxy {
     @Override
     public void preInit() {
-        ItemModels.register();
+        ItemModels.registerModels();
+        RenderFactory.registerRenders();
     }
 }

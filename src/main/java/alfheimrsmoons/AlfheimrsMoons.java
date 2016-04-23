@@ -1,11 +1,13 @@
 package alfheimrsmoons;
 
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.init.AMEntities;
 import alfheimrsmoons.init.AMItems;
 import alfheimrsmoons.network.Proxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -17,13 +19,16 @@ public class AlfheimrsMoons {
     public static final String MOD_NAME = "Álfheimr's Moons";
     public static final String MOD_VERSION = "@VERSION@";
 
+    @Instance(MOD_ID)
+    public static AlfheimrsMoons instance;
     @SidedProxy(clientSide = "alfheimrsmoons.client.ProxyClient", serverSide = "alfheimrsmoons.network.ProxyServer")
     public static Proxy proxy;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        AMBlocks.register();
-        AMItems.register();
+        AMBlocks.registerBlocks();
+        AMItems.registerItems();
+        AMEntities.registerEntities();
         MinecraftForge.EVENT_BUS.register(new AMEventHandler());
         proxy.preInit();
     }

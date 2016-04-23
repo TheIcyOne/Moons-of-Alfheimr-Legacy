@@ -1,4 +1,5 @@
 tile.soil.name=Soil
 tile.shale.name=Shale
 
-item.bowBranch.name=Branch Bow
+item.branch_bow.name=Branch Bow
+item.rock_arrow.name=Rock Arrow
