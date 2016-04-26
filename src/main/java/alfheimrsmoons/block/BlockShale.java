@@ -35,22 +35,22 @@ public class BlockShale extends BlockStone {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(this);
+        return DefaultBlockHelper.getItemDropped(this, state, rand, fortune);
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        return 0;
+        return DefaultBlockHelper.damageDropped(this, state);
     }
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        list.add(new ItemStack(item));
+        DefaultBlockHelper.getSubBlocks(this, item, tab, list);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState();
+        return DefaultBlockHelper.getStateFromMeta(this, meta);
     }
 
     @Override

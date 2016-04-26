@@ -31,12 +31,12 @@ public class BlockSoil extends BlockDirt {
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return state;
+        return DefaultBlockHelper.getActualState(this, state, world, pos);
     }
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        list.add(new ItemStack(item));
+        DefaultBlockHelper.getSubBlocks(this, item, tab, list);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class BlockSoil extends BlockDirt {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState();
+        return DefaultBlockHelper.getStateFromMeta(this, meta);
     }
 
     @Override
@@ -56,6 +56,6 @@ public class BlockSoil extends BlockDirt {
 
     @Override
     public int damageDropped(IBlockState state) {
-        return 0;
+        return DefaultBlockHelper.damageDropped(this, state);
     }
 }
