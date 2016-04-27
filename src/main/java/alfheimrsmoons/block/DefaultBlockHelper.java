@@ -9,6 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Random;
@@ -39,6 +41,7 @@ public class DefaultBlockHelper {
         return state;
     }
 
+    @SideOnly(Side.CLIENT)
     public static void getSubBlocks(Block block, Item item, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(item));
     }

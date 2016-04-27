@@ -1,5 +1,7 @@
-tile.soil.name=Soil
-tile.shale.name=Shale
+tile.alfheimr.soil.name=Soil
+tile.alfheimr.shale.name=Shale
+tile.alfheimr.log.rune.name=Rune Wood
+tile.alfheimr.wood.rune.name=Rune Wood Planks
 
-item.branch_bow.name=Branch Bow
-item.rock_arrow.name=Rock Arrow
+item.alfheimr.branch_bow.name=Branch Bow
+item.alfheimr.rock_arrow.name=Rock Arrow

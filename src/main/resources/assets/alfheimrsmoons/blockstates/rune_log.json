@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y":  { "model": "alfheimrsmoons:rune_log" },
+        "axis=z":   { "model": "alfheimrsmoons:rune_log", "x": 90 },
+        "axis=x":   { "model": "alfheimrsmoons:rune_log", "x": 90, "y": 90 },
+        "axis=none": { "model": "alfheimrsmoons:rune_bark" }
+    }
+}
