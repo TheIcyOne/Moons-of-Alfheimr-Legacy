@@ -10,6 +10,16 @@ import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+/*
+    Adding a block:
+    - Registration (you are here)
+    - Model registration (alfheimrsmoons.client.ItemModels)
+    - Block state JSON (assets/alfheimrsmoons/blockstates)
+    - Model JSON's (assets/alfheimrsmoons/models)
+    - Texture(s) (assets/alfheimrsmoons/textures/blocks)
+    - Localization (assets/alfheimrsmoons/lang)
+*/
+
 public class AMBlocks {
     public static final Block soil = new BlockSoil().setUnlocalizedName("alfheimr.soil").setRegistryName("soil");
     public static final Block shale = new BlockShale().setUnlocalizedName("alfheimr.shale").setRegistryName("shale");
