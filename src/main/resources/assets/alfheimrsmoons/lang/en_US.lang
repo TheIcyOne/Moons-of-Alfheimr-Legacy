@@ -2,6 +2,7 @@ tile.alfheimr.soil.name=Soil
 tile.alfheimr.shale.name=Shale
 tile.alfheimr.log.rune.name=Rune Wood
 tile.alfheimr.wood.rune.name=Rune Wood Planks
+tile.alfheimr.sediment.name=Sediment
 
 item.alfheimr.branch_bow.name=Branch Bow
 item.alfheimr.rock_arrow.name=Rock Arrow

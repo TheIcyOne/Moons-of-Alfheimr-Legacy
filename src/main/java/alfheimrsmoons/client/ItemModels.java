@@ -17,6 +17,7 @@ public class ItemModels {
         registerBlock(AMBlocks.shale);
         registerBlockWithStateMapper(AMBlocks.log, AMBlocks.log.variant, "_log");
         registerBlockWithStateMapper(AMBlocks.planks, BlockAMPlanks.VARIANT, "_planks");
+        registerBlock(AMBlocks.sediment);
         registerItem(AMItems.branch_bow);
         registerItem(AMItems.rock_arrow);
     }

@@ -15,6 +15,7 @@ public class AMBlocks {
     public static final Block shale = new BlockShale().setUnlocalizedName("alfheimr.shale").setRegistryName("shale");
     public static final BlockAMLog log = (BlockAMLog) new BlockAMLog(0).setUnlocalizedName("alfheimr.log").setRegistryName("log");
     public static final Block planks = new BlockAMPlanks().setUnlocalizedName("alfheimr.wood").setRegistryName("planks");
+    public static final Block sediment = new BlockSediment().setUnlocalizedName("alfheimr.sediment").setRegistryName("sediment");
 
     public static void registerBlocks() {
         registerItemBlock(soil);
@@ -26,6 +27,7 @@ public class AMBlocks {
                 return BlockAMPlanks.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
             }
         }).setUnlocalizedName("alfheimr.wood"));
+        registerItemBlock(sediment);
     }
 
     private static void registerItemBlock(Block block) {

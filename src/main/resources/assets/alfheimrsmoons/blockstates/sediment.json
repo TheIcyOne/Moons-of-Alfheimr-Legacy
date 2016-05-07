@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "alfheimrsmoons:sediment" },
+            { "model": "alfheimrsmoons:sediment", "y": 90 },
+            { "model": "alfheimrsmoons:sediment", "y": 180 },
+            { "model": "alfheimrsmoons:sediment", "y": 270 }
+        ]
+    }
+}
