@@ -10,6 +10,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -30,9 +33,10 @@ public class BlockAMPlanks extends BlockPlanks {
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
-        for (EnumType type : EnumType.values()) {
-            list.add(new ItemStack(itemIn, 1, type.getMetadata()));
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+        for (EnumType type : EnumType.values) {
+            list.add(new ItemStack(item, 1, type.getMetadata()));
         }
     }
 
@@ -52,27 +56,25 @@ public class BlockAMPlanks extends BlockPlanks {
     }
 
     public enum EnumType implements IStringSerializable {
-        RUNE(0, "rune", MapColor.lightBlueColor);
+        RUNE("rune", MapColor.lightBlueColor);
 
-        private static final EnumType[] META_LOOKUP = new EnumType[values().length];
-        private final int meta;
+        public static final EnumType[] values = values();
         private final String name;
         private final String unlocalizedName;
         private final MapColor mapColor;
 
-        EnumType(int metaIn, String nameIn, MapColor mapColorIn) {
-            this(metaIn, nameIn, nameIn, mapColorIn);
+        EnumType(String name, MapColor mapColor) {
+            this(name, name, mapColor);
         }
 
-        EnumType(int metaIn, String nameIn, String unlocalizedNameIn, MapColor mapColorIn) {
-            meta = metaIn;
-            name = nameIn;
-            unlocalizedName = unlocalizedNameIn;
-            mapColor = mapColorIn;
+        EnumType(String name, String unlocalizedName, MapColor mapColor) {
+            this.name = name;
+            this.unlocalizedName = unlocalizedName;
+            this.mapColor = mapColor;
         }
 
         public int getMetadata() {
-            return meta;
+            return ordinal();
         }
 
         public MapColor getMapColor() {
@@ -85,11 +87,11 @@ public class BlockAMPlanks extends BlockPlanks {
         }
 
         public static EnumType byMetadata(int meta) {
-            if (meta < 0 || meta >= META_LOOKUP.length) {
+            if (meta < 0 || meta >= values.length) {
                 meta = 0;
             }
 
-            return META_LOOKUP[meta];
+            return values[MathHelper.clamp_int(meta, 0, values.length - 1)];
         }
 
         @Override
@@ -99,12 +101,6 @@ public class BlockAMPlanks extends BlockPlanks {
 
         public String getUnlocalizedName() {
             return unlocalizedName;
-        }
-
-        static {
-            for (EnumType type : values()) {
-                META_LOOKUP[type.getMetadata()] = type;
-            }
         }
     }
 }

@@ -1,8 +1,6 @@
 package alfheimrsmoons;
 
-import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.init.AMEntities;
-import alfheimrsmoons.init.AMItems;
+import alfheimrsmoons.init.*;
 import alfheimrsmoons.network.Proxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +26,7 @@ public class AlfheimrsMoons {
     public void preInit(FMLPreInitializationEvent event) {
         AMBlocks.registerBlocks();
         AMItems.registerItems();
+        AMRecipes.registerRecipes();
         AMEntities.registerEntities();
         MinecraftForge.EVENT_BUS.register(new AMEventHandler());
         proxy.preInit();
