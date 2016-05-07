@@ -1,6 +1,14 @@
 tile.alfheimr.soil.name=Soil
 tile.alfheimr.shale.name=Shale
+tile.alfheimr.log.beech.name=Beech Wood
+tile.alfheimr.log.elm.name=Elm Wood
+tile.alfheimr.log.red_bud.name=Red Bud Wood
+tile.alfheimr.log.larch.name=Larch Wood
 tile.alfheimr.log.rune.name=Rune Wood
+tile.alfheimr.wood.beech.name=Beech Wood Planks
+tile.alfheimr.wood.elm.name=Elm Wood Planks
+tile.alfheimr.wood.red_bud.name=Red Bud Wood Planks
+tile.alfheimr.wood.larch.name=Larch Wood Planks
 tile.alfheimr.wood.rune.name=Rune Wood Planks
 tile.alfheimr.sediment.name=Sediment
 

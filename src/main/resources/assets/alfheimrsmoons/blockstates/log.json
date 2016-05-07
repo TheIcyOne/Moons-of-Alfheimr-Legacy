@@ -5,6 +5,30 @@
     },
     "variants": {
         "variant": {
+            "beech": {
+                "textures": {
+                    "top": "alfheimrsmoons:blocks/log_beech_top",
+                    "side": "alfheimrsmoons:blocks/log_beech"
+                }
+            },
+            "elm": {
+                "textures": {
+                    "top": "alfheimrsmoons:blocks/log_elm_top",
+                    "side": "alfheimrsmoons:blocks/log_elm"
+                }
+            },
+            "red_bud": {
+                "textures": {
+                    "top": "alfheimrsmoons:blocks/log_red_bud_top",
+                    "side": "alfheimrsmoons:blocks/log_red_bud"
+                }
+            },
+            "larch": {
+                "textures": {
+                    "top": "alfheimrsmoons:blocks/log_larch_top",
+                    "side": "alfheimrsmoons:blocks/log_larch"
+                }
+            },
             "rune": {
                 "textures": {
                     "top": "alfheimrsmoons:blocks/log_rune_top",

@@ -5,6 +5,10 @@
     },
     "variants": {
         "variant": {
+            "beech": { "textures": { "texture": "alfheimrsmoons:blocks/planks_beech" } },
+            "elm": { "textures": { "texture": "alfheimrsmoons:blocks/planks_elm" } },
+            "red_bud": { "textures": { "texture": "alfheimrsmoons:blocks/planks_red_bud" } },
+            "larch": { "textures": { "texture": "alfheimrsmoons:blocks/planks_larch" } },
             "rune": { "textures": { "texture": "alfheimrsmoons:blocks/planks_rune" } }
         }
     }

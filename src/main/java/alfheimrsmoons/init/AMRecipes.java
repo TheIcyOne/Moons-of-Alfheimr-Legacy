@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class AMRecipes {
     public static void registerRecipes() {
         registerLogRecipes(AMBlocks.log);
+        registerLogRecipes(AMBlocks.log2);
     }
 
     private static void registerLogRecipes(BlockAMLog log) {

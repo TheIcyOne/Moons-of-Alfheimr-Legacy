@@ -1,0 +1,4 @@
+{
+    "parent": "alfheimrsmoons:block/planks",
+    "textures": { "texture": "alfheimrsmoons:blocks/planks_red_bud" }
+}

@@ -56,6 +56,10 @@ public class BlockAMPlanks extends BlockPlanks {
     }
 
     public enum EnumType implements IStringSerializable {
+        BEECH("beech", MapColor.woodColor),
+        ELM("elm", MapColor.obsidianColor),
+        RED_BUD("red_bud", MapColor.sandColor),
+        LARCH("larch", MapColor.dirtColor),
         RUNE("rune", MapColor.lightBlueColor);
 
         public static final EnumType[] values = values();

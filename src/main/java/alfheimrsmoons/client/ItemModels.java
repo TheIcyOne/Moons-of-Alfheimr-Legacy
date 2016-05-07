@@ -7,7 +7,6 @@ import alfheimrsmoons.init.AMItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 
@@ -15,8 +14,9 @@ public class ItemModels {
     public static void registerModels() {
         registerBlock(AMBlocks.soil);
         registerBlock(AMBlocks.shale);
-        registerBlockWithProperty(AMBlocks.log, AMBlocks.log.variant, "_log");
-        registerBlockWithProperty(AMBlocks.planks, BlockAMPlanks.VARIANT, "_planks");
+        registerBlockWithVariants(AMBlocks.log, AMBlocks.log.variant, "_log");
+        registerBlockWithVariants(AMBlocks.log2, AMBlocks.log2.variant, "_log");
+        registerBlockWithVariants(AMBlocks.planks, BlockAMPlanks.VARIANT, "_planks");
         registerBlock(AMBlocks.sediment);
         registerItem(AMItems.branch_bow);
         registerItem(AMItems.rock_arrow);
@@ -46,7 +46,7 @@ public class ItemModels {
         registerItem(item, item.getRegistryName().getResourcePath());
     }
 
-    private static <T extends Comparable<T>> void registerBlockWithProperty(Block block, IProperty<T> property, String suffix) {
+    private static <T extends Comparable<T>> void registerBlockWithVariants(Block block, IProperty<T> property, String suffix) {
         for (T value : property.getAllowedValues()) {
             int meta = block.getMetaFromState(block.getDefaultState().withProperty(property, value));
             String id = property.getName(value) + suffix;
