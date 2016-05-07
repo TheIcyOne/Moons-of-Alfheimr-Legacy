@@ -15,8 +15,8 @@ public class ItemModels {
     public static void registerModels() {
         registerBlock(AMBlocks.soil);
         registerBlock(AMBlocks.shale);
-        registerBlockWithStateMapper(AMBlocks.log, AMBlocks.log.variant, "_log");
-        registerBlockWithStateMapper(AMBlocks.planks, BlockAMPlanks.VARIANT, "_planks");
+        registerBlockWithProperty(AMBlocks.log, AMBlocks.log.variant, "_log");
+        registerBlockWithProperty(AMBlocks.planks, BlockAMPlanks.VARIANT, "_planks");
         registerBlock(AMBlocks.sediment);
         registerItem(AMItems.branch_bow);
         registerItem(AMItems.rock_arrow);
@@ -46,12 +46,11 @@ public class ItemModels {
         registerItem(item, item.getRegistryName().getResourcePath());
     }
 
-    private static <T extends Comparable<T>> void registerBlockWithStateMapper(Block block, IProperty<T> property, String suffix) {
+    private static <T extends Comparable<T>> void registerBlockWithProperty(Block block, IProperty<T> property, String suffix) {
         for (T value : property.getAllowedValues()) {
             int meta = block.getMetaFromState(block.getDefaultState().withProperty(property, value));
             String id = property.getName(value) + suffix;
             registerBlock(block, meta, id);
         }
-        ModelLoader.setCustomStateMapper(block, new StateMap.Builder().withName(property).withSuffix(suffix).build());
     }
 }

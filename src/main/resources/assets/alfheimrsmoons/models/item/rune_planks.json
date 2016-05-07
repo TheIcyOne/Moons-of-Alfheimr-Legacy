@@ -1,3 +1,4 @@
 {
-    "parent": "alfheimrsmoons:block/rune_planks"
+    "parent": "alfheimrsmoons:block/planks",
+    "textures": { "texture": "alfheimrsmoons:blocks/planks_rune" }
 }

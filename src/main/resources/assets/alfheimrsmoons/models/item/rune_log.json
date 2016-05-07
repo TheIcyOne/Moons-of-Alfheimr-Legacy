@@ -1,3 +1,7 @@
 {
-    "parent": "alfheimrsmoons:block/rune_log"
+    "parent": "alfheimrsmoons:block/log",
+    "textures": {
+        "top": "alfheimrsmoons:blocks/log_rune_top",
+        "side": "alfheimrsmoons:blocks/log_rune"
+    }
 }

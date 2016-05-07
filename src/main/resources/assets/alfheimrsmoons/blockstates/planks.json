@@ -1,0 +1,11 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "alfheimrsmoons:planks"
+    },
+    "variants": {
+        "variant": {
+            "rune": { "textures": { "texture": "alfheimrsmoons:blocks/planks_rune" } }
+        }
+    }
+}
