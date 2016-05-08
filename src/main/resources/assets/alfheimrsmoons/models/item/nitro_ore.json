@@ -1,0 +1,4 @@
+{
+    "parent": "alfheimrsmoons:block/ore",
+    "textures": { "texture": "alfheimrsmoons:blocks/ore_nitro" }
+}

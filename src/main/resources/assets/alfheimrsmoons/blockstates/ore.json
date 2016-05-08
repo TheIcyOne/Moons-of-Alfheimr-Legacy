@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "alfheimrsmoons:ore"
+    },
+    "variants": {
+        "variant": {
+            "kasolite": { "textures": { "texture": "alfheimrsmoons:blocks/ore_kasolite" } },
+            "nitro": { "textures": { "texture": "alfheimrsmoons:blocks/ore_nitro" } },
+            "loreium": { "textures": { "texture": "alfheimrsmoons:blocks/ore_loreium" } }
+        }
+    }
+}

@@ -1,8 +1,7 @@
 package alfheimrsmoons.block;
 
-import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -15,15 +14,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockAMPlanks extends BlockPlanks {
+public class BlockAMOre extends BlockOre {
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
-    public BlockAMPlanks() {
+    public BlockAMOre() {
         blockState = new BlockStateContainer(this, VARIANT);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.RUNE));
-        setHardness(2.0F);
+        setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.KASOLITE));
+        setHardness(3.0F);
         setResistance(5.0F);
-        setStepSound(SoundType.WOOD);
+        setStepSound(SoundType.STONE);
     }
 
     @Override
@@ -34,8 +33,8 @@ public class BlockAMPlanks extends BlockPlanks {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (EnumType type : EnumType.values) {
-            list.add(new ItemStack(item, 1, type.getMetadata()));
+        for (int meta = 0; meta < EnumType.values.length; meta++) {
+            list.add(new ItemStack(item, 1, meta));
         }
     }
 
@@ -45,43 +44,35 @@ public class BlockAMPlanks extends BlockPlanks {
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state) {
-        return state.getValue(VARIANT).getMapColor();
-    }
-
-    @Override
     public int getMetaFromState(IBlockState state) {
         return state.getValue(VARIANT).getMetadata();
     }
 
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, VARIANT);
+    }
+
     public enum EnumType implements IStringSerializable {
-        BEECH("beech", MapColor.woodColor),
-        ELM("elm", MapColor.obsidianColor),
-        RED_BUD("red_bud", MapColor.sandColor),
-        LARCH("larch", MapColor.dirtColor),
-        RUNE("rune", MapColor.lightBlueColor);
+        KASOLITE("kasolite"),
+        NITRO("nitro"),
+        LOREIUM("loreium");
 
         public static final EnumType[] values = values();
         private final String name;
         private final String unlocalizedName;
-        private final MapColor mapColor;
 
-        EnumType(String name, MapColor mapColor) {
-            this(name, name, mapColor);
+        EnumType(String name) {
+            this(name, name);
         }
 
-        EnumType(String name, String unlocalizedName, MapColor mapColor) {
+        EnumType(String name, String unlocalizedName) {
             this.name = name;
             this.unlocalizedName = unlocalizedName;
-            this.mapColor = mapColor;
         }
 
         public int getMetadata() {
             return ordinal();
-        }
-
-        public MapColor getMapColor() {
-            return mapColor;
         }
 
         @Override

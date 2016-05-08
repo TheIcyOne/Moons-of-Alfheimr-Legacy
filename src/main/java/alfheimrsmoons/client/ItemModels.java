@@ -1,6 +1,7 @@
 package alfheimrsmoons.client;
 
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.block.BlockAMPlanks;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.init.AMItems;
@@ -17,6 +18,7 @@ public class ItemModels {
         registerBlockWithVariants(AMBlocks.log, AMBlocks.log.variant, "_log");
         registerBlockWithVariants(AMBlocks.log2, AMBlocks.log2.variant, "_log");
         registerBlockWithVariants(AMBlocks.planks, BlockAMPlanks.VARIANT, "_planks");
+        registerBlockWithVariants(AMBlocks.ore, BlockAMOre.VARIANT, "_ore");
         registerBlock(AMBlocks.sediment);
         registerItem(AMItems.branch_bow);
         registerItem(AMItems.rock_arrow);

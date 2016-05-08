@@ -11,6 +11,9 @@ tile.alfheimr.wood.red_bud.name=Red Bud Wood Planks
 tile.alfheimr.wood.larch.name=Larch Wood Planks
 tile.alfheimr.wood.rune.name=Rune Wood Planks
 tile.alfheimr.sediment.name=Sediment
+tile.alfheimr.ore.kasolite.name=Kasolite Ore
+tile.alfheimr.ore.nitro.name=Nitro Ore
+tile.alfheimr.ore.loreium.name=Loreium Ore
 
 item.alfheimr.branch_bow.name=Branch Bow
 item.alfheimr.rock_arrow.name=Rock Arrow
