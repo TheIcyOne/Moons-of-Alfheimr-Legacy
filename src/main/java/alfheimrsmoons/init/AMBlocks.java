@@ -9,6 +9,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 /*
     Adding a block:
@@ -22,16 +23,26 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class AMBlocks {
     public static final Block soil = new BlockSoil().setUnlocalizedName("alfheimr.soil").setRegistryName("soil");
+    public static final Block grassy_soil = new BlockGrassySoil().setUnlocalizedName("alfheimr.grassy_soil").setRegistryName("grassy_soil");
+    public static final Block sediment = new BlockSediment().setUnlocalizedName("alfheimr.sediment").setRegistryName("sediment");
     public static final Block shale = new BlockShale().setUnlocalizedName("alfheimr.shale").setRegistryName("shale");
+    public static final Block ore = new BlockAMOre().setUnlocalizedName("alfheimr.ore").setRegistryName("ore");
     public static final BlockAMLog log = (BlockAMLog) new BlockAMLog(0, 3).setUnlocalizedName("alfheimr.log").setRegistryName("log");
     public static final BlockAMLog log2 = (BlockAMLog) new BlockAMLog(4).setUnlocalizedName("alfheimr.log").setRegistryName("log2");
     public static final Block planks = new BlockAMPlanks().setUnlocalizedName("alfheimr.wood").setRegistryName("planks");
-    public static final Block sediment = new BlockSediment().setUnlocalizedName("alfheimr.sediment").setRegistryName("sediment");
-    public static final Block ore = new BlockAMOre().setUnlocalizedName("alfheimr.ore").setRegistryName("ore");
+    public static final Block rune_bookshelf = new BlockRuneBookshelf().setUnlocalizedName("alfheimr.rune_bookshelf").setRegistryName("rune_bookshelf");
 
     public static void registerBlocks() {
         registerItemBlock(soil);
+        registerItemBlock(grassy_soil);
+        registerItemBlock(sediment);
         registerItemBlock(shale);
+        registerItemBlock(ore, new ItemMultiTexture(ore, ore, new Function<ItemStack, String>() {
+            @Override
+            public String apply(ItemStack stack) {
+                return BlockAMOre.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
+            }
+        }).setUnlocalizedName("alfheimr.ore"));
         registerItemBlock(log, new ItemLog(log).setUnlocalizedName("alfheimr.log"));
         registerItemBlock(log2, new ItemLog(log2).setUnlocalizedName("alfheimr.log"));
         registerItemBlock(planks, new ItemMultiTexture(planks, planks, new Function<ItemStack, String>() {
@@ -40,13 +51,11 @@ public class AMBlocks {
                 return BlockAMPlanks.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
             }
         }).setUnlocalizedName("alfheimr.wood"));
-        registerItemBlock(sediment);
-        registerItemBlock(ore, new ItemMultiTexture(ore, ore, new Function<ItemStack, String>() {
-            @Override
-            public String apply(ItemStack stack) {
-                return BlockAMOre.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
-            }
-        }).setUnlocalizedName("alfheimr.ore"));
+        registerItemBlock(rune_bookshelf);
+
+        OreDictionary.registerOre("logWood", log);
+        OreDictionary.registerOre("logWood", log2);
+        OreDictionary.registerOre("plankWood", planks);
     }
 
     private static void registerItemBlock(Block block) {

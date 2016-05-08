@@ -16,12 +16,18 @@ import net.minecraftforge.client.model.ModelLoader;
 public class ItemModels {
     public static void registerModels() {
         registerBlock(AMBlocks.soil);
+        registerBlock(AMBlocks.grassy_soil);
+        registerBlock(AMBlocks.sediment);
         registerBlock(AMBlocks.shale);
+        registerBlockWithVariants(AMBlocks.ore, BlockAMOre.VARIANT, "ore");
         registerBlockWithVariants(AMBlocks.log, AMBlocks.log.variant, "log");
         registerBlockWithVariants(AMBlocks.log2, AMBlocks.log2.variant, "log");
         registerBlockWithVariants(AMBlocks.planks, BlockAMPlanks.VARIANT, "planks");
-        registerBlockWithVariants(AMBlocks.ore, BlockAMOre.VARIANT, "ore");
-        registerBlock(AMBlocks.sediment);
+        registerBlock(AMBlocks.rune_bookshelf);
+        registerItem(AMItems.branch);
+        registerItem(AMItems.ore_drop, BlockAMOre.EnumType.NITRO.getMetadata(), "nitro_powder");
+        registerItem(AMItems.ore_drop, BlockAMOre.EnumType.KASOLITE.getMetadata(), "kasolite_crystal");
+        registerItem(AMItems.ore_drop, BlockAMOre.EnumType.LOREIUM.getMetadata(), "loreium_ingot");
         registerItem(AMItems.branch_bow);
         registerItem(AMItems.rock_arrow);
     }

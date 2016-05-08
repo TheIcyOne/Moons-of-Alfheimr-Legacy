@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "alfheimrsmoons:blocks/planks_rune",
+        "side": "alfheimrsmoons:blocks/rune_bookshelf"
+    }
+}

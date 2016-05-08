@@ -6,6 +6,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,10 +28,16 @@ public class BlockAMLog extends BlockLog {
         variant = PropertyEnum.create("variant", EnumType.class, types);
         blockState = new BlockStateContainer(this, variant, LOG_AXIS);
         setDefaultState(blockState.getBaseState().withProperty(variant, types[0]).withProperty(LOG_AXIS, EnumAxis.Y));
+        setHarvestLevel("axe", 0);
+        Blocks.fire.setFireInfo(this, 5, 5);
     }
 
     public int getMetaFromStateVariant(IBlockState state) {
-        return ArrayUtils.indexOf(types, state.getValue(variant));
+        return getMetaFromVariant(state.getValue(variant));
+    }
+
+    public int getMetaFromVariant(EnumType variant) {
+        return ArrayUtils.indexOf(types, variant);
     }
 
     @Override

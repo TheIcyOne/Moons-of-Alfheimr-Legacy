@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "alfheimrsmoons:grassy_soil" },
+            { "model": "alfheimrsmoons:grassy_soil", "y": 90 },
+            { "model": "alfheimrsmoons:grassy_soil", "y": 180 },
+            { "model": "alfheimrsmoons:grassy_soil", "y": 270 }
+        ]
+    }
+}

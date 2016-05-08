@@ -26,7 +26,7 @@ public class AlfheimrsMoons {
     public void preInit(FMLPreInitializationEvent event) {
         AMBlocks.registerBlocks();
         AMItems.registerItems();
-        AMRecipes.registerRecipes();
+        AMRecipes.addRecipes();
         AMEntities.registerEntities();
         MinecraftForge.EVENT_BUS.register(new AMEventHandler());
         proxy.preInit();

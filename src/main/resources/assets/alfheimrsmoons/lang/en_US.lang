@@ -1,4 +1,5 @@
 tile.alfheimr.soil.name=Soil
+tile.alfheimr.grassy_soil.name=Grassy Soil
 tile.alfheimr.shale.name=Shale
 tile.alfheimr.log.beech.name=Beech Wood
 tile.alfheimr.log.elm.name=Elm Wood
@@ -11,9 +12,14 @@ tile.alfheimr.wood.red_bud.name=Red Bud Wood Planks
 tile.alfheimr.wood.larch.name=Larch Wood Planks
 tile.alfheimr.wood.rune.name=Rune Wood Planks
 tile.alfheimr.sediment.name=Sediment
-tile.alfheimr.ore.kasolite.name=Kasolite Ore
 tile.alfheimr.ore.nitro.name=Nitro Ore
+tile.alfheimr.ore.kasolite.name=Kasolite Ore
 tile.alfheimr.ore.loreium.name=Loreium Ore
+tile.alfheimr.rune_bookshelf.name=Rune Bookshelf
 
+item.alfheimr.branch.name=Branch
+item.alfheimr.ore_drop.nitro.name=Nitro Powder
+item.alfheimr.ore_drop.kasolite.name=Kasolite Crystal
+item.alfheimr.ore_drop.loreium.name=Loreium Ingot
 item.alfheimr.branch_bow.name=Branch Bow
 item.alfheimr.rock_arrow.name=Rock Arrow

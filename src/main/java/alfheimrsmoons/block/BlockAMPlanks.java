@@ -7,6 +7,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -24,6 +25,8 @@ public class BlockAMPlanks extends BlockPlanks {
         setHardness(2.0F);
         setResistance(5.0F);
         setStepSound(SoundType.WOOD);
+        setHarvestLevel("axe", 0);
+        Blocks.fire.setFireInfo(this, 5, 20);
     }
 
     @Override
@@ -55,11 +58,11 @@ public class BlockAMPlanks extends BlockPlanks {
     }
 
     public enum EnumType implements IStringSerializable {
+        RUNE("rune", MapColor.lightBlueColor),
         BEECH("beech", MapColor.woodColor),
         ELM("elm", MapColor.obsidianColor),
         RED_BUD("red_bud", MapColor.sandColor),
-        LARCH("larch", MapColor.dirtColor),
-        RUNE("rune", MapColor.lightBlueColor);
+        LARCH("larch", MapColor.dirtColor);
 
         public static final EnumType[] values = values();
         private final String name;
