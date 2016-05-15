@@ -25,27 +25,27 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BlockAMLeaves extends BlockLeaves {
-    public final EnumType[] types;
+    public final EnumType[] variants;
     public final PropertyEnum<EnumType> variant;
 
     public BlockAMLeaves(int startMeta, int endMeta) {
-        types = ArrayUtils.subarray(EnumType.values, startMeta, endMeta + 1);
-        variant = PropertyEnum.create("variant", EnumType.class, types);
+        variants = VariantHelper.getMetaVariants(EnumType.values, startMeta, endMeta);
+        variant = PropertyEnum.create("variant", EnumType.class, variants);
         blockState = new BlockStateContainer(this, variant, CHECK_DECAY, DECAYABLE);
-        setDefaultState(blockState.getBaseState().withProperty(variant, types[0]).withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+        setDefaultState(blockState.getBaseState().withProperty(variant, VariantHelper.getDefaultVariant(variants)).withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (int meta = 0; meta < types.length; meta++) {
+        for (int meta = 0; meta < variants.length; meta++) {
             list.add(new ItemStack(item, 1, meta));
         }
     }
 
     @Override
     protected ItemStack createStackedBlock(IBlockState state) {
-        return new ItemStack(this, 1, VariantHelper.getMetaFromVariant(types, state, variant));
+        return new ItemStack(this, 1, VariantHelper.getMetaFromVariant(variants, state, variant));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class BlockAMLeaves extends BlockLeaves {
     @Override
     public int getMetaFromState(IBlockState state) {
         int i = 0;
-        i = i | VariantHelper.getMetaFromVariant(types, state, variant);
+        i = i | VariantHelper.getMetaFromVariant(variants, state, variant);
 
         if (!state.getValue(DECAYABLE)) {
             i |= 4;
@@ -75,12 +75,12 @@ public class BlockAMLeaves extends BlockLeaves {
     }
 
     public EnumType getAMWoodType(int meta) {
-        return types[meta & 3];
+        return variants[meta & 3];
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        return VariantHelper.getMetaFromVariant(types, state, variant);
+        return VariantHelper.getMetaFromVariant(variants, state, variant);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class BlockAMLeaves extends BlockLeaves {
 
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-        return Arrays.asList(new ItemStack(this, 1, VariantHelper.getMetaFromVariant(types, world.getBlockState(pos), variant)));
+        return Arrays.asList(new ItemStack(this, 1, VariantHelper.getMetaFromVariant(variants, world.getBlockState(pos), variant)));
     }
 
     @Override

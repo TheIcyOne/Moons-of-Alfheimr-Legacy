@@ -5,6 +5,19 @@ import net.minecraft.block.state.IBlockState;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class VariantHelper {
+    public static <T> T[] getMetaVariants(T[] variants, int startMeta, int endMeta) {
+        return ArrayUtils.subarray(variants, startMeta, endMeta + 1);
+    }
+
+    public static <T> T getDefaultVariant(T[] variants) {
+        for (T variant : variants) {
+            if (variant != null) {
+                return variant;
+            }
+        }
+        return null;
+    }
+
     public static <T extends Comparable<T>> int getMetaFromVariant(T[] variants, IBlockState state, IProperty<T> variantProperty) {
         return getMetaFromVariant(variants, state.getValue(variantProperty));
     }

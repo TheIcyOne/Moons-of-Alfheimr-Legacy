@@ -18,28 +18,28 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.List;
 
 public class BlockAMLog extends BlockLog {
-    public final EnumType[] types;
+    public final EnumType[] variants;
     public final PropertyEnum<EnumType> variant;
 
     public BlockAMLog(int startMeta, int endMeta) {
-        types = ArrayUtils.subarray(EnumType.values, startMeta, endMeta + 1);
-        variant = PropertyEnum.create("variant", EnumType.class, types);
+        variants = VariantHelper.getMetaVariants(EnumType.values, startMeta, endMeta);
+        variant = PropertyEnum.create("variant", EnumType.class, variants);
         blockState = new BlockStateContainer(this, variant, LOG_AXIS);
-        setDefaultState(blockState.getBaseState().withProperty(variant, types[0]).withProperty(LOG_AXIS, EnumAxis.Y));
+        setDefaultState(blockState.getBaseState().withProperty(variant, VariantHelper.getDefaultVariant(variants)).withProperty(LOG_AXIS, EnumAxis.Y));
         setHarvestLevel("axe", 0);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (int meta = 0; meta < types.length; meta++) {
+        for (int meta = 0; meta < variants.length; meta++) {
             list.add(new ItemStack(item, 1, meta));
         }
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        IBlockState state = getDefaultState().withProperty(variant, types[meta & 3]);
+        IBlockState state = getDefaultState().withProperty(variant, variants[meta & 3]);
 
         switch (meta & 12) {
             case 0:
@@ -61,7 +61,7 @@ public class BlockAMLog extends BlockLog {
     @Override
     public int getMetaFromState(IBlockState state) {
         int meta = 0;
-        meta = meta | VariantHelper.getMetaFromVariant(types, state, variant);
+        meta = meta | VariantHelper.getMetaFromVariant(variants, state, variant);
 
         switch (state.getValue(LOG_AXIS)) {
             case X:
@@ -79,12 +79,12 @@ public class BlockAMLog extends BlockLog {
 
     @Override
     protected ItemStack createStackedBlock(IBlockState state) {
-        return new ItemStack(this, 1, VariantHelper.getMetaFromVariant(types, state, variant));
+        return new ItemStack(this, 1, VariantHelper.getMetaFromVariant(variants, state, variant));
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        return VariantHelper.getMetaFromVariant(types, state, variant);
+        return VariantHelper.getMetaFromVariant(variants, state, variant);
     }
 
     @Override

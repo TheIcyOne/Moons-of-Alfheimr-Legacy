@@ -26,10 +26,10 @@ public class ItemModels {
         registerBlock(AMBlocks.sediment);
         registerBlock(AMBlocks.shale);
         registerBlockWithVariants(AMBlocks.ore, BlockAMOre.EnumType.values, "ore");
-        registerBlockWithVariants(AMBlocks.log, AMBlocks.log.types, "log");
-        registerBlockWithVariants(AMBlocks.log2, AMBlocks.log2.types, "log");
-        registerBlockWithVariants(AMBlocks.leaves, AMBlocks.leaves.types, "leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
-        registerBlockWithVariants(AMBlocks.leaves2, AMBlocks.leaves2.types, "leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
+        registerBlockWithVariants(AMBlocks.log, AMBlocks.log.variants, "log");
+        registerBlockWithVariants(AMBlocks.log2, AMBlocks.log2.variants, "log");
+        registerBlockWithVariants(AMBlocks.leaves, AMBlocks.leaves.variants, "leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
+        registerBlockWithVariants(AMBlocks.leaves2, AMBlocks.leaves2.variants, "leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
         registerBlockWithVariants(AMBlocks.planks, BlockAMPlanks.EnumType.values, "planks");
         registerBlock(AMBlocks.rune_bookshelf);
         registerItem(AMItems.branch);

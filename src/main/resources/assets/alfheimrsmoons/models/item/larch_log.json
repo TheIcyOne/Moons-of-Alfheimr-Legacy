@@ -1,7 +1,7 @@
 {
     "parent": "alfheimrsmoons:block/log",
     "textures": {
-        "top": "alfheimrsmoons:blocks/log_larch_top",
+        "end": "alfheimrsmoons:blocks/log_larch_top",
         "side": "alfheimrsmoons:blocks/log_larch"
     }
 }

@@ -15,7 +15,7 @@ public class AMRecipes {
     public static void addRecipes() {
         addLogRecipes(AMBlocks.log);
         addLogRecipes(AMBlocks.log2);
-        GameRegistry.addRecipe(new ItemStack(AMBlocks.rune_bookshelf), "###", "XXX", "###", '#', new ItemStack(AMBlocks.log, 1, VariantHelper.getMetaFromVariant(AMBlocks.log.types, BlockAMPlanks.EnumType.RUNE)), 'X', Items.book);
+        GameRegistry.addRecipe(new ItemStack(AMBlocks.rune_bookshelf), "###", "XXX", "###", '#', new ItemStack(AMBlocks.log, 1, VariantHelper.getMetaFromVariant(AMBlocks.log.variants, BlockAMPlanks.EnumType.RUNE)), 'X', Items.book);
 
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.NITRO.getMetadata(), 0.1F);
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.KASOLITE.getMetadata(), 0.7F);
@@ -27,8 +27,8 @@ public class AMRecipes {
     }
 
     private static void addLogRecipes(BlockAMLog log) {
-        for (int meta = 0; meta < log.types.length; meta++) {
-            GameRegistry.addShapelessRecipe(new ItemStack(AMBlocks.planks, 4, log.types[meta].getMetadata()), new ItemStack(log, 1, meta));
+        for (int meta = 0; meta < log.variants.length; meta++) {
+            GameRegistry.addShapelessRecipe(new ItemStack(AMBlocks.planks, 4, log.variants[meta].getMetadata()), new ItemStack(log, 1, meta));
         }
     }
 

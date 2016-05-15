@@ -9,7 +9,7 @@ public class ItemLog extends ItemMultiTexture {
     public ItemLog(final BlockAMLog log) {
         super(log, log, new Function<ItemStack, String>() {
             public String apply(ItemStack stack) {
-                return log.types[stack.getMetadata()].getUnlocalizedName();
+                return log.variants[stack.getMetadata()].getUnlocalizedName();
             }
         });
     }

@@ -1,4 +1,4 @@
 {
     "parent": "alfheimrsmoons:block/ore",
-    "textures": { "texture": "alfheimrsmoons:blocks/ore_loreium" }
+    "textures": { "all": "alfheimrsmoons:blocks/ore_loreium" }
 }
