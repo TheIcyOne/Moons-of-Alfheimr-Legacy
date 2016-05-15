@@ -4,6 +4,7 @@ import alfheimrsmoons.AMFuelHandler;
 import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.block.BlockAMPlanks;
+import alfheimrsmoons.block.VariantHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -14,7 +15,7 @@ public class AMRecipes {
     public static void addRecipes() {
         addLogRecipes(AMBlocks.log);
         addLogRecipes(AMBlocks.log2);
-        GameRegistry.addRecipe(new ItemStack(AMBlocks.rune_bookshelf), "###", "XXX", "###", '#', new ItemStack(AMBlocks.log, 1, AMBlocks.log.getMetaFromVariant(BlockAMPlanks.EnumType.RUNE)), 'X', Items.book);
+        GameRegistry.addRecipe(new ItemStack(AMBlocks.rune_bookshelf), "###", "XXX", "###", '#', new ItemStack(AMBlocks.log, 1, VariantHelper.getMetaFromVariant(AMBlocks.log.types, BlockAMPlanks.EnumType.RUNE)), 'X', Items.book);
 
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.NITRO.getMetadata(), 0.1F);
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.KASOLITE.getMetadata(), 0.7F);

@@ -6,12 +6,18 @@ import alfheimrsmoons.block.BlockAMPlanks;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.init.AMItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+
+import java.util.*;
 
 public class ItemModels {
     public static void registerModels() {
@@ -19,10 +25,12 @@ public class ItemModels {
         registerBlock(AMBlocks.grassy_soil);
         registerBlock(AMBlocks.sediment);
         registerBlock(AMBlocks.shale);
-        registerBlockWithVariants(AMBlocks.ore, BlockAMOre.VARIANT, "ore");
-        registerBlockWithVariants(AMBlocks.log, AMBlocks.log.variant, "log");
-        registerBlockWithVariants(AMBlocks.log2, AMBlocks.log2.variant, "log");
-        registerBlockWithVariants(AMBlocks.planks, BlockAMPlanks.VARIANT, "planks");
+        registerBlockWithVariants(AMBlocks.ore, BlockAMOre.EnumType.values, "ore");
+        registerBlockWithVariants(AMBlocks.log, AMBlocks.log.types, "log");
+        registerBlockWithVariants(AMBlocks.log2, AMBlocks.log2.types, "log");
+        registerBlockWithVariants(AMBlocks.leaves, AMBlocks.leaves.types, "leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
+        registerBlockWithVariants(AMBlocks.leaves2, AMBlocks.leaves2.types, "leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
+        registerBlockWithVariants(AMBlocks.planks, BlockAMPlanks.EnumType.values, "planks");
         registerBlock(AMBlocks.rune_bookshelf);
         registerItem(AMItems.branch);
         registerItem(AMItems.ore_drop, BlockAMOre.EnumType.NITRO.getMetadata(), "nitro_powder");
@@ -56,21 +64,29 @@ public class ItemModels {
         registerItem(item, item.getRegistryName().getResourcePath());
     }
 
-    private static <T extends Comparable<T>> void registerBlockWithVariants(Block block, IProperty<T> property, final String baseName) {
-        for (T value : property.getAllowedValues()) {
-            int meta = block.getMetaFromState(block.getDefaultState().withProperty(property, value));
-            String id = property.getName(value) + "_" + baseName;
+    private static <T extends Comparable<T> & IStringSerializable> void registerBlockWithVariants(Block block, T[] variants, final String name, final IProperty... ignored) {
+        ResourceLocation[] variantNames = new ResourceLocation[variants.length];
+        for (int meta = 0; meta < variants.length; meta++) {
+            T variant = variants[meta];
+            String id = variant.getName() + "_" + name;
             registerBlock(block, meta, id);
+            variantNames[meta] = new ResourceLocation(AlfheimrsMoons.MOD_ID, id);
         }
+        ModelLoader.registerItemVariants(Item.getItemFromBlock(block), variantNames);
 
-        String blockName = block.getRegistryName().getResourcePath();
-        if (!blockName.equals(baseName)) {
+        if (!name.equals(block.delegate.name().getResourcePath())) {
             ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
                 @Override
                 protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-                    return new ModelResourceLocation(AlfheimrsMoons.MOD_ID + ":" + baseName, getPropertyString(state.getProperties()));
+                    Map<IProperty<?>, Comparable<?>> properties = new HashMap<IProperty<?>, Comparable<?>>(state.getProperties());
+                    for (IProperty<?> property : ignored) {
+                        properties.remove(property);
+                    }
+                    return new ModelResourceLocation(AlfheimrsMoons.MOD_ID + ":" + name, getPropertyString(properties));
                 }
             });
+        } else if (ignored.length > 0) {
+            ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(ignored).build());
         }
     }
 }

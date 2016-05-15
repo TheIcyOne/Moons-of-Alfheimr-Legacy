@@ -21,24 +21,12 @@ public class BlockAMLog extends BlockLog {
     public final EnumType[] types;
     public final PropertyEnum<EnumType> variant;
 
-    public BlockAMLog(int meta) {
-        this(meta, meta);
-    }
-
     public BlockAMLog(int startMeta, int endMeta) {
         types = ArrayUtils.subarray(EnumType.values, startMeta, endMeta + 1);
         variant = PropertyEnum.create("variant", EnumType.class, types);
         blockState = new BlockStateContainer(this, variant, LOG_AXIS);
         setDefaultState(blockState.getBaseState().withProperty(variant, types[0]).withProperty(LOG_AXIS, EnumAxis.Y));
         setHarvestLevel("axe", 0);
-    }
-
-    public int getMetaFromStateVariant(IBlockState state) {
-        return getMetaFromVariant(state.getValue(variant));
-    }
-
-    public int getMetaFromVariant(EnumType variant) {
-        return ArrayUtils.indexOf(types, variant);
     }
 
     @Override
@@ -73,7 +61,7 @@ public class BlockAMLog extends BlockLog {
     @Override
     public int getMetaFromState(IBlockState state) {
         int meta = 0;
-        meta = meta | getMetaFromStateVariant(state);
+        meta = meta | VariantHelper.getMetaFromVariant(types, state, variant);
 
         switch (state.getValue(LOG_AXIS)) {
             case X:
@@ -91,12 +79,12 @@ public class BlockAMLog extends BlockLog {
 
     @Override
     protected ItemStack createStackedBlock(IBlockState state) {
-        return new ItemStack(this, 1, getMetaFromStateVariant(state));
+        return new ItemStack(this, 1, VariantHelper.getMetaFromVariant(types, state, variant));
     }
 
     @Override
     public int damageDropped(IBlockState state) {
-        return getMetaFromStateVariant(state);
+        return VariantHelper.getMetaFromVariant(types, state, variant);
     }
 
     @Override
