@@ -1,5 +1,6 @@
 package alfheimrsmoons.init;
 
+import alfheimrsmoons.AMFuelHandler;
 import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.block.BlockAMPlanks;
@@ -18,6 +19,10 @@ public class AMRecipes {
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.NITRO.getMetadata(), 0.1F);
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.KASOLITE.getMetadata(), 0.7F);
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.LOREIUM.getMetadata(), 1.0F);
+
+        AMFuelHandler fuelHandler = new AMFuelHandler();
+        fuelHandler.setBurnTime(AMItems.branch, 100);
+        GameRegistry.registerFuelHandler(fuelHandler);
     }
 
     private static void addLogRecipes(BlockAMLog log) {
