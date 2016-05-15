@@ -6,6 +6,7 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -24,6 +25,7 @@ public class BlockSoil extends BlockDirt {
         setHardness(0.5F);
         setStepSound(SoundType.GROUND);
         setHarvestLevel("shovel", 0);
+        EntityEnderman.setCarriable(this, true);
     }
 
     @Override
