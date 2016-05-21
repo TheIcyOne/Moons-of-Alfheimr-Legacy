@@ -5,6 +5,7 @@ import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 
 /*
     Adding an item:
@@ -25,5 +26,7 @@ public class AMItems {
         AlfheimrsMoons.proxy.registerItemWithVariants(ore_drop, BlockAMOre.EnumType.values, "ore_drop");
         AlfheimrsMoons.proxy.registerItem(branch_bow);
         AlfheimrsMoons.proxy.registerItem(rock_arrow);
+
+        OreDictionary.registerOre("stickWood", branch);
     }
 }

@@ -23,6 +23,7 @@ public class AMRecipes {
 
         AMFuelHandler fuelHandler = new AMFuelHandler();
         fuelHandler.setBurnTime(AMItems.branch, 100);
+        fuelHandler.setBurnTime(AMBlocks.sapling, 100);
         GameRegistry.registerFuelHandler(fuelHandler);
     }
 

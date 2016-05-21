@@ -4,6 +4,7 @@ import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.*;
 import alfheimrsmoons.item.ItemAMLeaves;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 /*
@@ -44,8 +45,11 @@ public class AMBlocks {
         AlfheimrsMoons.proxy.registerBlockWithVariants(planks, BlockAMPlanks.EnumType.values, "planks");
         AlfheimrsMoons.proxy.registerBlockWithItem(rune_bookshelf);
 
-        OreDictionary.registerOre("logWood", log);
-        OreDictionary.registerOre("logWood", log2);
-        OreDictionary.registerOre("plankWood", planks);
+        OreDictionary.registerOre("logWood", new ItemStack(log, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("logWood", new ItemStack(log2, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("treeSapling", new ItemStack(sapling, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("treeLeaves",  new ItemStack(leaves, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("treeLeaves",  new ItemStack(leaves2, 1, OreDictionary.WILDCARD_VALUE));
     }
 }
