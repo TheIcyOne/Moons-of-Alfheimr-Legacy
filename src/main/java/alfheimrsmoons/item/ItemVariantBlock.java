@@ -1,5 +1,6 @@
 package alfheimrsmoons.item;
 
+import alfheimrsmoons.block.VariantHelper;
 import com.google.common.base.Function;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemMultiTexture;
@@ -11,11 +12,7 @@ public class ItemVariantBlock extends ItemMultiTexture {
         super(block, block, new Function<ItemStack, String>() {
             @Override
             public String apply(ItemStack stack) {
-                int meta = stack.getMetadata();
-                if (meta < 0 || meta >= variants.length) {
-                    meta = 0;
-                }
-                return variants[meta].getName();
+                return VariantHelper.getVariantFromMeta(variants, stack.getMetadata()).getName();
             }
         });
     }

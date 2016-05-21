@@ -142,7 +142,7 @@ public class BlockAMSapling extends BlockSapling {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(TYPE, EnumType.byMetadata(meta & 7)).withProperty(STAGE, (meta & 8) >> 3);
+        return getDefaultState().withProperty(TYPE, VariantHelper.getVariantFromMeta(EnumType.values, meta & 7)).withProperty(STAGE, (meta & 8) >> 3);
     }
 
     @Override

@@ -25,4 +25,12 @@ public class VariantHelper {
     public static <T> int getMetaFromVariant(T[] variants, T variant) {
         return ArrayUtils.indexOf(variants, variant);
     }
+
+    public static <T> T getVariantFromMeta(T[] variants, int meta) {
+        if (meta < 0 || meta >= variants.length) {
+            meta = 0;
+        }
+
+        return variants[meta];
+    }
 }

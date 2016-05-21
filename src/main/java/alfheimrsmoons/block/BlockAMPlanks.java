@@ -45,7 +45,7 @@ public class BlockAMPlanks extends BlockPlanks {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta));
+        return getDefaultState().withProperty(VARIANT, VariantHelper.getVariantFromMeta(EnumType.values, meta));
     }
 
     @Override
@@ -95,14 +95,6 @@ public class BlockAMPlanks extends BlockPlanks {
         @Override
         public String toString() {
             return name;
-        }
-
-        public static EnumType byMetadata(int meta) {
-            if (meta < 0 || meta >= values.length) {
-                meta = 0;
-            }
-
-            return values[meta];
         }
 
         @Override
