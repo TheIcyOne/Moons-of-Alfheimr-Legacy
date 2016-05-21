@@ -21,6 +21,7 @@ public class AMBlocks {
     public static final Block soil = new BlockSoil().setUnlocalizedName("alfheimr.soil").setRegistryName("soil");
     public static final Block grassy_soil = new BlockGrassySoil().setUnlocalizedName("alfheimr.grassy_soil").setRegistryName("grassy_soil");
     public static final Block sediment = new BlockSediment().setUnlocalizedName("alfheimr.sediment").setRegistryName("sediment");
+    public static final Block sediment_glass = new BlockSedimentGlass().setUnlocalizedName("alfheimr.sediment_glass").setRegistryName("sediment_glass");
     public static final Block shale = new BlockShale().setUnlocalizedName("alfheimr.shale").setRegistryName("shale");
     public static final Block ore = new BlockAMOre().setUnlocalizedName("alfheimr.ore").setRegistryName("ore");
     public static final BlockAMLog log = (BlockAMLog) new BlockAMLog(0, 3).setUnlocalizedName("alfheimr.log").setRegistryName("log");
@@ -35,6 +36,7 @@ public class AMBlocks {
         AlfheimrsMoons.proxy.registerBlockWithItem(soil);
         AlfheimrsMoons.proxy.registerBlockWithItem(grassy_soil);
         AlfheimrsMoons.proxy.registerBlockWithItem(sediment);
+        AlfheimrsMoons.proxy.registerBlockWithItem(sediment_glass);
         AlfheimrsMoons.proxy.registerBlockWithItem(shale);
         AlfheimrsMoons.proxy.registerBlockWithVariants(ore, BlockAMOre.EnumType.values, "ore");
         AlfheimrsMoons.proxy.registerBlockWithVariants(log, log.variants, "log");
