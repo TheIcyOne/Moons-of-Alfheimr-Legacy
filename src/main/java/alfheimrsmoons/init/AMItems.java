@@ -1,14 +1,14 @@
 package alfheimrsmoons.init;
 
+import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /*
     Adding an item:
     - Registration (you are here)
-    - Model registration (alfheimrsmoons.client.ItemModels)
     - Model JSON (assets/alfheimrsmoons/models/item)
     - Texture(s) (assets/alfheimrsmoons/textures/items)
     - Localization (assets/alfheimrsmoons/lang)
@@ -21,9 +21,9 @@ public class AMItems {
     public static final Item rock_arrow = new ItemAMArrow().setUnlocalizedName("alfheimr.rock_arrow").setRegistryName("rock_arrow");
 
     public static void registerItems() {
-        GameRegistry.register(branch);
-        GameRegistry.register(ore_drop);
-        GameRegistry.register(branch_bow);
-        GameRegistry.register(rock_arrow);
+        AlfheimrsMoons.proxy.registerItem(branch);
+        AlfheimrsMoons.proxy.registerItemWithVariants(ore_drop, BlockAMOre.EnumType.values, "ore_drop");
+        AlfheimrsMoons.proxy.registerItem(branch_bow);
+        AlfheimrsMoons.proxy.registerItem(rock_arrow);
     }
 }

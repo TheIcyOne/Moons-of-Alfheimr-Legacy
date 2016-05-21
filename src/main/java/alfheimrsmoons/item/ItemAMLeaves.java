@@ -14,6 +14,6 @@ public class ItemAMLeaves extends ItemLeaves {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return leaves.getUnlocalizedName() + "." + leaves.getAMWoodType(stack.getMetadata()).getUnlocalizedName();
+        return leaves.getUnlocalizedName() + "." + leaves.getAMWoodType(stack.getMetadata()).getName();
     }
 }

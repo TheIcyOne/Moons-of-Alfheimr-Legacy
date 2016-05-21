@@ -1,21 +1,14 @@
 package alfheimrsmoons.init;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.*;
 import alfheimrsmoons.item.ItemAMLeaves;
-import alfheimrsmoons.item.ItemLog;
-import com.google.common.base.Function;
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMultiTexture;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 /*
     Adding a block:
     - Registration (you are here)
-    - Model registration (alfheimrsmoons.client.ItemModels)
     - Block state JSON (assets/alfheimrsmoons/blockstates)
     - Model JSON's (assets/alfheimrsmoons/models)
     - Texture(s) (assets/alfheimrsmoons/textures/blocks)
@@ -37,45 +30,21 @@ public class AMBlocks {
     public static final Block rune_bookshelf = new BlockRuneBookshelf().setUnlocalizedName("alfheimr.rune_bookshelf").setRegistryName("rune_bookshelf");
 
     public static void registerBlocks() {
-        registerItemBlock(soil);
-        registerItemBlock(grassy_soil);
-        registerItemBlock(sediment);
-        registerItemBlock(shale);
-        registerItemBlock(ore, new ItemMultiTexture(ore, ore, new Function<ItemStack, String>() {
-            @Override
-            public String apply(ItemStack stack) {
-                return BlockAMOre.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
-            }
-        }));
-        registerItemBlock(log, new ItemLog(log));
-        registerItemBlock(log2, new ItemLog(log2));
-        registerItemBlock(leaves, new ItemAMLeaves(leaves));
-        registerItemBlock(leaves2, new ItemAMLeaves(leaves2));
-        registerItemBlock(sapling, new ItemMultiTexture(sapling, sapling, new Function<ItemStack, String>() {
-            @Override
-            public String apply(ItemStack stack) {
-                return BlockAMPlanks.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
-            }
-        }));
-        registerItemBlock(planks, new ItemMultiTexture(planks, planks, new Function<ItemStack, String>() {
-            @Override
-            public String apply(ItemStack stack) {
-                return BlockAMPlanks.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
-            }
-        }));
-        registerItemBlock(rune_bookshelf);
+        AlfheimrsMoons.proxy.registerBlockWithItem(soil);
+        AlfheimrsMoons.proxy.registerBlockWithItem(grassy_soil);
+        AlfheimrsMoons.proxy.registerBlockWithItem(sediment);
+        AlfheimrsMoons.proxy.registerBlockWithItem(shale);
+        AlfheimrsMoons.proxy.registerBlockWithVariants(ore, BlockAMOre.EnumType.values, "ore");
+        AlfheimrsMoons.proxy.registerBlockWithVariants(log, log.variants, "log");
+        AlfheimrsMoons.proxy.registerBlockWithVariants(log2, log2.variants, "log");
+        AlfheimrsMoons.proxy.registerBlockWithVariants(leaves, new ItemAMLeaves(leaves), leaves.variants, "leaves");
+        AlfheimrsMoons.proxy.registerBlockWithVariants(leaves2, new ItemAMLeaves(leaves2), leaves.variants, "leaves");
+        AlfheimrsMoons.proxy.registerBlockWithVariants(sapling, BlockAMPlanks.EnumType.values, "sapling");
+        AlfheimrsMoons.proxy.registerBlockWithVariants(planks, BlockAMPlanks.EnumType.values, "planks");
+        AlfheimrsMoons.proxy.registerBlockWithItem(rune_bookshelf);
 
         OreDictionary.registerOre("logWood", log);
         OreDictionary.registerOre("logWood", log2);
         OreDictionary.registerOre("plankWood", planks);
-    }
-
-    private static void registerItemBlock(Block block) {
-        registerItemBlock(block, new ItemBlock(block));
-    }
-
-    private static void registerItemBlock(Block block, Item item) {
-        GameRegistry.register(block);
-        GameRegistry.register(item.setRegistryName(block.getRegistryName()));
     }
 }

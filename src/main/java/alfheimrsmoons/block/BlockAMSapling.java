@@ -44,7 +44,7 @@ public class BlockAMSapling extends BlockSapling {
 
     @Override
     public String getLocalizedName() {
-        return I18n.translateToLocal(getUnlocalizedName() + "." + getDefaultState().getValue(TYPE).getUnlocalizedName() + ".name");
+        return I18n.translateToLocal(getUnlocalizedName() + "." + getDefaultState().getValue(TYPE).getName() + ".name");
     }
 
     @Override
