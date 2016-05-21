@@ -119,15 +119,9 @@ public class BlockAMOre extends BlockOre {
 
         public static final EnumType[] values = values();
         private final String name;
-        private final String unlocalizedName;
 
         EnumType(String name) {
-            this(name, name);
-        }
-
-        EnumType(String name, String unlocalizedName) {
             this.name = name;
-            this.unlocalizedName = unlocalizedName;
         }
 
         public int getMetadata() {
@@ -150,10 +144,6 @@ public class BlockAMOre extends BlockOre {
         @Override
         public String getName() {
             return name;
-        }
-
-        public String getUnlocalizedName() {
-            return unlocalizedName;
         }
     }
 }

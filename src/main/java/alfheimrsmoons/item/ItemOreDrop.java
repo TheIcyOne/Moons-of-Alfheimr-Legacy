@@ -17,7 +17,7 @@ public class ItemOreDrop extends Item {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName(stack) + "." + BlockAMOre.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
+        return super.getUnlocalizedName(stack) + "." + BlockAMOre.EnumType.byMetadata(stack.getMetadata()).getName();
     }
 
     @Override

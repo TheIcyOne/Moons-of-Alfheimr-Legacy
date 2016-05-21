@@ -77,16 +77,10 @@ public class BlockAMPlanks extends BlockPlanks {
 
         public static final EnumType[] values = values();
         private final String name;
-        private final String unlocalizedName;
         private final MapColor mapColor;
 
         EnumType(String name, MapColor mapColor) {
-            this(name, name, mapColor);
-        }
-
-        EnumType(String name, String unlocalizedName, MapColor mapColor) {
             this.name = name;
-            this.unlocalizedName = unlocalizedName;
             this.mapColor = mapColor;
         }
 
@@ -114,10 +108,6 @@ public class BlockAMPlanks extends BlockPlanks {
         @Override
         public String getName() {
             return name;
-        }
-
-        public String getUnlocalizedName() {
-            return unlocalizedName;
         }
     }
 }
