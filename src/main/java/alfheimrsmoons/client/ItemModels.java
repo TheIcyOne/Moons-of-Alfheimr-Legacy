@@ -30,6 +30,7 @@ public class ItemModels {
         registerBlockWithVariants(AMBlocks.log2, AMBlocks.log2.variants, "log");
         registerBlockWithVariants(AMBlocks.leaves, AMBlocks.leaves.variants, "leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
         registerBlockWithVariants(AMBlocks.leaves2, AMBlocks.leaves2.variants, "leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
+        registerBlockWithVariants(AMBlocks.sapling, BlockAMPlanks.EnumType.values, "sapling");
         registerBlockWithVariants(AMBlocks.planks, BlockAMPlanks.EnumType.values, "planks");
         registerBlock(AMBlocks.rune_bookshelf);
         registerItem(AMItems.branch);

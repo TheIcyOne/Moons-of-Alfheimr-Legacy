@@ -1,6 +1,7 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.block.BlockAMPlanks.EnumType;
+import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.PropertyEnum;
@@ -23,6 +24,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class BlockAMLeaves extends BlockLeaves {
     public final EnumType[] variants;
@@ -33,6 +35,11 @@ public class BlockAMLeaves extends BlockLeaves {
         variant = PropertyEnum.create("variant", EnumType.class, variants);
         blockState = new BlockStateContainer(this, variant, CHECK_DECAY, DECAYABLE);
         setDefaultState(blockState.getBaseState().withProperty(variant, VariantHelper.getDefaultVariant(variants)).withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        return Item.getItemFromBlock(AMBlocks.sapling);
     }
 
     @Override

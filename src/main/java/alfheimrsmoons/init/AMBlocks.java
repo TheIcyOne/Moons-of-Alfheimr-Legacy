@@ -32,6 +32,7 @@ public class AMBlocks {
     public static final BlockAMLog log2 = (BlockAMLog) new BlockAMLog(4, 4).setUnlocalizedName("alfheimr.log").setRegistryName("log2");
     public static final BlockAMLeaves leaves = (BlockAMLeaves) new BlockAMLeaves(0, 3).setUnlocalizedName("alfheimr.leaves").setRegistryName("leaves");
     public static final BlockAMLeaves leaves2 = (BlockAMLeaves) new BlockAMLeaves(4, 4).setUnlocalizedName("alfheimr.leaves").setRegistryName("leaves2");
+    public static final BlockAMSapling sapling = (BlockAMSapling) new BlockAMSapling().setUnlocalizedName("alfheimr.sapling").setRegistryName("sapling");
     public static final Block planks = new BlockAMPlanks().setUnlocalizedName("alfheimr.wood").setRegistryName("planks");
     public static final Block rune_bookshelf = new BlockRuneBookshelf().setUnlocalizedName("alfheimr.rune_bookshelf").setRegistryName("rune_bookshelf");
 
@@ -45,17 +46,23 @@ public class AMBlocks {
             public String apply(ItemStack stack) {
                 return BlockAMOre.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
             }
-        }).setUnlocalizedName("alfheimr.ore"));
-        registerItemBlock(log, new ItemLog(log).setUnlocalizedName("alfheimr.log"));
-        registerItemBlock(log2, new ItemLog(log2).setUnlocalizedName("alfheimr.log"));
-        registerItemBlock(leaves, new ItemAMLeaves(leaves).setUnlocalizedName("alfheimr.leaves"));
-        registerItemBlock(leaves2, new ItemAMLeaves(leaves2).setUnlocalizedName("alfheimr.leaves"));
+        }));
+        registerItemBlock(log, new ItemLog(log));
+        registerItemBlock(log2, new ItemLog(log2));
+        registerItemBlock(leaves, new ItemAMLeaves(leaves));
+        registerItemBlock(leaves2, new ItemAMLeaves(leaves2));
+        registerItemBlock(sapling, new ItemMultiTexture(sapling, sapling, new Function<ItemStack, String>() {
+            @Override
+            public String apply(ItemStack stack) {
+                return BlockAMPlanks.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
+            }
+        }));
         registerItemBlock(planks, new ItemMultiTexture(planks, planks, new Function<ItemStack, String>() {
             @Override
             public String apply(ItemStack stack) {
                 return BlockAMPlanks.EnumType.byMetadata(stack.getMetadata()).getUnlocalizedName();
             }
-        }).setUnlocalizedName("alfheimr.wood"));
+        }));
         registerItemBlock(rune_bookshelf);
 
         OreDictionary.registerOre("logWood", log);

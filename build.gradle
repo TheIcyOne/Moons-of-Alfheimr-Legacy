@@ -17,7 +17,7 @@ group = "alfheimrsmoons"
 archivesBaseName = "AlfheimrsMoons"
 
 minecraft {
-    version = "1.9-12.16.0.1865-1.9"
+    version = "1.9-12.16.1.1887"
     runDir = "run"
     mappings = "snapshot_20160312"
     // makeObfSourceJar = false

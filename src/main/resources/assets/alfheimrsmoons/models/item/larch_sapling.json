@@ -1,0 +1,4 @@
+{
+    "parent": "alfheimrsmoons:block/sapling",
+    "textures": { "cross": "alfheimrsmoons:blocks/sapling_larch" }
+}
