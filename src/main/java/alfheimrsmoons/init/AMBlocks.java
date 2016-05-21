@@ -24,6 +24,7 @@ public class AMBlocks {
     public static final Block sediment_glass = new BlockSedimentGlass().setUnlocalizedName("alfheimr.sediment_glass").setRegistryName("sediment_glass");
     public static final Block shale = new BlockShale().setUnlocalizedName("alfheimr.shale").setRegistryName("shale");
     public static final Block ore = new BlockAMOre().setUnlocalizedName("alfheimr.ore").setRegistryName("ore");
+    public static final Block meteorite = new BlockMeteorite().setUnlocalizedName("alfheimr.meteorite").setRegistryName("meteorite");
     public static final BlockAMLog log = (BlockAMLog) new BlockAMLog(0, 3).setUnlocalizedName("alfheimr.log").setRegistryName("log");
     public static final BlockAMLog log2 = (BlockAMLog) new BlockAMLog(4, 4).setUnlocalizedName("alfheimr.log").setRegistryName("log2");
     public static final BlockAMLeaves leaves = (BlockAMLeaves) new BlockAMLeaves(0, 3).setUnlocalizedName("alfheimr.leaves").setRegistryName("leaves");
@@ -39,6 +40,7 @@ public class AMBlocks {
         AlfheimrsMoons.proxy.registerBlockWithItem(sediment_glass);
         AlfheimrsMoons.proxy.registerBlockWithItem(shale);
         AlfheimrsMoons.proxy.registerBlockWithVariants(ore, BlockAMOre.EnumType.values, "ore");
+        AlfheimrsMoons.proxy.registerBlockWithItem(meteorite);
         AlfheimrsMoons.proxy.registerBlockWithVariants(log, log.variants, "log");
         AlfheimrsMoons.proxy.registerBlockWithVariants(log2, log2.variants, "log");
         AlfheimrsMoons.proxy.registerBlockWithVariants(leaves, new ItemAMLeaves(leaves), leaves.variants, "leaves");
