@@ -13,6 +13,7 @@ import net.minecraftforge.oredict.OreDictionary;
     - Model JSON's (assets/alfheimrsmoons/models)
     - Texture(s) (assets/alfheimrsmoons/textures/blocks)
     - Localization (assets/alfheimrsmoons/lang)
+    - OPTIONAL: State mapper (alfheimrsmoons.client.ProxyClient)
 */
 
 public class AMBlocks {
