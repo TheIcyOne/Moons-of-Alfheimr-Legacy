@@ -1,0 +1,4 @@
+{
+    "parent": "alfheimrsmoons:block/ore",
+    "textures": { "all": "alfheimrsmoons:blocks/ore_sylvanite" }
+}

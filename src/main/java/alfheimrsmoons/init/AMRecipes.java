@@ -13,25 +13,30 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class AMRecipes {
     public static void addRecipes() {
-        addLogRecipes(AMBlocks.log);
-        addLogRecipes(AMBlocks.log2);
         addRecipe(AMBlocks.rune_bookshelf, "###", "XXX", "###", '#', new ItemStack(AMBlocks.log, 1, VariantHelper.getMetaFromVariant(AMBlocks.log.variants, BlockAMPlanks.EnumType.RUNE)), 'X', Items.book);
 
+        for (int meta = 0; meta < BlockAMOre.EnumType.values.length; meta++) {
+            addRecipe(AMBlocks.ore_block, "###", "###", "###", '#', AMItems.ore_drop);
+        }
+
+        BlockAMLog[] logs = {AMBlocks.log, AMBlocks.log2};
+        for (BlockAMLog log : logs) {
+            for (int meta = 0; meta < log.variants.length; meta++) {
+                addShapelessRecipe(new ItemStack(AMBlocks.planks, 4, log.variants[meta].getMetadata()), new ItemStack(log, 1, meta));
+            }
+        }
+
         addSmelting(AMBlocks.sediment, AMBlocks.sediment_glass, 0.1F);
+        //TODO: correct smelting XP
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.NITRO.getMetadata(), 0.1F);
-        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.KASOLITE.getMetadata(), 0.7F);
+        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.SYLVANITE.getMetadata(), 0.7F);
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.LOREIUM.getMetadata(), 1.0F);
+        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.TEKTITE.getMetadata(), 1.0F);
 
         AMFuelHandler fuelHandler = new AMFuelHandler();
         fuelHandler.setBurnTime(AMItems.branch, 100);
         fuelHandler.setBurnTime(AMBlocks.sapling, 100);
         GameRegistry.registerFuelHandler(fuelHandler);
-    }
-
-    private static void addLogRecipes(BlockAMLog log) {
-        for (int meta = 0; meta < log.variants.length; meta++) {
-            GameRegistry.addShapelessRecipe(new ItemStack(AMBlocks.planks, 4, log.variants[meta].getMetadata()), new ItemStack(log, 1, meta));
-        }
     }
 
     private static void addShapelessRecipe(Block output, Object... params) {

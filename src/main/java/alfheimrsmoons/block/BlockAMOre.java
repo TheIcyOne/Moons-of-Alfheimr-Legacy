@@ -3,6 +3,7 @@ package alfheimrsmoons.block;
 import alfheimrsmoons.init.AMItems;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +25,7 @@ public class BlockAMOre extends BlockOre {
 
     public BlockAMOre() {
         blockState = new BlockStateContainer(this, VARIANT);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.KASOLITE));
+        setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.NITRO));
         setHardness(3.0F);
         setResistance(5.0F);
         setStepSound(SoundType.STONE);
@@ -33,24 +34,27 @@ public class BlockAMOre extends BlockOre {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        switch (state.getValue(VARIANT)) {
-            case NITRO:
-            case KASOLITE:
-                return AMItems.ore_drop;
+        switch(state.getValue(VARIANT)) {
             default:
                 return Item.getItemFromBlock(this);
+            case NITRO:
+            case SYLVANITE:
+                return AMItems.ore_drop;
         }
     }
 
     @Override
     public int quantityDropped(IBlockState state, int fortune, Random random) {
-        int quantity = 1;
-
         if (Item.getItemFromBlock(this) != getItemDropped(state, random, fortune)) {
-            switch (state.getValue(VARIANT)) {
-                //TODO: drop quantities
+            int quantity;
+
+            switch(state.getValue(VARIANT)) {
+                default:
+                    quantity = 1;
+                    break;
                 case NITRO:
-                case KASOLITE:
+                    quantity = 2;
+                    break;
             }
 
             if (fortune > 0) {
@@ -62,9 +66,11 @@ public class BlockAMOre extends BlockOre {
 
                 quantity *= (i + 1);
             }
-        }
 
-        return quantity;
+            return quantity;
+        } else {
+            return 1;
+        }
     }
 
     @Override
@@ -72,8 +78,6 @@ public class BlockAMOre extends BlockOre {
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
         switch (state.getValue(VARIANT)) {
             //TODO: XP drops
-            case NITRO:
-            case KASOLITE:
             default:
                 return 0;
         }
@@ -113,15 +117,22 @@ public class BlockAMOre extends BlockOre {
     }
 
     public enum EnumType implements IStringSerializable {
-        NITRO("nitro"),
-        KASOLITE("kasolite"),
-        LOREIUM("loreium");
+        NITRO("nitro", MapColor.purpleColor),
+        SYLVANITE("sylvanite", MapColor.emeraldColor),
+        LOREIUM("loreium", MapColor.diamondColor),
+        TEKTITE("tektite", MapColor.purpleColor);
 
         public static final EnumType[] values = values();
         private final String name;
+        private final MapColor blockColor;
 
-        EnumType(String name) {
+        EnumType(String name, MapColor blockColor) {
             this.name = name;
+            this.blockColor = blockColor;
+        }
+
+        public MapColor getBlockColor() {
+            return blockColor;
         }
 
         public int getMetadata() {

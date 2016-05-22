@@ -5,9 +5,10 @@
     },
     "variants": {
         "variant": {
-            "kasolite": { "textures": { "texture": "alfheimrsmoons:blocks/ore_kasolite" } },
-            "nitro": { "textures": { "texture": "alfheimrsmoons:blocks/ore_nitro" } },
-            "loreium": { "textures": { "texture": "alfheimrsmoons:blocks/ore_loreium" } }
+            "sylvanite": { "textures": { "all": "alfheimrsmoons:blocks/ore_sylvanite" } },
+            "nitro": { "textures": { "all": "alfheimrsmoons:blocks/ore_nitro" } },
+            "loreium": { "textures": { "all": "alfheimrsmoons:blocks/ore_loreium" } },
+            "tektite": { "textures": { "all": "alfheimrsmoons:blocks/ore_tektite" } }
         }
     }
 }
