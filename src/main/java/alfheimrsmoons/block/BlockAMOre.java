@@ -117,10 +117,10 @@ public class BlockAMOre extends BlockOre {
     }
 
     public enum EnumType implements IStringSerializable {
-        NITRO("nitro", MapColor.purpleColor),
-        SYLVANITE("sylvanite", MapColor.emeraldColor),
         LOREIUM("loreium", MapColor.diamondColor),
-        TEKTITE("tektite", MapColor.purpleColor);
+        NITRO("nitro", MapColor.purpleColor),
+        TEKTITE("tektite", MapColor.purpleColor),
+        SYLVANITE("sylvanite", MapColor.emeraldColor);
 
         public static final EnumType[] values = values();
         private final String name;
