@@ -41,3 +41,6 @@ item.alfheimr.ore_drop.loreium.name=Loreium Ingot
 item.alfheimr.ore_drop.tektite.name=Tektite Ingot
 item.alfheimr.branch_bow.name=Branch Bow
 item.alfheimr.rock_arrow.name=Rock Arrow
+
+entity.alfheimrsmoons.Arrow.name=Arrow
+entity.alfheimrsmoons.NitroWraith.name=Nitro Wraith

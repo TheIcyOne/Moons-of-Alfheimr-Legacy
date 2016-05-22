@@ -10,6 +10,7 @@ public class AMEntities {
 
     public static void registerEntities() {
         registerEntity(EntityAMArrow.class, "Arrow", 64, 20, false);
+        registerEntity(EntityNitroWraith.class, "NitroWraith", 80, 3, true, 1447446, 5060690);
     }
 
     /**
@@ -22,7 +23,7 @@ public class AMEntities {
      * @see net.minecraft.entity.EntityTracker
      */
     private static void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
-        EntityRegistry.registerModEntity(entityClass, AlfheimrsMoons.MOD_ID + ":" + entityName, nextEntityId++, AlfheimrsMoons.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
+        EntityRegistry.registerModEntity(entityClass, entityName, nextEntityId++, AlfheimrsMoons.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 
     /**

@@ -1,4 +1,4 @@
-package alfheimrsmoons.client;
+package alfheimrsmoons.client.renderer;
 
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.entity.EntityAMArrow;
