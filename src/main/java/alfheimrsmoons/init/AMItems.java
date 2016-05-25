@@ -15,14 +15,18 @@ import net.minecraftforge.oredict.OreDictionary;
 */
 
 public class AMItems {
-    public static final Item branch = new ItemBranch().setUnlocalizedName("alfheimr.branch").setRegistryName("branch");
-    public static final Item ore_drop = new ItemOreDrop().setUnlocalizedName("alfheimr.ore_drop").setRegistryName("ore_drop");
-    public static final Item branch_bow = new ItemBranchBow().setUnlocalizedName("alfheimr.branch_bow").setRegistryName("branch_bow");
-    public static final Item rock_arrow = new ItemAMArrow().setUnlocalizedName("alfheimr.rock_arrow").setRegistryName("rock_arrow");
+    public static final Item branch = new ItemBranch().setUnlocalizedName("alfheimrsmoons.branch").setRegistryName("branch");
+    public static final Item ore_drop = new ItemOreDrop().setUnlocalizedName("alfheimrsmoons.ore_drop").setRegistryName("ore_drop");
+    public static final Tools tektite_tools = new Tools("tektite", 2, 250, 6.0F, 2.0F, 14).setAxeAttack(8.0F, 3.1F);
+    public static final Tools sylvanite_tools = new Tools("sylvanite", 3, 1561, 8.0F, 3.0F, 10).setAxeAttack(8.0F, 3.0F);
+    public static final Item branch_bow = new ItemBranchBow().setUnlocalizedName("alfheimrsmoons.branch_bow").setRegistryName("branch_bow");
+    public static final Item rock_arrow = new ItemAMArrow().setUnlocalizedName("alfheimrsmoons.rock_arrow").setRegistryName("rock_arrow");
 
     public static void registerItems() {
         AlfheimrsMoons.proxy.registerItem(branch);
         AlfheimrsMoons.proxy.registerItemWithVariants(ore_drop, BlockAMOre.EnumType.values, "ore_drop");
+        tektite_tools.registerItems();
+        sylvanite_tools.registerItems();
         AlfheimrsMoons.proxy.registerItem(branch_bow);
         AlfheimrsMoons.proxy.registerItem(rock_arrow);
 
