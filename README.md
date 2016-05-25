@@ -6,7 +6,8 @@ AS OF May 19 2016 - June 2 2016
 ## REALISTIC GOALS
 
 * Finish/Add Branch, Nitro, Stardust, Nitro Dust, Shale Stone.
-* Finish Basic terrain blocks (Sediment, Soil, Shale, Elm, Beech, Surface Stones etc...) Start basic Plants, add Seed pouch. 
+* Finish Basic terrain blocks (Sediment, Soil, Shale, Elm, Beech, Surface Stones etc...)
+* Start basic Plants, add Seed pouch.
 
 ## GOALS THAT WOULD BE NICE
 
