@@ -55,9 +55,9 @@ public class BlockAMSapling extends BlockSapling {
 
         EnumType type = state.getValue(TYPE);
         WorldGenerator worldGen = null;
-        int i = 0;
-        int j = 0;
-        boolean flag = false;
+        int xOffset = 0;
+        int yOffset = 0;
+        boolean isMegaTree = false;
 
         switch (type) {
             //TODO: specialized tree generators
@@ -81,39 +81,50 @@ public class BlockAMSapling extends BlockSapling {
                 leaves = AMBlocks.leaves2;
             }
 
-            if (rand.nextInt(10) == 0) {
-                worldGen = new WorldGenAMBigTree(true, wood, leaves);
+            IBlockState woodState = wood.getDefaultState().withProperty(wood.variant, type);
+            IBlockState leavesState = leaves.getDefaultState().withProperty(leaves.variant, type);
+            boolean isBigTree;
+
+            switch (type) {
+                case RUNE:
+                    isBigTree = rand.nextInt(5) == 0;
+                    break;
+                default:
+                    isBigTree = rand.nextInt(10) == 0;
+                    break;
+            }
+
+            if (isBigTree) {
+                worldGen = new WorldGenAMBigTree(true, woodState, leavesState, this);
             } else {
-                IBlockState metaWood = wood.getDefaultState().withProperty(wood.variant, type);
-                IBlockState metaLeaves = leaves.getDefaultState().withProperty(leaves.variant, type);
-                worldGen = new WorldGenAMTrees(true, metaWood, metaLeaves);
+                worldGen = new WorldGenAMTrees(true, woodState, leavesState);
             }
         }
 
         IBlockState air = Blocks.air.getDefaultState();
 
-        if (flag) {
-            world.setBlockState(pos.add(i, 0, j), air, 4);
-            world.setBlockState(pos.add(i + 1, 0, j), air, 4);
-            world.setBlockState(pos.add(i, 0, j + 1), air, 4);
-            world.setBlockState(pos.add(i + 1, 0, j + 1), air, 4);
+        if (isMegaTree) {
+            world.setBlockState(pos.add(xOffset, 0, yOffset), air, 4);
+            world.setBlockState(pos.add(xOffset + 1, 0, yOffset), air, 4);
+            world.setBlockState(pos.add(xOffset, 0, yOffset + 1), air, 4);
+            world.setBlockState(pos.add(xOffset + 1, 0, yOffset + 1), air, 4);
         } else {
             world.setBlockState(pos, air, 4);
         }
 
-        if (!worldGen.generate(world, rand, pos.add(i, 0, j))) {
-            if (flag) {
-                world.setBlockState(pos.add(i, 0, j), state, 4);
-                world.setBlockState(pos.add(i + 1, 0, j), state, 4);
-                world.setBlockState(pos.add(i, 0, j + 1), state, 4);
-                world.setBlockState(pos.add(i + 1, 0, j + 1), state, 4);
+        if (!worldGen.generate(world, rand, pos.add(xOffset, 0, yOffset))) {
+            if (isMegaTree) {
+                world.setBlockState(pos.add(xOffset, 0, yOffset), state, 4);
+                world.setBlockState(pos.add(xOffset + 1, 0, yOffset), state, 4);
+                world.setBlockState(pos.add(xOffset, 0, yOffset + 1), state, 4);
+                world.setBlockState(pos.add(xOffset + 1, 0, yOffset + 1), state, 4);
             } else {
                 world.setBlockState(pos, state, 4);
             }
         }
     }
 
-    private boolean func_181624_a(World world, BlockPos pos, int xOffset, int zOffset, EnumType type) {
+    private boolean shouldGrowMegaTree(World world, BlockPos pos, int xOffset, int zOffset, EnumType type) {
         return isTypeAt(world, pos.add(xOffset, 0, zOffset), type) && isTypeAt(world, pos.add(xOffset + 1, 0, zOffset), type) && isTypeAt(world, pos.add(xOffset, 0, zOffset + 1), type) && isTypeAt(world, pos.add(xOffset + 1, 0, zOffset + 1), type);
     }
 
