@@ -72,7 +72,7 @@ public class BlockAMPlanks extends BlockPlanks {
         RUNE("rune", MapColor.lightBlueColor),
         BEECH("beech", MapColor.woodColor),
         ELM("elm", MapColor.obsidianColor),
-        RED_BUD("red_bud", MapColor.sandColor),
+        REDBUD("redbud", MapColor.sandColor),
         LARCH("larch", MapColor.dirtColor);
 
         public static final EnumType[] values = values();

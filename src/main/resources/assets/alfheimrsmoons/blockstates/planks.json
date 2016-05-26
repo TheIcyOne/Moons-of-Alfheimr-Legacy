@@ -7,7 +7,7 @@
         "variant": {
             "beech": { "textures": { "all": "alfheimrsmoons:blocks/planks_beech" } },
             "elm": { "textures": { "all": "alfheimrsmoons:blocks/planks_elm" } },
-            "red_bud": { "textures": { "all": "alfheimrsmoons:blocks/planks_red_bud" } },
+            "redbud": { "textures": { "all": "alfheimrsmoons:blocks/planks_redbud" } },
             "larch": { "textures": { "all": "alfheimrsmoons:blocks/planks_larch" } },
             "rune": { "textures": { "all": "alfheimrsmoons:blocks/planks_rune" } }
         }

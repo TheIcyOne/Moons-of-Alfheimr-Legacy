@@ -1,0 +1,7 @@
+{
+    "parent": "alfheimrsmoons:block/log",
+    "textures": {
+        "end": "alfheimrsmoons:blocks/log_redbud_top",
+        "side": "alfheimrsmoons:blocks/log_redbud"
+    }
+}

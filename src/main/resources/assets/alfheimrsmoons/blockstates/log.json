@@ -17,10 +17,10 @@
                     "side": "alfheimrsmoons:blocks/log_elm"
                 }
             },
-            "red_bud": {
+            "redbud": {
                 "textures": {
-                    "end": "alfheimrsmoons:blocks/log_red_bud_top",
-                    "side": "alfheimrsmoons:blocks/log_red_bud"
+                    "end": "alfheimrsmoons:blocks/log_redbud_top",
+                    "side": "alfheimrsmoons:blocks/log_redbud"
                 }
             },
             "larch": {

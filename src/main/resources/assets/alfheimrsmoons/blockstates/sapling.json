@@ -7,7 +7,7 @@
         "variant": {
             "beech": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_beech" } },
             "elm": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_elm" } },
-            "red_bud": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_red_bud" } },
+            "redbud": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_redbud" } },
             "larch": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_larch" } },
             "rune": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_rune" } }
         },

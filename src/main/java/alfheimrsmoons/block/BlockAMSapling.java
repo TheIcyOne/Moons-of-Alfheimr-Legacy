@@ -64,7 +64,7 @@ public class BlockAMSapling extends BlockSapling {
             case RUNE:
             case BEECH:
             case ELM:
-            case RED_BUD:
+            case REDBUD:
             case LARCH:
             default:
         }
