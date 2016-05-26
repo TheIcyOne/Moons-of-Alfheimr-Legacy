@@ -27,7 +27,9 @@ public class BlockOreBlock extends Block {
         setResistance(10.0F);
         setStepSound(SoundType.METAL);
         setCreativeTab(CreativeTabs.tabBlock);
-        //TODO: harvest levels
+        for (int meta = 0; meta < EnumType.values.length; meta++) {
+            setHarvestLevel("pickaxe", EnumType.values[meta].getHarvestLevel());
+        }
     }
 
     @Override

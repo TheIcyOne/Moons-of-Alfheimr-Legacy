@@ -61,12 +61,12 @@ public class BlockAMSapling extends BlockSapling {
 
         switch (type) {
             //TODO: specialized tree generators
-            default:
             case RUNE:
             case BEECH:
             case ELM:
             case RED_BUD:
             case LARCH:
+            default:
         }
 
         if (worldGen == null) {

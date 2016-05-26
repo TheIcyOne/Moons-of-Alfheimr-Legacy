@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -29,17 +30,19 @@ public class BlockAMOre extends BlockOre {
         setHardness(3.0F);
         setResistance(5.0F);
         setStepSound(SoundType.STONE);
-        //TODO: harvest levels
+        for (int meta = 0; meta < EnumType.values.length; meta++) {
+            setHarvestLevel("pickaxe", EnumType.values[meta].getHarvestLevel());
+        }
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         switch(state.getValue(VARIANT)) {
-            default:
-                return Item.getItemFromBlock(this);
             case NITRO:
             case SYLVANITE:
                 return AMItems.ore_drop;
+            default:
+                return Item.getItemFromBlock(this);
         }
     }
 
@@ -49,11 +52,11 @@ public class BlockAMOre extends BlockOre {
             int quantity;
 
             switch(state.getValue(VARIANT)) {
-                default:
-                    quantity = 1;
-                    break;
                 case NITRO:
                     quantity = 2;
+                    break;
+                default:
+                    quantity = 1;
                     break;
             }
 
@@ -77,7 +80,10 @@ public class BlockAMOre extends BlockOre {
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
         switch (state.getValue(VARIANT)) {
-            //TODO: XP drops
+            case NITRO:
+                return MathHelper.getRandomIntegerInRange(rand, 0, 2);
+            case SYLVANITE:
+                return MathHelper.getRandomIntegerInRange(rand, 3, 7);
             default:
                 return 0;
         }
@@ -117,22 +123,28 @@ public class BlockAMOre extends BlockOre {
     }
 
     public enum EnumType implements IStringSerializable {
-        LOREIUM("loreium", MapColor.diamondColor),
-        NITRO("nitro", MapColor.purpleColor),
-        TEKTITE("tektite", MapColor.purpleColor),
-        SYLVANITE("sylvanite", MapColor.emeraldColor);
+        LOREIUM("loreium", MapColor.diamondColor, 0),
+        NITRO("nitro", MapColor.purpleColor, 0),
+        TEKTITE("tektite", MapColor.purpleColor, 2),
+        SYLVANITE("sylvanite", MapColor.emeraldColor, 3);
 
         public static final EnumType[] values = values();
         private final String name;
         private final MapColor blockColor;
+        private final int harvestLevel;
 
-        EnumType(String name, MapColor blockColor) {
+        EnumType(String name, MapColor blockColor, int harvestLevel) {
             this.name = name;
             this.blockColor = blockColor;
+            this.harvestLevel = harvestLevel;
         }
 
         public MapColor getBlockColor() {
             return blockColor;
+        }
+
+        public int getHarvestLevel() {
+            return harvestLevel;
         }
 
         public int getMetadata() {

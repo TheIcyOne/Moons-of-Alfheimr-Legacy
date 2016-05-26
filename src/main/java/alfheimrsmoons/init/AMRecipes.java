@@ -39,11 +39,10 @@ public class AMRecipes {
 
     private static void addSmeltingRecipes() {
         addSmelting(AMBlocks.sediment, AMBlocks.sediment_glass, 0.1F);
-        //TODO: correct smelting XP
+        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.LOREIUM.getMetadata(), 0.1F);
         addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.NITRO.getMetadata(), 0.1F);
-        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.SYLVANITE.getMetadata(), 0.7F);
-        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.LOREIUM.getMetadata(), 1.0F);
-        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.TEKTITE.getMetadata(), 1.0F);
+        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.TEKTITE.getMetadata(), 0.7F);
+        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.SYLVANITE.getMetadata(), 1.0F);
     }
 
     private static void setFuelBurnTimes() {
