@@ -1,5 +1,6 @@
 package alfheimrsmoons.entity;
 
+import alfheimrsmoons.init.AMEntities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IRangedAttackMob;
@@ -16,6 +17,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateClimber;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -57,6 +59,11 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob {
         if (!worldObj.isRemote) {
             setBesideClimbableBlock(isCollidedHorizontally);
         }
+    }
+
+    @Override
+    protected ResourceLocation getLootTable() {
+        return AMEntities.NITRO_WRAITH_LOOT_TABLE;
     }
 
     @Override

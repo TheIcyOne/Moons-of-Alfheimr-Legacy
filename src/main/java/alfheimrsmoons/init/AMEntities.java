@@ -3,9 +3,13 @@ package alfheimrsmoons.init;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.entity.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class AMEntities {
+    public static final ResourceLocation NITRO_WRAITH_LOOT_TABLE = registerLootTable("entities/nitro_wraith");
+
     private static int nextEntityId = 0;
 
     public static void registerEntities() {
@@ -38,5 +42,9 @@ public class AMEntities {
     private static void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary) {
         registerEntity(entityClass, entityName, trackingRange, updateFrequency, sendsVelocityUpdates);
         EntityRegistry.registerEgg(entityClass, eggPrimary, eggSecondary);
+    }
+
+    private static ResourceLocation registerLootTable(String id) {
+        return LootTableList.register(new ResourceLocation(AlfheimrsMoons.MOD_ID, id));
     }
 }
