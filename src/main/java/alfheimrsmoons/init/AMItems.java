@@ -3,6 +3,7 @@ package alfheimrsmoons.init;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.item.*;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -15,7 +16,7 @@ import net.minecraftforge.oredict.OreDictionary;
 */
 
 public class AMItems {
-    public static final Item branch = new ItemBranch().setUnlocalizedName("alfheimrsmoons.branch").setRegistryName("branch");
+    public static final Item branch = new Item().setUnlocalizedName("alfheimrsmoons.branch").setRegistryName("branch").setCreativeTab(CreativeTabs.tabMaterials).setFull3D();
     public static final Item ore_drop = new ItemOreDrop().setUnlocalizedName("alfheimrsmoons.ore_drop").setRegistryName("ore_drop");
     public static final Tools tektite_tools = new Tools("tektite", 2, 250, 6.0F, 2.0F, 14).setAxeAttack(8.0F, 3.1F);
     public static final Tools sylvanite_tools = new Tools("sylvanite", 3, 1561, 8.0F, 3.0F, 10).setAxeAttack(8.0F, 3.0F);
