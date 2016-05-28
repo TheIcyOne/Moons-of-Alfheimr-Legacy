@@ -25,6 +25,7 @@ public class AMRecipes {
         AMItems.sylvanite_tools.addRecipes(new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.SYLVANITE.getMetadata()));
 
         addShapedRecipe(AMBlocks.rune_bookshelf, "###", "XXX", "###", '#', new ItemStack(AMBlocks.log, 1, VariantHelper.getMetaFromVariant(AMBlocks.log.variants, BlockAMPlanks.EnumType.RUNE)), 'X', Items.book);
+        addShapedRecipe(new ItemStack(AMBlocks.nitro_torch, 4), "X", "#", 'X', new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.NITRO.getMetadata()), '#', AMItems.branch);
 
         for (int meta = 0; meta < BlockAMOre.EnumType.values.length; meta++) {
             addShapedRecipe(AMBlocks.ore_block, "###", "###", "###", '#', AMItems.ore_drop);

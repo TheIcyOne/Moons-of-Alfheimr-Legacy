@@ -1,0 +1,6 @@
+{
+    "parent": "block/torch",
+    "textures": {
+        "torch": "alfheimrsmoons:blocks/nitro_torch"
+    }
+}

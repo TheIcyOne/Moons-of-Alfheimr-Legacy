@@ -33,6 +33,7 @@ public class AMBlocks {
     public static final BlockAMSapling sapling = (BlockAMSapling) new BlockAMSapling().setUnlocalizedName("alfheimrsmoons.sapling").setRegistryName("sapling");
     public static final Block planks = new BlockAMPlanks().setUnlocalizedName("alfheimrsmoons.wood").setRegistryName("planks");
     public static final Block rune_bookshelf = new BlockRuneBookshelf().setUnlocalizedName("alfheimrsmoons.rune_bookshelf").setRegistryName("rune_bookshelf");
+    public static final Block nitro_torch = new BlockNitroTorch().setUnlocalizedName("alfheimrsmoons.nitro_torch").setRegistryName("nitro_torch");
 
     public static void registerBlocks() {
         AlfheimrsMoons.proxy.registerBlockWithItem(soil);
@@ -50,12 +51,14 @@ public class AMBlocks {
         AlfheimrsMoons.proxy.registerBlockWithVariants(sapling, BlockAMPlanks.EnumType.values, "sapling");
         AlfheimrsMoons.proxy.registerBlockWithVariants(planks, BlockAMPlanks.EnumType.values, "planks");
         AlfheimrsMoons.proxy.registerBlockWithItem(rune_bookshelf);
+        AlfheimrsMoons.proxy.registerBlockWithItem(nitro_torch);
 
         OreDictionary.registerOre("logWood", new ItemStack(log, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("logWood", new ItemStack(log2, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("treeSapling", new ItemStack(sapling, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("treeLeaves",  new ItemStack(leaves, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("treeLeaves",  new ItemStack(leaves2, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("treeLeaves", new ItemStack(leaves, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("treeLeaves", new ItemStack(leaves2, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("torch", nitro_torch);
     }
 }
