@@ -1,11 +1,11 @@
 package alfheimrsmoons.item;
 
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.crafting.AMShapedOreRecipe;
 import alfheimrsmoons.init.AMRecipes;
 import net.minecraft.item.*;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class Tools {
     private final Item.ToolMaterial material;
@@ -79,10 +79,10 @@ public class Tools {
 
     public void addRecipes(ItemStack materialStack) {
         material.setRepairItem(materialStack);
-        AMRecipes.addRecipe(new ShapedOreRecipe(sword, "X", "X", "#", '#', "stickWood", 'X', materialStack));
-        AMRecipes.addRecipe(new ShapedOreRecipe(pickaxe, "XXX", " # ", " # ", '#', "stickWood", 'X', materialStack));
-        AMRecipes.addRecipe(new ShapedOreRecipe(shovel, "X", "#", "#", '#', "stickWood", 'X', materialStack));
-        AMRecipes.addRecipe(new ShapedOreRecipe(axe, "XX", "X#", " #", '#', "stickWood", 'X', materialStack));
-        AMRecipes.addRecipe(new ShapedOreRecipe(hoe, "XX", " #", " #", '#', "stickWood", 'X', materialStack));
+        AMRecipes.addRecipe(new AMShapedOreRecipe(sword, "X", "X", "#", '#', "stickWood", 'X', materialStack));
+        AMRecipes.addRecipe(new AMShapedOreRecipe(pickaxe, "XXX", " # ", " # ", '#', "stickWood", 'X', materialStack));
+        AMRecipes.addRecipe(new AMShapedOreRecipe(shovel, "X", "#", "#", '#', "stickWood", 'X', materialStack));
+        AMRecipes.addRecipe(new AMShapedOreRecipe(axe, "XX", "X#", " #", '#', "stickWood", 'X', materialStack));
+        AMRecipes.addRecipe(new AMShapedOreRecipe(hoe, "XX", " #", " #", '#', "stickWood", 'X', materialStack));
     }
 }

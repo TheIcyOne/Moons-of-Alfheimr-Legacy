@@ -1,16 +1,22 @@
 package alfheimrsmoons.init;
 
 import alfheimrsmoons.AMFuelHandler;
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.block.BlockAMPlanks;
 import alfheimrsmoons.block.VariantHelper;
+import alfheimrsmoons.crafting.AMShapedOreRecipe;
+import alfheimrsmoons.crafting.AMShapelessOreRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.RecipeSorter.Category;
 
 public class AMRecipes {
     public static void addRecipes() {
@@ -20,6 +26,10 @@ public class AMRecipes {
     }
 
     private static void addCraftingRecipes() {
+        RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapedore", AMShapedOreRecipe.class, Category.SHAPED, "after:minecraft:shaped before:forge:shapedore");
+        RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapelessore", AMShapelessOreRecipe.class, Category.SHAPELESS, "after:minecraft:shapeless before:forge:shapelessore");
+
+        AMItems.timber_tools.addRecipes(new ItemStack(AMBlocks.planks, 1, OreDictionary.WILDCARD_VALUE));
         AMItems.shale_tools.addRecipes(new ItemStack(AMBlocks.shale));
         AMItems.tektite_tools.addRecipes(new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.TEKTITE.getMetadata()));
         AMItems.sylvanite_tools.addRecipes(new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.SYLVANITE.getMetadata()));
