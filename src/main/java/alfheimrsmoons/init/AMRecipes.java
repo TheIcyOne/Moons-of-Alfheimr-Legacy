@@ -20,6 +20,7 @@ public class AMRecipes {
     }
 
     private static void addCraftingRecipes() {
+        AMItems.shale_tools.addRecipes(new ItemStack(AMBlocks.shale));
         AMItems.tektite_tools.addRecipes(new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.TEKTITE.getMetadata()));
         AMItems.sylvanite_tools.addRecipes(new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.SYLVANITE.getMetadata()));
 
