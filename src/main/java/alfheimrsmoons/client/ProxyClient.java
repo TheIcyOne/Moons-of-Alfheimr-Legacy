@@ -4,12 +4,14 @@ import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.network.Proxy;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class ProxyClient extends Proxy {
     @Override
@@ -47,5 +49,9 @@ public class ProxyClient extends Proxy {
 
     public void registerItem(Item item, int metadata, String identifier) {
         ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(AlfheimrsMoons.MOD_ID + ":" + identifier, "inventory"));
+    }
+
+    public static RenderItem getRenderItem() {
+        return FMLClientHandler.instance().getClient().getRenderItem();
     }
 }

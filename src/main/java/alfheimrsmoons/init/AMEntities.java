@@ -15,6 +15,7 @@ public class AMEntities {
     public static void registerEntities() {
         registerEntity(EntityAMArrow.class, "Arrow", 64, 20, false);
         registerEntity(EntityNitroWraith.class, "NitroWraith", 80, 3, true, 1447446, 5060690);
+        registerEntity(EntitySeedPouch.class, "SeedPouch", 64, 10, true);
     }
 
     /**
