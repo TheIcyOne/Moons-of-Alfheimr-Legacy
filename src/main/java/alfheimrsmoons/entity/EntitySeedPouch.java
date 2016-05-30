@@ -11,33 +11,43 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntitySeedPouch extends EntityThrowable {
-    public EntitySeedPouch(World world) {
+public class EntitySeedPouch extends EntityThrowable
+{
+    public EntitySeedPouch(World world)
+    {
         super(world);
     }
 
-    public EntitySeedPouch(World world, double x, double y, double z) {
+    public EntitySeedPouch(World world, double x, double y, double z)
+    {
         super(world, x, y, z);
     }
 
-    public EntitySeedPouch(World world, EntityLivingBase thrower) {
+    public EntitySeedPouch(World world, EntityLivingBase thrower)
+    {
         super(world, thrower);
     }
 
     @Override
-    protected void onImpact(RayTraceResult result) {
+    protected void onImpact(RayTraceResult result)
+    {
         boolean success = false;
 
-        if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
+        if (result.typeOfHit == RayTraceResult.Type.BLOCK)
+        {
             BlockPos pos = result.getBlockPos();
             IBlockState state = worldObj.getBlockState(pos);
 
-            if (state.getBlock() instanceof IGrowable) {
+            if (state.getBlock() instanceof IGrowable)
+            {
                 IGrowable growable = (IGrowable) state.getBlock();
 
-                if (growable.canGrow(worldObj, pos, state, worldObj.isRemote)) {
-                    if (!worldObj.isRemote) {
-                        if (growable.canUseBonemeal(worldObj, worldObj.rand, pos, state)) {
+                if (growable.canGrow(worldObj, pos, state, worldObj.isRemote))
+                {
+                    if (!worldObj.isRemote)
+                    {
+                        if (growable.canUseBonemeal(worldObj, worldObj.rand, pos, state))
+                        {
                             growable.grow(worldObj, worldObj.rand, pos, state);
                         }
                     }
@@ -47,12 +57,15 @@ public class EntitySeedPouch extends EntityThrowable {
             }
         }
 
-        if (!worldObj.isRemote) {
+        if (!worldObj.isRemote)
+        {
             setDead();
 
-            if (success) {
+            if (success)
+            {
                 worldObj.playAuxSFX(2005, result.getBlockPos(), 0);
-            } else {
+            } else
+            {
                 worldObj.spawnEntityInWorld(new EntityItem(worldObj, posX, posY, posZ, new ItemStack(AMItems.seed_pouch)));
             }
         }

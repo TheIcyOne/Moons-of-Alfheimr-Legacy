@@ -21,23 +21,28 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public class BlockAMOre extends BlockOre {
+public class BlockAMOre extends BlockOre
+{
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
-    public BlockAMOre() {
+    public BlockAMOre()
+    {
         blockState = new BlockStateContainer(this, VARIANT);
         setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.NITRO));
         setHardness(3.0F);
         setResistance(5.0F);
         setStepSound(SoundType.STONE);
-        for (int meta = 0; meta < EnumType.values.length; meta++) {
+        for (int meta = 0; meta < EnumType.values.length; meta++)
+        {
             setHarvestLevel("pickaxe", EnumType.values[meta].getHarvestLevel());
         }
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        switch(state.getValue(VARIANT)) {
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        switch (state.getValue(VARIANT))
+        {
             case NITRO:
             case SYLVANITE:
                 return AMItems.ore_drop;
@@ -47,11 +52,14 @@ public class BlockAMOre extends BlockOre {
     }
 
     @Override
-    public int quantityDropped(IBlockState state, int fortune, Random random) {
-        if (Item.getItemFromBlock(this) != getItemDropped(state, random, fortune)) {
+    public int quantityDropped(IBlockState state, int fortune, Random random)
+    {
+        if (Item.getItemFromBlock(this) != getItemDropped(state, random, fortune))
+        {
             int quantity;
 
-            switch(state.getValue(VARIANT)) {
+            switch (state.getValue(VARIANT))
+            {
                 case NITRO:
                     quantity = 2;
                     break;
@@ -60,10 +68,12 @@ public class BlockAMOre extends BlockOre {
                     break;
             }
 
-            if (fortune > 0) {
+            if (fortune > 0)
+            {
                 int i = random.nextInt(fortune + 2) - 1;
 
-                if (i < 0) {
+                if (i < 0)
+                {
                     i = 0;
                 }
 
@@ -71,15 +81,18 @@ public class BlockAMOre extends BlockOre {
             }
 
             return quantity;
-        } else {
+        } else
+        {
             return 1;
         }
     }
 
     @Override
-    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
+    {
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
-        switch (state.getValue(VARIANT)) {
+        switch (state.getValue(VARIANT))
+        {
             case NITRO:
                 return MathHelper.getRandomIntegerInRange(rand, 0, 2);
             case SYLVANITE:
@@ -90,39 +103,47 @@ public class BlockAMOre extends BlockOre {
     }
 
     @Override
-    public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
+    public ItemStack getItem(World world, BlockPos pos, IBlockState state)
+    {
         return DefaultBlockHelper.getItem(this, world, pos, state);
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
+    public int damageDropped(IBlockState state)
+    {
         return state.getValue(VARIANT).getMetadata();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (int meta = 0; meta < EnumType.values.length; meta++) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    {
+        for (int meta = 0; meta < EnumType.values.length; meta++)
+        {
             list.add(new ItemStack(item, 1, meta));
         }
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return getDefaultState().withProperty(VARIANT, VariantHelper.getVariantFromMeta(EnumType.values, meta));
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return state.getValue(VARIANT).getMetadata();
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState()
+    {
         return new BlockStateContainer(this, VARIANT);
     }
 
-    public enum EnumType implements IStringSerializable {
+    public enum EnumType implements IStringSerializable
+    {
         LOREIUM("loreium", MapColor.diamondColor, 0),
         NITRO("nitro", MapColor.purpleColor, 0),
         TEKTITE("tektite", MapColor.purpleColor, 2),
@@ -133,31 +154,37 @@ public class BlockAMOre extends BlockOre {
         private final MapColor blockColor;
         private final int harvestLevel;
 
-        EnumType(String name, MapColor blockColor, int harvestLevel) {
+        EnumType(String name, MapColor blockColor, int harvestLevel)
+        {
             this.name = name;
             this.blockColor = blockColor;
             this.harvestLevel = harvestLevel;
         }
 
-        public MapColor getBlockColor() {
+        public MapColor getBlockColor()
+        {
             return blockColor;
         }
 
-        public int getHarvestLevel() {
+        public int getHarvestLevel()
+        {
             return harvestLevel;
         }
 
-        public int getMetadata() {
+        public int getMetadata()
+        {
             return ordinal();
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return name;
         }
 
         @Override
-        public String getName() {
+        public String getName()
+        {
             return name;
         }
     }

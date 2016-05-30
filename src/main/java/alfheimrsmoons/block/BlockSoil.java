@@ -17,8 +17,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockSoil extends BlockDirt {
-    public BlockSoil() {
+public class BlockSoil extends BlockDirt
+{
+    public BlockSoil()
+    {
         super();
         blockState = new BlockStateContainer(this);
         setDefaultState(blockState.getBaseState());
@@ -29,38 +31,45 @@ public class BlockSoil extends BlockDirt {
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state) {
+    public MapColor getMapColor(IBlockState state)
+    {
         return MapColor.dirtColor;
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
         return DefaultBlockHelper.getActualState(this, state, world, pos);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    {
         DefaultBlockHelper.getSubBlocks(this, item, tab, list);
     }
 
     @Override
-    public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
+    public ItemStack getItem(World world, BlockPos pos, IBlockState state)
+    {
         return DefaultBlockHelper.getItem(this, world, pos, state);
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return DefaultBlockHelper.getStateFromMeta(this, meta);
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return DefaultBlockHelper.getMetaFromState(this, state);
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
+    public int damageDropped(IBlockState state)
+    {
         return DefaultBlockHelper.damageDropped(this, state);
     }
 }

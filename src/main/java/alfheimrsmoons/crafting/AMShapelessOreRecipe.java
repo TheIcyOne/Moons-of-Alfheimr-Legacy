@@ -8,16 +8,20 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 /**
  * Instances of AMShapedOreRecipe are sorted before {@link ShapelessOreRecipe}.
  */
-public class AMShapelessOreRecipe extends ShapelessOreRecipe {
-    public AMShapelessOreRecipe(Block result, Object... recipe) {
+public class AMShapelessOreRecipe extends ShapelessOreRecipe
+{
+    public AMShapelessOreRecipe(Block result, Object... recipe)
+    {
         super(result, recipe);
     }
 
-    public AMShapelessOreRecipe(Item result, Object... recipe) {
+    public AMShapelessOreRecipe(Item result, Object... recipe)
+    {
         super(result, recipe);
     }
 
-    public AMShapelessOreRecipe(ItemStack result, Object... recipe) {
+    public AMShapelessOreRecipe(ItemStack result, Object... recipe)
+    {
         super(result, recipe);
     }
 }

@@ -7,13 +7,17 @@ import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemAMArrow extends ItemArrow {
+public class ItemAMArrow extends ItemArrow
+{
     @Override
-    public EntityAMArrow makeTippedArrow(World world, ItemStack stack, EntityLivingBase shooter) {
+    public EntityAMArrow makeTippedArrow(World world, ItemStack stack, EntityLivingBase shooter)
+    {
         EntityAMArrow arrow = new EntityAMArrow(world, shooter);
-        arrow.setArrowStackGetter(new Function<EntityAMArrow, ItemStack>() {
+        arrow.setArrowStackGetter(new Function<EntityAMArrow, ItemStack>()
+        {
             @Override
-            public ItemStack apply(EntityAMArrow input) {
+            public ItemStack apply(EntityAMArrow input)
+            {
                 return new ItemStack(ItemAMArrow.this);
             }
         });

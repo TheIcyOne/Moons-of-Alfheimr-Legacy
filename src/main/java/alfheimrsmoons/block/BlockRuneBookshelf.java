@@ -7,25 +7,30 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockRuneBookshelf extends BlockBookshelf {
-    public BlockRuneBookshelf() {
+public class BlockRuneBookshelf extends BlockBookshelf
+{
+    public BlockRuneBookshelf()
+    {
         setHardness(1.5F);
         setStepSound(SoundType.WOOD);
         setHarvestLevel("axe", 0);
     }
 
     @Override
-    public float getEnchantPowerBonus(World world, BlockPos pos) {
+    public float getEnchantPowerBonus(World world, BlockPos pos)
+    {
         return 1;
     }
 
     @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
         return 30;
     }
 
     @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
         return 20;
     }
 }

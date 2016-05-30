@@ -13,18 +13,25 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemSeedPouch extends Item {
-    public ItemSeedPouch() {
+public class ItemSeedPouch extends Item
+{
+    public ItemSeedPouch()
+    {
         setCreativeTab(CreativeTabs.tabTools);
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!player.canPlayerEdit(pos.offset(facing), facing, stack)) {
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if (!player.canPlayerEdit(pos.offset(facing), facing, stack))
+        {
             return EnumActionResult.FAIL;
-        } else {
-            if (ItemDye.applyBonemeal(stack, world, pos, player)) {
-                if (!world.isRemote) {
+        } else
+        {
+            if (ItemDye.applyBonemeal(stack, world, pos, player))
+            {
+                if (!world.isRemote)
+                {
                     world.playAuxSFX(2005, pos, 0);
                 }
 
@@ -36,14 +43,17 @@ public class ItemSeedPouch extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        if (!player.capabilities.isCreativeMode) {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
+    {
+        if (!player.capabilities.isCreativeMode)
+        {
             --stack.stackSize;
         }
 
         world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.entity_snowball_throw, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-        if (!world.isRemote) {
+        if (!world.isRemote)
+        {
             EntitySeedPouch seedPouchEntity = new EntitySeedPouch(world, player);
             seedPouchEntity.func_184538_a(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
             world.spawnEntityInWorld(seedPouchEntity);

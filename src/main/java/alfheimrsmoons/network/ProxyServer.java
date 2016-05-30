@@ -1,4 +1,5 @@
 package alfheimrsmoons.network;
 
-public class ProxyServer extends Proxy {
+public class ProxyServer extends Proxy
+{
 }

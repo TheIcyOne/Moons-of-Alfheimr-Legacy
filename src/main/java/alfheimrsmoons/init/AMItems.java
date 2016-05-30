@@ -15,7 +15,8 @@ import net.minecraftforge.oredict.OreDictionary;
     - Localization (assets/alfheimrsmoons/lang)
 */
 
-public class AMItems {
+public class AMItems
+{
     public static final Item branch = new Item().setUnlocalizedName("alfheimrsmoons.branch").setRegistryName("branch").setCreativeTab(CreativeTabs.tabMaterials).setFull3D();
     public static final Item ore_drop = new ItemOreDrop().setUnlocalizedName("alfheimrsmoons.ore_drop").setRegistryName("ore_drop");
     public static final Item stardust = new Item().setUnlocalizedName("alfheimrsmoons.stardust").setRegistryName("stardust").setCreativeTab(CreativeTabs.tabMaterials);
@@ -27,7 +28,8 @@ public class AMItems {
     public static final Item branch_bow = new ItemBranchBow().setUnlocalizedName("alfheimrsmoons.branch_bow").setRegistryName("branch_bow");
     public static final Item rock_arrow = new ItemAMArrow().setUnlocalizedName("alfheimrsmoons.rock_arrow").setRegistryName("rock_arrow");
 
-    public static void registerItems() {
+    public static void registerItems()
+    {
         AlfheimrsMoons.proxy.registerItem(branch);
         AlfheimrsMoons.proxy.registerItemWithVariants(ore_drop, BlockAMOre.EnumType.values, "ore_drop");
         AlfheimrsMoons.proxy.registerItem(stardust);

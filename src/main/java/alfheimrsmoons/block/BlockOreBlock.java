@@ -16,10 +16,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockOreBlock extends Block {
+public class BlockOreBlock extends Block
+{
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
-    public BlockOreBlock() {
+    public BlockOreBlock()
+    {
         super(Material.iron);
         blockState = new BlockStateContainer(this, VARIANT);
         setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.NITRO));
@@ -27,36 +29,43 @@ public class BlockOreBlock extends Block {
         setResistance(10.0F);
         setStepSound(SoundType.METAL);
         setCreativeTab(CreativeTabs.tabBlock);
-        for (int meta = 0; meta < EnumType.values.length; meta++) {
+        for (int meta = 0; meta < EnumType.values.length; meta++)
+        {
             setHarvestLevel("pickaxe", EnumType.values[meta].getHarvestLevel());
         }
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
+    public int damageDropped(IBlockState state)
+    {
         return state.getValue(VARIANT).getMetadata();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (EnumType type : EnumType.values) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    {
+        for (EnumType type : EnumType.values)
+        {
             list.add(new ItemStack(item, 1, type.getMetadata()));
         }
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return getDefaultState().withProperty(VARIANT, VariantHelper.getVariantFromMeta(EnumType.values, meta));
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state) {
+    public MapColor getMapColor(IBlockState state)
+    {
         return state.getValue(VARIANT).getBlockColor();
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return state.getValue(VARIANT).getMetadata();
     }
 }

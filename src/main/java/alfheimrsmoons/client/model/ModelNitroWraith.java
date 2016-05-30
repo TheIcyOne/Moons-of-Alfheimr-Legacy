@@ -6,7 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelNitroWraith extends ModelBase {
+public class ModelNitroWraith extends ModelBase
+{
     private double[] modelScale = new double[]{1.0D, 1.0D, 1.0D};
     private ModelRenderer head;
     private ModelRenderer headHood;
@@ -19,7 +20,8 @@ public class ModelNitroWraith extends ModelBase {
     private ModelRenderer rightLegPant;
     private ModelRenderer leftLegPant;
 
-    public ModelNitroWraith() {
+    public ModelNitroWraith()
+    {
         textureWidth = 64;
         textureHeight = 64;
 
@@ -80,7 +82,8 @@ public class ModelNitroWraith extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float limbSwing, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    public void render(Entity entity, float f, float limbSwing, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    {
         GlStateManager.pushMatrix();
         GlStateManager.scale(1.0D / modelScale[0], 1.0D / modelScale[1], 1.0D / modelScale[2]);
         head.render(scale);
@@ -96,7 +99,8 @@ public class ModelNitroWraith extends ModelBase {
      * @see net.minecraft.client.model.ModelBiped#setRotationAngles(float, float, float, float, float, float, Entity)
      */
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    {
         head.rotateAngleY = netHeadYaw * 0.017453292F;
 
         head.rotateAngleX = headPitch * 0.017453292F;
@@ -115,7 +119,8 @@ public class ModelNitroWraith extends ModelBase {
         rightLeg.rotateAngleZ = 0.0F;
         leftLeg.rotateAngleZ = 0.0F;
 
-        if (isRiding) {
+        if (isRiding)
+        {
             rightArm.rotateAngleX += -((float) Math.PI / 5F);
             leftArm.rotateAngleX += -((float) Math.PI / 5F);
             rightLeg.rotateAngleX = -1.4137167F;
@@ -133,7 +138,8 @@ public class ModelNitroWraith extends ModelBase {
 
         rightArm.rotateAngleY = 0.0F;
 
-        if (swingProgress > 0.0F) {
+        if (swingProgress > 0.0F)
+        {
             ModelRenderer modelrenderer = rightArm;
             float f1 = swingProgress;
             body.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f1) * ((float) Math.PI * 2F)) * 0.2F;
@@ -160,7 +166,8 @@ public class ModelNitroWraith extends ModelBase {
         leftArm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
     }
 
-    private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+    private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+    {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;

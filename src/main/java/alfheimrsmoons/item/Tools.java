@@ -7,7 +7,8 @@ import net.minecraft.item.*;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 
-public class Tools {
+public class Tools
+{
     private final Item.ToolMaterial material;
     private final ItemSword sword;
     private final ItemSpade shovel;
@@ -15,7 +16,8 @@ public class Tools {
     private final ItemAMAxe axe;
     private final ItemHoe hoe;
 
-    public Tools(String name, int harvestLevel, int maxUses, float efficiency, float damage, int enchantability) {
+    public Tools(String name, int harvestLevel, int maxUses, float efficiency, float damage, int enchantability)
+    {
         material = EnumHelper.addToolMaterial(name.toUpperCase(), harvestLevel, maxUses, efficiency, damage, enchantability);
 
         sword = new ItemSword(material);
@@ -39,37 +41,45 @@ public class Tools {
         hoe.setRegistryName(name + "_hoe");
     }
 
-    public ToolMaterial getMaterial() {
+    public ToolMaterial getMaterial()
+    {
         return material;
     }
 
-    public ItemSword getSword() {
+    public ItemSword getSword()
+    {
         return sword;
     }
 
-    public ItemSpade getShovel() {
+    public ItemSpade getShovel()
+    {
         return shovel;
     }
 
-    public ItemPickaxe getPickaxe() {
+    public ItemPickaxe getPickaxe()
+    {
         return pickaxe;
     }
 
-    public ItemAMAxe getAxe() {
+    public ItemAMAxe getAxe()
+    {
         return axe;
     }
 
-    public ItemHoe getHoe() {
+    public ItemHoe getHoe()
+    {
         return hoe;
     }
 
-    public Tools setAxeAttack(float damage, float speed) {
+    public Tools setAxeAttack(float damage, float speed)
+    {
         axe.setAttackDamage(damage);
         axe.setAttackSpeed(speed);
         return this;
     }
 
-    public void registerItems() {
+    public void registerItems()
+    {
         AlfheimrsMoons.proxy.registerItem(sword);
         AlfheimrsMoons.proxy.registerItem(shovel);
         AlfheimrsMoons.proxy.registerItem(pickaxe);
@@ -77,7 +87,8 @@ public class Tools {
         AlfheimrsMoons.proxy.registerItem(hoe);
     }
 
-    public void addRecipes(ItemStack materialStack) {
+    public void addRecipes(ItemStack materialStack)
+    {
         material.setRepairItem(materialStack);
         AMRecipes.addRecipe(new AMShapedOreRecipe(sword, "X", "X", "#", '#', "stickWood", 'X', materialStack));
         AMRecipes.addRecipe(new AMShapedOreRecipe(pickaxe, "XXX", " # ", " # ", '#', "stickWood", 'X', materialStack));

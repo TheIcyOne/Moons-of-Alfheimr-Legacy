@@ -14,8 +14,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockSediment extends BlockSand {
-    public BlockSediment() {
+public class BlockSediment extends BlockSand
+{
+    public BlockSediment()
+    {
         super();
         blockState = new BlockStateContainer(this);
         setDefaultState(blockState.getBaseState());
@@ -26,28 +28,33 @@ public class BlockSediment extends BlockSand {
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
+    public int damageDropped(IBlockState state)
+    {
         return DefaultBlockHelper.damageDropped(this, state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    {
         DefaultBlockHelper.getSubBlocks(this, item, tab, list);
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state) {
+    public MapColor getMapColor(IBlockState state)
+    {
         return MapColor.sandColor;
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return DefaultBlockHelper.getStateFromMeta(this, meta);
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return DefaultBlockHelper.getMetaFromState(this, state);
     }
 }

@@ -13,9 +13,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-public class ProxyClient extends Proxy {
+public class ProxyClient extends Proxy
+{
     @Override
-    public void preInit() {
+    public void preInit()
+    {
         RenderFactory.registerRenders();
 
         ModelLoader.setCustomStateMapper(AMBlocks.log2, new CustomStateMapper("log"));
@@ -24,11 +26,13 @@ public class ProxyClient extends Proxy {
     }
 
     @Override
-    public <T extends Comparable<T> & IStringSerializable> void registerItemWithVariants(Item item, T[] variants, String base) {
+    public <T extends Comparable<T> & IStringSerializable> void registerItemWithVariants(Item item, T[] variants, String base)
+    {
         super.registerItemWithVariants(item, variants, base);
         String suffix = base != null ? "_" + base : "";
         ResourceLocation[] variantNames = new ResourceLocation[variants.length];
-        for (int meta = 0; meta < variants.length; meta++) {
+        for (int meta = 0; meta < variants.length; meta++)
+        {
             T variant = variants[meta];
             String id = variant.getName() + suffix;
             registerItem(item, meta, id);
@@ -38,20 +42,24 @@ public class ProxyClient extends Proxy {
     }
 
     @Override
-    public void registerItem(Item item) {
+    public void registerItem(Item item)
+    {
         super.registerItem(item);
         registerItem(item, item.getRegistryName().getResourcePath());
     }
 
-    public void registerItem(Item item, String identifier) {
+    public void registerItem(Item item, String identifier)
+    {
         registerItem(item, 0, identifier);
     }
 
-    public void registerItem(Item item, int metadata, String identifier) {
+    public void registerItem(Item item, int metadata, String identifier)
+    {
         ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(AlfheimrsMoons.MOD_ID + ":" + identifier, "inventory"));
     }
 
-    public static RenderItem getRenderItem() {
+    public static RenderItem getRenderItem()
+    {
         return FMLClientHandler.instance().getClient().getRenderItem();
     }
 }

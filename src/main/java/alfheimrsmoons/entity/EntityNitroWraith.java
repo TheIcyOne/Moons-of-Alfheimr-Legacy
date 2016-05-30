@@ -21,16 +21,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityNitroWraith extends EntityMob implements IRangedAttackMob {
+public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
+{
     private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(EntityNitroWraith.class, DataSerializers.BYTE);
 
-    public EntityNitroWraith(World world) {
+    public EntityNitroWraith(World world)
+    {
         super(world);
         setSize(0.65F, 1.45F);
     }
 
     @Override
-    protected void initEntityAI() {
+    protected void initEntityAI()
+    {
         tasks.addTask(1, new EntityAISwimming(this));
         tasks.addTask(4, new AINitroWraithAttack(this));
         tasks.addTask(5, new EntityAIWander(this, 1.0D));
@@ -42,48 +45,57 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob {
     }
 
     @Override
-    protected PathNavigate getNewNavigator(World world) {
+    protected PathNavigate getNewNavigator(World world)
+    {
         return new PathNavigateClimber(this, world);
     }
 
     @Override
-    protected void entityInit() {
+    protected void entityInit()
+    {
         super.entityInit();
         dataWatcher.register(CLIMBING, (byte) 0);
     }
 
     @Override
-    public void onUpdate() {
+    public void onUpdate()
+    {
         super.onUpdate();
 
-        if (!worldObj.isRemote) {
+        if (!worldObj.isRemote)
+        {
             setBesideClimbableBlock(isCollidedHorizontally);
         }
     }
 
     @Override
-    protected ResourceLocation getLootTable() {
+    protected ResourceLocation getLootTable()
+    {
         return AMEntities.NITRO_WRAITH_LOOT_TABLE;
     }
 
     @Override
-    protected void applyEntityAttributes() {
+    protected void applyEntityAttributes()
+    {
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
     @Override
-    public boolean isOnLadder() {
+    public boolean isOnLadder()
+    {
         return isBesideClimbableBlock();
     }
 
     @Override
-    public EnumCreatureAttribute getCreatureAttribute() {
+    public EnumCreatureAttribute getCreatureAttribute()
+    {
         return EnumCreatureAttribute.UNDEAD;
     }
 
     @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase target, float p_82196_2_) {
+    public void attackEntityWithRangedAttack(EntityLivingBase target, float p_82196_2_)
+    {
         EntityArrow arrow = new EntityTippedArrow(worldObj, this);
         double d0 = target.posX - posX;
         double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - arrow.posY;
@@ -95,50 +107,62 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob {
         worldObj.spawnEntityInWorld(arrow);
     }
 
-    public boolean isBesideClimbableBlock() {
+    public boolean isBesideClimbableBlock()
+    {
         return (dataWatcher.get(CLIMBING) & 1) != 0;
     }
 
-    public void setBesideClimbableBlock(boolean climbing) {
+    public void setBesideClimbableBlock(boolean climbing)
+    {
         byte value = dataWatcher.get(CLIMBING);
 
-        if (climbing) {
+        if (climbing)
+        {
             value = (byte) (value | 1);
-        } else {
+        } else
+        {
             value = (byte) (value & -2);
         }
 
         dataWatcher.set(CLIMBING, value);
     }
 
-    public static class AINitroWraithAttack extends EntityAIAttackRanged {
+    public static class AINitroWraithAttack extends EntityAIAttackRanged
+    {
         private final EntityNitroWraith nitroWraith;
 
-        public AINitroWraithAttack(EntityNitroWraith nitroWraith) {
+        public AINitroWraithAttack(EntityNitroWraith nitroWraith)
+        {
             super(nitroWraith, 1.0D, 40, 10.0F);
             this.nitroWraith = nitroWraith;
         }
 
         @Override
-        public boolean continueExecuting() {
+        public boolean continueExecuting()
+        {
             float brightness = nitroWraith.getBrightness(1.0F);
 
-            if (brightness >= 0.5F && nitroWraith.getRNG().nextInt(100) == 0) {
+            if (brightness >= 0.5F && nitroWraith.getRNG().nextInt(100) == 0)
+            {
                 nitroWraith.setAttackTarget(null);
                 return false;
-            } else {
+            } else
+            {
                 return super.continueExecuting();
             }
         }
     }
 
-    public static class AINitroWraithTarget<T extends EntityLivingBase> extends EntityAINearestAttackableTarget<T> {
-        public AINitroWraithTarget(EntityNitroWraith nitroWraith, Class<T> classTarget) {
+    public static class AINitroWraithTarget<T extends EntityLivingBase> extends EntityAINearestAttackableTarget<T>
+    {
+        public AINitroWraithTarget(EntityNitroWraith nitroWraith, Class<T> classTarget)
+        {
             super(nitroWraith, classTarget, true);
         }
 
         @Override
-        public boolean shouldExecute() {
+        public boolean shouldExecute()
+        {
             float brightness = taskOwner.getBrightness(1.0F);
             return brightness < 0.5F && super.shouldExecute();
         }

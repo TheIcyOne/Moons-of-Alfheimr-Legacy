@@ -21,8 +21,10 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class BlockGrassySoil extends BlockGrass {
-    public BlockGrassySoil() {
+public class BlockGrassySoil extends BlockGrass
+{
+    public BlockGrassySoil()
+    {
         blockState = new BlockStateContainer(this);
         setDefaultState(blockState.getBaseState());
         setHardness(0.6F);
@@ -32,23 +34,31 @@ public class BlockGrassySoil extends BlockGrass {
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
         return DefaultBlockHelper.getActualState(this, state, world, pos);
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-        if (!world.isRemote) {
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    {
+        if (!world.isRemote)
+        {
             BlockPos upPos = pos.up();
 
-            if (world.getLightFromNeighbors(upPos) < 4 && world.getBlockState(upPos).getLightOpacity(world, upPos) > 2) {
+            if (world.getLightFromNeighbors(upPos) < 4 && world.getBlockState(upPos).getLightOpacity(world, upPos) > 2)
+            {
                 world.setBlockState(pos, AMBlocks.soil.getDefaultState());
-            } else {
-                if (world.getLightFromNeighbors(upPos) >= 9) {
-                    for (int i = 0; i < 4; ++i) {
+            } else
+            {
+                if (world.getLightFromNeighbors(upPos) >= 9)
+                {
+                    for (int i = 0; i < 4; ++i)
+                    {
                         BlockPos spreadPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
 
-                        if (spreadPos.getY() >= 0 && spreadPos.getY() < 256 && !world.isBlockLoaded(spreadPos)) {
+                        if (spreadPos.getY() >= 0 && spreadPos.getY() < 256 && !world.isBlockLoaded(spreadPos))
+                        {
                             return;
                         }
 
@@ -56,7 +66,8 @@ public class BlockGrassySoil extends BlockGrass {
                         IBlockState upSpreadState = world.getBlockState(upSpreadPos);
                         IBlockState spreadState = world.getBlockState(spreadPos);
 
-                        if (spreadState.getBlock() == AMBlocks.soil && world.getLightFromNeighbors(upSpreadPos) >= 4 && upSpreadState.getLightOpacity(world, upPos) <= 2) {
+                        if (spreadState.getBlock() == AMBlocks.soil && world.getLightFromNeighbors(upSpreadPos) >= 4 && upSpreadState.getLightOpacity(world, upPos) <= 2)
+                        {
                             world.setBlockState(spreadPos, AMBlocks.grassy_soil.getDefaultState());
                         }
                     }
@@ -66,33 +77,43 @@ public class BlockGrassySoil extends BlockGrass {
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
         return AMBlocks.soil.getItemDropped(AMBlocks.soil.getDefaultState(), rand, fortune);
     }
 
     @Override
-    public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+    public void grow(World world, Random rand, BlockPos pos, IBlockState state)
+    {
         BlockPos upPos = pos.up();
 
-        for (int i = 0; i < 128; ++i) {
+        for (int i = 0; i < 128; ++i)
+        {
             BlockPos plantPos = upPos;
             int j = 0;
 
-            while (true) {
-                if (j >= i / 16) {
-                    if (world.isAirBlock(plantPos)) {
-                        if (rand.nextInt(8) == 0) {
+            while (true)
+            {
+                if (j >= i / 16)
+                {
+                    if (world.isAirBlock(plantPos))
+                    {
+                        if (rand.nextInt(8) == 0)
+                        {
                             BlockFlower.EnumFlowerType flowerType = world.getBiomeGenForCoords(plantPos).pickRandomFlower(rand, plantPos);
                             BlockFlower flower = flowerType.getBlockType().getBlock();
                             IBlockState flowerState = flower.getDefaultState().withProperty(flower.getTypeProperty(), flowerType);
 
-                            if (flower.canBlockStay(world, plantPos, flowerState)) {
+                            if (flower.canBlockStay(world, plantPos, flowerState))
+                            {
                                 world.setBlockState(plantPos, flowerState, 3);
                             }
-                        } else {
+                        } else
+                        {
                             IBlockState tallgrassState = Blocks.tallgrass.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS);
 
-                            if (Blocks.tallgrass.canBlockStay(world, plantPos, tallgrassState)) {
+                            if (Blocks.tallgrass.canBlockStay(world, plantPos, tallgrassState))
+                            {
                                 world.setBlockState(plantPos, tallgrassState, 3);
                             }
                         }
@@ -103,7 +124,8 @@ public class BlockGrassySoil extends BlockGrass {
 
                 plantPos = plantPos.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(plantPos.down()).getBlock() != AMBlocks.grassy_soil || world.getBlockState(plantPos).isNormalCube()) {
+                if (world.getBlockState(plantPos.down()).getBlock() != AMBlocks.grassy_soil || world.getBlockState(plantPos).isNormalCube())
+                {
                     break;
                 }
 
@@ -113,10 +135,12 @@ public class BlockGrassySoil extends BlockGrass {
     }
 
     @Override
-    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
+    {
         EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
 
-        switch (plantType) {
+        switch (plantType)
+        {
             case Plains:
                 return true;
             case Beach:
@@ -131,7 +155,8 @@ public class BlockGrassySoil extends BlockGrass {
     }
 
     @Override
-    public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source) {
+    public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
+    {
         world.setBlockState(pos, AMBlocks.soil.getDefaultState(), 2);
     }
 }

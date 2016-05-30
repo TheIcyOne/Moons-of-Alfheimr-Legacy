@@ -17,7 +17,8 @@ import net.minecraftforge.oredict.OreDictionary;
     - OPTIONAL: State mapper (alfheimrsmoons.client.ProxyClient)
 */
 
-public class AMBlocks {
+public class AMBlocks
+{
     public static final Block soil = new BlockSoil().setUnlocalizedName("alfheimrsmoons.soil").setRegistryName("soil");
     public static final Block grassy_soil = new BlockGrassySoil().setUnlocalizedName("alfheimrsmoons.grassy_soil").setRegistryName("grassy_soil");
     public static final Block sediment = new BlockSediment().setUnlocalizedName("alfheimrsmoons.sediment").setRegistryName("sediment");
@@ -35,7 +36,8 @@ public class AMBlocks {
     public static final Block rune_bookshelf = new BlockRuneBookshelf().setUnlocalizedName("alfheimrsmoons.rune_bookshelf").setRegistryName("rune_bookshelf");
     public static final Block nitro_torch = new BlockNitroTorch().setUnlocalizedName("alfheimrsmoons.nitro_torch").setRegistryName("nitro_torch");
 
-    public static void registerBlocks() {
+    public static void registerBlocks()
+    {
         AlfheimrsMoons.proxy.registerBlockWithItem(soil);
         AlfheimrsMoons.proxy.registerBlockWithItem(grassy_soil);
         AlfheimrsMoons.proxy.registerBlockWithItem(sediment);

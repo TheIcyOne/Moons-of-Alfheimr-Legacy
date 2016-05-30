@@ -14,8 +14,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public class BlockShale extends BlockStone {
-    public BlockShale() {
+public class BlockShale extends BlockStone
+{
+    public BlockShale()
+    {
         super();
         blockState = new BlockStateContainer(this);
         setDefaultState(blockState.getBaseState());
@@ -26,38 +28,45 @@ public class BlockShale extends BlockStone {
     }
 
     @Override
-    public String getLocalizedName() {
+    public String getLocalizedName()
+    {
         return DefaultBlockHelper.getLocalizedName(this);
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state) {
+    public MapColor getMapColor(IBlockState state)
+    {
         return MapColor.stoneColor;
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
         return DefaultBlockHelper.getItemDropped(this, state, rand, fortune);
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
+    public int damageDropped(IBlockState state)
+    {
         return DefaultBlockHelper.damageDropped(this, state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    {
         DefaultBlockHelper.getSubBlocks(this, item, tab, list);
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return DefaultBlockHelper.getStateFromMeta(this, meta);
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return DefaultBlockHelper.getMetaFromState(this, state);
     }
 }

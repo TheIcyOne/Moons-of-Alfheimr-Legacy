@@ -18,10 +18,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockAMPlanks extends BlockPlanks {
+public class BlockAMPlanks extends BlockPlanks
+{
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
-    public BlockAMPlanks() {
+    public BlockAMPlanks()
+    {
         blockState = new BlockStateContainer(this, VARIANT);
         setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.RUNE));
         setHardness(2.0F);
@@ -31,44 +33,53 @@ public class BlockAMPlanks extends BlockPlanks {
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
+    public int damageDropped(IBlockState state)
+    {
         return state.getValue(VARIANT).getMetadata();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (EnumType type : EnumType.values) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    {
+        for (EnumType type : EnumType.values)
+        {
             list.add(new ItemStack(item, 1, type.getMetadata()));
         }
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta)
+    {
         return getDefaultState().withProperty(VARIANT, VariantHelper.getVariantFromMeta(EnumType.values, meta));
     }
 
     @Override
-    public MapColor getMapColor(IBlockState state) {
+    public MapColor getMapColor(IBlockState state)
+    {
         return state.getValue(VARIANT).getMapColor();
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         return state.getValue(VARIANT).getMetadata();
     }
 
     @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
         return 5;
     }
 
     @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
         return 20;
     }
 
-    public enum EnumType implements IStringSerializable {
+    public enum EnumType implements IStringSerializable
+    {
         RUNE("rune", MapColor.lightBlueColor),
         BEECH("beech", MapColor.woodColor),
         ELM("elm", MapColor.obsidianColor),
@@ -79,26 +90,31 @@ public class BlockAMPlanks extends BlockPlanks {
         private final String name;
         private final MapColor mapColor;
 
-        EnumType(String name, MapColor mapColor) {
+        EnumType(String name, MapColor mapColor)
+        {
             this.name = name;
             this.mapColor = mapColor;
         }
 
-        public int getMetadata() {
+        public int getMetadata()
+        {
             return ordinal();
         }
 
-        public MapColor getMapColor() {
+        public MapColor getMapColor()
+        {
             return mapColor;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return name;
         }
 
         @Override
-        public String getName() {
+        public String getName()
+        {
             return name;
         }
     }

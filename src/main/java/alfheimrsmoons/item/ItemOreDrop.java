@@ -10,21 +10,26 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemOreDrop extends Item {
-    public ItemOreDrop() {
+public class ItemOreDrop extends Item
+{
+    public ItemOreDrop()
+    {
         setHasSubtypes(true);
         setCreativeTab(CreativeTabs.tabMaterials);
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(ItemStack stack)
+    {
         return super.getUnlocalizedName(stack) + "." + VariantHelper.getVariantFromMeta(EnumType.values, stack.getMetadata()).getName();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subItems) {
-        for (int meta = 0; meta < EnumType.values.length; meta++) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subItems)
+    {
+        for (int meta = 0; meta < EnumType.values.length; meta++)
+        {
             subItems.add(new ItemStack(item, 1, meta));
         }
     }
