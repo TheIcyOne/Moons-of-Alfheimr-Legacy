@@ -57,7 +57,8 @@ public class WorldGenAMTrees extends WorldGenTrees
                             {
                                 flag = false;
                             }
-                        } else
+                        }
+                        else
                         {
                             flag = false;
                         }
@@ -68,7 +69,8 @@ public class WorldGenAMTrees extends WorldGenTrees
             if (!flag)
             {
                 return false;
-            } else
+            }
+            else
             {
                 IBlockState state = world.getBlockState(position.down());
 
@@ -202,12 +204,14 @@ public class WorldGenAMTrees extends WorldGenTrees
                     }
 
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
                 }
             }
-        } else
+        }
+        else
         {
             return false;
         }

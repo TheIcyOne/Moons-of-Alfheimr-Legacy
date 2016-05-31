@@ -88,17 +88,20 @@ public class WorldGenAMBigTree extends WorldGenBigTree
         if (!isSoil)
         {
             return false;
-        } else
+        }
+        else
         {
             int i = checkBlockLine(basePos, basePos.up(heightLimit - 1));
 
             if (i == -1)
             {
                 return true;
-            } else if (i < 6)
+            }
+            else if (i < 6)
             {
                 return false;
-            } else
+            }
+            else
             {
                 heightLimit = i;
                 return true;

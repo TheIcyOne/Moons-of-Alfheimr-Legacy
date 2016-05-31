@@ -142,7 +142,8 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
                                     primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, STONE);
-                                } else if (i2 * 8 + j2 < settings.seaLevel)
+                                }
+                                else if (i2 * 8 + j2 < settings.seaLevel)
                                 {
                                     primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, oceanBlock);
                                 }
@@ -287,7 +288,8 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
 
                     d7 = d7 / 1.4D;
                     d7 = d7 / 2.0D;
-                } else
+                }
+                else
                 {
                     if (d7 > 1.0D)
                     {
