@@ -2,8 +2,8 @@ package alfheimrsmoons.block;
 
 import alfheimrsmoons.block.BlockAMPlanks.EnumType;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.world.WorldGenAMBigTree;
-import alfheimrsmoons.world.WorldGenAMTrees;
+import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
+import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;

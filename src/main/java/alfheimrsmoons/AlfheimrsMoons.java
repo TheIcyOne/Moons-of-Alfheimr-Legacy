@@ -26,10 +26,13 @@ public class AlfheimrsMoons
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        AMConfig.load(event.getSuggestedConfigurationFile());
         AMBlocks.registerBlocks();
         AMItems.registerItems();
         AMRecipes.addRecipes();
         AMEntities.registerEntities();
+        AMBiomes.registerBiomes();
+        AMDimensions.registerDimensions();
         MinecraftForge.EVENT_BUS.register(new AMEventHandler());
         proxy.preInit();
     }

@@ -1,4 +1,4 @@
-package alfheimrsmoons.world;
+package alfheimrsmoons.world.gen.feature;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;

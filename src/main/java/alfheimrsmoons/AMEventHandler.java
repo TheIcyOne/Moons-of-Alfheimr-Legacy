@@ -27,4 +27,12 @@ public class AMEventHandler
             event.setNewfov(event.getFov() * (1.0F - f * 0.15F));
         }
     }
+
+    // TODO delete placeholder
+    @SubscribeEvent
+    public void dimensionPlaceholder(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock e) {
+        if (e.getWorld().getBlockState(e.getPos()).getBlock() == alfheimrsmoons.init.AMBlocks.soil && e.getItemStack() == null) {
+            e.getEntityPlayer().changeDimension(alfheimrsmoons.init.AMDimensions.alfheimr.getId());
+        }
+    }
 }
