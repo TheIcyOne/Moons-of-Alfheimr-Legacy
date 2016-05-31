@@ -14,8 +14,8 @@ public class AMBiomeProvider extends BiomeProvider
     {
         super();
         GenLayer[] genLayers = initializeAllBiomeGenerators(seed);
-        ReflectionHelper.setPrivateValue(BiomeProvider.class, this, genLayers[0], "genBiomes");//genBiomes = genLayers[0];
-        ReflectionHelper.setPrivateValue(BiomeProvider.class, this, genLayers[1], "biomeIndexLayer");//biomeIndexLayer = genLayers[1];
+        genBiomes = genLayers[0];
+        biomeIndexLayer = genLayers[1];
     }
 
     public AMBiomeProvider(WorldInfo worldInfo)
