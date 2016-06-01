@@ -4,12 +4,15 @@ import alfheimrsmoons.block.BlockAMPlanks;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
 import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
+import alfheimrsmoons.world.gen.feature.WorldGenSedge;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
@@ -36,6 +39,18 @@ public class BiomeGenAM extends BiomeGenBase
     public AMBiomeDecorator createBiomeDecorator()
     {
         return new AMBiomeDecorator();
+    }
+
+    @Override
+    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    {
+        return rand.nextInt(10) == 0 ? worldGeneratorBigTree : worldGeneratorTrees;
+    }
+
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random rand)
+    {
+        return new WorldGenSedge();
     }
 
     @Override

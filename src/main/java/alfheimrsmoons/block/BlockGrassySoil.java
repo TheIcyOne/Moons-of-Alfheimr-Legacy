@@ -1,16 +1,13 @@
 package alfheimrsmoons.block;
 
-import alfheimrsmoons.block.DefaultBlockHelper;
 import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockGrass;
-import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -49,7 +46,8 @@ public class BlockGrassySoil extends BlockGrass
             if (world.getLightFromNeighbors(upPos) < 4 && world.getBlockState(upPos).getLightOpacity(world, upPos) > 2)
             {
                 world.setBlockState(pos, AMBlocks.soil.getDefaultState());
-            } else
+            }
+            else
             {
                 if (world.getLightFromNeighbors(upPos) >= 9)
                 {
@@ -108,11 +106,13 @@ public class BlockGrassySoil extends BlockGrass
                             {
                                 world.setBlockState(plantPos, flowerState, 3);
                             }
-                        } else
+                        }
+                        else
                         {
-                            IBlockState tallgrassState = Blocks.tallgrass.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS);
+                            BlockSedge.EnumType tallgrassType = rand.nextBoolean() ? BlockSedge.EnumType.SHORT : BlockSedge.EnumType.NORMAL;
+                            IBlockState tallgrassState = AMBlocks.sedge.getDefaultState().withProperty(BlockSedge.TYPE, tallgrassType);
 
-                            if (Blocks.tallgrass.canBlockStay(world, plantPos, tallgrassState))
+                            if (AMBlocks.sedge.canBlockStay(world, plantPos, tallgrassState))
                             {
                                 world.setBlockState(plantPos, tallgrassState, 3);
                             }

@@ -34,7 +34,8 @@ public class ProxyClient extends Proxy
         for (int meta = 0; meta < variants.length; meta++)
         {
             T variant = variants[meta];
-            String id = variant.getName() + suffix;
+            String name = variant.getName();
+            String id = !name.equals("normal") ? name + suffix : base;
             registerItem(item, meta, id);
             variantNames[meta] = new ResourceLocation(AlfheimrsMoons.MOD_ID, id);
         }

@@ -12,10 +12,4 @@ public class BiomeGenWoods extends BiomeGenAM
         theBiomeDecorator.treesPerChunk = 10;
         theBiomeDecorator.grassPerChunk = 2;
     }
-
-    @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
-    {
-        return rand.nextInt(10) == 0 ? worldGeneratorBigTree : worldGeneratorTrees;
-    }
 }

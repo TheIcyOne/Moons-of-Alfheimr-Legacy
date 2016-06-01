@@ -81,6 +81,14 @@ public class AMBiomeDecorator extends BiomeDecorator
             }
         }
 
+        for (int i = 0; i < grassPerChunk; ++i)
+        {
+            int xOffset = random.nextInt(16) + 8;
+            int zOffset = random.nextInt(16) + 8;
+            int yOffset = random.nextInt(world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() * 2);
+            biome.getRandomWorldGenForGrass(random).generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
+        }
+
         if (generateLakes)
         {
             for (int i = 0; i < 50; ++i)
