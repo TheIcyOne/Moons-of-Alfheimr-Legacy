@@ -19,7 +19,8 @@ public class AMEventHandler
             if (f > 1.0F)
             {
                 f = 1.0F;
-            } else
+            }
+            else
             {
                 f = f * f;
             }

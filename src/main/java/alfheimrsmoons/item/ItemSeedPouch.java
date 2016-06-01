@@ -26,7 +26,8 @@ public class ItemSeedPouch extends Item
         if (!player.canPlayerEdit(pos.offset(facing), facing, stack))
         {
             return EnumActionResult.FAIL;
-        } else
+        }
+        else
         {
             if (ItemDye.applyBonemeal(stack, world, pos, player))
             {

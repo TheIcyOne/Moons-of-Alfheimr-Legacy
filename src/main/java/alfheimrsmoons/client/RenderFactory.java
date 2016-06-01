@@ -58,13 +58,15 @@ public enum RenderFactory implements IRenderFactory
                     argClasses[i + 1] = arg.getClass();
                     args[i + 1] = arg;
                 }
-            } else
+            }
+            else
             {
                 argClasses = new Class<?>[]{RenderManager.class};
                 args = new Object[]{manager};
             }
             return renderClass.getConstructor(argClasses).newInstance(args);
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             return null;
         }

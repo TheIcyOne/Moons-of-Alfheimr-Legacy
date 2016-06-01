@@ -33,7 +33,8 @@ public class DefaultBlockHelper
         if (state != null && !state.getPropertyNames().isEmpty())
         {
             throw new IllegalArgumentException("Don\'t know how to convert " + state + " back into data...");
-        } else
+        }
+        else
         {
             return 0;
         }

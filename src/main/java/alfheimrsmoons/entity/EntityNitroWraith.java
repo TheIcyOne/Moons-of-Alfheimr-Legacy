@@ -119,7 +119,8 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
         if (climbing)
         {
             value = (byte) (value | 1);
-        } else
+        }
+        else
         {
             value = (byte) (value & -2);
         }
@@ -146,7 +147,8 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
             {
                 nitroWraith.setAttackTarget(null);
                 return false;
-            } else
+            }
+            else
             {
                 return super.continueExecuting();
             }

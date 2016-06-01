@@ -85,7 +85,8 @@ public class BlockAMSapling extends BlockSapling
             {
                 wood = AMBlocks.log;
                 leaves = AMBlocks.leaves;
-            } else
+            }
+            else
             {
                 wood = AMBlocks.log2;
                 leaves = AMBlocks.leaves2;
@@ -108,7 +109,8 @@ public class BlockAMSapling extends BlockSapling
             if (isBigTree)
             {
                 worldGen = new WorldGenAMBigTree(true, woodState, leavesState, this);
-            } else
+            }
+            else
             {
                 worldGen = new WorldGenAMTrees(true, woodState, leavesState);
             }
@@ -122,7 +124,8 @@ public class BlockAMSapling extends BlockSapling
             world.setBlockState(pos.add(xOffset + 1, 0, yOffset), air, 4);
             world.setBlockState(pos.add(xOffset, 0, yOffset + 1), air, 4);
             world.setBlockState(pos.add(xOffset + 1, 0, yOffset + 1), air, 4);
-        } else
+        }
+        else
         {
             world.setBlockState(pos, air, 4);
         }
@@ -135,7 +138,8 @@ public class BlockAMSapling extends BlockSapling
                 world.setBlockState(pos.add(xOffset + 1, 0, yOffset), state, 4);
                 world.setBlockState(pos.add(xOffset, 0, yOffset + 1), state, 4);
                 world.setBlockState(pos.add(xOffset + 1, 0, yOffset + 1), state, 4);
-            } else
+            }
+            else
             {
                 world.setBlockState(pos, state, 4);
             }

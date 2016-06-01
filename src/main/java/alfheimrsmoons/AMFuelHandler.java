@@ -28,7 +28,8 @@ public class AMFuelHandler implements IFuelHandler
                         {
                             return fuel.burnTime;
                         }
-                    } else
+                    }
+                    else
                     {
                         return fuel.burnTime;
                     }

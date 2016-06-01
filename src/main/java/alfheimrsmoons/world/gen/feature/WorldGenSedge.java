@@ -17,9 +17,11 @@ public class WorldGenSedge extends WorldGenerator
         do
         {
             IBlockState state = world.getBlockState(position);
-            if (!state.getBlock().isAir(state, world, position) && !state.getBlock().isLeaves(state, world, position)) break;
+            if (!state.getBlock().isAir(state, world, position) && !state.getBlock().isLeaves(state, world, position))
+                break;
             position = position.down();
-        } while (position.getY() > 0);
+        }
+        while (position.getY() > 0);
 
         for (int i = 0; i < 128; ++i)
         {

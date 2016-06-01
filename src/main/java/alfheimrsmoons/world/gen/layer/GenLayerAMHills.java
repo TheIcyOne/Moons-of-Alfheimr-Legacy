@@ -27,7 +27,7 @@ public class GenLayerAMHills extends GenLayerHills
         {
             for (int j = 0; j < areaWidth; ++j)
             {
-                initChunkSeed((long)(j + areaX), (long)(i + areaY));
+                initChunkSeed((long) (j + areaX), (long) (i + areaY));
                 int biomeID = aint[j + 1 + (i + 1) * (areaWidth + 2)];
                 int l = aint1[j + 1 + (i + 1) * (areaWidth + 2)];
                 boolean flag = (l - 2) % 29 == 0;

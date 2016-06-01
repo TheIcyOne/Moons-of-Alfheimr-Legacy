@@ -64,7 +64,8 @@ public class EntitySeedPouch extends EntityThrowable
             if (success)
             {
                 worldObj.playAuxSFX(2005, result.getBlockPos(), 0);
-            } else
+            }
+            else
             {
                 worldObj.spawnEntityInWorld(new EntityItem(worldObj, posX, posY, posZ, new ItemStack(AMItems.seed_pouch)));
             }

@@ -81,7 +81,8 @@ public class BlockAMOre extends BlockOre
             }
 
             return quantity;
-        } else
+        }
+        else
         {
             return 1;
         }

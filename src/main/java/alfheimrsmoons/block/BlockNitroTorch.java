@@ -34,7 +34,8 @@ public class BlockNitroTorch extends BlockTorch
             EnumFacing opposite = facing.getOpposite();
             world.spawnParticle(EnumParticleTypes.SPELL_MOB, d0 + d4 * (double) opposite.getFrontOffsetX(), d1 + d3, d2 + d4 * (double) opposite.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
             world.spawnParticle(EnumParticleTypes.REDSTONE, d0 + d4 * (double) opposite.getFrontOffsetX(), d1 + d3, d2 + d4 * (double) opposite.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
-        } else
+        }
+        else
         {
             world.spawnParticle(EnumParticleTypes.SPELL_MOB, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             world.spawnParticle(EnumParticleTypes.REDSTONE, d0, d1, d2, 0.0D, 0.0D, 0.0D);

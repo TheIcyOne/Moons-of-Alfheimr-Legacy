@@ -33,8 +33,8 @@ public class AMBiomes
     {
         registerBiome(ocean, OCEAN);
         registerBiome(deep_ocean, OCEAN);
-        BiomeType[] types = {BiomeType.COOL, BiomeType.WARM /* Delete: */ , BiomeType.DESERT, BiomeType.ICY};
-        int[] weights = {10, 10 /* Delete: */ , 10, 10};
+        BiomeType[] types = {BiomeType.COOL, BiomeType.WARM /* Delete: */, BiomeType.DESERT, BiomeType.ICY};
+        int[] weights = {10, 10 /* Delete: */, 10, 10};
         registerBiome(woods, types, weights, FOREST);
         registerBiome(woods_hills, FOREST, HILLS);
         registerBiome(river, RIVER);

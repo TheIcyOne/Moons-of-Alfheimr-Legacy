@@ -45,11 +45,11 @@ public class WorldGenAMBlockBlob extends WorldGenBlockBlob
                 int xOffset = radius + rand.nextInt(2);
                 int yOffset = radius + rand.nextInt(2);
                 int zOffset = radius + rand.nextInt(2);
-                float f = (float)(xOffset + yOffset + zOffset) * 0.333F + 0.5F;
+                float f = (float) (xOffset + yOffset + zOffset) * 0.333F + 0.5F;
 
                 for (BlockPos blockPos : BlockPos.getAllInBox(position.add(-xOffset, -yOffset, -zOffset), position.add(xOffset, yOffset, zOffset)))
                 {
-                    if (blockPos.distanceSq(position) <= (double)(f * f))
+                    if (blockPos.distanceSq(position) <= (double) (f * f))
                     {
                         world.setBlockState(blockPos, state, 4);
                     }

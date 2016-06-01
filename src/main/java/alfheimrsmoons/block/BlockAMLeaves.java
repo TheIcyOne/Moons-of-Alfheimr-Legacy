@@ -109,7 +109,8 @@ public class BlockAMLeaves extends BlockLeaves
         if (!worldIn.isRemote && stack != null && stack.getItem() == Items.shears)
         {
             player.addStat(StatList.func_188055_a(this));
-        } else
+        }
+        else
         {
             super.harvestBlock(worldIn, player, pos, state, te, stack);
         }

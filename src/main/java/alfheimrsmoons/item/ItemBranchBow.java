@@ -34,7 +34,8 @@ public class ItemBranchBow extends ItemBow
                 if (entity == null)
                 {
                     return 0.0F;
-                } else
+                }
+                else
                 {
                     ItemStack activeStack = entity.getActiveItemStack();
                     return activeStack != null && activeStack.getItem() instanceof ItemBranchBow ? (float) (stack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 20.0F : 0.0F;
@@ -132,10 +133,12 @@ public class ItemBranchBow extends ItemBow
         if (func_185058_h_(player.getHeldItem(EnumHand.OFF_HAND)))
         {
             return player.getHeldItem(EnumHand.OFF_HAND);
-        } else if (func_185058_h_(player.getHeldItem(EnumHand.MAIN_HAND)))
+        }
+        else if (func_185058_h_(player.getHeldItem(EnumHand.MAIN_HAND)))
         {
             return player.getHeldItem(EnumHand.MAIN_HAND);
-        } else
+        }
+        else
         {
             for (int slot = 0; slot < player.inventory.getSizeInventory(); ++slot)
             {
