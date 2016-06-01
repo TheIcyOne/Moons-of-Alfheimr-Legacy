@@ -1,6 +1,4 @@
 {
     "parent": "block/cube_all",
-    "textures": {
-        "all": "alfheimrsmoons:blocks/meteorite"
-    }
+    "textures": { "all": "alfheimrsmoons:blocks/meteorite" }
 }

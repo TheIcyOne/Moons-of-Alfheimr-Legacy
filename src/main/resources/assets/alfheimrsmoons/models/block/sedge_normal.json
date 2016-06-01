@@ -1,6 +1,4 @@
 {
     "parent": "block/cross",
-    "textures": {
-        "cross": "alfheimrsmoons:blocks/sedge"
-    }
+    "textures": { "cross": "alfheimrsmoons:blocks/sedge" }
 }

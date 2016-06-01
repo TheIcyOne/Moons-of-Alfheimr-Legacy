@@ -1,15 +1,12 @@
 {
     "forge_marker": 1,
-    "defaults": {
-        "model": "alfheimrsmoons:sapling"
-    },
     "variants": {
         "variant": {
-            "beech": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_beech" } },
-            "elm": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_elm" } },
-            "redbud": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_redbud" } },
-            "larch": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_larch" } },
-            "rune": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_rune" } }
+            "beech": { "model": "alfheimrsmoons:sapling_beech" },
+            "elm": { "model": "alfheimrsmoons:sapling_elm" },
+            "redbud": { "model": "alfheimrsmoons:sapling_redbud" },
+            "larch": { "model": "alfheimrsmoons:sapling_larch" },
+            "rune": { "model": "alfheimrsmoons:sapling_rune" }
         },
         "stage": {
             "0": {},

@@ -1,6 +1,4 @@
 {
     "parent": "item/generated",
-    "textures": {
-        "layer0": "alfheimrsmoons:items/rock_arrow"
-    }
+    "textures": { "layer0": "alfheimrsmoons:items/rock_arrow" }
 }

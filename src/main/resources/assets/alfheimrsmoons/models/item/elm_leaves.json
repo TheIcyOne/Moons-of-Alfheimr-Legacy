@@ -1,4 +1,3 @@
 {
-    "parent": "alfheimrsmoons:block/leaves",
-    "textures": { "all": "alfheimrsmoons:blocks/leaves_elm" }
+    "parent": "alfheimrsmoons:block/leaves_elm"
 }

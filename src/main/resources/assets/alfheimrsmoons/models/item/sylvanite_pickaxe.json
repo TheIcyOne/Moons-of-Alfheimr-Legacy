@@ -1,6 +1,4 @@
 {
     "parent": "item/handheld",
-    "textures": {
-        "layer0": "alfheimrsmoons:items/sylvanite_pickaxe"
-    }
+    "textures": { "layer0": "alfheimrsmoons:items/sylvanite_pickaxe" }
 }

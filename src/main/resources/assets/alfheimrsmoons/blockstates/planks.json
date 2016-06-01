@@ -1,15 +1,12 @@
 {
     "forge_marker": 1,
-    "defaults": {
-        "model": "alfheimrsmoons:planks"
-    },
     "variants": {
         "variant": {
-            "beech": { "textures": { "all": "alfheimrsmoons:blocks/planks_beech" } },
-            "elm": { "textures": { "all": "alfheimrsmoons:blocks/planks_elm" } },
-            "redbud": { "textures": { "all": "alfheimrsmoons:blocks/planks_redbud" } },
-            "larch": { "textures": { "all": "alfheimrsmoons:blocks/planks_larch" } },
-            "rune": { "textures": { "all": "alfheimrsmoons:blocks/planks_rune" } }
+            "beech": { "model": "alfheimrsmoons:planks_beech" },
+            "elm": { "model": "alfheimrsmoons:planks_elm" },
+            "redbud": { "model": "alfheimrsmoons:planks_redbud" },
+            "larch": { "model": "alfheimrsmoons:planks_larch" },
+            "rune": { "model": "alfheimrsmoons:planks_rune" }
         }
     }
 }

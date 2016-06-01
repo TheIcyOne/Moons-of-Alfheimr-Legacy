@@ -1,15 +1,12 @@
 {
     "forge_marker": 1,
-    "defaults": {
-        "model": "alfheimrsmoons:leaves"
-    },
     "variants": {
         "variant": {
-            "beech": { "textures": { "all": "alfheimrsmoons:blocks/leaves_beech" } },
-            "elm": { "textures": { "all": "alfheimrsmoons:blocks/leaves_elm" } },
-            "redbud": { "textures": { "all": "alfheimrsmoons:blocks/leaves_redbud" } },
-            "larch": { "textures": { "all": "alfheimrsmoons:blocks/leaves_larch" } },
-            "rune": { "textures": { "all": "alfheimrsmoons:blocks/leaves_rune" } }
+            "beech": { "model": "alfheimrsmoons:leaves_beech" },
+            "elm": { "model": "alfheimrsmoons:leaves_elm" },
+            "redbud": { "model": "alfheimrsmoons:leaves_redbud" },
+            "larch": { "model": "alfheimrsmoons:leaves_larch" },
+            "rune": { "model": "alfheimrsmoons:leaves_rune" }
         }
     }
 }

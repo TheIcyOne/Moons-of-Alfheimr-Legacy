@@ -1,14 +1,11 @@
 {
     "forge_marker": 1,
-    "defaults": {
-        "model": "alfheimrsmoons:ore_block"
-    },
     "variants": {
         "variant": {
-            "sylvanite": { "textures": { "all": "alfheimrsmoons:blocks/ore_block_sylvanite" } },
-            "nitro": { "textures": { "all": "alfheimrsmoons:blocks/ore_block_nitro" } },
-            "loreium": { "textures": { "all": "alfheimrsmoons:blocks/ore_block_loreium" } },
-            "tektite": { "textures": { "all": "alfheimrsmoons:blocks/ore_block_tektite" } }
+            "sylvanite": { "model": "alfheimrsmoons:ore_block_sylvanite" },
+            "nitro": { "model": "alfheimrsmoons:ore_block_nitro" },
+            "loreium": { "model": "alfheimrsmoons:ore_block_loreium" },
+            "tektite": { "model": "alfheimrsmoons:ore_block_tektite" }
         }
     }
 }

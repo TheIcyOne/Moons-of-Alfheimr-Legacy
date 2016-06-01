@@ -1,8 +1,6 @@
 {
     "parent": "item/generated",
-    "textures": {
-        "layer0": "alfheimrsmoons:items/branch_bow_standby"
-    },
+    "textures": { "layer0": "alfheimrsmoons:items/branch_bow_standby" },
     "display": {
         "thirdperson_righthand": {
             "rotation": [ -80, 260, -40 ],

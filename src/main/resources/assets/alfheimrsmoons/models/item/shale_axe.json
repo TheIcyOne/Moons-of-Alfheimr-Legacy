@@ -1,6 +1,4 @@
 {
     "parent": "item/handheld",
-    "textures": {
-        "layer0": "alfheimrsmoons:items/shale_axe"
-    }
+    "textures": { "layer0": "alfheimrsmoons:items/shale_axe" }
 }

@@ -1,6 +1,4 @@
 {
     "parent": "item/handheld",
-    "textures": {
-        "layer0": "alfheimrsmoons:items/tektite_shovel"
-    }
+    "textures": { "layer0": "alfheimrsmoons:items/tektite_shovel" }
 }

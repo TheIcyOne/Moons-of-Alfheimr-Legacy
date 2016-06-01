@@ -1,3 +1,4 @@
 {
-    "parent": "alfheimrsmoons:block/sedge_short"
+    "parent": "item/generated",
+    "textures": { "layer0": "alfheimrsmoons:blocks/sedge_short" }
 }

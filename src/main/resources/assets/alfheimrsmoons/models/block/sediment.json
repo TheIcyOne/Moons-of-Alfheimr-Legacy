@@ -1,6 +1,4 @@
 {
     "parent": "block/cube_all",
-    "textures": {
-        "all": "alfheimrsmoons:blocks/sediment"
-    }
+    "textures": { "all": "alfheimrsmoons:blocks/sediment" }
 }

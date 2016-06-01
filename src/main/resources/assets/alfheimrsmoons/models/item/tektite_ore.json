@@ -1,4 +1,3 @@
 {
-    "parent": "alfheimrsmoons:block/ore",
-    "textures": { "all": "alfheimrsmoons:blocks/ore_tektite" }
+    "parent": "alfheimrsmoons:block/ore_tektite"
 }
