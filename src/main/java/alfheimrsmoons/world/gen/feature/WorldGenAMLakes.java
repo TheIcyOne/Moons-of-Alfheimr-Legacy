@@ -7,7 +7,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 
 import java.util.Random;
@@ -86,7 +85,7 @@ public class WorldGenAMLakes extends WorldGenLakes
                                 return false;
                             }
 
-                            if (k < 4 && !material.isSolid() && world.getBlockState(position.add(k1, k, l2)) != state)
+                            if (k < 4 && !material.isSolid() && world.getBlockState(position.add(k1, k, l2)).getBlock() != state.getBlock())
                             {
                                 return false;
                             }

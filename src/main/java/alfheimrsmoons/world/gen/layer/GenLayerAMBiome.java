@@ -1,4 +1,4 @@
-package alfheimrsmoons.world.gen.feature.layer;
+package alfheimrsmoons.world.gen.layer;
 
 import alfheimrsmoons.init.AMBiomes;
 import com.google.common.collect.ImmutableList;
@@ -39,21 +39,21 @@ public class GenLayerAMBiome extends GenLayer
     @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
-        int[] ints = parent.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] intCache = IntCache.getIntCache(areaWidth * areaHeight);
+        int[] aint = parent.getInts(areaX, areaY, areaWidth, areaHeight);
+        int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
 
         for (int i = 0; i < areaHeight; ++i)
         {
             for (int j = 0; j < areaWidth; ++j)
             {
                 initChunkSeed((long) (j + areaX), (long) (i + areaY));
-                int k = ints[j + i * areaWidth];
+                int k = aint[j + i * areaWidth];
                 int l = (k & 3840) >> 8;
                 k = k & -3841;
 
                 if (isBiomeOceanic(k))
                 {
-                    intCache[j + i * areaWidth] = k;
+                    aint1[j + i * areaWidth] = k;
                 }
                 else
                 {
@@ -77,13 +77,13 @@ public class GenLayerAMBiome extends GenLayer
 
                     if (type != null)
                     {
-                        intCache[j + i * areaWidth] = BiomeGenBase.getIdForBiome(getWeightedBiomeEntry(type).biome);
+                        aint1[j + i * areaWidth] = BiomeGenBase.getIdForBiome(getWeightedBiomeEntry(type).biome);
                     }
                 }
             }
         }
 
-        return intCache;
+        return aint1;
     }
 
     protected BiomeEntry getWeightedBiomeEntry(BiomeType type)

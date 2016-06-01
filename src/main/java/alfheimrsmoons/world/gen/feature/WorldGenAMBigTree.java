@@ -1,11 +1,14 @@
 package alfheimrsmoons.world.gen.feature;
 
+import alfheimrsmoons.init.AMBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 
 public class WorldGenAMBigTree extends WorldGenBigTree
@@ -107,5 +110,20 @@ public class WorldGenAMBigTree extends WorldGenBigTree
                 return true;
             }
         }
+    }
+
+    @Override
+    protected void setDirtAt(World world, BlockPos pos)
+    {
+        if (world.getBlockState(pos).getBlock() != AMBlocks.soil)
+        {
+            setBlockAndNotifyAdequately(world, pos, AMBlocks.soil.getDefaultState());
+        }
+    }
+
+    @Override
+    protected boolean canGrowInto(Block block)
+    {
+        return super.canGrowInto(block) || WorldGenAMTrees.isReplaceable(block);
     }
 }

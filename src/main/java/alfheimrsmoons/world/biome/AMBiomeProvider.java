@@ -1,12 +1,9 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.world.gen.feature.layer.GenLayerAMBiome;
-import net.minecraft.world.WorldType;
+import alfheimrsmoons.world.gen.layer.*;
 import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.gen.ChunkProviderSettings;
 import net.minecraft.world.gen.layer.*;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class AMBiomeProvider extends BiomeProvider
 {
@@ -42,7 +39,7 @@ public class AMBiomeProvider extends BiomeProvider
         genlayerzoom1 = new GenLayerZoom(2003L, genlayerzoom1);
         GenLayerAddIsland genlayeraddisland3 = new GenLayerAddIsland(4L, genlayerzoom1);
         GenLayerAddMushroomIsland genlayeraddmushroomisland = new GenLayerAddMushroomIsland(5L, genlayeraddisland3);
-        GenLayerDeepOcean genlayerdeepocean = new GenLayerDeepOcean(4L, genlayeraddmushroomisland);
+        GenLayerDeepOcean genlayerdeepocean = new GenLayerAMDeepOcean(4L, genlayeraddmushroomisland);
         GenLayer genlayer4 = GenLayerZoom.magnify(1000L, genlayerdeepocean, 0);
         int i = 4;
         int j = i;
@@ -52,11 +49,11 @@ public class AMBiomeProvider extends BiomeProvider
         GenLayer lvt_10_1_ = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
         GenLayer ret = new GenLayerAMBiome(200L, genlayer4);
         ret = GenLayerZoom.magnify(1000L, ret, 2);
-        ret = new GenLayerBiomeEdge(1000L, ret);
-        GenLayer genlayerhills = new GenLayerHills(1000L, ret, lvt_10_1_);
+        ret = new GenLayerAMBiomeEdge(1000L, ret);
+        GenLayer genlayerhills = new GenLayerAMHills(1000L, ret, lvt_10_1_);
         GenLayer genlayer5 = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
         genlayer5 = GenLayerZoom.magnify(1000L, genlayer5, j);
-        GenLayerRiver genlayerriver = new GenLayerRiver(1L, genlayer5);
+        GenLayerRiver genlayerriver = new GenLayerAMRiver(1L, genlayer5);
         GenLayerSmooth genlayersmooth = new GenLayerSmooth(1000L, genlayerriver);
         genlayerhills = new GenLayerRareBiome(1001L, genlayerhills);
 
@@ -71,12 +68,12 @@ public class AMBiomeProvider extends BiomeProvider
 
             if (k == 1 || i == 1)
             {
-                genlayerhills = new GenLayerShore(1000L, genlayerhills);
+                genlayerhills = new GenLayerAMShore(1000L, genlayerhills);
             }
         }
 
         GenLayerSmooth genlayersmooth1 = new GenLayerSmooth(1000L, genlayerhills);
-        GenLayerRiverMix genlayerrivermix = new GenLayerRiverMix(100L, genlayersmooth1, genlayersmooth);
+        GenLayerRiverMix genlayerrivermix = new GenLayerAMRiverMix(100L, genlayersmooth1, genlayersmooth);
         GenLayer genlayer3 = new GenLayerVoronoiZoom(10L, genlayerrivermix);
         genlayerrivermix.initWorldGenSeed(seed);
         genlayer3.initWorldGenSeed(seed);

@@ -26,6 +26,10 @@ public class BiomeGenAM extends BiomeGenBase
         super(properties);
         topBlock = AMBlocks.grassy_soil.getDefaultState();
         fillerBlock = AMBlocks.soil.getDefaultState();
+        spawnableMonsterList.clear();
+        spawnableCreatureList.clear();
+        spawnableWaterCreatureList.clear();
+        spawnableCaveCreatureList.clear();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package alfheimrsmoons.world.gen;
 
+import alfheimrsmoons.init.AMBiomes;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMLakes;
 import com.google.common.collect.ImmutableSet;
@@ -7,7 +8,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -353,7 +353,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
             // Generate map features
         }
 
-        if (biome != Biomes.desert && biome != Biomes.desertHills && settings.useWaterLakes && !hasVillageGenerated && rand.nextInt(settings.waterLakeChance) == 0)
+        if (settings.useWaterLakes && !hasVillageGenerated && rand.nextInt(settings.waterLakeChance) == 0)
         {
             int xOffset = rand.nextInt(16) + 8;
             int yOffset = rand.nextInt(256);

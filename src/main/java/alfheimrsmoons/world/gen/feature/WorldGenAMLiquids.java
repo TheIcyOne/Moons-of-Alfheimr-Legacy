@@ -1,4 +1,4 @@
-package alfheimrsmoons.world.gen.feature.layer;
+package alfheimrsmoons.world.gen.feature;
 
 import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.state.IBlockState;

@@ -3,8 +3,9 @@ package alfheimrsmoons.world.biome;
 import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.block.BlockAMOre.EnumType;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.world.gen.feature.layer.WorldGenAMLiquids;
-import alfheimrsmoons.world.gen.feature.layer.WorldGenAMMinable;
+import alfheimrsmoons.world.gen.feature.WorldGenAMSand;
+import alfheimrsmoons.world.gen.feature.WorldGenAMLiquids;
+import alfheimrsmoons.world.gen.feature.WorldGenAMMinable;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,6 +18,7 @@ import java.util.Random;
 
 public class AMBiomeDecorator extends BiomeDecorator
 {
+    public WorldGenerator sedimentGen = new WorldGenAMSand(AMBlocks.sediment.getDefaultState(), 7);
     public WorldGenerator soilGen;
     public WorldGenerator nitroGen;
     public WorldGenerator tektiteGen;
@@ -50,6 +52,13 @@ public class AMBiomeDecorator extends BiomeDecorator
     protected void genDecorations(BiomeGenBase biome, World world, Random random)
     {
         generateOres(world, random);
+
+        for (int i = 0; i < sandPerChunk2; ++i)
+        {
+            int xOffset = random.nextInt(16) + 8;
+            int yOffset = random.nextInt(16) + 8;
+            sedimentGen.generate(world, random, world.getTopSolidOrLiquidBlock(field_180294_c.add(xOffset, 0, yOffset)));
+        }
 
         int trees = treesPerChunk;
 

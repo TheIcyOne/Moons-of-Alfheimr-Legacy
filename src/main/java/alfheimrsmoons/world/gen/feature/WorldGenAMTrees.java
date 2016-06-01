@@ -1,6 +1,8 @@
 package alfheimrsmoons.world.gen.feature;
 
 import alfheimrsmoons.init.AMBlocks;
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,6 +15,8 @@ import java.util.Random;
 
 public class WorldGenAMTrees extends WorldGenTrees
 {
+    private static final ImmutableSet<Block> REPLACEABLE_BLOCKS = ImmutableSet.of(AMBlocks.grassy_soil, AMBlocks.soil, AMBlocks.log, AMBlocks.log2, AMBlocks.sapling);
+
     public WorldGenAMTrees(boolean notify, IBlockState metaWood, IBlockState metaLeaves)
     {
         this(notify, 4, metaWood, metaLeaves, false);
@@ -215,5 +219,25 @@ public class WorldGenAMTrees extends WorldGenTrees
         {
             return false;
         }
+    }
+
+    @Override
+    protected void setDirtAt(World world, BlockPos pos)
+    {
+        if (world.getBlockState(pos).getBlock() != AMBlocks.soil)
+        {
+            setBlockAndNotifyAdequately(world, pos, AMBlocks.soil.getDefaultState());
+        }
+    }
+
+    @Override
+    protected boolean canGrowInto(Block block)
+    {
+        return super.canGrowInto(block) || isReplaceable(block);
+    }
+
+    public static boolean isReplaceable(Block block)
+    {
+        return REPLACEABLE_BLOCKS.contains(block);
     }
 }
