@@ -186,7 +186,7 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(VARIANT_PROPERTY, VariantHelper.getVariantFromMeta(this, meta & 7)).withProperty(STAGE, (meta & 8) >> 3);
+        return VariantHelper.getDefaultStateWithMeta(this, meta & 7).withProperty(STAGE, (meta & 8) >> 3);
     }
 
     @Override

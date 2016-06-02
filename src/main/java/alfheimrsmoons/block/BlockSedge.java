@@ -79,14 +79,14 @@ public class BlockSedge extends BlockTallGrass implements IVariantBlock<EnumSedg
     {
         if (state.getValue(VARIANT_PROPERTY) == EnumSedgeVariant.SHORT)
         {
-            world.setBlockState(pos, getDefaultState().withProperty(VARIANT_PROPERTY, EnumSedgeVariant.NORMAL), 2);
+            world.setBlockState(pos, VariantHelper.getDefaultStateWithVariant(this, EnumSedgeVariant.NORMAL), 2);
         }
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(VARIANT_PROPERTY, VariantHelper.getVariantFromMeta(this, meta));
+        return VariantHelper.getDefaultStateWithMeta(this, meta);
     }
 
     @Override

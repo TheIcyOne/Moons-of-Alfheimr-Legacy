@@ -115,6 +115,11 @@ public class VariantHelper
         return base + "." + getVariantFromMeta(variants, stack.getMetadata()).getName();
     }
 
+    public static <V extends IVariant<V>, B extends Block & IVariantBlock<V>> IBlockState getDefaultStateWithMeta(B block, int meta)
+    {
+        return getDefaultStateWithVariant(block, getVariantFromMeta(block, meta));
+    }
+
     public static <V extends IVariant<V>, B extends Block & IVariantBlock<V>> IBlockState getDefaultStateWithVariant(B block, V variant)
     {
         return block.getDefaultState().withProperty(block.getVariantProperty(), variant);

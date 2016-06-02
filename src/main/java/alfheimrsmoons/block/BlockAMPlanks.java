@@ -62,7 +62,7 @@ public class BlockAMPlanks extends BlockPlanks implements IVariantBlock<EnumWood
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(VARIANT_PROPERTY, VariantHelper.getVariantFromMeta(EnumWoodVariant.values, meta));
+        return VariantHelper.getDefaultStateWithMeta(this, meta);
     }
 
     @Override

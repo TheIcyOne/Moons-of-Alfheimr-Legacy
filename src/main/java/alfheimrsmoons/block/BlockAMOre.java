@@ -138,7 +138,7 @@ public class BlockAMOre extends BlockOre implements IVariantBlock<EnumOreVariant
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(VARIANT_PROPERTY, VariantHelper.getVariantFromMeta(EnumOreVariant.values, meta));
+        return VariantHelper.getDefaultStateWithMeta(this, meta);
     }
 
     @Override

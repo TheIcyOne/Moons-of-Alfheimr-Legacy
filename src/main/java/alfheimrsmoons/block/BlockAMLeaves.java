@@ -74,7 +74,7 @@ public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(variantProp, getAMWoodType(meta)).withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
+        return VariantHelper.getDefaultStateWithMeta(this, meta).withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
 
     public EnumWoodVariant getAMWoodType(int meta)
     {
-        return variants[meta & 3];
+        return VariantHelper.getVariantFromMeta(variants, meta & 3);
     }
 
     @Override

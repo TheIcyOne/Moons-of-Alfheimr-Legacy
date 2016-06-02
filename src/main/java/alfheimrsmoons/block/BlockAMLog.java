@@ -54,7 +54,7 @@ public class BlockAMLog extends BlockLog implements IVariantBlock
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        IBlockState state = getDefaultState().withProperty(variantProp, variants[meta & 3]);
+        IBlockState state = VariantHelper.getDefaultStateWithMeta(this, meta & 3);
 
         switch (meta & 12)
         {
