@@ -9,7 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 
-public class ItemVariantBlock<V extends IVariant<V>, B extends Block & IVariantBlock<V>> extends ItemMultiTexture implements IVariantObject
+public class ItemVariantBlock<V extends IVariant<V>, B extends Block & IVariantBlock<V>> extends ItemMultiTexture implements IVariantObject<V>
 {
     private final B block;
 

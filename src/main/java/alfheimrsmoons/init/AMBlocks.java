@@ -25,6 +25,7 @@ public class AMBlocks
     public static final Block soil = new BlockSoil().setUnlocalizedName("alfheimrsmoons.soil").setRegistryName("soil");
     public static final Block grassy_soil = new BlockGrassySoil().setUnlocalizedName("alfheimrsmoons.grassy_soil").setRegistryName("grassy_soil");
     public static final BlockSedge sedge = (BlockSedge) new BlockSedge().setUnlocalizedName("alfheimrsmoons.sedge").setRegistryName("sedge");
+    public static final BlockAMFlower flower = (BlockAMFlower) new BlockAMFlower().setUnlocalizedName("alfheimrsmoons.flower").setRegistryName("flower");
     public static final Block sediment = new BlockSediment().setUnlocalizedName("alfheimrsmoons.sediment").setRegistryName("sediment");
     public static final Block sediment_glass = new BlockSedimentGlass().setUnlocalizedName("alfheimrsmoons.sediment_glass").setRegistryName("sediment_glass");
     public static final Block shale = new BlockShale().setUnlocalizedName("alfheimrsmoons.shale").setRegistryName("shale");
@@ -45,6 +46,7 @@ public class AMBlocks
         AlfheimrsMoons.proxy.registerBlockWithItem(soil);
         AlfheimrsMoons.proxy.registerBlockWithItem(grassy_soil);
         AlfheimrsMoons.proxy.registerBlockWithVariants(sedge, "sedge");
+        AlfheimrsMoons.proxy.registerBlockWithVariants(flower);
         AlfheimrsMoons.proxy.registerBlockWithItem(sediment);
         AlfheimrsMoons.proxy.registerBlockWithItem(sediment_glass);
         AlfheimrsMoons.proxy.registerBlockWithItem(shale);
