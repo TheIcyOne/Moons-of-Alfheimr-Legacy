@@ -32,7 +32,7 @@ public class BlockSedge extends BlockTallGrass implements IVariantBlock<EnumSedg
     public BlockSedge()
     {
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumSedgeVariant.NORMAL));
+        setDefaultState(blockState.getBaseState());
         setHardness(0.0F);
         setStepSound(SoundType.PLANT);
     }

@@ -29,7 +29,7 @@ public class BlockAMOre extends BlockOre implements IVariantBlock<EnumOreVariant
     public BlockAMOre()
     {
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumOreVariant.NITRO));
+        setDefaultState(blockState.getBaseState());
         setHardness(3.0F);
         setResistance(5.0F);
         setStepSound(SoundType.STONE);

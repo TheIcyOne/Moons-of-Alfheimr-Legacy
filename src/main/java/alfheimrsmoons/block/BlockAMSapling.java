@@ -35,7 +35,7 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
     public BlockAMSapling()
     {
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY, STAGE);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumWoodVariant.RUNE).withProperty(STAGE, 0));
+        setDefaultState(blockState.getBaseState().withProperty(STAGE, 0));
         setHardness(0.0F);
         setStepSound(SoundType.PLANT);
     }

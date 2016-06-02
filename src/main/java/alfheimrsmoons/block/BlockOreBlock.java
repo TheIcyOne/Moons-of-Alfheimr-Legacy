@@ -26,7 +26,7 @@ public class BlockOreBlock extends Block implements IVariantBlock<EnumOreVariant
     {
         super(Material.iron);
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumOreVariant.NITRO));
+        setDefaultState(blockState.getBaseState());
         setHardness(5.0F);
         setResistance(10.0F);
         setStepSound(SoundType.METAL);

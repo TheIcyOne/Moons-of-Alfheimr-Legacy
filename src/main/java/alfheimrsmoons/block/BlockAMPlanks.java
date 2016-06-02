@@ -27,7 +27,7 @@ public class BlockAMPlanks extends BlockPlanks implements IVariantBlock<EnumWood
     public BlockAMPlanks()
     {
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumWoodVariant.RUNE));
+        setDefaultState(blockState.getBaseState());
         setHardness(2.0F);
         setResistance(5.0F);
         setStepSound(SoundType.WOOD);
