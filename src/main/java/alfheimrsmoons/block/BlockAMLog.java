@@ -1,6 +1,7 @@
 package alfheimrsmoons.block;
 
-import alfheimrsmoons.block.BlockAMPlanks.EnumType;
+import alfheimrsmoons.util.EnumWoodVariant;
+import alfheimrsmoons.util.IVariantBlock;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,62 +14,65 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.List;
 
-public class BlockAMLog extends BlockLog
+public class BlockAMLog extends BlockLog implements IVariantBlock
 {
-    public final EnumType[] variants;
-    public final PropertyEnum<EnumType> variant;
+    private final EnumWoodVariant[] variants;
+    private final PropertyEnum<EnumWoodVariant> variantProp;
 
     public BlockAMLog(int startMeta, int endMeta)
     {
-        variants = VariantHelper.getMetaVariants(EnumType.values, startMeta, endMeta);
-        variant = PropertyEnum.create("variant", EnumType.class, variants);
-        blockState = new BlockStateContainer(this, variant, LOG_AXIS);
-        setDefaultState(blockState.getBaseState().withProperty(variant, VariantHelper.getDefaultVariant(variants)).withProperty(LOG_AXIS, EnumAxis.Y));
+        variants = VariantHelper.getVariantsInRange(EnumWoodVariant.values, startMeta, endMeta);
+        variantProp = PropertyEnum.create("variant", EnumWoodVariant.class, variants);
+        blockState = new BlockStateContainer(this, variantProp, LOG_AXIS);
+        setDefaultState(blockState.getBaseState().withProperty(LOG_AXIS, EnumAxis.Y));
         setHarvestLevel("axe", 0);
+    }
+
+    @Override
+    public EnumWoodVariant[] getVariants()
+    {
+        return variants;
+    }
+
+    @Override
+    public PropertyEnum<EnumWoodVariant> getVariantProperty()
+    {
+        return variantProp;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for (int meta = 0; meta < variants.length; meta++)
-        {
-            list.add(new ItemStack(item, 1, meta));
-        }
+        VariantHelper.addSubItems(this, item, list);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        IBlockState state = getDefaultState().withProperty(variant, variants[meta & 3]);
+        IBlockState state = getDefaultState().withProperty(variantProp, variants[meta & 3]);
 
         switch (meta & 12)
         {
             case 0:
-                state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Y);
-                break;
+                return state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Y);
             case 4:
-                state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.X);
-                break;
+                return state.withProperty(LOG_AXIS, BlockLog.EnumAxis.X);
             case 8:
-                state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
-                break;
+                return state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
             default:
-                state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
+                return state.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
         }
-
-        return state;
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
         int meta = 0;
-        meta = meta | VariantHelper.getMetaFromVariant(variants, state, variant);
+        meta = meta | VariantHelper.getMetaFromState(this, state);
 
         switch (state.getValue(LOG_AXIS))
         {
@@ -88,13 +92,13 @@ public class BlockAMLog extends BlockLog
     @Override
     protected ItemStack createStackedBlock(IBlockState state)
     {
-        return new ItemStack(this, 1, VariantHelper.getMetaFromVariant(variants, state, variant));
+        return VariantHelper.createStack(this, state);
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return VariantHelper.getMetaFromVariant(variants, state, variant);
+        return VariantHelper.getMetaFromState(this, state);
     }
 
     @Override

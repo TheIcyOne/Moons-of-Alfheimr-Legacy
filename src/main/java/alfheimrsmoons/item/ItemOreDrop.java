@@ -1,7 +1,8 @@
 package alfheimrsmoons.item;
 
-import alfheimrsmoons.block.BlockAMOre.EnumType;
 import alfheimrsmoons.block.VariantHelper;
+import alfheimrsmoons.util.EnumOreVariant;
+import alfheimrsmoons.util.IVariantObject;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemOreDrop extends Item
+public class ItemOreDrop extends Item implements IVariantObject<EnumOreVariant>
 {
     public ItemOreDrop()
     {
@@ -19,18 +20,21 @@ public class ItemOreDrop extends Item
     }
 
     @Override
+    public EnumOreVariant[] getVariants()
+    {
+        return EnumOreVariant.values;
+    }
+
+    @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        return super.getUnlocalizedName(stack) + "." + VariantHelper.getVariantFromMeta(EnumType.values, stack.getMetadata()).getName();
+        return VariantHelper.getUnlocalizedName(this, super.getUnlocalizedName(stack), stack);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subItems)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for (int meta = 0; meta < EnumType.values.length; meta++)
-        {
-            subItems.add(new ItemStack(item, 1, meta));
-        }
+        VariantHelper.addSubItems(this, item, list);
     }
 }

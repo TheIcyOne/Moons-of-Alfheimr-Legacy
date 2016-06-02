@@ -1,7 +1,7 @@
 package alfheimrsmoons.init;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.block.BlockAMOre;
+import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -18,7 +18,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class AMItems
 {
     public static final Item branch = new Item().setUnlocalizedName("alfheimrsmoons.branch").setRegistryName("branch").setCreativeTab(CreativeTabs.tabMaterials).setFull3D();
-    public static final Item ore_drop = new ItemOreDrop().setUnlocalizedName("alfheimrsmoons.ore_drop").setRegistryName("ore_drop");
+    public static final ItemOreDrop ore_drop = (ItemOreDrop) new ItemOreDrop().setUnlocalizedName("alfheimrsmoons.ore_drop").setRegistryName("ore_drop");
     public static final Item stardust = new Item().setUnlocalizedName("alfheimrsmoons.stardust").setRegistryName("stardust").setCreativeTab(CreativeTabs.tabMaterials);
     public static final Item seed_pouch = new ItemSeedPouch().setUnlocalizedName("alfheimrsmoons.seed_pouch").setRegistryName("seed_pouch");
     public static final Tools timber_tools = new Tools("timber", 0, 59, 2.0F, 0.0F, 15).setAxeAttack(6.0F, 3.2F);
@@ -31,7 +31,7 @@ public class AMItems
     public static void registerItems()
     {
         AlfheimrsMoons.proxy.registerItem(branch);
-        AlfheimrsMoons.proxy.registerItemWithVariants(ore_drop, BlockAMOre.EnumType.values, "ore_drop");
+        AlfheimrsMoons.proxy.registerItemWithVariants(ore_drop, "ore_drop");
         AlfheimrsMoons.proxy.registerItem(stardust);
         AlfheimrsMoons.proxy.registerItem(seed_pouch);
         timber_tools.registerItems();

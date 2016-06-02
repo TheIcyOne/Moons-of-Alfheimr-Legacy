@@ -1,5 +1,7 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.util.EnumWoodVariant;
+import alfheimrsmoons.util.IVariantBlock;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -10,7 +12,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,14 +19,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockAMPlanks extends BlockPlanks
+public class BlockAMPlanks extends BlockPlanks implements IVariantBlock<EnumWoodVariant>
 {
-    public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
+    public static final PropertyEnum<EnumWoodVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumWoodVariant.class);
 
     public BlockAMPlanks()
     {
-        blockState = new BlockStateContainer(this, VARIANT);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.RUNE));
+        blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
+        setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumWoodVariant.RUNE));
         setHardness(2.0F);
         setResistance(5.0F);
         setStepSound(SoundType.WOOD);
@@ -33,37 +34,46 @@ public class BlockAMPlanks extends BlockPlanks
     }
 
     @Override
+    public PropertyEnum<EnumWoodVariant> getVariantProperty()
+    {
+        return VARIANT_PROPERTY;
+    }
+
+    @Override
+    public EnumWoodVariant[] getVariants()
+    {
+        return EnumWoodVariant.values;
+    }
+
+    @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(VARIANT).getMetadata();
+        return VariantHelper.getMetaFromState(this, state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for (EnumType type : EnumType.values)
-        {
-            list.add(new ItemStack(item, 1, type.getMetadata()));
-        }
+        VariantHelper.addSubItems(this, item, list);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(VARIANT, VariantHelper.getVariantFromMeta(EnumType.values, meta));
+        return getDefaultState().withProperty(VARIANT_PROPERTY, VariantHelper.getVariantFromMeta(EnumWoodVariant.values, meta));
     }
 
     @Override
     public MapColor getMapColor(IBlockState state)
     {
-        return state.getValue(VARIANT).getMapColor();
+        return state.getValue(VARIANT_PROPERTY).getMapColor();
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(VARIANT).getMetadata();
+        return VariantHelper.getMetaFromState(this, state);
     }
 
     @Override
@@ -78,44 +88,4 @@ public class BlockAMPlanks extends BlockPlanks
         return 20;
     }
 
-    public enum EnumType implements IStringSerializable
-    {
-        RUNE("rune", MapColor.lightBlueColor),
-        BEECH("beech", MapColor.woodColor),
-        ELM("elm", MapColor.obsidianColor),
-        REDBUD("redbud", MapColor.sandColor),
-        LARCH("larch", MapColor.dirtColor);
-
-        public static final EnumType[] values = values();
-        private final String name;
-        private final MapColor mapColor;
-
-        EnumType(String name, MapColor mapColor)
-        {
-            this.name = name;
-            this.mapColor = mapColor;
-        }
-
-        public int getMetadata()
-        {
-            return ordinal();
-        }
-
-        public MapColor getMapColor()
-        {
-            return mapColor;
-        }
-
-        @Override
-        public String toString()
-        {
-            return name;
-        }
-
-        @Override
-        public String getName()
-        {
-            return name;
-        }
-    }
 }

@@ -3,8 +3,8 @@ package alfheimrsmoons.init;
 import alfheimrsmoons.AMFuelHandler;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.BlockAMLog;
-import alfheimrsmoons.block.BlockAMOre;
-import alfheimrsmoons.block.BlockAMPlanks;
+import alfheimrsmoons.util.EnumOreVariant;
+import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.block.VariantHelper;
 import alfheimrsmoons.crafting.AMShapedOreRecipe;
 import alfheimrsmoons.crafting.AMShapelessOreRecipe;
@@ -34,13 +34,13 @@ public class AMRecipes
 
         AMItems.timber_tools.addRecipes(new ItemStack(AMBlocks.planks, 1, OreDictionary.WILDCARD_VALUE));
         AMItems.shale_tools.addRecipes(new ItemStack(AMBlocks.shale));
-        AMItems.tektite_tools.addRecipes(new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.TEKTITE.getMetadata()));
-        AMItems.sylvanite_tools.addRecipes(new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.SYLVANITE.getMetadata()));
+        AMItems.tektite_tools.addRecipes(VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.TEKTITE));
+        AMItems.sylvanite_tools.addRecipes(VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.SYLVANITE));
 
-        addShapedRecipe(AMBlocks.rune_bookshelf, "###", "XXX", "###", '#', new ItemStack(AMBlocks.log, 1, VariantHelper.getMetaFromVariant(AMBlocks.log.variants, BlockAMPlanks.EnumType.RUNE)), 'X', Items.book);
-        addShapedRecipe(new ItemStack(AMBlocks.nitro_torch, 4), "X", "#", 'X', new ItemStack(AMItems.ore_drop, 1, BlockAMOre.EnumType.NITRO.getMetadata()), '#', AMItems.branch);
+        addShapedRecipe(AMBlocks.rune_bookshelf, "###", "XXX", "###", '#', VariantHelper.createStack(AMBlocks.log, EnumWoodVariant.RUNE), 'X', Items.book);
+        addShapedRecipe(new ItemStack(AMBlocks.nitro_torch, 4), "X", "#", 'X', VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.NITRO), '#', AMItems.branch);
 
-        for (int meta = 0; meta < BlockAMOre.EnumType.values.length; meta++)
+        for (int meta = 0; meta < EnumOreVariant.values.length; meta++)
         {
             addShapedRecipe(AMBlocks.ore_block, "###", "###", "###", '#', AMItems.ore_drop);
         }
@@ -48,9 +48,9 @@ public class AMRecipes
         BlockAMLog[] logs = {AMBlocks.log, AMBlocks.log2};
         for (BlockAMLog log : logs)
         {
-            for (int meta = 0; meta < log.variants.length; meta++)
+            for (EnumWoodVariant variant : log.getVariants())
             {
-                addShapelessRecipe(new ItemStack(AMBlocks.planks, 4, log.variants[meta].getMetadata()), new ItemStack(log, 1, meta));
+                addShapelessRecipe(VariantHelper.createStack(AMBlocks.planks, 4, variant), VariantHelper.createStack(log, variant));
             }
         }
     }
@@ -58,10 +58,11 @@ public class AMRecipes
     private static void addSmeltingRecipes()
     {
         addSmelting(AMBlocks.sediment, AMBlocks.sediment_glass, 0.1F);
-        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.LOREIUM.getMetadata(), 0.1F);
-        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.NITRO.getMetadata(), 0.1F);
-        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.TEKTITE.getMetadata(), 0.7F);
-        addOreSmelting(AMBlocks.ore, AMItems.ore_drop, BlockAMOre.EnumType.SYLVANITE.getMetadata(), 1.0F);
+
+        for (EnumOreVariant variant : EnumOreVariant.values)
+        {
+            GameRegistry.addSmelting(VariantHelper.createStack(AMBlocks.ore, variant), VariantHelper.createStack(AMItems.ore_drop, variant), variant.getSmeltingXP());
+        }
     }
 
     private static void setFuelBurnTimes()
@@ -105,16 +106,6 @@ public class AMRecipes
     public static void addShapedRecipe(ItemStack output, Object... params)
     {
         GameRegistry.addRecipe(output, params);
-    }
-
-    public static void addOreSmelting(Block ore, Item item, int meta, float experience)
-    {
-        addOreSmelting(ore, meta, item, meta, experience);
-    }
-
-    public static void addOreSmelting(Block ore, int oreMeta, Item item, int itemMeta, float experience)
-    {
-        GameRegistry.addSmelting(new ItemStack(ore, 1, oreMeta), new ItemStack(item, 1, itemMeta), experience);
     }
 
     public static void addSmelting(Block input, Block output, float xp)

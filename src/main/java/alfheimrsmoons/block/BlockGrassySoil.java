@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockGrass;
@@ -109,8 +110,8 @@ public class BlockGrassySoil extends BlockGrass
                         }
                         else
                         {
-                            BlockSedge.EnumType tallgrassType = rand.nextBoolean() ? BlockSedge.EnumType.SHORT : BlockSedge.EnumType.NORMAL;
-                            IBlockState tallgrassState = AMBlocks.sedge.getDefaultState().withProperty(BlockSedge.TYPE, tallgrassType);
+                            EnumSedgeVariant tallgrassVariant = rand.nextBoolean() ? EnumSedgeVariant.SHORT : EnumSedgeVariant.NORMAL;
+                            IBlockState tallgrassState = AMBlocks.sedge.getDefaultState().withProperty(BlockSedge.VARIANT_PROPERTY, tallgrassVariant);
 
                             if (AMBlocks.sedge.canBlockStay(world, plantPos, tallgrassState))
                             {

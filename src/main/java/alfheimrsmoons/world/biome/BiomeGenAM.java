@@ -1,6 +1,7 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.block.BlockAMPlanks;
+import alfheimrsmoons.block.VariantHelper;
+import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
 import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
@@ -19,8 +20,8 @@ import java.util.Random;
 public class BiomeGenAM extends BiomeGenBase
 {
     protected static final IBlockState STONE = AMBlocks.shale.getDefaultState();
-    protected static final IBlockState WOOD = AMBlocks.log.getDefaultState().withProperty(AMBlocks.log.variant, BlockAMPlanks.EnumType.BEECH);
-    protected static final IBlockState LEAVES = AMBlocks.leaves.getDefaultState().withProperty(AMBlocks.leaves.variant, BlockAMPlanks.EnumType.BEECH);
+    protected static final IBlockState WOOD = VariantHelper.getDefaultStateWithVariant(AMBlocks.log, EnumWoodVariant.BEECH);
+    protected static final IBlockState LEAVES = VariantHelper.getDefaultStateWithVariant(AMBlocks.leaves, EnumWoodVariant.BEECH);
     protected static final WorldGenAMTrees worldGeneratorTrees = new WorldGenAMTrees(false, WOOD, LEAVES);
     protected static final WorldGenAMBigTree worldGeneratorBigTree = new WorldGenAMBigTree(false, WOOD, LEAVES, AMBlocks.sapling);
 

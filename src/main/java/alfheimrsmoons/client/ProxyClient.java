@@ -3,12 +3,13 @@ package alfheimrsmoons.client;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.network.Proxy;
+import alfheimrsmoons.util.IVariant;
+import alfheimrsmoons.util.IVariantObject;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -26,14 +27,15 @@ public class ProxyClient extends Proxy
     }
 
     @Override
-    public <T extends Comparable<T> & IStringSerializable> void registerItemWithVariants(Item item, T[] variants, String base)
+    public <V extends IVariant<V>, I extends Item & IVariantObject<V>> void registerItemWithVariants(I item, String base)
     {
-        super.registerItemWithVariants(item, variants, base);
+        super.registerItemWithVariants(item, base);
         String suffix = base != null ? "_" + base : "";
+        V[] variants = item.getVariants();
         ResourceLocation[] variantNames = new ResourceLocation[variants.length];
         for (int meta = 0; meta < variants.length; meta++)
         {
-            T variant = variants[meta];
+            V variant = variants[meta];
             String name = variant.getName();
             String id = !name.equals("normal") ? name + suffix : base;
             registerItem(item, meta, id);

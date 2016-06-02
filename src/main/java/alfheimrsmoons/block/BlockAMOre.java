@@ -1,16 +1,16 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.init.AMItems;
+import alfheimrsmoons.util.EnumOreVariant;
+import alfheimrsmoons.util.IVariantBlock;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -21,27 +21,39 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public class BlockAMOre extends BlockOre
+public class BlockAMOre extends BlockOre implements IVariantBlock<EnumOreVariant>
 {
-    public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
+    public static final PropertyEnum<EnumOreVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumOreVariant.class);
 
     public BlockAMOre()
     {
-        blockState = new BlockStateContainer(this, VARIANT);
-        setDefaultState(blockState.getBaseState().withProperty(VARIANT, EnumType.NITRO));
+        blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
+        setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumOreVariant.NITRO));
         setHardness(3.0F);
         setResistance(5.0F);
         setStepSound(SoundType.STONE);
-        for (int meta = 0; meta < EnumType.values.length; meta++)
+        for (int meta = 0; meta < getVariants().length; meta++)
         {
-            setHarvestLevel("pickaxe", EnumType.values[meta].getHarvestLevel());
+            setHarvestLevel("pickaxe", getVariants()[meta].getHarvestLevel());
         }
+    }
+
+    @Override
+    public PropertyEnum<EnumOreVariant> getVariantProperty()
+    {
+        return VARIANT_PROPERTY;
+    }
+
+    @Override
+    public EnumOreVariant[] getVariants()
+    {
+        return EnumOreVariant.values;
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        switch (state.getValue(VARIANT))
+        switch (state.getValue(VARIANT_PROPERTY))
         {
             case NITRO:
             case SYLVANITE:
@@ -58,7 +70,7 @@ public class BlockAMOre extends BlockOre
         {
             int quantity;
 
-            switch (state.getValue(VARIANT))
+            switch (state.getValue(VARIANT_PROPERTY))
             {
                 case NITRO:
                     quantity = 2;
@@ -92,7 +104,7 @@ public class BlockAMOre extends BlockOre
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
-        switch (state.getValue(VARIANT))
+        switch (state.getValue(VARIANT_PROPERTY))
         {
             case NITRO:
                 return MathHelper.getRandomIntegerInRange(rand, 0, 2);
@@ -106,87 +118,31 @@ public class BlockAMOre extends BlockOre
     @Override
     public ItemStack getItem(World world, BlockPos pos, IBlockState state)
     {
-        return DefaultBlockHelper.getItem(this, world, pos, state);
+        return VariantHelper.createStack(this, state);
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(VARIANT).getMetadata();
+        return VariantHelper.getMetaFromState(this, state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for (int meta = 0; meta < EnumType.values.length; meta++)
-        {
-            list.add(new ItemStack(item, 1, meta));
-        }
+        VariantHelper.addSubItems(this, item, list);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(VARIANT, VariantHelper.getVariantFromMeta(EnumType.values, meta));
+        return getDefaultState().withProperty(VARIANT_PROPERTY, VariantHelper.getVariantFromMeta(EnumOreVariant.values, meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(VARIANT).getMetadata();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, VARIANT);
-    }
-
-    public enum EnumType implements IStringSerializable
-    {
-        LOREIUM("loreium", MapColor.diamondColor, 0),
-        NITRO("nitro", MapColor.purpleColor, 0),
-        TEKTITE("tektite", MapColor.purpleColor, 2),
-        SYLVANITE("sylvanite", MapColor.emeraldColor, 3);
-
-        public static final EnumType[] values = values();
-        private final String name;
-        private final MapColor blockColor;
-        private final int harvestLevel;
-
-        EnumType(String name, MapColor blockColor, int harvestLevel)
-        {
-            this.name = name;
-            this.blockColor = blockColor;
-            this.harvestLevel = harvestLevel;
-        }
-
-        public MapColor getBlockColor()
-        {
-            return blockColor;
-        }
-
-        public int getHarvestLevel()
-        {
-            return harvestLevel;
-        }
-
-        public int getMetadata()
-        {
-            return ordinal();
-        }
-
-        @Override
-        public String toString()
-        {
-            return name;
-        }
-
-        @Override
-        public String getName()
-        {
-            return name;
-        }
+        return VariantHelper.getMetaFromState(this, state);
     }
 }

@@ -1,7 +1,8 @@
 package alfheimrsmoons.block;
 
-import alfheimrsmoons.block.BlockAMPlanks.EnumType;
+import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.IVariantBlock;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.PropertyEnum;
@@ -20,23 +21,34 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class BlockAMLeaves extends BlockLeaves
+public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
 {
-    public final EnumType[] variants;
-    public final PropertyEnum<EnumType> variant;
+    private final EnumWoodVariant[] variants;
+    private final PropertyEnum<EnumWoodVariant> variantProp;
 
     public BlockAMLeaves(int startMeta, int endMeta)
     {
-        variants = VariantHelper.getMetaVariants(EnumType.values, startMeta, endMeta);
-        variant = PropertyEnum.create("variant", EnumType.class, variants);
-        blockState = new BlockStateContainer(this, variant, CHECK_DECAY, DECAYABLE);
-        setDefaultState(blockState.getBaseState().withProperty(variant, VariantHelper.getDefaultVariant(variants)).withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+        variants = VariantHelper.getVariantsInRange(EnumWoodVariant.values, startMeta, endMeta);
+        variantProp = PropertyEnum.create("variant", EnumWoodVariant.class, variants);
+        blockState = new BlockStateContainer(this, variantProp, CHECK_DECAY, DECAYABLE);
+        setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+    }
+
+    @Override
+    public EnumWoodVariant[] getVariants()
+    {
+        return variants;
+    }
+
+    @Override
+    public PropertyEnum<EnumWoodVariant> getVariantProperty()
+    {
+        return variantProp;
     }
 
     @Override
@@ -49,29 +61,26 @@ public class BlockAMLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for (int meta = 0; meta < variants.length; meta++)
-        {
-            list.add(new ItemStack(item, 1, meta));
-        }
+        VariantHelper.addSubItems(this, item, list);
     }
 
     @Override
     protected ItemStack createStackedBlock(IBlockState state)
     {
-        return new ItemStack(this, 1, VariantHelper.getMetaFromVariant(variants, state, variant));
+        return VariantHelper.createStack(this, state);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(variant, getAMWoodType(meta)).withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
+        return getDefaultState().withProperty(variantProp, getAMWoodType(meta)).withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
-        i = i | VariantHelper.getMetaFromVariant(variants, state, variant);
+        i = i | VariantHelper.getMetaFromState(this, state);
 
         if (!state.getValue(DECAYABLE))
         {
@@ -92,7 +101,7 @@ public class BlockAMLeaves extends BlockLeaves
         return BlockPlanks.EnumType.OAK;
     }
 
-    public EnumType getAMWoodType(int meta)
+    public EnumWoodVariant getAMWoodType(int meta)
     {
         return variants[meta & 3];
     }
@@ -100,7 +109,7 @@ public class BlockAMLeaves extends BlockLeaves
     @Override
     public int damageDropped(IBlockState state)
     {
-        return VariantHelper.getMetaFromVariant(variants, state, variant);
+        return VariantHelper.getMetaFromState(this, state);
     }
 
     @Override
@@ -119,7 +128,7 @@ public class BlockAMLeaves extends BlockLeaves
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return Arrays.asList(new ItemStack(this, 1, VariantHelper.getMetaFromVariant(variants, world.getBlockState(pos), variant)));
+        return Arrays.asList(VariantHelper.createStack(this, world.getBlockState(pos)));
     }
 
     @Override

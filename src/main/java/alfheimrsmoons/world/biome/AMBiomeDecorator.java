@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.biome;
 
 import alfheimrsmoons.block.BlockAMOre;
-import alfheimrsmoons.block.BlockAMOre.EnumType;
+import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMSand;
 import alfheimrsmoons.world.gen.feature.WorldGenAMLiquids;
@@ -38,9 +38,9 @@ public class AMBiomeDecorator extends BiomeDecorator
             field_180294_c = pos;
             // TODO configurable ore sizes, counts, and heights
             soilGen = new WorldGenAMMinable(AMBlocks.soil.getDefaultState(), 33);
-            nitroGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT, BlockAMOre.EnumType.NITRO), 17);
-            tektiteGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT, BlockAMOre.EnumType.TEKTITE), 9);
-            sylvaniteGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT, EnumType.SYLVANITE), 8);
+            nitroGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT_PROPERTY, EnumOreVariant.NITRO), 17);
+            tektiteGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT_PROPERTY, EnumOreVariant.TEKTITE), 9);
+            sylvaniteGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT_PROPERTY, EnumOreVariant.SYLVANITE), 8);
             waterLakeGen = new WorldGenAMLiquids(Blocks.flowing_water.getDefaultState());
             lavaLakeGen = new WorldGenAMLiquids(Blocks.flowing_lava.getDefaultState());
             genDecorations(biome, world, random);

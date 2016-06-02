@@ -1,10 +1,12 @@
 package alfheimrsmoons.network;
 
 import alfheimrsmoons.item.ItemVariantBlock;
+import alfheimrsmoons.util.IVariant;
+import alfheimrsmoons.util.IVariantBlock;
+import alfheimrsmoons.util.IVariantObject;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Proxy
@@ -15,25 +17,26 @@ public class Proxy
 
     public void postInit() {}
 
-    public <T extends Comparable<T> & IStringSerializable> void registerBlockWithVariants(Block block, T[] variants)
+    public <V extends IVariant<V>, B extends Block & IVariantBlock<V>> void registerBlockWithVariants(B block)
     {
-        registerBlockWithVariants(block, new ItemVariantBlock(block, variants), variants);
+        registerBlockWithVariants(block, new ItemVariantBlock<V, B>(block));
     }
 
-    public <T extends Comparable<T> & IStringSerializable> void registerBlockWithVariants(Block block, Item item, T[] variants)
+    public <V extends IVariant<V>, B extends Block & IVariantBlock<V>, I extends Item & IVariantObject<V>> void registerBlockWithVariants(B block, I item)
     {
-        registerBlockWithVariants(block, item, variants, null);
+        registerBlockWithVariants(block, item, null);
     }
 
-    public <T extends Comparable<T> & IStringSerializable> void registerBlockWithVariants(Block block, T[] variants, String base)
+    public <V extends IVariant<V>, B extends Block & IVariantBlock<V>> void registerBlockWithVariants(B block, String base)
     {
-        registerBlockWithVariants(block, new ItemVariantBlock(block, variants), variants, base);
+        registerBlockWithVariants(block, new ItemVariantBlock<V, B>(block), base);
     }
 
-    public <T extends Comparable<T> & IStringSerializable> void registerBlockWithVariants(Block block, Item item, T[] variants, String base)
+    public <V extends IVariant<V>, B extends Block & IVariantBlock<V>, I extends Item & IVariantObject<V>> void registerBlockWithVariants(B block, I item, String base)
     {
         GameRegistry.register(block);
-        registerItemWithVariants(item.setRegistryName(block.getRegistryName()), variants, base);
+        item.setRegistryName(block.getRegistryName());
+        registerItemWithVariants(item, base);
     }
 
     public void registerBlockWithItem(Block block)
@@ -52,12 +55,12 @@ public class Proxy
         GameRegistry.register(block);
     }
 
-    public <T extends Comparable<T> & IStringSerializable> void registerItemWithVariants(Item item, T[] variants)
+    public <V extends IVariant<V>, I extends Item & IVariantObject<V>> void registerItemWithVariants(I item)
     {
-        registerItemWithVariants(item, variants, null);
+        registerItemWithVariants(item, null);
     }
 
-    public <T extends Comparable<T> & IStringSerializable> void registerItemWithVariants(Item item, T[] variants, String base)
+    public <V extends IVariant<V>, I extends Item & IVariantObject<V>> void registerItemWithVariants(I item, String base)
     {
         GameRegistry.register(item);
     }

@@ -1,10 +1,10 @@
 package alfheimrsmoons.block;
 
-import alfheimrsmoons.block.BlockAMPlanks.EnumType;
+import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
 import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
@@ -27,16 +27,28 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public class BlockAMSapling extends BlockSapling
+public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWoodVariant>
 {
-    public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("variant", EnumType.class);
+    public static final PropertyEnum<EnumWoodVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumWoodVariant.class);
 
     public BlockAMSapling()
     {
-        blockState = new BlockStateContainer(this, TYPE, STAGE);
-        setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumType.RUNE).withProperty(STAGE, 0));
+        blockState = new BlockStateContainer(this, VARIANT_PROPERTY, STAGE);
+        setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumWoodVariant.RUNE).withProperty(STAGE, 0));
         setHardness(0.0F);
         setStepSound(SoundType.PLANT);
+    }
+
+    @Override
+    public PropertyEnum<EnumWoodVariant> getVariantProperty()
+    {
+        return VARIANT_PROPERTY;
+    }
+
+    @Override
+    public EnumWoodVariant[] getVariants()
+    {
+        return EnumWoodVariant.values();
     }
 
     @Override
@@ -48,7 +60,7 @@ public class BlockAMSapling extends BlockSapling
     @Override
     public String getLocalizedName()
     {
-        return I18n.translateToLocal(getUnlocalizedName() + "." + getDefaultState().getValue(TYPE).getName() + ".name");
+        return I18n.translateToLocal(getUnlocalizedName() + "." + getDefaultState().getValue(VARIANT_PROPERTY).getName() + ".name");
     }
 
     @Override
@@ -59,13 +71,13 @@ public class BlockAMSapling extends BlockSapling
             return;
         }
 
-        EnumType type = state.getValue(TYPE);
+        EnumWoodVariant variant = state.getValue(VARIANT_PROPERTY);
         WorldGenerator worldGen = null;
         int xOffset = 0;
         int yOffset = 0;
         boolean isMegaTree = false;
 
-        switch (type)
+        switch (variant)
         {
             //TODO: specialized tree generators
             case RUNE:
@@ -81,7 +93,7 @@ public class BlockAMSapling extends BlockSapling
             BlockAMLog wood;
             BlockAMLeaves leaves;
 
-            if (type.getMetadata() < 4)
+            if (VariantHelper.getMetaFromVariant(this, variant) < 4)
             {
                 wood = AMBlocks.log;
                 leaves = AMBlocks.leaves;
@@ -92,11 +104,11 @@ public class BlockAMSapling extends BlockSapling
                 leaves = AMBlocks.leaves2;
             }
 
-            IBlockState woodState = wood.getDefaultState().withProperty(wood.variant, type);
-            IBlockState leavesState = leaves.getDefaultState().withProperty(leaves.variant, type);
+            IBlockState woodState = VariantHelper.getDefaultStateWithVariant(wood, variant);
+            IBlockState leavesState = VariantHelper.getDefaultStateWithVariant(leaves, variant);
             boolean isBigTree;
 
-            switch (type)
+            switch (variant)
             {
                 case RUNE:
                     isBigTree = rand.nextInt(5) == 0;
@@ -146,50 +158,41 @@ public class BlockAMSapling extends BlockSapling
         }
     }
 
-    private boolean shouldGrowMegaTree(World world, BlockPos pos, int xOffset, int zOffset, EnumType type)
+    private boolean isTwoByTwoOfVariant(World world, BlockPos pos, int xOffset, int zOffset, EnumWoodVariant variant)
     {
-        return isTypeAt(world, pos.add(xOffset, 0, zOffset), type) && isTypeAt(world, pos.add(xOffset + 1, 0, zOffset), type) && isTypeAt(world, pos.add(xOffset, 0, zOffset + 1), type) && isTypeAt(world, pos.add(xOffset + 1, 0, zOffset + 1), type);
+        return isVariantAt(world, pos.add(xOffset, 0, zOffset), variant) && isVariantAt(world, pos.add(xOffset + 1, 0, zOffset), variant) && isVariantAt(world, pos.add(xOffset, 0, zOffset + 1), variant) && isVariantAt(world, pos.add(xOffset + 1, 0, zOffset + 1), variant);
     }
 
-    @Override
-    public boolean isTypeAt(World world, BlockPos pos, BlockPlanks.EnumType type)
-    {
-        return false;
-    }
-
-    public boolean isTypeAt(World world, BlockPos pos, EnumType type)
+    public boolean isVariantAt(World world, BlockPos pos, EnumWoodVariant variant)
     {
         IBlockState state = world.getBlockState(pos);
-        return state.getBlock() == this && state.getValue(TYPE) == type;
+        return state.getBlock() == this && state.getValue(VARIANT_PROPERTY) == variant;
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(TYPE).getMetadata();
+        return VariantHelper.getMetaFromState(this, state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for (EnumType type : EnumType.values)
-        {
-            list.add(new ItemStack(item, 1, type.getMetadata()));
-        }
+        VariantHelper.addSubItems(this, item, list);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(TYPE, VariantHelper.getVariantFromMeta(EnumType.values, meta & 7)).withProperty(STAGE, (meta & 8) >> 3);
+        return getDefaultState().withProperty(VARIANT_PROPERTY, VariantHelper.getVariantFromMeta(this, meta & 7)).withProperty(STAGE, (meta & 8) >> 3);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
-        i = i | state.getValue(TYPE).getMetadata();
+        i = i | VariantHelper.getMetaFromState(this, state);
         i = i | state.getValue(STAGE) << 3;
         return i;
     }
