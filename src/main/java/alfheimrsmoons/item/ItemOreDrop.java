@@ -1,6 +1,6 @@
 package alfheimrsmoons.item;
 
-import alfheimrsmoons.block.VariantHelper;
+import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.util.IVariantObject;
 import net.minecraft.creativetab.CreativeTabs;

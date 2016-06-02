@@ -5,7 +5,7 @@ import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.util.EnumWoodVariant;
-import alfheimrsmoons.block.VariantHelper;
+import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.crafting.AMShapedOreRecipe;
 import alfheimrsmoons.crafting.AMShapelessOreRecipe;
 import net.minecraft.block.Block;

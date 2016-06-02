@@ -3,6 +3,7 @@ package alfheimrsmoons.block;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.IVariantBlock;
+import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
 import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
 import net.minecraft.block.BlockSapling;

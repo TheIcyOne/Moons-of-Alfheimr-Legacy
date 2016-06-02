@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.util.DefaultBlockHelper;
 import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.BlockFlower;

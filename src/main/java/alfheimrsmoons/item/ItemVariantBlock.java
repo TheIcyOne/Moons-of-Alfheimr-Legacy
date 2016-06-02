@@ -1,6 +1,6 @@
 package alfheimrsmoons.item;
 
-import alfheimrsmoons.block.VariantHelper;
+import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.util.IVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.IVariantObject;

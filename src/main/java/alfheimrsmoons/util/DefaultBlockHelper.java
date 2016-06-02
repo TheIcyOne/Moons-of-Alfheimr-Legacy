@@ -1,4 +1,4 @@
-package alfheimrsmoons.block;
+package alfheimrsmoons.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

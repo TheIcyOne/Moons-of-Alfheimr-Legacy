@@ -3,6 +3,7 @@ package alfheimrsmoons.block;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.IVariantBlock;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.PropertyEnum;

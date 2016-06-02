@@ -3,6 +3,7 @@ package alfheimrsmoons.block;
 import alfheimrsmoons.init.AMItems;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.util.IVariantBlock;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;

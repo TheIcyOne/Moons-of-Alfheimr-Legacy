@@ -2,6 +2,7 @@ package alfheimrsmoons.block;
 
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.util.IVariantBlock;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;

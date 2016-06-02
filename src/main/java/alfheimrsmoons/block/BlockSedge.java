@@ -2,6 +2,7 @@ package alfheimrsmoons.block;
 
 import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.util.IVariantBlock;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;

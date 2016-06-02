@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.util.DefaultBlockHelper;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;

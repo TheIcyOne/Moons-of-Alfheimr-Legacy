@@ -1,4 +1,4 @@
-package alfheimrsmoons.block;
+package alfheimrsmoons.util;
 
 import alfheimrsmoons.util.IVariant;
 import alfheimrsmoons.util.IVariantBlock;

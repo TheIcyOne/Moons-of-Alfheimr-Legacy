@@ -1,6 +1,6 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.block.VariantHelper;
+import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;

@@ -2,6 +2,7 @@ package alfheimrsmoons.block;
 
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.util.IVariantBlock;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
