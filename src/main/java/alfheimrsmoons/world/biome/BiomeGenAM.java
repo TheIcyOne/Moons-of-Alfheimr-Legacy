@@ -1,9 +1,12 @@
 package alfheimrsmoons.world.biome;
 
+import alfheimrsmoons.block.BlockAMFlower;
+import alfheimrsmoons.util.EnumFlowerVariant;
 import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
+import alfheimrsmoons.world.gen.feature.WorldGenAMFlowers;
 import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
 import alfheimrsmoons.world.gen.feature.WorldGenSedge;
 import net.minecraft.block.material.Material;
@@ -17,7 +20,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class BiomeGenAM extends BiomeGenBase
+public abstract class BiomeGenAM extends BiomeGenBase
 {
     protected static final IBlockState STONE = AMBlocks.shale.getDefaultState();
     protected static final IBlockState WOOD = VariantHelper.getDefaultStateWithVariant(AMBlocks.log, EnumWoodVariant.BEECH);
@@ -52,6 +55,13 @@ public class BiomeGenAM extends BiomeGenBase
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
         return new WorldGenSedge();
+    }
+
+    public WorldGenerator getRandomWorldGenForFlower(Random rand)
+    {
+        IBlockState state = AMBlocks.flower.getDefaultState();
+        EnumFlowerVariant variant = EnumFlowerVariant.values[rand.nextInt(EnumFlowerVariant.values.length)];
+        return new WorldGenAMFlowers(state.withProperty(BlockAMFlower.VARIANT_PROPERTY, variant));
     }
 
     @Override

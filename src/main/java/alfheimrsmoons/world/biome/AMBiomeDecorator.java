@@ -51,6 +51,8 @@ public class AMBiomeDecorator extends BiomeDecorator
     @Override
     protected void genDecorations(BiomeGenBase biome, World world, Random random)
     {
+        BiomeGenAM alfheimrBiome = biome instanceof BiomeGenAM ? (BiomeGenAM) biome : null;
+
         generateOres(world, random);
 
         for (int i = 0; i < sandPerChunk2; ++i)
@@ -81,12 +83,34 @@ public class AMBiomeDecorator extends BiomeDecorator
             }
         }
 
+        if (alfheimrBiome != null)
+        {
+            for (int i = 0; i < flowersPerChunk; ++i)
+            {
+                int xOffset = random.nextInt(16) + 8;
+                int zOffset = random.nextInt(16) + 8;
+                int height = world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() + 32;
+
+                if (height > 0)
+                {
+                    int yOffset = random.nextInt(height);
+                    BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
+                    alfheimrBiome.getRandomWorldGenForFlower(random).generate(world, random, pos);
+                }
+            }
+        }
+
         for (int i = 0; i < grassPerChunk; ++i)
         {
             int xOffset = random.nextInt(16) + 8;
             int zOffset = random.nextInt(16) + 8;
-            int yOffset = random.nextInt(world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() * 2);
-            biome.getRandomWorldGenForGrass(random).generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
+            int height = world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() * 2;
+
+            if (height > 0)
+            {
+                int yOffset = random.nextInt(height);
+                biome.getRandomWorldGenForGrass(random).generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
+            }
         }
 
         if (generateLakes)
@@ -95,9 +119,14 @@ public class AMBiomeDecorator extends BiomeDecorator
             {
                 int xOffset = random.nextInt(16) + 8;
                 int zOffset = random.nextInt(16) + 8;
-                int yOffset = random.nextInt(random.nextInt(248) + 8);
-                BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
-                waterLakeGen.generate(world, random, pos);
+                int height = random.nextInt(248) + 8;
+
+                if (height > 0)
+                {
+                    int yOffset = random.nextInt(height);
+                    BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
+                    waterLakeGen.generate(world, random, pos);
+                }
             }
 
             for (int i = 0; i < 20; ++i)
