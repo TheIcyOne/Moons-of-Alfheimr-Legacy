@@ -28,6 +28,8 @@ public class AMBiomes
     public static final BiomeGenBase beach = new BiomeGenAMBeach(new BiomeProperties("Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("beach");
     public static final BiomeGenBase woods = new BiomeGenWoods(new BiomeProperties("Woods").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods");
     public static final BiomeGenBase woods_hills = new BiomeGenWoods(new BiomeProperties("Woods Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods_hills");
+    public static final BiomeGenBase bluebell_forest = new BiomeGenBluebellForest(new BiomeProperties("Bluebell Forest").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("bluebell_forest");
+    public static final BiomeGenBase bluebell_forest_hills = new BiomeGenBluebellForest(new BiomeProperties("Bluebell Forest Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("bluebell_forest_hills");
 
     public static void registerBiomes()
     {
@@ -35,19 +37,26 @@ public class AMBiomes
         registerBiome(deep_ocean, OCEAN);
         registerBiome(river, RIVER);
         registerBiome(beach, BEACH);
-        BiomeType[] types = {BiomeType.COOL, BiomeType.WARM /* Delete: */, BiomeType.DESERT, BiomeType.ICY};
-        int[] weights = {10, 10 /* Delete: */, 10, 10};
+        BiomeType[] types = new BiomeType[]{BiomeType.COOL, BiomeType.WARM /* Delete: */, BiomeType.DESERT, BiomeType.ICY};
+        int[] weights = new int[]{10, 10 /* Delete: */, 10, 10};
         registerBiome(woods, types, weights, FOREST);
         registerBiome(woods_hills, FOREST, HILLS);
+        types = new BiomeType[]{BiomeType.COOL, BiomeType.WARM};
+        weights = new int[]{10, 10};
+        registerBiome(bluebell_forest, types, weights, FOREST);
+        registerBiome(bluebell_forest_hills, FOREST, HILLS);
 
         BiomeManager.oceanBiomes.add(ocean);
         BiomeManager.oceanBiomes.add(deep_ocean);
 
         BiomeManager.addSpawnBiome(woods);
         BiomeManager.addSpawnBiome(woods_hills);
+        BiomeManager.addSpawnBiome(bluebell_forest);
+        BiomeManager.addSpawnBiome(bluebell_forest_hills);
 
         BIOMES_HILLS.put(ocean, deep_ocean);
         BIOMES_HILLS.put(woods, woods_hills);
+        BIOMES_HILLS.put(bluebell_forest, bluebell_forest_hills);
     }
 
     private static void registerBiome(BiomeGenBase biome, BiomeDictionary.Type... dictTypes)
@@ -74,8 +83,6 @@ public class AMBiomes
 
     public static void addBiome(BiomeType type, BiomeEntry entry)
     {
-        BiomeManager.addBiome(type, entry);
-
         List<BiomeEntry> list = BIOMES.get(type);
 
         if (list == null)
