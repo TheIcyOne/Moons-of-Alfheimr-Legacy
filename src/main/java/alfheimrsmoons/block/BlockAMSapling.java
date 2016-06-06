@@ -91,22 +91,6 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
 
         if (worldGen == null)
         {
-            BlockAMLog wood;
-            BlockAMLeaves leaves;
-
-            if (VariantHelper.getMetaFromVariant(this, variant) < 4)
-            {
-                wood = AMBlocks.log;
-                leaves = AMBlocks.leaves;
-            }
-            else
-            {
-                wood = AMBlocks.log2;
-                leaves = AMBlocks.leaves2;
-            }
-
-            IBlockState woodState = VariantHelper.getDefaultStateWithVariant(wood, variant);
-            IBlockState leavesState = VariantHelper.getDefaultStateWithVariant(leaves, variant);
             boolean isBigTree;
 
             switch (variant)
@@ -121,11 +105,11 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
 
             if (isBigTree)
             {
-                worldGen = new WorldGenAMBigTree(true, woodState, leavesState, this);
+                worldGen = new WorldGenAMBigTree(true, variant);
             }
             else
             {
-                worldGen = new WorldGenAMTrees(true, woodState, leavesState);
+                worldGen = new WorldGenAMTrees(true, variant);
             }
         }
 

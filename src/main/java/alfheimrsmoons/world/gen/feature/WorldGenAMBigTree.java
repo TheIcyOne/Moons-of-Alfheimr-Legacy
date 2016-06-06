@@ -1,6 +1,10 @@
 package alfheimrsmoons.world.gen.feature;
 
+import alfheimrsmoons.block.BlockAMLeaves;
+import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.EnumWoodVariant;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
@@ -15,14 +19,17 @@ public class WorldGenAMBigTree extends WorldGenBigTree
 {
     private final IBlockState woodState;
     private final IBlockState leavesState;
-    private final BlockSapling sapling;
 
-    public WorldGenAMBigTree(boolean notify, IBlockState woodState, IBlockState leavesState, BlockSapling sapling)
+    public WorldGenAMBigTree(boolean notify, EnumWoodVariant variant)
+    {
+        this(notify, variant.getLogState(), variant.getLeavesState());
+    }
+
+    public WorldGenAMBigTree(boolean notify, IBlockState woodState, IBlockState leavesState)
     {
         super(notify);
         this.woodState = woodState;
         this.leavesState = leavesState;
-        this.sapling = sapling;
     }
 
     @Override
@@ -86,7 +93,7 @@ public class WorldGenAMBigTree extends WorldGenBigTree
     {
         BlockPos down = basePos.down();
         IBlockState state = world.getBlockState(down);
-        boolean isSoil = state.getBlock().canSustainPlant(state, world, down, EnumFacing.UP, sapling);
+        boolean isSoil = state.getBlock().canSustainPlant(state, world, down, EnumFacing.UP, AMBlocks.sapling);
 
         if (!isSoil)
         {

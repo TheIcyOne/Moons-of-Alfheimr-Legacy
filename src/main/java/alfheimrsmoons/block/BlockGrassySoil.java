@@ -1,9 +1,11 @@
 package alfheimrsmoons.block;
 
-import alfheimrsmoons.util.DefaultBlockHelper;
-import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.init.AMBlocks;
-import net.minecraft.block.BlockFlower;
+import alfheimrsmoons.util.DefaultBlockHelper;
+import alfheimrsmoons.util.EnumFlowerVariant;
+import alfheimrsmoons.util.EnumSedgeVariant;
+import alfheimrsmoons.util.VariantHelper;
+import alfheimrsmoons.world.biome.BiomeGenAM;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,6 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
@@ -100,19 +103,24 @@ public class BlockGrassySoil extends BlockGrass
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            BlockFlower.EnumFlowerType flowerType = world.getBiomeGenForCoords(plantPos).pickRandomFlower(rand, plantPos);
-                            BlockFlower flower = flowerType.getBlockType().getBlock();
-                            IBlockState flowerState = flower.getDefaultState().withProperty(flower.getTypeProperty(), flowerType);
+                            BiomeGenBase biome = world.getBiomeGenForCoords(plantPos);
 
-                            if (flower.canBlockStay(world, plantPos, flowerState))
+                            if (biome instanceof BiomeGenAM)
                             {
-                                world.setBlockState(plantPos, flowerState, 3);
+                                EnumFlowerVariant flowerVariant = ((BiomeGenAM) biome).getRandomFlowerVariant(rand, plantPos);
+                                BlockAMFlower flower = AMBlocks.flower;
+                                IBlockState flowerState = VariantHelper.getDefaultStateWithVariant(flower, flowerVariant);
+
+                                if (flower.canBlockStay(world, plantPos, flowerState))
+                                {
+                                    world.setBlockState(plantPos, flowerState, 3);
+                                }
                             }
                         }
                         else
                         {
                             EnumSedgeVariant tallgrassVariant = rand.nextBoolean() ? EnumSedgeVariant.SHORT : EnumSedgeVariant.NORMAL;
-                            IBlockState tallgrassState = AMBlocks.sedge.getDefaultState().withProperty(BlockSedge.VARIANT_PROPERTY, tallgrassVariant);
+                            IBlockState tallgrassState = VariantHelper.getDefaultStateWithVariant(AMBlocks.sedge, tallgrassVariant);
 
                             if (AMBlocks.sedge.canBlockStay(world, plantPos, tallgrassState))
                             {

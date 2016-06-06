@@ -1,6 +1,10 @@
 package alfheimrsmoons.world.gen.feature;
 
+import alfheimrsmoons.block.BlockAMLeaves;
+import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.EnumWoodVariant;
+import alfheimrsmoons.util.VariantHelper;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockVine;
@@ -17,9 +21,19 @@ public class WorldGenAMTrees extends WorldGenTrees
 {
     private static final ImmutableSet<Block> REPLACEABLE_BLOCKS = ImmutableSet.of(AMBlocks.grassy_soil, AMBlocks.soil, AMBlocks.log, AMBlocks.log2, AMBlocks.sapling);
 
+    public WorldGenAMTrees(boolean notify, EnumWoodVariant variant)
+    {
+        this(notify, variant, false);
+    }
+
     public WorldGenAMTrees(boolean notify, IBlockState metaWood, IBlockState metaLeaves)
     {
         this(notify, 4, metaWood, metaLeaves, false);
+    }
+
+    public WorldGenAMTrees(boolean notify, EnumWoodVariant variant, boolean vinesGrow)
+    {
+        this(notify, 4, variant.getLogState(), variant.getLeavesState(), vinesGrow);
     }
 
     public WorldGenAMTrees(boolean notify, int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean vinesGrow)

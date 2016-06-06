@@ -1,8 +1,6 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.block.BlockAMFlower;
 import alfheimrsmoons.util.EnumFlowerVariant;
-import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
@@ -23,10 +21,10 @@ import java.util.Random;
 public abstract class BiomeGenAM extends BiomeGenBase
 {
     protected static final IBlockState STONE = AMBlocks.shale.getDefaultState();
-    protected static final IBlockState WOOD = VariantHelper.getDefaultStateWithVariant(AMBlocks.log, EnumWoodVariant.BEECH);
-    protected static final IBlockState LEAVES = VariantHelper.getDefaultStateWithVariant(AMBlocks.leaves, EnumWoodVariant.BEECH);
-    protected static final WorldGenAMTrees worldGeneratorTrees = new WorldGenAMTrees(false, WOOD, LEAVES);
-    protected static final WorldGenAMBigTree worldGeneratorBigTree = new WorldGenAMBigTree(false, WOOD, LEAVES, AMBlocks.sapling);
+    protected static final WorldGenAMTrees worldGeneratorTrees = new WorldGenAMTrees(false, EnumWoodVariant.BEECH);
+    protected static final WorldGenAMBigTree worldGeneratorBigTree = new WorldGenAMBigTree(false, EnumWoodVariant.BEECH);
+
+    private EnumFlowerVariant[] flowerVariants;
 
     public BiomeGenAM(BiomeProperties properties)
     {
@@ -48,20 +46,40 @@ public abstract class BiomeGenAM extends BiomeGenBase
     @Override
     public WorldGenAbstractTree genBigTreeChance(Random rand)
     {
-        return rand.nextInt(10) == 0 ? worldGeneratorBigTree : worldGeneratorTrees;
+        EnumWoodVariant variant = getRandomTreeVariant(rand);
+        return rand.nextInt(10) == 0 ? new WorldGenAMBigTree(false, variant) : new WorldGenAMTrees(false, variant);
+    }
+
+    protected EnumWoodVariant getRandomTreeVariant(Random rand)
+    {
+        return EnumWoodVariant.BEECH;
     }
 
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
+        return getGrassWorldGen();
+    }
+
+    public WorldGenerator getGrassWorldGen()
+    {
         return new WorldGenSedge();
     }
 
-    public WorldGenerator getRandomWorldGenForFlower(Random rand)
+    public WorldGenerator getFlowerWorldGen()
     {
-        IBlockState state = AMBlocks.flower.getDefaultState();
-        EnumFlowerVariant variant = EnumFlowerVariant.values[rand.nextInt(EnumFlowerVariant.values.length)];
-        return new WorldGenAMFlowers(state.withProperty(BlockAMFlower.VARIANT_PROPERTY, variant));
+        return flowerVariants != null ? new WorldGenAMFlowers(flowerVariants) : null;
+    }
+
+    public EnumFlowerVariant getRandomFlowerVariant(Random rand, BlockPos pos)
+    {
+        return flowerVariants != null ? flowerVariants[rand.nextInt(flowerVariants.length)] : null;
+    }
+
+    public BiomeGenAM setFlowerVariants(EnumFlowerVariant... flowerVariants)
+    {
+        this.flowerVariants = flowerVariants;
+        return this;
     }
 
     @Override

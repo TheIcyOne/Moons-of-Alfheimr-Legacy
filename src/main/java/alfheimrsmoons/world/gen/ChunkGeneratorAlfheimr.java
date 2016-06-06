@@ -1,6 +1,5 @@
 package alfheimrsmoons.world.gen;
 
-import alfheimrsmoons.init.AMBiomes;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMLakes;
 import com.google.common.collect.ImmutableSet;
@@ -29,12 +28,10 @@ import java.util.Random;
 public class ChunkGeneratorAlfheimr implements IChunkGenerator
 {
     public static final ImmutableSet<Block> OCEAN_BLOCKS = ImmutableSet.<Block>of(Blocks.flowing_water, Blocks.water);
-    private IBlockState lavaBlock = Blocks.lava.getDefaultState();
     private IBlockState waterBlock = Blocks.water.getDefaultState();
     private IBlockState iceBlock = Blocks.ice.getDefaultState();
     private IBlockState snowLayerBlock = Blocks.snow_layer.getDefaultState();
     private WorldGenerator waterLakeGen = new WorldGenAMLakes(waterBlock);
-    private WorldGenerator lavaLakeGen = new WorldGenAMLakes(lavaBlock);
 
     protected static final IBlockState STONE = AMBlocks.shale.getDefaultState();
     private final Random rand;
@@ -89,7 +86,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
         if (generatorOptions != null)
         {
             settings = ChunkProviderSettings.Factory.jsonToFactory(generatorOptions).func_177864_b();//build()
-            oceanBlock = settings.useLavaOceans ? lavaBlock : waterBlock;
+            oceanBlock = waterBlock;
             world.setSeaLevel(settings.seaLevel);
         }
     }
@@ -359,18 +356,6 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
             int yOffset = rand.nextInt(256);
             int zOffset = rand.nextInt(16) + 8;
             waterLakeGen.generate(worldObj, rand, pos.add(xOffset, yOffset, zOffset));
-        }
-
-        if (!hasVillageGenerated && rand.nextInt(settings.lavaLakeChance / 10) == 0 && settings.useLavaLakes)
-        {
-            int xOffset = rand.nextInt(16) + 8;
-            int yOffset = rand.nextInt(rand.nextInt(248) + 8);
-            int zOffset = rand.nextInt(16) + 8;
-
-            if (yOffset < worldObj.getSeaLevel() || rand.nextInt(settings.lavaLakeChance / 8) == 0)
-            {
-                lavaLakeGen.generate(worldObj, rand, pos.add(xOffset, yOffset, zOffset));
-            }
         }
 
 //        if (settings.useDungeons)

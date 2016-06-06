@@ -24,7 +24,6 @@ public class AMBiomeDecorator extends BiomeDecorator
     public WorldGenerator tektiteGen;
     public WorldGenerator sylvaniteGen;
     public WorldGenerator waterLakeGen;
-    public WorldGenerator lavaLakeGen;
 
     @Override
     public void decorate(World world, Random random, BiomeGenBase biome, BlockPos pos)
@@ -38,11 +37,10 @@ public class AMBiomeDecorator extends BiomeDecorator
             field_180294_c = pos;
             // TODO configurable ore sizes, counts, and heights
             soilGen = new WorldGenAMMinable(AMBlocks.soil.getDefaultState(), 33);
-            nitroGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT_PROPERTY, EnumOreVariant.NITRO), 17);
-            tektiteGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT_PROPERTY, EnumOreVariant.TEKTITE), 9);
-            sylvaniteGen = new WorldGenAMMinable(AMBlocks.ore.getDefaultState().withProperty(BlockAMOre.VARIANT_PROPERTY, EnumOreVariant.SYLVANITE), 8);
+            nitroGen = new WorldGenAMMinable(EnumOreVariant.NITRO, 17);
+            tektiteGen = new WorldGenAMMinable(EnumOreVariant.TEKTITE, 9);
+            sylvaniteGen = new WorldGenAMMinable(EnumOreVariant.SYLVANITE, 8);
             waterLakeGen = new WorldGenAMLiquids(Blocks.flowing_water.getDefaultState());
-            lavaLakeGen = new WorldGenAMLiquids(Blocks.flowing_lava.getDefaultState());
             genDecorations(biome, world, random);
             field_185425_a = false;
         }
@@ -85,17 +83,22 @@ public class AMBiomeDecorator extends BiomeDecorator
 
         if (alfheimrBiome != null)
         {
-            for (int i = 0; i < flowersPerChunk; ++i)
-            {
-                int xOffset = random.nextInt(16) + 8;
-                int zOffset = random.nextInt(16) + 8;
-                int height = world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() + 32;
+            WorldGenerator flowerGen = alfheimrBiome.getFlowerWorldGen();
 
-                if (height > 0)
+            if (flowerGen != null)
+            {
+                for (int i = 0; i < flowersPerChunk; ++i)
                 {
-                    int yOffset = random.nextInt(height);
-                    BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
-                    alfheimrBiome.getRandomWorldGenForFlower(random).generate(world, random, pos);
+                    int xOffset = random.nextInt(16) + 8;
+                    int zOffset = random.nextInt(16) + 8;
+                    int height = world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() + 32;
+
+                    if (height > 0)
+                    {
+                        int yOffset = random.nextInt(height);
+                        BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
+                        flowerGen.generate(world, random, pos);
+                    }
                 }
             }
         }
@@ -127,15 +130,6 @@ public class AMBiomeDecorator extends BiomeDecorator
                     BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
                     waterLakeGen.generate(world, random, pos);
                 }
-            }
-
-            for (int i = 0; i < 20; ++i)
-            {
-                int xOffset = random.nextInt(16) + 8;
-                int zOffset = random.nextInt(16) + 8;
-                int yOffset = random.nextInt(random.nextInt(random.nextInt(240) + 8) + 8);
-                BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
-                lavaLakeGen.generate(world, random, pos);
             }
         }
     }

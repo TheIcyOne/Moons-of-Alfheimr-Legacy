@@ -37,7 +37,7 @@ public class AMRecipes
         AMItems.tektite_tools.addRecipes(VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.TEKTITE));
         AMItems.sylvanite_tools.addRecipes(VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.SYLVANITE));
 
-        addShapedRecipe(AMBlocks.rune_bookshelf, "###", "XXX", "###", '#', VariantHelper.createStack(AMBlocks.log, EnumWoodVariant.RUNE), 'X', Items.book);
+        addShapedRecipe(AMBlocks.rune_bookshelf, "###", "XXX", "###", '#', VariantHelper.createStack(EnumWoodVariant.RUNE.getLogBlock(), EnumWoodVariant.RUNE), 'X', Items.book);
         addShapedRecipe(new ItemStack(AMBlocks.nitro_torch, 4), "X", "#", 'X', VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.NITRO), '#', AMItems.branch);
 
         for (int meta = 0; meta < EnumOreVariant.values.length; meta++)
@@ -45,13 +45,9 @@ public class AMRecipes
             addShapedRecipe(AMBlocks.ore_block, "###", "###", "###", '#', AMItems.ore_drop);
         }
 
-        BlockAMLog[] logs = {AMBlocks.log, AMBlocks.log2};
-        for (BlockAMLog log : logs)
+        for (EnumWoodVariant variant : EnumWoodVariant.values)
         {
-            for (EnumWoodVariant variant : log.getVariants())
-            {
-                addShapelessRecipe(VariantHelper.createStack(AMBlocks.planks, 4, variant), VariantHelper.createStack(log, variant));
-            }
+            addShapelessRecipe(VariantHelper.createStack(AMBlocks.planks, 4, variant), VariantHelper.createStack(variant.getLogBlock(), variant));
         }
     }
 

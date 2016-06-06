@@ -24,21 +24,21 @@ public class AMBiomes
 
     public static final BiomeGenBase ocean = new BiomeGenAMOcean(new BiomeProperties("Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F)).setRegistryName("ocean");
     public static final BiomeGenBase deep_ocean = new BiomeGenAMOcean(new BiomeProperties("Deep Ocean").setBaseHeight(-1.8F).setHeightVariation(0.1F)).setRegistryName("deep_ocean");
-    public static final BiomeGenBase woods = new BiomeGenWoods(new BiomeProperties("Woods").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods");
-    public static final BiomeGenBase woods_hills = new BiomeGenWoods(new BiomeProperties("Woods Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods_hills");
     public static final BiomeGenBase river = new BiomeGenAMRiver(new BiomeProperties("River").setBaseHeight(-0.5F).setHeightVariation(0.0F)).setRegistryName("river");
     public static final BiomeGenBase beach = new BiomeGenAMBeach(new BiomeProperties("Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("beach");
+    public static final BiomeGenBase woods = new BiomeGenWoods(new BiomeProperties("Woods").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods");
+    public static final BiomeGenBase woods_hills = new BiomeGenWoods(new BiomeProperties("Woods Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods_hills");
 
     public static void registerBiomes()
     {
         registerBiome(ocean, OCEAN);
         registerBiome(deep_ocean, OCEAN);
+        registerBiome(river, RIVER);
+        registerBiome(beach, BEACH);
         BiomeType[] types = {BiomeType.COOL, BiomeType.WARM /* Delete: */, BiomeType.DESERT, BiomeType.ICY};
         int[] weights = {10, 10 /* Delete: */, 10, 10};
         registerBiome(woods, types, weights, FOREST);
         registerBiome(woods_hills, FOREST, HILLS);
-        registerBiome(river, RIVER);
-        registerBiome(beach, BEACH);
 
         BiomeManager.oceanBiomes.add(ocean);
         BiomeManager.oceanBiomes.add(deep_ocean);

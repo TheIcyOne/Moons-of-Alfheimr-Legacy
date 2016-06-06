@@ -3,6 +3,7 @@ package alfheimrsmoons.world.gen.feature;
 import alfheimrsmoons.block.BlockSedge;
 import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -28,7 +29,7 @@ public class WorldGenSedge extends WorldGenerator
         {
             BlockPos blockPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
             EnumSedgeVariant sedgeVariant = rand.nextBoolean() ? EnumSedgeVariant.SHORT : EnumSedgeVariant.NORMAL;
-            IBlockState sedgeState = AMBlocks.sedge.getDefaultState().withProperty(BlockSedge.VARIANT_PROPERTY, sedgeVariant);
+            IBlockState sedgeState = VariantHelper.getDefaultStateWithVariant(AMBlocks.sedge, sedgeVariant);
 
             if (world.isAirBlock(blockPos) && AMBlocks.sedge.canBlockStay(world, blockPos, sedgeState))
             {
