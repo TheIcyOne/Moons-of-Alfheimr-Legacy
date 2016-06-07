@@ -30,6 +30,8 @@ public class AMBiomes
     public static final BiomeGenBase woods_hills = new BiomeGenWoods(new BiomeProperties("Woods Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods_hills");
     public static final BiomeGenBase bluebell_forest = new BiomeGenBluebellForest(new BiomeProperties("Bluebell Forest").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("bluebell_forest");
     public static final BiomeGenBase bluebell_forest_hills = new BiomeGenBluebellForest(new BiomeProperties("Bluebell Forest Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("bluebell_forest_hills");
+    public static final BiomeGenBase runewood_forest = new BiomeGenRunewoodForest(new BiomeProperties("Runewood Forest").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("runewood_forest");
+    public static final BiomeGenBase runewood_forest_hills = new BiomeGenRunewoodForest(new BiomeProperties("Runewood Forest Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("runewood_forest_hills");
 
     public static void registerBiomes()
     {
@@ -45,6 +47,8 @@ public class AMBiomes
         weights = new int[]{10, 10};
         registerBiome(bluebell_forest, types, weights, FOREST);
         registerBiome(bluebell_forest_hills, FOREST, HILLS);
+        registerBiome(runewood_forest, types, weights, FOREST);
+        registerBiome(runewood_forest_hills, FOREST, HILLS);
 
         BiomeManager.oceanBiomes.add(ocean);
         BiomeManager.oceanBiomes.add(deep_ocean);

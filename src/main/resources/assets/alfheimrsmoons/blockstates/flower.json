@@ -14,7 +14,8 @@
             "skullcap": { "model": "alfheimrsmoons:flower_skullcap" },
             "pink_prestige": { "model": "alfheimrsmoons:flower_pink_prestige" },
             "aster": { "model": "alfheimrsmoons:flower_aster" },
-            "promises_burden": { "model": "alfheimrsmoons:flower_promises_burden" }
+            "promises_burden": { "model": "alfheimrsmoons:flower_promises_burden" },
+            "forget_me_not": { "model": "alfheimrsmoons:forget_me_not" }
         }
     }
 }

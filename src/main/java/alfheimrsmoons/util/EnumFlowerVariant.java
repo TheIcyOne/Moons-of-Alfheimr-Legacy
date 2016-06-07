@@ -14,7 +14,8 @@ public enum EnumFlowerVariant implements IVariant<EnumFlowerVariant>
     SKULLCAP("skullcap"),
     PINK_PRESTIGE("pink_prestige"),
     ASTER("aster"),
-    PROMISES_BURDEN("promises_burden");
+    PROMISES_BURDEN("promises_burden"),
+    FORGET_ME_NOT("forget_me_not");
 
     public static final EnumFlowerVariant[] values = values();
     private final String name;
