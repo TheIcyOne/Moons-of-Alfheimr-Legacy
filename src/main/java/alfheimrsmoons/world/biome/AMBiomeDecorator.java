@@ -49,7 +49,13 @@ public class AMBiomeDecorator extends BiomeDecorator
     @Override
     protected void genDecorations(BiomeGenBase biome, World world, Random random)
     {
-        BiomeGenAM alfheimrBiome = biome instanceof BiomeGenAM ? (BiomeGenAM) biome : null;
+        if (!(biome instanceof BiomeGenAM))
+        {
+            super.genDecorations(biome, world, random);
+            return;
+        }
+
+        BiomeGenAM alfheimrBiome = (BiomeGenAM) biome;;
 
         generateOres(world, random);
 
@@ -81,24 +87,21 @@ public class AMBiomeDecorator extends BiomeDecorator
             }
         }
 
-        if (alfheimrBiome != null)
+        WorldGenerator flowerGen = alfheimrBiome.getFlowerWorldGen();
+
+        if (flowerGen != null)
         {
-            WorldGenerator flowerGen = alfheimrBiome.getFlowerWorldGen();
-
-            if (flowerGen != null)
+            for (int i = 0; i < flowersPerChunk; ++i)
             {
-                for (int i = 0; i < flowersPerChunk; ++i)
-                {
-                    int xOffset = random.nextInt(16) + 8;
-                    int zOffset = random.nextInt(16) + 8;
-                    int height = world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() + 32;
+                int xOffset = random.nextInt(16) + 8;
+                int zOffset = random.nextInt(16) + 8;
+                int height = world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() + 32;
 
-                    if (height > 0)
-                    {
-                        int yOffset = random.nextInt(height);
-                        BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
-                        flowerGen.generate(world, random, pos);
-                    }
+                if (height > 0)
+                {
+                    int yOffset = random.nextInt(height);
+                    BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
+                    flowerGen.generate(world, random, pos);
                 }
             }
         }
@@ -112,7 +115,7 @@ public class AMBiomeDecorator extends BiomeDecorator
             if (height > 0)
             {
                 int yOffset = random.nextInt(height);
-                biome.getRandomWorldGenForGrass(random).generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
+                alfheimrBiome.getGrassWorldGen().generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
             }
         }
 
