@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
@@ -114,15 +115,15 @@ public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
     }
 
     @Override
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
     {
-        if (!worldIn.isRemote && stack != null && stack.getItem() == Items.shears)
+        if (!world.isRemote && stack != null && stack.getItem() instanceof ItemShears)
         {
             player.addStat(StatList.func_188055_a(this));
         }
         else
         {
-            super.harvestBlock(worldIn, player, pos, state, te, stack);
+            super.harvestBlock(world, player, pos, state, te, stack);
         }
     }
 

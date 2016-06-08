@@ -13,19 +13,16 @@ import java.util.Random;
 
 public class WorldGenAMFlowers extends WorldGenerator
 {
-    private EnumFlowerVariant[] variants;
+    private IBlockState state;
 
-    public WorldGenAMFlowers(EnumFlowerVariant... variants)
+    public WorldGenAMFlowers(IBlockState state)
     {
-        this.variants = variants;
+        this.state = state;
     }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos position)
     {
-        EnumFlowerVariant variant = variants[rand.nextInt(variants.length)];
-        IBlockState state = VariantHelper.getDefaultStateWithVariant(AMBlocks.flower, variant);
-
         for (int i = 0; i < 64; ++i)
         {
             BlockPos flowerPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));

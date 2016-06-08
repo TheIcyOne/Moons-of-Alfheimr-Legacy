@@ -1,10 +1,13 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.EnumFlowerVariant;
+import alfheimrsmoons.util.EnumTallFlowerVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -14,13 +17,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Random;
 
-public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlowerVariant>
+public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlowerVariant>, IGrowable
 {
     public static final PropertyEnum<EnumFlowerVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumFlowerVariant.class);
 
@@ -107,5 +112,39 @@ public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlow
     {
         Block block = state.getBlock();
         return block instanceof BlockSoil || block instanceof BlockGrassySoil || super.func_185514_i(state);
+    }
+
+    @Override
+    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
+    {
+        return state.getValue(VARIANT_PROPERTY).hasTallVariant();
+    }
+
+    @Override
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public void grow(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        if (AMBlocks.tall_flower.canPlaceBlockAt(world, pos))
+        {
+            EnumTallFlowerVariant variant = state.getValue(VARIANT_PROPERTY).getTallVariant();
+            AMBlocks.tall_flower.placeAt(world, pos, variant, 2);
+        }
+    }
+
+    @Override
+    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
+        return 60;
+    }
+
+    @Override
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
+        return 100;
     }
 }

@@ -10,7 +10,12 @@ public class BiomeGenRunewoodForest extends BiomeGenWoods
     public BiomeGenRunewoodForest(BiomeProperties properties)
     {
         super(properties);
-        setFlowerVariants(EnumFlowerVariant.FORGET_ME_NOT);
+    }
+
+    @Override
+    protected void addFlowerVariants()
+    {
+        addFlowerVariants(EnumFlowerVariant.FORGET_ME_NOT);
     }
 
     @Override

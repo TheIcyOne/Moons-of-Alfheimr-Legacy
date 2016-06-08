@@ -104,18 +104,7 @@ public class BlockGrassySoil extends BlockGrass
                         if (rand.nextInt(8) == 0)
                         {
                             BiomeGenBase biome = world.getBiomeGenForCoords(plantPos);
-
-                            if (biome instanceof BiomeGenAM)
-                            {
-                                EnumFlowerVariant flowerVariant = ((BiomeGenAM) biome).getRandomFlowerVariant(rand, plantPos);
-                                BlockAMFlower flower = AMBlocks.flower;
-                                IBlockState flowerState = VariantHelper.getDefaultStateWithVariant(flower, flowerVariant);
-
-                                if (flower.canBlockStay(world, plantPos, flowerState))
-                                {
-                                    world.setBlockState(plantPos, flowerState, 3);
-                                }
-                            }
+                            biome.plantFlower(world, rand, pos);
                         }
                         else
                         {

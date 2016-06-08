@@ -1,0 +1,47 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "variant": {
+            "colombine": {
+                "textures": {
+                    "bottom": "alfheimrsmoons:blocks/tall_flower_colombine_bottom",
+                    "top": "alfheimrsmoons:blocks/tall_flower_colombine_top"
+                }
+            },
+            "furcrea": {
+                "textures": {
+                    "bottom": "alfheimrsmoons:blocks/tall_flower_furcrea_bottom",
+                    "top": "alfheimrsmoons:blocks/tall_flower_furcrea_top"
+                }
+            },
+            "eelgrass": {
+                "textures": {
+                    "bottom": "alfheimrsmoons:blocks/tall_flower_eelgrass_bottom",
+                    "top": "alfheimrsmoons:blocks/tall_flower_eelgrass_top"
+                }
+            },
+            "bluebell": {
+                "textures": {
+                    "bottom": "alfheimrsmoons:blocks/tall_flower_bluebell_bottom",
+                    "top": "alfheimrsmoons:blocks/tall_flower_bluebell_top"
+                }
+            },
+            "dinanthus": {
+                "textures": {
+                    "bottom": "alfheimrsmoons:blocks/tall_flower_dinanthus_bottom",
+                    "top": "alfheimrsmoons:blocks/tall_flower_dinanthus_top"
+                }
+            }
+        },
+        "half": {
+            "lower": {
+                "model": "cross",
+                "textures": { "cross": "#bottom" }
+            },
+            "upper": {
+                "model": "cross",
+                "textures": { "cross": "#top" }
+            }
+        }
+    }
+}

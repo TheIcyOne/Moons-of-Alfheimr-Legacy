@@ -1,14 +1,18 @@
 package alfheimrsmoons.world.biome;
 
 import alfheimrsmoons.util.EnumFlowerVariant;
+import alfheimrsmoons.util.EnumTallFlowerVariant;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
-import alfheimrsmoons.world.gen.feature.WorldGenAMFlowers;
 import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
 import alfheimrsmoons.world.gen.feature.WorldGenSedge;
+import alfheimrsmoons.world.gen.feature.WorldGenTallFlower;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -16,25 +20,31 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public abstract class BiomeGenAM extends BiomeGenBase
 {
     protected static final IBlockState STONE = AMBlocks.shale.getDefaultState();
-    protected static final WorldGenAMTrees worldGeneratorTrees = new WorldGenAMTrees(false, EnumWoodVariant.BEECH);
-    protected static final WorldGenAMBigTree worldGeneratorBigTree = new WorldGenAMBigTree(false, EnumWoodVariant.BEECH);
 
-    private EnumFlowerVariant[] flowerVariants;
+    protected final List<EnumTallFlowerVariant> tallFlowerVariants;
 
     public BiomeGenAM(BiomeProperties properties)
     {
         super(properties);
+
         topBlock = AMBlocks.grassy_soil.getDefaultState();
         fillerBlock = AMBlocks.soil.getDefaultState();
+
         spawnableMonsterList.clear();
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
+
+        tallFlowerVariants = new ArrayList<EnumTallFlowerVariant>();
+        addFlowerVariants();
     }
 
     @Override
@@ -50,6 +60,12 @@ public abstract class BiomeGenAM extends BiomeGenBase
         return rand.nextInt(10) == 0 ? new WorldGenAMBigTree(false, variant) : new WorldGenAMTrees(false, variant);
     }
 
+    /**
+     * Gets a random {@link EnumWoodVariant} for tree generation
+     *
+     * @param rand Random number generator
+     * @return A random tree variant
+     */
     protected EnumWoodVariant getRandomTreeVariant(Random rand)
     {
         return EnumWoodVariant.BEECH;
@@ -58,28 +74,138 @@ public abstract class BiomeGenAM extends BiomeGenBase
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
-        return getGrassWorldGen();
-    }
-
-    public WorldGenerator getGrassWorldGen()
-    {
         return new WorldGenSedge();
     }
 
-    public WorldGenerator getFlowerWorldGen()
+    /**
+     * @deprecated Override {@link #addFlowerVariants()}
+     */
+    @Override
+    @Deprecated
+    public final void addDefaultFlowers()
+    {}
+
+    /**
+     * Init method for adding flower variants
+     *
+     * @see #addFlowerVariants(EnumFlowerVariant...)
+     * @see #addTallFlowerVariants(EnumTallFlowerVariant...)
+     */
+    protected void addFlowerVariants()
+    {}
+
+    /**
+     * Checks if {@link #flowers} is not empty
+     *
+     * @return true if flowers list is not empty
+     */
+    public boolean hasFlowers()
     {
-        return flowerVariants != null ? new WorldGenAMFlowers(flowerVariants) : null;
+        return !flowers.isEmpty();
     }
 
-    public EnumFlowerVariant getRandomFlowerVariant(Random rand, BlockPos pos)
+    /**
+     * Gets a random {@link IBlockState} for flower generation
+     *
+     * @param rand Random number generator
+     * @return A random flower state
+     */
+    public IBlockState getRandomFlower(Random rand)
     {
-        return flowerVariants != null ? flowerVariants[rand.nextInt(flowerVariants.length)] : null;
+        FlowerEntry flower = WeightedRandom.getRandomItem(rand, flowers);
+        return flower != null ? flower.state : null;
     }
 
-    public BiomeGenAM setFlowerVariants(EnumFlowerVariant... flowerVariants)
+    /**
+     * Adds flower variants for flower generation
+     *
+     * @param variants flower variants
+     * @return this biome instance
+     */
+    public BiomeGenAM addFlowerVariants(EnumFlowerVariant... variants)
     {
-        this.flowerVariants = flowerVariants;
+        for (EnumFlowerVariant variant : variants)
+        {
+            addFlower(VariantHelper.getDefaultStateWithVariant(AMBlocks.flower, variant), 20);
+        }
+
         return this;
+    }
+
+    @Override
+    public void plantFlower(World world, Random rand, BlockPos pos)
+    {
+        IBlockState state = getRandomFlower(rand);
+
+        if (state == null)
+        {
+            return;
+        }
+
+        if (state.getBlock() instanceof BlockBush)
+        {
+            BlockBush bush = (BlockBush) state.getBlock();
+
+            if (!bush.canBlockStay(world, pos, state))
+            {
+                return;
+            }
+        }
+
+        world.setBlockState(pos, state, 3);
+    }
+
+    @Override
+    public void decorate(World world, Random rand, BlockPos pos)
+    {
+        addTallFlowerDecorations(world, rand, pos);
+        super.decorate(world, rand, pos);
+    }
+
+    /**
+     * Adds tall flower variants for tall flower generation
+     *
+     * @param variants tall flower variants
+     * @return this biome instance
+     */
+    public BiomeGenAM addTallFlowerVariants(EnumTallFlowerVariant... variants)
+    {
+        Collections.addAll(tallFlowerVariants, variants);
+        return this;
+    }
+
+    /**
+     * Decorates the world with tall flowers
+     *
+     * @param world World
+     * @param rand Random number generator
+     * @param pos Position to generate
+     */
+    protected void addTallFlowerDecorations(World world, Random rand, BlockPos pos)
+    {
+        if (!tallFlowerVariants.isEmpty())
+        {
+            int flowersPerChunk = rand.nextInt(5) - 3;
+
+            for (int i = 0; i < flowersPerChunk; ++i)
+            {
+                EnumTallFlowerVariant variant = tallFlowerVariants.get(rand.nextInt(tallFlowerVariants.size()));
+                WorldGenTallFlower gen = new WorldGenTallFlower(variant);
+
+                for (int j = 0; j < 5; ++j)
+                {
+                    int xOffset = rand.nextInt(16) + 8;
+                    int zOffset = rand.nextInt(16) + 8;
+                    BlockPos offsetPos = pos.add(xOffset, 0, zOffset);
+                    int y = rand.nextInt(world.getHeight(offsetPos).getY() + 32);
+
+                    if (gen.generate(world, rand, new BlockPos(offsetPos.getX(), y, offsetPos.getZ())))
+                    {
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     @Override

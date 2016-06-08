@@ -3,6 +3,7 @@ package alfheimrsmoons.world.biome;
 import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.world.gen.feature.WorldGenAMFlowers;
 import alfheimrsmoons.world.gen.feature.WorldGenAMSand;
 import alfheimrsmoons.world.gen.feature.WorldGenAMLiquids;
 import alfheimrsmoons.world.gen.feature.WorldGenAMMinable;
@@ -87,9 +88,7 @@ public class AMBiomeDecorator extends BiomeDecorator
             }
         }
 
-        WorldGenerator flowerGen = alfheimrBiome.getFlowerWorldGen();
-
-        if (flowerGen != null)
+        if (alfheimrBiome.hasFlowers())
         {
             for (int i = 0; i < flowersPerChunk; ++i)
             {
@@ -101,7 +100,7 @@ public class AMBiomeDecorator extends BiomeDecorator
                 {
                     int yOffset = random.nextInt(height);
                     BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
-                    flowerGen.generate(world, random, pos);
+                    new WorldGenAMFlowers(alfheimrBiome.getRandomFlower(random)).generate(world, random, pos);
                 }
             }
         }
@@ -115,7 +114,7 @@ public class AMBiomeDecorator extends BiomeDecorator
             if (height > 0)
             {
                 int yOffset = random.nextInt(height);
-                alfheimrBiome.getGrassWorldGen().generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
+                biome.getRandomWorldGenForGrass(random).generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
             }
         }
 

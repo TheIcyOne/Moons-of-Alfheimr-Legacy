@@ -8,8 +8,8 @@ public enum EnumFlowerVariant implements IVariant<EnumFlowerVariant>
     WARM_VIOLET("warm_violet"),
     STARSINGER("starsinger"),
     PHILODENDRON("philodendron"),
-    FURCREA("furcrea"),
-    BLUEBELL("bluebell"),
+    FURCREA("furcrea", EnumTallFlowerVariant.FURCREA),
+    BLUEBELL("bluebell", EnumTallFlowerVariant.BLUEBELL),
     PURPLE_PACIFIST("purple_pacifist"),
     SKULLCAP("skullcap"),
     PINK_PRESTIGE("pink_prestige"),
@@ -19,10 +19,27 @@ public enum EnumFlowerVariant implements IVariant<EnumFlowerVariant>
 
     public static final EnumFlowerVariant[] values = values();
     private final String name;
+    private final EnumTallFlowerVariant tallVariant;
 
     EnumFlowerVariant(String name)
     {
+        this(name, null);
+    }
+
+    EnumFlowerVariant(String name, EnumTallFlowerVariant tallVariant)
+    {
         this.name = name;
+        this.tallVariant = tallVariant;
+    }
+
+    public EnumTallFlowerVariant getTallVariant()
+    {
+        return tallVariant;
+    }
+
+    public boolean hasTallVariant()
+    {
+        return tallVariant != null;
     }
 
     @Override
