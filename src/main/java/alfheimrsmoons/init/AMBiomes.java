@@ -32,7 +32,7 @@ public class AMBiomes
     public static final BiomeGenBase bluebell_forest_hills = new BiomeGenBluebellForest(new BiomeProperties("Bluebell Forest Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("bluebell_forest_hills");
     public static final BiomeGenBase runewood_forest = new BiomeGenRunewoodForest(new BiomeProperties("Runewood Forest").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("runewood_forest");
     public static final BiomeGenBase runewood_forest_hills = new BiomeGenRunewoodForest(new BiomeProperties("Runewood Forest Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("runewood_forest_hills");
-    public static final BiomeGenBase veld = new BiomeGenVeld(new BiomeProperties("Veld").setBaseHeight(0.125F).setHeightVariation(0.025F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled()).setRegistryName("veld");
+    public static final BiomeGenBase veld = new BiomeGenVeld(new BiomeProperties("Veld").setBaseHeight(0.125F).setHeightVariation(0.0F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled()).setRegistryName("veld");
 
     public static void registerBiomes()
     {

@@ -3,13 +3,13 @@ package alfheimrsmoons.block;
 import alfheimrsmoons.init.AMItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDeadBush;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.common.EnumPlantType;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +17,12 @@ import java.util.Random;
 
 public class BlockDeadElmSapling extends BlockDeadBush
 {
+    public BlockDeadElmSapling()
+    {
+        setHardness(0.0F);
+        setStepSound(SoundType.PLANT);
+    }
+
     @Override
     protected boolean func_185514_i(IBlockState state)
     {
@@ -34,12 +40,6 @@ public class BlockDeadElmSapling extends BlockDeadBush
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         return Collections.singletonList(new ItemStack(this));
-    }
-
-    @Override
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
-    {
-        return EnumPlantType.Desert;
     }
 
     @Override
