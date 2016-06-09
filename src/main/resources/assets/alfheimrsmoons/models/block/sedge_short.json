@@ -1,4 +1,4 @@
 {
-    "parent": "block/cross",
+    "parent": "block/tinted_cross",
     "textures": { "cross": "alfheimrsmoons:blocks/sedge_short" }
 }

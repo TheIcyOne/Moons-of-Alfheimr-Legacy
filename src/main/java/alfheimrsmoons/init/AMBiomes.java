@@ -32,6 +32,7 @@ public class AMBiomes
     public static final BiomeGenBase bluebell_forest_hills = new BiomeGenBluebellForest(new BiomeProperties("Bluebell Forest Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("bluebell_forest_hills");
     public static final BiomeGenBase runewood_forest = new BiomeGenRunewoodForest(new BiomeProperties("Runewood Forest").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("runewood_forest");
     public static final BiomeGenBase runewood_forest_hills = new BiomeGenRunewoodForest(new BiomeProperties("Runewood Forest Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("runewood_forest_hills");
+    public static final BiomeGenBase veld = new BiomeGenVeld(new BiomeProperties("Veld").setBaseHeight(0.125F).setHeightVariation(0.025F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled()).setRegistryName("veld");
 
     public static void registerBiomes()
     {
@@ -39,8 +40,8 @@ public class AMBiomes
         registerBiome(deep_ocean, OCEAN);
         registerBiome(river, RIVER);
         registerBiome(beach, BEACH);
-        BiomeType[] types = new BiomeType[]{BiomeType.COOL, BiomeType.WARM /* Delete: */, BiomeType.DESERT, BiomeType.ICY};
-        int[] weights = new int[]{10, 10 /* Delete: */, 10, 10};
+        BiomeType[] types = new BiomeType[]{BiomeType.COOL, BiomeType.WARM /* Delete: */, BiomeType.ICY};
+        int[] weights = new int[]{10, 10 /* Delete: */, 10};
         registerBiome(woods, types, weights, FOREST);
         registerBiome(woods_hills, FOREST, HILLS);
         types = new BiomeType[]{BiomeType.COOL, BiomeType.WARM};
@@ -49,6 +50,7 @@ public class AMBiomes
         registerBiome(bluebell_forest_hills, FOREST, HILLS);
         registerBiome(runewood_forest, types, weights, FOREST);
         registerBiome(runewood_forest_hills, FOREST, HILLS);
+        registerBiome(veld, BiomeType.DESERT, 10, HOT, DRY, SANDY);
 
         BiomeManager.oceanBiomes.add(ocean);
         BiomeManager.oceanBiomes.add(deep_ocean);

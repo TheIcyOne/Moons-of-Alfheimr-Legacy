@@ -1,9 +1,10 @@
 {
-    "parent": "block/cube_bottom_top",
+    "parent": "block/grass",
     "textures": {
         "particle": "alfheimrsmoons:blocks/soil",
         "bottom": "alfheimrsmoons:blocks/soil",
         "top": "alfheimrsmoons:blocks/grassy_soil_top",
-        "side": "alfheimrsmoons:blocks/grassy_soil_side"
+        "side": "alfheimrsmoons:blocks/grassy_soil_side",
+        "overlay": "alfheimrsmoons:blocks/grassy_soil_side_overlay"
     }
 }

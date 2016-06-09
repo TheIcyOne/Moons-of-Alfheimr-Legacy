@@ -8,18 +8,20 @@ import java.util.Random;
 
 public class BiomeGenWoods extends BiomeGenAM
 {
-    private static final EnumFlowerVariant[] FLOWER_VARIANTS = {
-            EnumFlowerVariant.PHILODENDRON,
-            EnumFlowerVariant.CARNATION,
-            EnumFlowerVariant.PURPLE_PACIFIST,
-            EnumFlowerVariant.PINK_PRESTIGE,
-            EnumFlowerVariant.STARSINGER
-    };
+    private static final EnumFlowerVariant[] FLOWER_VARIANTS =
+            {
+                    EnumFlowerVariant.PHILODENDRON,
+                    EnumFlowerVariant.CARNATION,
+                    EnumFlowerVariant.PURPLE_PACIFIST,
+                    EnumFlowerVariant.PINK_PRESTIGE,
+                    EnumFlowerVariant.STARSINGER
+            };
 
-    private static final EnumTallFlowerVariant[] TALL_FLOWER_VARIANTS = {
-            EnumTallFlowerVariant.DINANTHUS,
-            EnumTallFlowerVariant.COLOMBINE
-    };
+    private static final EnumTallFlowerVariant[] TALL_FLOWER_VARIANTS =
+            {
+                    EnumTallFlowerVariant.DINANTHUS,
+                    EnumTallFlowerVariant.COLOMBINE
+            };
 
     public BiomeGenWoods(BiomeProperties properties)
     {

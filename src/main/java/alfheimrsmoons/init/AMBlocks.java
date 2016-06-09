@@ -22,6 +22,7 @@ public class AMBlocks
     public static final Block soil = new BlockSoil().setUnlocalizedName("alfheimrsmoons.soil").setRegistryName("soil");
     public static final Block grassy_soil = new BlockGrassySoil().setUnlocalizedName("alfheimrsmoons.grassy_soil").setRegistryName("grassy_soil");
     public static final BlockSedge sedge = (BlockSedge) new BlockSedge().setUnlocalizedName("alfheimrsmoons.sedge").setRegistryName("sedge");
+    public static final Block dead_elm_sapling = new BlockDeadElmSapling().setUnlocalizedName("alfheimrsmoons.dead_elm_sapling").setRegistryName("dead_elm_sapling");
     public static final BlockAMFlower flower = (BlockAMFlower) new BlockAMFlower().setUnlocalizedName("alfheimrsmoons.flower").setRegistryName("flower");
     public static final BlockTallFlower tall_flower = (BlockTallFlower) new BlockTallFlower().setUnlocalizedName("alfheimrsmoons.tall_flower").setRegistryName("tall_flower");
     public static final Block sediment = new BlockSediment().setUnlocalizedName("alfheimrsmoons.sediment").setRegistryName("sediment");
@@ -44,6 +45,7 @@ public class AMBlocks
         AlfheimrsMoons.proxy.registerBlockWithItem(soil);
         AlfheimrsMoons.proxy.registerBlockWithItem(grassy_soil);
         AlfheimrsMoons.proxy.registerBlockWithVariants(sedge, "sedge");
+        AlfheimrsMoons.proxy.registerBlockWithItem(dead_elm_sapling);
         AlfheimrsMoons.proxy.registerBlockWithVariants(flower);
         AlfheimrsMoons.proxy.registerBlockWithVariants(tall_flower, "tall");
         AlfheimrsMoons.proxy.registerBlockWithItem(sediment);

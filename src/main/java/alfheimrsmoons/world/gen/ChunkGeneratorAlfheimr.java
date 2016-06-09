@@ -1,5 +1,6 @@
 package alfheimrsmoons.world.gen;
 
+import alfheimrsmoons.init.AMBiomes;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.WorldGenAMLakes;
 import com.google.common.collect.ImmutableSet;
@@ -350,7 +351,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
             // Generate map features
         }
 
-        if (settings.useWaterLakes && !hasVillageGenerated && rand.nextInt(settings.waterLakeChance) == 0)
+        if (biome != AMBiomes.veld && settings.useWaterLakes && !hasVillageGenerated && rand.nextInt(settings.waterLakeChance) == 0)
         {
             int xOffset = rand.nextInt(16) + 8;
             int yOffset = rand.nextInt(256);

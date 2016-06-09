@@ -1,14 +1,19 @@
 package alfheimrsmoons.client;
 
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.client.renderer.ColorGrass;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.network.Proxy;
 import alfheimrsmoons.util.IVariant;
 import alfheimrsmoons.util.IVariantObject;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -16,6 +21,16 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class ProxyClient extends Proxy
 {
+    public static Minecraft getMinecraft()
+    {
+        return FMLClientHandler.instance().getClient();
+    }
+
+    public static RenderItem getRenderItem()
+    {
+        return getMinecraft().getRenderItem();
+    }
+
     @Override
     public void preInit()
     {
@@ -24,6 +39,12 @@ public class ProxyClient extends Proxy
         ModelLoader.setCustomStateMapper(AMBlocks.log2, new CustomStateMapper("log"));
         ModelLoader.setCustomStateMapper(AMBlocks.leaves, new StateMap.Builder().ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
         ModelLoader.setCustomStateMapper(AMBlocks.leaves2, new CustomStateMapper("leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE));
+    }
+
+    @Override
+    public void init()
+    {
+        registerItemBlockColor(new ColorGrass(), AMBlocks.grassy_soil, AMBlocks.sedge);
     }
 
     @Override
@@ -61,8 +82,19 @@ public class ProxyClient extends Proxy
         ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(AlfheimrsMoons.MOD_ID + ":" + identifier, "inventory"));
     }
 
-    public static RenderItem getRenderItem()
+    private <C extends IBlockColor & IItemColor> void registerItemBlockColor(C color, Block... blocks)
     {
-        return FMLClientHandler.instance().getClient().getRenderItem();
+        getMinecraft().getBlockColors().registerBlockColorHandler(color, blocks);
+        getMinecraft().getItemColors().registerItemColorHandler(color, blocks);
+    }
+
+    private void registerBlockColor(IBlockColor color, Block... blocks)
+    {
+        getMinecraft().getBlockColors().registerBlockColorHandler(color, blocks);
+    }
+
+    private void registerItemColor(IItemColor color, Item... items)
+    {
+        getMinecraft().getItemColors().registerItemColorHandler(color, items);
     }
 }

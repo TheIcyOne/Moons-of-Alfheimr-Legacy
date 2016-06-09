@@ -3,10 +3,7 @@ package alfheimrsmoons.world.biome;
 import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.world.gen.feature.WorldGenAMFlowers;
-import alfheimrsmoons.world.gen.feature.WorldGenAMSand;
-import alfheimrsmoons.world.gen.feature.WorldGenAMLiquids;
-import alfheimrsmoons.world.gen.feature.WorldGenAMMinable;
+import alfheimrsmoons.world.gen.feature.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -115,6 +112,19 @@ public class AMBiomeDecorator extends BiomeDecorator
             {
                 int yOffset = random.nextInt(height);
                 biome.getRandomWorldGenForGrass(random).generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
+            }
+        }
+
+        for (int i = 0; i < deadBushPerChunk; ++i)
+        {
+            int xOffset = random.nextInt(16) + 8;
+            int zOffset = random.nextInt(16) + 8;
+            int height = world.getHeight(field_180294_c.add(xOffset, 0, zOffset)).getY() * 2;
+
+            if (height > 0)
+            {
+                int yOffset = random.nextInt(height);
+                new WorldGenDeadElmSapling().generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
             }
         }
 

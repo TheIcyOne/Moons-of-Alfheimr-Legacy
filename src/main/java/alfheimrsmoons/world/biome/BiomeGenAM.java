@@ -78,12 +78,11 @@ public abstract class BiomeGenAM extends BiomeGenBase
     }
 
     /**
-     * @deprecated Override {@link #addFlowerVariants()}
+     * @deprecated Use {@link #addFlowerVariants()}
      */
     @Override
     @Deprecated
-    public final void addDefaultFlowers()
-    {}
+    public final void addDefaultFlowers() {}
 
     /**
      * Init method for adding flower variants
@@ -91,8 +90,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
      * @see #addFlowerVariants(EnumFlowerVariant...)
      * @see #addTallFlowerVariants(EnumTallFlowerVariant...)
      */
-    protected void addFlowerVariants()
-    {}
+    protected void addFlowerVariants() {}
 
     /**
      * Checks if {@link #flowers} is not empty
