@@ -1,6 +1,8 @@
 package alfheimrsmoons.world.gen.feature;
 
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.EnumDeadPlantVariant;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -9,7 +11,7 @@ import net.minecraft.world.gen.feature.WorldGenDeadBush;
 
 import java.util.Random;
 
-public class WorldGenDeadElmSapling extends WorldGenDeadBush
+public class WorldGenDeadPlant extends WorldGenDeadBush
 {
     @Override
     public boolean generate(World world, Random rand, BlockPos position)
@@ -26,13 +28,16 @@ public class WorldGenDeadElmSapling extends WorldGenDeadBush
         }
         while (position.getY() > 0);
 
+        EnumDeadPlantVariant variant = VariantHelper.getRandomVariant(AMBlocks.dead_plant, rand);
+        IBlockState state = VariantHelper.getDefaultStateWithVariant(AMBlocks.dead_plant, variant);
+
         for (int i = 0; i < 4; ++i)
         {
             BlockPos saplingPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(saplingPos) && AMBlocks.dead_elm_sapling.canPlaceBlockAt(world, saplingPos))
+            if (world.isAirBlock(saplingPos) && state.getBlock().canPlaceBlockAt(world, saplingPos))
             {
-                world.setBlockState(saplingPos, AMBlocks.dead_elm_sapling.getDefaultState(), 2);
+                world.setBlockState(saplingPos, state, 2);
             }
         }
 

@@ -1,0 +1,4 @@
+{
+    "parent": "block/cross",
+    "textures": { "cross": "alfheimrsmoons:blocks/dead_plant_forget_me_not" }
+}

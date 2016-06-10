@@ -1,0 +1,9 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "variant": {
+            "forget_me_not": { "model": "alfheimrsmoons:dead_plant_forget_me_not" },
+            "elm_sapling": { "model": "alfheimrsmoons:dead_plant_elm_sapling" }
+        }
+    }
+}

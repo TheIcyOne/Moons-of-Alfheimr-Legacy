@@ -1,0 +1,4 @@
+{
+    "parent": "block/cross",
+    "textures": { "cross": "alfheimrsmoons:blocks/dead_plant_elm_sapling" }
+}

@@ -1,6 +1,5 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.block.BlockAMOre;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.gen.feature.*;
@@ -124,7 +123,7 @@ public class AMBiomeDecorator extends BiomeDecorator
             if (height > 0)
             {
                 int yOffset = random.nextInt(height);
-                new WorldGenDeadElmSapling().generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
+                new WorldGenDeadPlant().generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
             }
         }
 

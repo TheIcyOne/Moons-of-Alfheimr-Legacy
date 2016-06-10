@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.List;
+import java.util.Random;
 
 public class VariantHelper
 {
@@ -123,5 +124,20 @@ public class VariantHelper
     public static <V extends IVariant<V>, B extends Block & IVariantBlock<V>> IBlockState getDefaultStateWithVariant(B block, V variant)
     {
         return block.getDefaultState().withProperty(block.getVariantProperty(), variant);
+    }
+
+    public static <V extends IVariant<V>, O extends IVariantObject<V>> V getRandomVariant(O variantObject, Random random)
+    {
+        return getRandomVariant(variantObject.getVariants(), random);
+    }
+
+    public static <V extends IVariant<V>> V getRandomVariant(V[] variants, Random random)
+    {
+        return variants[random.nextInt(variants.length)];
+    }
+
+    public static <V extends IVariant<V>> V getRandomVariant(List<V> variants, Random random)
+    {
+        return variants.get(random.nextInt(variants.size()));
     }
 }

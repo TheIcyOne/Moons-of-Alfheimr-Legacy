@@ -187,7 +187,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
 
             for (int i = 0; i < flowersPerChunk; ++i)
             {
-                EnumTallFlowerVariant variant = tallFlowerVariants.get(rand.nextInt(tallFlowerVariants.size()));
+                EnumTallFlowerVariant variant = VariantHelper.getRandomVariant(tallFlowerVariants, rand);
                 WorldGenTallFlower gen = new WorldGenTallFlower(variant);
 
                 for (int j = 0; j < 5; ++j)
