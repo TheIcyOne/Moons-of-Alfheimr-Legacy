@@ -1,5 +1,6 @@
 package alfheimrsmoons.world.biome;
 
+import alfheimrsmoons.entity.EntityNitroWraith;
 import alfheimrsmoons.util.EnumFlowerVariant;
 import alfheimrsmoons.util.EnumTallFlowerVariant;
 import alfheimrsmoons.util.EnumWoodVariant;
@@ -42,6 +43,8 @@ public abstract class BiomeGenAM extends BiomeGenBase
         spawnableCreatureList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
+
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNitroWraith.class, 100, 4, 4));
 
         tallFlowerVariants = new ArrayList<EnumTallFlowerVariant>();
         addFlowerVariants();

@@ -7,6 +7,7 @@ public class BiomeGenVeld extends BiomeGenAM
     public BiomeGenVeld(BiomeProperties properties)
     {
         super(properties);
+        spawnableCreatureList.clear();
         theBiomeDecorator.treesPerChunk = -999;
         theBiomeDecorator.deadBushPerChunk = 2;
     }

@@ -3,6 +3,8 @@ package alfheimrsmoons.init;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.entity.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -18,6 +20,8 @@ public class AMEntities
         registerEntity(EntityAMArrow.class, "Arrow", 64, 20, false);
         registerEntity(EntityNitroWraith.class, "NitroWraith", 80, 3, true, 1447446, 5060690);
         registerEntity(EntitySeedPouch.class, "SeedPouch", 64, 10, true);
+
+        EntitySpawnPlacementRegistry.setPlacementType(EntityNitroWraith.class, SpawnPlacementType.ON_GROUND);
     }
 
     /**
