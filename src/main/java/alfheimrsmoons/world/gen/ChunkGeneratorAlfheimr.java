@@ -2,6 +2,8 @@ package alfheimrsmoons.world.gen;
 
 import alfheimrsmoons.init.AMBiomes;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.EnumShaleVariant;
+import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.world.gen.feature.WorldGenAMLakes;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
@@ -34,7 +36,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
     private IBlockState snowLayerBlock = Blocks.snow_layer.getDefaultState();
     private WorldGenerator waterLakeGen = new WorldGenAMLakes(waterBlock);
 
-    protected static final IBlockState STONE = AMBlocks.shale.getDefaultState();
+    protected static final IBlockState STONE = VariantHelper.getDefaultStateWithVariant(AMBlocks.shale, EnumShaleVariant.NORMAL);
     private final Random rand;
     private NoiseGeneratorOctaves minLimitPerlinNoise;
     private NoiseGeneratorOctaves maxLimitPerlinNoise;

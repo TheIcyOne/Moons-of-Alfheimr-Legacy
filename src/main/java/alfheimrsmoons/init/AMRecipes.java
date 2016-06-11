@@ -4,6 +4,7 @@ import alfheimrsmoons.AMFuelHandler;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.util.EnumOreVariant;
+import alfheimrsmoons.util.EnumShaleVariant;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.crafting.AMShapedOreRecipe;
@@ -33,7 +34,7 @@ public class AMRecipes
         RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapelessore", AMShapelessOreRecipe.class, Category.SHAPELESS, "after:minecraft:shapeless before:forge:shapelessore");
 
         AMItems.timber_tools.addRecipes(new ItemStack(AMBlocks.planks, 1, OreDictionary.WILDCARD_VALUE));
-        AMItems.shale_tools.addRecipes(new ItemStack(AMBlocks.shale));
+        AMItems.shale_tools.addRecipes(VariantHelper.createStack(AMBlocks.shale, EnumShaleVariant.NORMAL));
         AMItems.tektite_tools.addRecipes(VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.TEKTITE));
         AMItems.sylvanite_tools.addRecipes(VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.SYLVANITE));
 

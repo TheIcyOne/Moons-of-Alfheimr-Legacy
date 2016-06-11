@@ -1,6 +1,8 @@
 package alfheimrsmoons.world.gen.feature;
 
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.EnumShaleVariant;
+import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -139,7 +141,7 @@ public class WorldGenAMLakes extends WorldGenLakes
 
                             if (flag1 && (k4 < 4 || rand.nextInt(2) != 0) && world.getBlockState(position.add(j2, k4, k3)).getMaterial().isSolid())
                             {
-                                world.setBlockState(position.add(j2, k4, k3), AMBlocks.shale.getDefaultState(), 2);
+                                world.setBlockState(position.add(j2, k4, k3), VariantHelper.getDefaultStateWithVariant(AMBlocks.shale, EnumShaleVariant.NORMAL), 2);
                             }
                         }
                     }

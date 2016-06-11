@@ -1,11 +1,8 @@
 package alfheimrsmoons.world.biome;
 
 import alfheimrsmoons.entity.EntityNitroWraith;
-import alfheimrsmoons.util.EnumFlowerVariant;
-import alfheimrsmoons.util.EnumTallFlowerVariant;
-import alfheimrsmoons.util.EnumWoodVariant;
+import alfheimrsmoons.util.*;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
 import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
 import alfheimrsmoons.world.gen.feature.WorldGenSedge;
@@ -29,7 +26,7 @@ import java.util.Random;
 public abstract class BiomeGenAM extends BiomeGenBase
 {
     protected static final IBlockState BEDROCK = AMBlocks.yggdrasil_leaves.getDefaultState();
-    protected static final IBlockState STONE = AMBlocks.shale.getDefaultState();
+    protected static final IBlockState STONE = VariantHelper.getDefaultStateWithVariant(AMBlocks.shale, EnumShaleVariant.NORMAL);
 
     protected final List<EnumTallFlowerVariant> tallFlowerVariants;
 
