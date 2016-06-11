@@ -32,6 +32,7 @@ public class AMBlocks
     public static final BlockAMOre ore = (BlockAMOre) new BlockAMOre().setUnlocalizedName("alfheimrsmoons.ore").setRegistryName("ore");
     public static final BlockOreBlock ore_block = (BlockOreBlock) new BlockOreBlock().setUnlocalizedName("alfheimrsmoons.ore_block").setRegistryName("ore_block");
     public static final Block meteorite = new BlockMeteorite().setUnlocalizedName("alfheimrsmoons.meteorite").setRegistryName("meteorite");
+    public static final Block cosmotite = new BlockCosmotite().setUnlocalizedName("alfheimrsmoons.cosmotite").setRegistryName("cosmotite");
     public static final BlockAMLog log = (BlockAMLog) new BlockAMLog(0, 3).setUnlocalizedName("alfheimrsmoons.log").setRegistryName("log");
     public static final BlockAMLog log2 = (BlockAMLog) new BlockAMLog(4, 4).setUnlocalizedName("alfheimrsmoons.log").setRegistryName("log2");
     public static final BlockAMLeaves leaves = (BlockAMLeaves) new BlockAMLeaves(0, 3).setUnlocalizedName("alfheimrsmoons.leaves").setRegistryName("leaves");
@@ -56,6 +57,7 @@ public class AMBlocks
         AlfheimrsMoons.proxy.registerBlockWithVariants(ore, "ore");
         AlfheimrsMoons.proxy.registerBlockWithVariants(ore_block, "ore_block");
         AlfheimrsMoons.proxy.registerBlockWithItem(meteorite);
+        AlfheimrsMoons.proxy.registerBlockWithItem(cosmotite);
         AlfheimrsMoons.proxy.registerBlockWithVariants(log, "log");
         AlfheimrsMoons.proxy.registerBlockWithVariants(log2, "log");
         AlfheimrsMoons.proxy.registerBlockWithVariants(leaves, new ItemAMLeaves(leaves), "leaves");
