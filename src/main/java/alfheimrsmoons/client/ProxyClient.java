@@ -51,17 +51,55 @@ public class ProxyClient extends Proxy
     public <V extends IVariant<V>, I extends Item & IVariantObject<V>> void registerItemWithVariants(I item, String base)
     {
         super.registerItemWithVariants(item, base);
-        String suffix = base != null ? "_" + base : "";
-        V[] variants = item.getVariants();
+        registerItemWithVariants(item, item.getVariants(), base);
+    }
+
+    public <V extends IVariant<V>> void registerItemWithVariants(Item item, V[] variants, String base)
+    {
+        String prefix = "";
+        String suffix = "";
+        
+        if (base != null)
+        {
+            if (base.endsWith("_"))
+            {
+                prefix = base;
+                base = base.substring(0, base.length() - 1);
+            }
+            else if (base.startsWith("_"))
+            {
+                suffix = base;
+                base = base.substring(1);
+            }
+        }
+        
+        registerItemWithVariants(item, variants, base, prefix, suffix);
+    }
+
+    public <V extends IVariant<V>> void registerItemWithVariants(Item item, V[] variants, String base, String prefix, String suffix)
+    {
         ResourceLocation[] variantNames = new ResourceLocation[variants.length];
+
         for (int meta = 0; meta < variants.length; meta++)
         {
             V variant = variants[meta];
             String name = variant.getName();
-            String id = !name.equals("normal") ? name + suffix : base;
+            String id;
+
+            if (name.equals("normal"))
+            {
+                id = base;
+            }
+            else
+            {
+                id = prefix + name + suffix;
+            }
+
             registerItem(item, meta, id);
+
             variantNames[meta] = new ResourceLocation(AlfheimrsMoons.MOD_ID, id);
         }
+
         ModelLoader.registerItemVariants(item, variantNames);
     }
 
