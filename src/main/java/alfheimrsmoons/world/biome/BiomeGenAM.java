@@ -28,6 +28,7 @@ import java.util.Random;
 
 public abstract class BiomeGenAM extends BiomeGenBase
 {
+    protected static final IBlockState BEDROCK = AMBlocks.yggdrasil_leaves.getDefaultState();
     protected static final IBlockState STONE = AMBlocks.shale.getDefaultState();
 
     protected final List<EnumTallFlowerVariant> tallFlowerVariants;

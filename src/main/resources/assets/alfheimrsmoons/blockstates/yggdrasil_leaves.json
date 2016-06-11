@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "alfheimrsmoons:leaves_yggdrasil" },
+            { "model": "alfheimrsmoons:leaves_yggdrasil_mirrored" },
+            { "model": "alfheimrsmoons:leaves_yggdrasil", "y": 180 },
+            { "model": "alfheimrsmoons:leaves_yggdrasil_mirrored", "y": 180 }
+        ]
+    }
+}

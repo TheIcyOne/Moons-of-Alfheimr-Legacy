@@ -19,6 +19,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class AMBlocks
 {
+    public static final Block yggdrasil_leaves = new BlockYggdrasilLeaves().setUnlocalizedName("alfheimrsmoons.yggdrasil_leaves").setRegistryName("yggdrasil_leaves");
     public static final Block soil = new BlockSoil().setUnlocalizedName("alfheimrsmoons.soil").setRegistryName("soil");
     public static final Block grassy_soil = new BlockGrassySoil().setUnlocalizedName("alfheimrsmoons.grassy_soil").setRegistryName("grassy_soil");
     public static final BlockSedge sedge = (BlockSedge) new BlockSedge().setUnlocalizedName("alfheimrsmoons.sedge").setRegistryName("sedge");
@@ -42,6 +43,7 @@ public class AMBlocks
 
     public static void registerBlocks()
     {
+        AlfheimrsMoons.proxy.registerBlockWithItem(yggdrasil_leaves);
         AlfheimrsMoons.proxy.registerBlockWithItem(soil);
         AlfheimrsMoons.proxy.registerBlockWithItem(grassy_soil);
         AlfheimrsMoons.proxy.registerBlockWithVariants(sedge, "sedge");
