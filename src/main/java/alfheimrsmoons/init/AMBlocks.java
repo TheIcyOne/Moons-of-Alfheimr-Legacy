@@ -50,7 +50,7 @@ public class AMBlocks
         AlfheimrsMoons.proxy.registerBlockWithVariants(sedge, "_sedge");
         AlfheimrsMoons.proxy.registerBlockWithVariants(dead_plant, "_dead");
         AlfheimrsMoons.proxy.registerBlockWithVariants(flower);
-        AlfheimrsMoons.proxy.registerBlockWithVariants(tall_flower, "_tall");
+        AlfheimrsMoons.proxy.registerBlockWithVariants(tall_flower, "tall_");
         AlfheimrsMoons.proxy.registerBlockWithItem(sediment);
         AlfheimrsMoons.proxy.registerBlockWithItem(sediment_glass);
         AlfheimrsMoons.proxy.registerBlockWithVariants(shale, "_shale");

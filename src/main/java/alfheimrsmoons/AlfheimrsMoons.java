@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = AlfheimrsMoons.MOD_ID, name = AlfheimrsMoons.MOD_NAME, version = AlfheimrsMoons.MOD_VERSION)
 public class AlfheimrsMoons
@@ -22,10 +23,12 @@ public class AlfheimrsMoons
     public static AlfheimrsMoons instance;
     @SidedProxy(clientSide = "alfheimrsmoons.client.ProxyClient", serverSide = "alfheimrsmoons.network.ProxyServer")
     public static Proxy proxy;
+    public static Logger logger;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        logger = event.getModLog();
         AMConfig.load(event.getSuggestedConfigurationFile());
         AMBlocks.registerBlocks();
         AMItems.registerItems();

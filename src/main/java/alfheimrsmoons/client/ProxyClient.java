@@ -71,6 +71,10 @@ public class ProxyClient extends Proxy
                 suffix = base;
                 base = base.substring(1);
             }
+            else
+            {
+                AlfheimrsMoons.logger.error("Registered variants for %s with unknown affix %s", item.getRegistryName(), base);
+            }
         }
         
         registerItemWithVariants(item, variants, base, prefix, suffix);
