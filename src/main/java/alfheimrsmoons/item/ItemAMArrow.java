@@ -1,5 +1,6 @@
 package alfheimrsmoons.item;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.entity.EntityAMArrow;
 import com.google.common.base.Function;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,6 +10,11 @@ import net.minecraft.world.World;
 
 public class ItemAMArrow extends ItemArrow
 {
+    public ItemAMArrow()
+    {
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
+    }
+
     @Override
     public EntityAMArrow makeTippedArrow(World world, ItemStack stack, EntityLivingBase shooter)
     {

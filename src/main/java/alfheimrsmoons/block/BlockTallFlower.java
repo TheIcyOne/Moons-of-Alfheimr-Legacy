@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.EnumTallFlowerVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.VariantHelper;
@@ -34,6 +35,7 @@ public class BlockTallFlower extends BlockDoublePlant implements IVariantBlock<E
     {
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY, HALF);
         setDefaultState(blockState.getBaseState().withProperty(HALF, EnumBlockHalf.LOWER));
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     private EnumTallFlowerVariant getVariant(IBlockAccess world, BlockPos pos, IBlockState state)

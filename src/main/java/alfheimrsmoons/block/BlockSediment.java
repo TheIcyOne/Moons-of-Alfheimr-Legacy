@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.DefaultBlockHelper;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.SoundType;
@@ -25,6 +26,7 @@ public class BlockSediment extends BlockSand
         setHardness(0.5F);
         setStepSound(SoundType.SAND);
         setHarvestLevel("shovel", 0);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         EntityEnderman.setCarriable(this, true);
     }
 

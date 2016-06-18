@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.EnumFlowerVariant;
 import alfheimrsmoons.util.EnumTallFlowerVariant;
@@ -35,6 +36,7 @@ public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlow
         setDefaultState(blockState.getBaseState());
         setHardness(0.0F);
         setStepSound(SoundType.PLANT);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

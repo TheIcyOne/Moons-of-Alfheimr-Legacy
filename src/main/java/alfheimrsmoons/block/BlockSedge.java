@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.VariantHelper;
@@ -35,6 +36,7 @@ public class BlockSedge extends BlockTallGrass implements IVariantBlock<EnumSedg
         setDefaultState(blockState.getBaseState());
         setHardness(0.0F);
         setStepSound(SoundType.PLANT);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

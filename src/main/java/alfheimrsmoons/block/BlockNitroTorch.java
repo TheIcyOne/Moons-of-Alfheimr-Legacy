@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -17,6 +18,7 @@ public class BlockNitroTorch extends BlockTorch
         setHardness(0.0F);
         setLightLevel(0.9375F);
         setStepSound(SoundType.WOOD);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package alfheimrsmoons.item;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.entity.EntityAMArrow;
 import alfheimrsmoons.init.AMItems;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -25,6 +26,7 @@ public class ItemBranchBow extends ItemBow
     public ItemBranchBow()
     {
         super();
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
         {
             @SideOnly(Side.CLIENT)

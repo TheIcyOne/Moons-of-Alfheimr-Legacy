@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.VariantHelper;
@@ -30,6 +31,7 @@ public class BlockAMLog extends BlockLog implements IVariantBlock
         blockState = new BlockStateContainer(this, variantProp, LOG_AXIS);
         setDefaultState(blockState.getBaseState().withProperty(LOG_AXIS, EnumAxis.Y));
         setHarvestLevel("axe", 0);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

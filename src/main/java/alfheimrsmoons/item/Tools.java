@@ -21,22 +21,27 @@ public class Tools
         material = EnumHelper.addToolMaterial(name.toUpperCase(), harvestLevel, maxUses, efficiency, damage, enchantability);
 
         sword = new ItemSword(material);
+        sword.setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         sword.setUnlocalizedName(AlfheimrsMoons.MOD_ID + "." + name + "_sword");
         sword.setRegistryName(name + "_sword");
 
         shovel = new ItemSpade(material);
+        shovel.setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         shovel.setUnlocalizedName(AlfheimrsMoons.MOD_ID + "." + name + "_shovel");
         shovel.setRegistryName(name + "_shovel");
 
         pickaxe = new ItemPickaxe(material) {};
+        pickaxe.setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         pickaxe.setUnlocalizedName(AlfheimrsMoons.MOD_ID + "." + name + "_pickaxe");
         pickaxe.setRegistryName(name + "_pickaxe");
 
         axe = new ItemAMAxe(material);
+        axe.setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         axe.setUnlocalizedName(AlfheimrsMoons.MOD_ID + "." + name + "_axe");
         axe.setRegistryName(name + "_axe");
 
         hoe = new ItemHoe(material);
+        hoe.setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         hoe.setUnlocalizedName(AlfheimrsMoons.MOD_ID + "." + name + "_hoe");
         hoe.setRegistryName(name + "_hoe");
     }

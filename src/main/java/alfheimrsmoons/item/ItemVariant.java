@@ -11,20 +11,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemVariant<V extends IVariant<V>> extends Item implements IVariantObject<V>
+public class ItemVariant<V extends IVariant<V>> extends AMItem implements IVariantObject<V>
 {
     private final V[] variants;
 
     public ItemVariant(V... variants)
     {
-        this(null, variants);
-    }
-    
-    public ItemVariant(CreativeTabs creativeTab, V... variants)
-    {
         this.variants = variants;
         setHasSubtypes(true);
-        setCreativeTab(creativeTab);
     }
 
     @Override

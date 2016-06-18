@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.VariantHelper;
@@ -32,6 +33,7 @@ public class BlockAMPlanks extends BlockPlanks implements IVariantBlock<EnumWood
         setResistance(5.0F);
         setStepSound(SoundType.WOOD);
         setHarvestLevel("axe", 0);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.DefaultBlockHelper;
 import alfheimrsmoons.util.EnumFlowerVariant;
@@ -32,6 +33,7 @@ public class BlockGrassySoil extends BlockGrass
         setHardness(0.6F);
         setStepSound(SoundType.PLANT);
         setHarvestLevel("shovel", 0);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         EntityEnderman.setCarriable(this, true);
     }
 

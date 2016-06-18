@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.IVariantBlock;
@@ -39,6 +40,7 @@ public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
         variantProp = PropertyEnum.create("variant", EnumWoodVariant.class, variants);
         blockState = new BlockStateContainer(this, variantProp, CHECK_DECAY, DECAYABLE);
         setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.DefaultBlockHelper;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.SoundType;
@@ -28,6 +29,7 @@ public class BlockSoil extends BlockDirt
         setHardness(0.5F);
         setStepSound(SoundType.GROUND);
         setHarvestLevel("shovel", 0);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         EntityEnderman.setCarriable(this, true);
     }
 

@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.init.AMItems;
 import alfheimrsmoons.util.EnumDeadPlantVariant;
 import alfheimrsmoons.util.IVariantBlock;
@@ -33,6 +34,7 @@ public class BlockDeadPlant extends BlockDeadBush implements IVariantBlock<EnumD
         setDefaultState(blockState.getBaseState());
         setHardness(0.0F);
         setStepSound(SoundType.PLANT);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

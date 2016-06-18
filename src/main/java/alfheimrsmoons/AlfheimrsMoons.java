@@ -2,6 +2,8 @@ package alfheimrsmoons;
 
 import alfheimrsmoons.init.*;
 import alfheimrsmoons.network.Proxy;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -18,6 +20,15 @@ public class AlfheimrsMoons
     public static final String MOD_ID = "alfheimrsmoons";
     public static final String MOD_NAME = "Álfheimr's Moons";
     public static final String MOD_VERSION = "@VERSION@";
+    
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID)
+    {
+        @Override
+        public Item getTabIconItem()
+        {
+            return Item.getItemFromBlock(AMBlocks.yggdrasil_leaves);
+        }
+    };
 
     @Instance(MOD_ID)
     public static AlfheimrsMoons instance;

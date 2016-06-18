@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import net.minecraft.block.BlockBookshelf;
 import net.minecraft.block.SoundType;
 import net.minecraft.util.EnumFacing;
@@ -14,6 +15,7 @@ public class BlockRuneBookshelf extends BlockBookshelf
         setHardness(1.5F);
         setStepSound(SoundType.WOOD);
         setHarvestLevel("axe", 0);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

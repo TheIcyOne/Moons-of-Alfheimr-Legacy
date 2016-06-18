@@ -1,10 +1,10 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import net.minecraft.block.BlockEmptyDrops;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.BlockPos;
@@ -18,7 +18,7 @@ public class BlockYggdrasilLeaves extends BlockEmptyDrops
         setBlockUnbreakable().setResistance(6000000.0F);
         setStepSound(SoundType.PLANT);
         disableStats();
-        setCreativeTab(CreativeTabs.tabBlock);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

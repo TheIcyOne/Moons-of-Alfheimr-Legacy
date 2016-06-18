@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.init.AMItems;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.util.IVariantBlock;
@@ -33,6 +34,7 @@ public class BlockAMOre extends BlockOre implements IVariantBlock<EnumOreVariant
         setHardness(3.0F);
         setResistance(5.0F);
         setStepSound(SoundType.STONE);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         for (int meta = 0; meta < getVariants().length; meta++)
         {
             setHarvestLevel("pickaxe", getVariants()[meta].getHarvestLevel());

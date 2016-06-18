@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.EnumShaleVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.VariantHelper;
@@ -32,6 +33,7 @@ public class BlockShale extends BlockStone implements IVariantBlock<EnumShaleVar
         setResistance(10.0F);
         setStepSound(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

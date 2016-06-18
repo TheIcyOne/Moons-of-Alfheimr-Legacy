@@ -1,5 +1,6 @@
 package alfheimrsmoons.block;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.IVariantBlock;
@@ -38,6 +39,7 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
         setDefaultState(blockState.getBaseState().withProperty(STAGE, 0));
         setHardness(0.0F);
         setStepSound(SoundType.PLANT);
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

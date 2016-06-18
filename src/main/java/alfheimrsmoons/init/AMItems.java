@@ -15,10 +15,10 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class AMItems
 {
-    public static final Item branch = new ItemMaterial().setUnlocalizedName("alfheimrsmoons.branch").setRegistryName("branch").setFull3D();
+    public static final Item branch = new AMItem().setUnlocalizedName("alfheimrsmoons.branch").setRegistryName("branch").setFull3D();
     public static final ItemOreDrop ore_drop = (ItemOreDrop) new ItemOreDrop().setUnlocalizedName("alfheimrsmoons.ore_drop").setRegistryName("ore_drop");
     public static final ItemBioluminescence bioluminescence = (ItemBioluminescence) new ItemBioluminescence().setUnlocalizedName("alfheimrsmoons.bioluminescence").setRegistryName("bioluminescence");
-    public static final Item stardust = new ItemMaterial().setUnlocalizedName("alfheimrsmoons.stardust").setRegistryName("stardust");
+    public static final Item stardust = new AMItem().setUnlocalizedName("alfheimrsmoons.stardust").setRegistryName("stardust");
     public static final Item seed_pouch = new ItemSeedPouch().setUnlocalizedName("alfheimrsmoons.seed_pouch").setRegistryName("seed_pouch");
     public static final Tools timber_tools = new Tools("timber", 0, 59, 2.0F, 0.0F, 15).setAxeAttack(6.0F, 3.2F);
     public static final Tools shale_tools = new Tools("shale", 1, 131, 4.0F, 1.0F, 5).setAxeAttack(8.0F, 3.2F);
