@@ -1,18 +1,10 @@
 {
-    "multipart": [
-        {   "when": { "variant": "normal" },
-            "apply": [
-                { "model": "alfheimrsmoons:shale" },
-                { "model": "alfheimrsmoons:shale_mirrored" },
-                { "model": "alfheimrsmoons:shale", "y": 180 },
-                { "model": "alfheimrsmoons:shale_mirrored", "y": 180 }
-            ]
-        },
-        {   "when": { "variant": "mossy" },
-            "apply": { "model": "alfheimrsmoons:shale_mossy" }
-        },
-        {   "when": { "variant": "smooth" },
-            "apply": { "model": "alfheimrsmoons:shale_smooth" }
+    "forge_marker": 1,
+    "variants": {
+        "variant": {
+            "normal": { "model": "alfheimrsmoons:shale" },
+            "mossy": { "model": "alfheimrsmoons:shale_mossy" },
+            "smooth": { "model": "alfheimrsmoons:shale_smooth" }
         }
-    ]
+    }
 }
