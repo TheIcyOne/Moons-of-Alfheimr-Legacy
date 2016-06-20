@@ -145,11 +145,13 @@ public class BlockGrassySoil extends BlockGrass
             case Plains:
                 return true;
             case Beach:
-                boolean hasWater = (world.getBlockState(pos.east()).getMaterial() == Material.water ||
-                        world.getBlockState(pos.west()).getMaterial() == Material.water ||
-                        world.getBlockState(pos.north()).getMaterial() == Material.water ||
-                        world.getBlockState(pos.south()).getMaterial() == Material.water);
-                return hasWater;
+                for (EnumFacing horizontal : EnumFacing.HORIZONTALS)
+                {
+                    if (world.getBlockState(pos.offset(horizontal)).getMaterial() == Material.water)
+                    {
+                        return true;
+                    }
+                }
         }
 
         return false;

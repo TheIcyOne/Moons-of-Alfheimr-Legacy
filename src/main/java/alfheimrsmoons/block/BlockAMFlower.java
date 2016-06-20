@@ -83,25 +83,32 @@ public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlow
     }
 
     @Override
-    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    public boolean canReplace(World world, BlockPos pos, EnumFacing side, ItemStack stack)
     {
-        IBlockState soil = world.getBlockState(pos.down());
-
-        if (state.getBlock() == this)
+        if (world.getBlockState(pos).getBlock().isReplaceable(world, pos))
         {
-            return canSustainFlower(state, soil);
+            IBlockState flower = getStateFromMeta(stack.getMetadata());
+            IBlockState soil = world.getBlockState(pos.offset(side.getOpposite()));
+            return canSustainFlower(flower, soil);
         }
         else
         {
-            return func_185514_i(soil);
+            return super.canReplace(world, pos, side, stack);
         }
+    }
+
+    @Override
+    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    {
+        IBlockState soil = world.getBlockState(pos.down());
+        return state.getBlock() == this ? canSustainFlower(state, soil) : func_185514_i(soil);
     }
 
     protected boolean canSustainFlower(IBlockState flower, IBlockState soil)
     {
         if (flower.getValue(VARIANT_PROPERTY) == EnumFlowerVariant.SNAPDRAGON)
         {
-            return soil.getBlock() instanceof BlockShale;
+            return soil.getBlock() == AMBlocks.shale;
         }
         else
         {
@@ -113,7 +120,7 @@ public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlow
     protected boolean func_185514_i(IBlockState state)
     {
         Block block = state.getBlock();
-        return block instanceof BlockSoil || block instanceof BlockGrassySoil || super.func_185514_i(state);
+        return block == AMBlocks.soil || block == AMBlocks.grassy_soil || super.func_185514_i(state);
     }
 
     @Override

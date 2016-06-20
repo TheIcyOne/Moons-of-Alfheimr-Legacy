@@ -1,9 +1,7 @@
 package alfheimrsmoons.world.gen.feature;
 
-import alfheimrsmoons.block.BlockAMFlower;
-import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.util.EnumFlowerVariant;
-import alfheimrsmoons.util.VariantHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -27,9 +25,24 @@ public class WorldGenAMFlowers extends WorldGenerator
         {
             BlockPos flowerPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 255) && state.getBlock().canPlaceBlockAt(world, flowerPos))
+            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 255))
             {
-                world.setBlockState(flowerPos, state, 2);
+                Block block = state.getBlock();
+                boolean canPlace;
+
+                if (block instanceof BlockBush)
+                {
+                    canPlace = ((BlockBush) block).canBlockStay(world, flowerPos, state);
+                }
+                else
+                {
+                    canPlace = block.canPlaceBlockAt(world, flowerPos);
+                }
+
+                if (canPlace)
+                {
+                    world.setBlockState(flowerPos, state, 2);
+                }
             }
         }
 
