@@ -61,24 +61,27 @@ public class AMBiomeDecorator extends BiomeDecorator
             sedimentGen.generate(world, random, world.getTopSolidOrLiquidBlock(field_180294_c.add(xOffset, 0, yOffset)));
         }
 
-        int trees = treesPerChunk;
-
-        if (random.nextInt(10) == 0)
+        if (alfheimrBiome.hasTreeGen())
         {
-            ++trees;
-        }
+            int trees = treesPerChunk;
 
-        for (int i = 0; i < trees; ++i)
-        {
-            int xOffset = random.nextInt(16) + 8;
-            int yOffset = random.nextInt(16) + 8;
-            WorldGenAbstractTree treeGen = biome.genBigTreeChance(random);
-            treeGen.func_175904_e();
-            BlockPos pos = world.getHeight(field_180294_c.add(xOffset, 0, yOffset));
-
-            if (treeGen.generate(world, random, pos))
+            if (random.nextInt(10) == 0)
             {
-                treeGen.func_180711_a(world, random, pos);
+                ++trees;
+            }
+
+            for (int i = 0; i < trees; ++i)
+            {
+                int xOffset = random.nextInt(16) + 8;
+                int yOffset = random.nextInt(16) + 8;
+                WorldGenAbstractTree treeGen = biome.genBigTreeChance(random);
+                treeGen.func_175904_e();
+                BlockPos pos = world.getHeight(field_180294_c.add(xOffset, 0, yOffset));
+
+                if (treeGen.generate(world, random, pos))
+                {
+                    treeGen.func_180711_a(world, random, pos);
+                }
             }
         }
 

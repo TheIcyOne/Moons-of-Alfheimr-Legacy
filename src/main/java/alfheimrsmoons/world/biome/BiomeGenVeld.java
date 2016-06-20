@@ -17,4 +17,10 @@ public class BiomeGenVeld extends BiomeGenAM
     {
         return 0x9E8729;
     }
+
+    @Override
+    public boolean hasTreeGen()
+    {
+        return false;
+    }
 }

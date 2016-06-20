@@ -54,6 +54,16 @@ public abstract class BiomeGenAM extends BiomeGenBase
         return new AMBiomeDecorator();
     }
 
+    /**
+     * Used for tree generation
+     *
+     * @return true if the biome generates trees
+     */
+    public boolean hasTreeGen()
+    {
+        return true;
+    }
+
     @Override
     public WorldGenAbstractTree genBigTreeChance(Random rand)
     {
@@ -94,7 +104,8 @@ public abstract class BiomeGenAM extends BiomeGenBase
     protected void addFlowerVariants() {}
 
     /**
-     * Checks if {@link #flowers} is not empty
+     * Checks if {@link #flowers} is not empty.
+     * Used for flower generation.
      *
      * @return true if flowers list is not empty
      */
