@@ -1,8 +1,8 @@
 package alfheimrsmoons.world.biome;
 
 import alfheimrsmoons.entity.EntityNitroWraith;
-import alfheimrsmoons.util.*;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.*;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
 import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
 import alfheimrsmoons.world.gen.feature.WorldGenSedge;
@@ -188,8 +188,8 @@ public abstract class BiomeGenAM extends BiomeGenBase
      * Decorates the world with tall flowers
      *
      * @param world World
-     * @param rand Random number generator
-     * @param pos Position to generate
+     * @param rand  Random number generator
+     * @param pos   Position to generate
      */
     protected void addTallFlowerDecorations(World world, Random rand, BlockPos pos)
     {

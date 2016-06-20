@@ -1,8 +1,8 @@
 package alfheimrsmoons.world.biome;
 
+import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.EnumFlowerVariant;
 import alfheimrsmoons.util.EnumOreVariant;
-import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.world.gen.feature.*;
 import net.minecraft.init.Blocks;
@@ -50,7 +50,7 @@ public class AMBiomeDecorator extends BiomeDecorator
             return;
         }
 
-        BiomeGenAM alfheimrBiome = (BiomeGenAM) biome;;
+        BiomeGenAM alfheimrBiome = (BiomeGenAM) biome;
 
         generateOres(world, random);
 

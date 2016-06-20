@@ -58,7 +58,7 @@ public class ProxyClient extends Proxy
     {
         String prefix = "";
         String suffix = "";
-        
+
         if (base != null)
         {
             if (base.endsWith("_"))
@@ -76,7 +76,7 @@ public class ProxyClient extends Proxy
                 AlfheimrsMoons.logger.error("Registered variants for %s with unknown affix %s", item.getRegistryName(), base);
             }
         }
-        
+
         registerItemWithVariants(item, variants, base, prefix, suffix);
     }
 

@@ -1,8 +1,8 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.BlockLeaves;

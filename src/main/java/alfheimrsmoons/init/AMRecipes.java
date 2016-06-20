@@ -2,12 +2,12 @@ package alfheimrsmoons.init;
 
 import alfheimrsmoons.AMFuelHandler;
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.crafting.AMShapedOreRecipe;
+import alfheimrsmoons.crafting.AMShapelessOreRecipe;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.util.EnumShaleVariant;
 import alfheimrsmoons.util.EnumWoodVariant;
 import alfheimrsmoons.util.VariantHelper;
-import alfheimrsmoons.crafting.AMShapedOreRecipe;
-import alfheimrsmoons.crafting.AMShapelessOreRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

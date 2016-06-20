@@ -1,9 +1,9 @@
 package alfheimrsmoons.item;
 
-import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.util.IVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.IVariantObject;
+import alfheimrsmoons.util.VariantHelper;
 import com.google.common.base.Function;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemMultiTexture;

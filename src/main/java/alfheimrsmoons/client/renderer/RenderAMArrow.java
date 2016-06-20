@@ -1,6 +1,5 @@
 package alfheimrsmoons.client.renderer;
 
-import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.entity.EntityAMArrow;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderManager;

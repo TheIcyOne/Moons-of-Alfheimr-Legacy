@@ -20,10 +20,10 @@ public class WorldGenDeadPlant extends WorldGenDeadBush
         {
             IBlockState state = world.getBlockState(position);
             Block block = state.getBlock();
-            
+
             if (!block.isAir(state, world, position) && !block.isLeaves(state, world, position))
                 break;
-            
+
             position = position.down();
         }
         while (position.getY() > 0);

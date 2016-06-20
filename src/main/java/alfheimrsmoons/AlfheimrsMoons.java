@@ -20,7 +20,7 @@ public class AlfheimrsMoons
     public static final String MOD_ID = "alfheimrsmoons";
     public static final String MOD_NAME = "Álfheimr's Moons";
     public static final String MOD_VERSION = "@VERSION@";
-    
+
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID)
     {
         @Override

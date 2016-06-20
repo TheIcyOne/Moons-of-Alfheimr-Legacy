@@ -27,7 +27,7 @@ import java.util.Random;
 public class BlockShale extends BlockStone implements IVariantBlock<EnumShaleVariant>
 {
     public static final PropertyEnum<EnumShaleVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumShaleVariant.class);
-    
+
     public BlockShale()
     {
         super();

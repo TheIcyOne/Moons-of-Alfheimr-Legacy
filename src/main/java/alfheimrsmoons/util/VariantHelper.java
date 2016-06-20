@@ -1,8 +1,5 @@
 package alfheimrsmoons.util;
 
-import alfheimrsmoons.util.IVariant;
-import alfheimrsmoons.util.IVariantBlock;
-import alfheimrsmoons.util.IVariantObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;

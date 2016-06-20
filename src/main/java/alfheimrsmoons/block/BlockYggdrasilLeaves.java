@@ -26,7 +26,7 @@ public class BlockYggdrasilLeaves extends BlockEmptyDrops
     {
         return false;
     }
-    
+
     @Override
     public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving.SpawnPlacementType type)
     {

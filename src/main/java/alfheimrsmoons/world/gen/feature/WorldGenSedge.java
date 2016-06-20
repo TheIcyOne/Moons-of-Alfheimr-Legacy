@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.gen.feature;
 
-import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
