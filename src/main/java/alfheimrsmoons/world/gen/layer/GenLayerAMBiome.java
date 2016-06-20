@@ -1,12 +1,10 @@
 package alfheimrsmoons.world.gen.layer;
 
 import alfheimrsmoons.init.AMBiomes;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 
@@ -25,14 +23,7 @@ public class GenLayerAMBiome extends GenLayer
 
         for (BiomeType type : BiomeType.values())
         {
-            ImmutableList<BiomeEntry> list = AMBiomes.getBiomes(type);
-
-            if (list == null)
-            {
-                list = ImmutableList.of();
-            }
-
-            biomes.put(type, list);
+            biomes.put(type, AMBiomes.getBiomes(type));
         }
     }
 
@@ -58,6 +49,7 @@ public class GenLayerAMBiome extends GenLayer
                 else
                 {
                     BiomeType type = null;
+                    BiomeGenBase biome = null;
 
                     switch (k)
                     {
@@ -77,7 +69,12 @@ public class GenLayerAMBiome extends GenLayer
 
                     if (type != null)
                     {
-                        aint1[j + i * areaWidth] = BiomeGenBase.getIdForBiome(getWeightedBiomeEntry(type).biome);
+                        if (biome == null)
+                        {
+                            biome = getWeightedBiomeEntry(type).biome;
+                        }
+
+                        aint1[j + i * areaWidth] = BiomeGenBase.getIdForBiome(biome);
                     }
                 }
             }
@@ -90,7 +87,7 @@ public class GenLayerAMBiome extends GenLayer
     {
         List<BiomeEntry> biomeList = biomes.get(type);
         int totalWeight = WeightedRandom.getTotalWeight(biomeList);
-        int weight = BiomeManager.isTypeListModded(type) ? nextInt(totalWeight) : nextInt(totalWeight / 10) * 10;
+        int weight = nextInt(totalWeight);
         return WeightedRandom.getRandomItem(biomeList, weight);
     }
 }
