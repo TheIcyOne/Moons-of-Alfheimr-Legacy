@@ -1,7 +1,9 @@
 package alfheimrsmoons.world.biome;
 
+import alfheimrsmoons.util.EnumFlowerVariant;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.world.gen.feature.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -9,18 +11,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
 public class AMBiomeDecorator extends BiomeDecorator
 {
-    public WorldGenerator sedimentGen = new WorldGenAMSand(AMBlocks.sediment.getDefaultState(), 7);
-    public WorldGenerator soilGen;
-    public WorldGenerator nitroGen;
-    public WorldGenerator tektiteGen;
-    public WorldGenerator sylvaniteGen;
-    public WorldGenerator waterLakeGen;
+    // TODO configurable ore sizes, counts, and heights
+    private final WorldGenAMSand sedimentGen = new WorldGenAMSand(AMBlocks.sediment.getDefaultState(), 7);
+    private final WorldGenAMMinable soilGen = new WorldGenAMMinable(AMBlocks.soil.getDefaultState(), 33);
+    private final WorldGenAMMinable nitroGen = new WorldGenAMMinable(EnumOreVariant.NITRO, 17);
+    private final WorldGenAMMinable tektiteGen = new WorldGenAMMinable(EnumOreVariant.TEKTITE, 9);
+    private final WorldGenAMMinable sylvaniteGen = new WorldGenAMMinable(EnumOreVariant.SYLVANITE, 8);
+    private final WorldGenAMFlowers snapdragonGen = new WorldGenAMFlowers(VariantHelper.getDefaultStateWithVariant(AMBlocks.flower, EnumFlowerVariant.SNAPDRAGON));
+    private final WorldGenDeadPlant deadPlantGen = new WorldGenDeadPlant();
+    private final WorldGenAMLiquids waterGen = new WorldGenAMLiquids(Blocks.flowing_water.getDefaultState());
 
     @Override
     public void decorate(World world, Random random, BiomeGenBase biome, BlockPos pos)
@@ -32,12 +36,6 @@ public class AMBiomeDecorator extends BiomeDecorator
         else
         {
             field_180294_c = pos;
-            // TODO configurable ore sizes, counts, and heights
-            soilGen = new WorldGenAMMinable(AMBlocks.soil.getDefaultState(), 33);
-            nitroGen = new WorldGenAMMinable(EnumOreVariant.NITRO, 17);
-            tektiteGen = new WorldGenAMMinable(EnumOreVariant.TEKTITE, 9);
-            sylvaniteGen = new WorldGenAMMinable(EnumOreVariant.SYLVANITE, 8);
-            waterLakeGen = new WorldGenAMLiquids(Blocks.flowing_water.getDefaultState());
             genDecorations(biome, world, random);
             field_185425_a = false;
         }
@@ -101,6 +99,15 @@ public class AMBiomeDecorator extends BiomeDecorator
             }
         }
 
+        for (int i = 0; i < flowersPerChunk; ++i)
+        {
+            int xOffset = random.nextInt(16) + 8;
+            int zOffset = random.nextInt(16) + 8;
+            int yOffset = random.nextInt(256);
+            BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
+            snapdragonGen.generate(world, random, pos);
+        }
+
         for (int i = 0; i < grassPerChunk; ++i)
         {
             int xOffset = random.nextInt(16) + 8;
@@ -123,7 +130,7 @@ public class AMBiomeDecorator extends BiomeDecorator
             if (height > 0)
             {
                 int yOffset = random.nextInt(height);
-                new WorldGenDeadPlant().generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
+                deadPlantGen.generate(world, random, field_180294_c.add(xOffset, yOffset, zOffset));
             }
         }
 
@@ -139,7 +146,7 @@ public class AMBiomeDecorator extends BiomeDecorator
                 {
                     int yOffset = random.nextInt(height);
                     BlockPos pos = field_180294_c.add(xOffset, yOffset, zOffset);
-                    waterLakeGen.generate(world, random, pos);
+                    waterGen.generate(world, random, pos);
                 }
             }
         }

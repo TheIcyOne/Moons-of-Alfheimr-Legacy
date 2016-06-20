@@ -13,7 +13,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,6 +38,19 @@ public class BlockShale extends BlockStone implements IVariantBlock<EnumShaleVar
         setStepSound(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
+    }
+
+    @Override
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
+    {
+        IBlockState plant = plantable.getPlant(world, pos.offset(direction));
+
+        if (plantable instanceof BlockAMFlower && ((BlockAMFlower) plantable).canSustainFlower(plant, state))
+        {
+            return true;
+        }
+
+        return super.canSustainPlant(state, world, pos, direction, plantable);
     }
 
     @Override
