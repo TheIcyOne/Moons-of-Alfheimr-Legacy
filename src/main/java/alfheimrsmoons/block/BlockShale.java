@@ -35,7 +35,7 @@ public class BlockShale extends BlockStone implements IVariantBlock<EnumShaleVar
         setDefaultState(blockState.getBaseState().withProperty(VARIANT_PROPERTY, EnumShaleVariant.NORMAL));
         setHardness(1.5F);
         setResistance(10.0F);
-        setStepSound(SoundType.STONE);
+        setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
@@ -62,7 +62,7 @@ public class BlockShale extends BlockStone implements IVariantBlock<EnumShaleVar
     @Override
     public EnumShaleVariant[] getVariants()
     {
-        return EnumShaleVariant.values;
+        return EnumShaleVariant.VARIANTS;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class BlockShale extends BlockStone implements IVariantBlock<EnumShaleVar
     @Override
     public MapColor getMapColor(IBlockState state)
     {
-        return MapColor.stoneColor;
+        return MapColor.STONE;
     }
 
     @Override

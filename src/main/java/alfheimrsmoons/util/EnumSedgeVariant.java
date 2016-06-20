@@ -5,7 +5,7 @@ public enum EnumSedgeVariant implements IVariant<EnumSedgeVariant>
     NORMAL("normal"),
     SHORT("short");
 
-    public static final EnumSedgeVariant[] values = values();
+    public static final EnumSedgeVariant[] VARIANTS = values();
     private final String name;
 
     EnumSedgeVariant(String name)

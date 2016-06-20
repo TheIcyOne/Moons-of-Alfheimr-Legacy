@@ -32,7 +32,7 @@ public class AMEventHandler
     // TODO delete placeholder
     @SubscribeEvent
     public void dimensionPlaceholder(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock e) {
-        if (e.getWorld().getBlockState(e.getPos()).getBlock() == alfheimrsmoons.init.AMBlocks.soil && e.getItemStack() == null) {
+        if (e.getWorld().getBlockState(e.getPos()).getBlock() == alfheimrsmoons.init.AMBlocks.SOIL && e.getItemStack() == null) {
             e.getEntityPlayer().changeDimension(alfheimrsmoons.init.AMDimensions.alfheimr.getId());
         }
     }

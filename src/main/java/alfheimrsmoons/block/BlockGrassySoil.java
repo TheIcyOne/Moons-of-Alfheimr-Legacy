@@ -3,10 +3,8 @@ package alfheimrsmoons.block;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.DefaultBlockHelper;
-import alfheimrsmoons.util.EnumFlowerVariant;
 import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.util.VariantHelper;
-import alfheimrsmoons.world.biome.BiomeGenAM;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -31,7 +29,7 @@ public class BlockGrassySoil extends BlockGrass
         blockState = new BlockStateContainer(this);
         setDefaultState(blockState.getBaseState());
         setHardness(0.6F);
-        setStepSound(SoundType.PLANT);
+        setSoundType(SoundType.PLANT);
         setHarvestLevel("shovel", 0);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         EntityEnderman.setCarriable(this, true);
@@ -52,7 +50,7 @@ public class BlockGrassySoil extends BlockGrass
 
             if (world.getLightFromNeighbors(upPos) < 4 && world.getBlockState(upPos).getLightOpacity(world, upPos) > 2)
             {
-                world.setBlockState(pos, AMBlocks.soil.getDefaultState());
+                world.setBlockState(pos, AMBlocks.SOIL.getDefaultState());
             }
             else
             {
@@ -71,9 +69,9 @@ public class BlockGrassySoil extends BlockGrass
                         IBlockState upSpreadState = world.getBlockState(upSpreadPos);
                         IBlockState spreadState = world.getBlockState(spreadPos);
 
-                        if (spreadState.getBlock() == AMBlocks.soil && world.getLightFromNeighbors(upSpreadPos) >= 4 && upSpreadState.getLightOpacity(world, upPos) <= 2)
+                        if (spreadState.getBlock() == AMBlocks.SOIL && world.getLightFromNeighbors(upSpreadPos) >= 4 && upSpreadState.getLightOpacity(world, upPos) <= 2)
                         {
-                            world.setBlockState(spreadPos, AMBlocks.grassy_soil.getDefaultState());
+                            world.setBlockState(spreadPos, AMBlocks.GRASSY_SOIL.getDefaultState());
                         }
                     }
                 }
@@ -84,7 +82,7 @@ public class BlockGrassySoil extends BlockGrass
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return AMBlocks.soil.getItemDropped(AMBlocks.soil.getDefaultState(), rand, fortune);
+        return AMBlocks.SOIL.getItemDropped(AMBlocks.SOIL.getDefaultState(), rand, fortune);
     }
 
     @Override
@@ -111,9 +109,9 @@ public class BlockGrassySoil extends BlockGrass
                         else
                         {
                             EnumSedgeVariant tallgrassVariant = rand.nextBoolean() ? EnumSedgeVariant.SHORT : EnumSedgeVariant.NORMAL;
-                            IBlockState tallgrassState = VariantHelper.getDefaultStateWithVariant(AMBlocks.sedge, tallgrassVariant);
+                            IBlockState tallgrassState = VariantHelper.getDefaultStateWithVariant(AMBlocks.SEDGE, tallgrassVariant);
 
-                            if (AMBlocks.sedge.canBlockStay(world, plantPos, tallgrassState))
+                            if (AMBlocks.SEDGE.canBlockStay(world, plantPos, tallgrassState))
                             {
                                 world.setBlockState(plantPos, tallgrassState, 3);
                             }
@@ -125,7 +123,7 @@ public class BlockGrassySoil extends BlockGrass
 
                 plantPos = plantPos.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(plantPos.down()).getBlock() != AMBlocks.grassy_soil || world.getBlockState(plantPos).isNormalCube())
+                if (world.getBlockState(plantPos.down()).getBlock() != AMBlocks.GRASSY_SOIL || world.getBlockState(plantPos).isNormalCube())
                 {
                     break;
                 }
@@ -147,7 +145,7 @@ public class BlockGrassySoil extends BlockGrass
             case Beach:
                 for (EnumFacing horizontal : EnumFacing.HORIZONTALS)
                 {
-                    if (world.getBlockState(pos.offset(horizontal)).getMaterial() == Material.water)
+                    if (world.getBlockState(pos.offset(horizontal)).getMaterial() == Material.WATER)
                     {
                         return true;
                     }
@@ -160,6 +158,6 @@ public class BlockGrassySoil extends BlockGrass
     @Override
     public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source)
     {
-        world.setBlockState(pos, AMBlocks.soil.getDefaultState(), 2);
+        world.setBlockState(pos, AMBlocks.SOIL.getDefaultState(), 2);
     }
 }

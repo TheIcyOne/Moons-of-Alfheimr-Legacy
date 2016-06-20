@@ -29,7 +29,7 @@ public class GenLayerAMRiverMix extends GenLayerRiverMix
         {
             if (!isBiomeOceanic(aint[i]))
             {
-                if (aint1[i] == BiomeGenBase.getIdForBiome(AMBiomes.river))
+                if (aint1[i] == BiomeGenBase.getIdForBiome(AMBiomes.RIVER))
                 {
                     aint2[i] = aint1[i] & 255;
                 }

@@ -1,10 +1,7 @@
 package alfheimrsmoons.world.gen.feature;
 
-import alfheimrsmoons.block.BlockAMLeaves;
-import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.EnumWoodVariant;
-import alfheimrsmoons.util.VariantHelper;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockVine;
@@ -19,7 +16,7 @@ import java.util.Random;
 
 public class WorldGenAMTrees extends WorldGenTrees
 {
-    private static final ImmutableSet<Block> REPLACEABLE_BLOCKS = ImmutableSet.of(AMBlocks.grassy_soil, AMBlocks.soil, AMBlocks.log, AMBlocks.log2, AMBlocks.sapling);
+    private static final ImmutableSet<Block> REPLACEABLE_BLOCKS = ImmutableSet.of(AMBlocks.GRASSY_SOIL, AMBlocks.SOIL, AMBlocks.LOG, AMBlocks.LOG2, AMBlocks.SAPLING);
 
     public WorldGenAMTrees(boolean notify, EnumWoodVariant variant)
     {
@@ -71,7 +68,7 @@ public class WorldGenAMTrees extends WorldGenTrees
                     {
                         if (j >= 0 && j < world.getHeight())
                         {
-                            if (!isReplaceable(world, blockpos$mutableblockpos.set(l, j, i1)))
+                            if (!isReplaceable(world, blockpos$mutableblockpos.setPos(l, j, i1)))
                             {
                                 flag = false;
                             }
@@ -92,7 +89,7 @@ public class WorldGenAMTrees extends WorldGenTrees
             {
                 IBlockState state = world.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, world, position.down(), EnumFacing.UP, AMBlocks.sapling) && position.getY() < world.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, world, position.down(), EnumFacing.UP, AMBlocks.SAPLING) && position.getY() < world.getHeight() - i - 1)
                 {
                     setDirtAt(world, position.down());
                     int k2 = 3;
@@ -116,7 +113,7 @@ public class WorldGenAMTrees extends WorldGenTrees
                                     BlockPos blockpos = new BlockPos(k1, i3, i2);
                                     state = world.getBlockState(blockpos);
 
-                                    if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getMaterial() == Material.vine)
+                                    if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getMaterial() == Material.VINE)
                                     {
                                         setBlockAndNotifyAdequately(world, blockpos, metaLeaves);
                                     }
@@ -130,7 +127,7 @@ public class WorldGenAMTrees extends WorldGenTrees
                         BlockPos upN = position.up(j3);
                         state = world.getBlockState(upN);
 
-                        if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() == Material.vine)
+                        if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() == Material.VINE)
                         {
                             setBlockAndNotifyAdequately(world, position.up(j3), metaWood);
 
@@ -138,22 +135,22 @@ public class WorldGenAMTrees extends WorldGenTrees
                             {
                                 if (rand.nextInt(3) > 0 && world.isAirBlock(position.add(-1, j3, 0)))
                                 {
-                                    func_181651_a(world, position.add(-1, j3, 0), BlockVine.EAST);
+                                    addVine(world, position.add(-1, j3, 0), BlockVine.EAST);
                                 }
 
                                 if (rand.nextInt(3) > 0 && world.isAirBlock(position.add(1, j3, 0)))
                                 {
-                                    func_181651_a(world, position.add(1, j3, 0), BlockVine.WEST);
+                                    addVine(world, position.add(1, j3, 0), BlockVine.WEST);
                                 }
 
                                 if (rand.nextInt(3) > 0 && world.isAirBlock(position.add(0, j3, -1)))
                                 {
-                                    func_181651_a(world, position.add(0, j3, -1), BlockVine.SOUTH);
+                                    addVine(world, position.add(0, j3, -1), BlockVine.SOUTH);
                                 }
 
                                 if (rand.nextInt(3) > 0 && world.isAirBlock(position.add(0, j3, 1)))
                                 {
-                                    func_181651_a(world, position.add(0, j3, 1), BlockVine.NORTH);
+                                    addVine(world, position.add(0, j3, 1), BlockVine.NORTH);
                                 }
                             }
                         }
@@ -171,7 +168,7 @@ public class WorldGenAMTrees extends WorldGenTrees
                             {
                                 for (int i5 = position.getZ() - k4; i5 <= position.getZ() + k4; ++i5)
                                 {
-                                    blockpos$mutableblockpos1.set(l4, k3, i5);
+                                    blockpos$mutableblockpos1.setPos(l4, k3, i5);
 
                                     state = world.getBlockState(blockpos$mutableblockpos1);
                                     if (state.getBlock().isLeaves(state, world, blockpos$mutableblockpos1))
@@ -183,38 +180,23 @@ public class WorldGenAMTrees extends WorldGenTrees
 
                                         if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos2))
                                         {
-                                            func_181650_b(world, blockpos2, BlockVine.EAST);
+                                            addHangingVine(world, blockpos2, BlockVine.EAST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos3))
                                         {
-                                            func_181650_b(world, blockpos3, BlockVine.WEST);
+                                            addHangingVine(world, blockpos3, BlockVine.WEST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos4))
                                         {
-                                            func_181650_b(world, blockpos4, BlockVine.SOUTH);
+                                            addHangingVine(world, blockpos4, BlockVine.SOUTH);
                                         }
 
                                         if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos1))
                                         {
-                                            func_181650_b(world, blockpos1, BlockVine.NORTH);
+                                            addHangingVine(world, blockpos1, BlockVine.NORTH);
                                         }
-                                    }
-                                }
-                            }
-                        }
-
-                        if (rand.nextInt(5) == 0 && i > 5)
-                        {
-                            for (int l3 = 0; l3 < 2; ++l3)
-                            {
-                                for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
-                                {
-                                    if (rand.nextInt(4 - l3) == 0)
-                                    {
-                                        EnumFacing enumfacing1 = enumfacing.getOpposite();
-                                        func_181652_a(world, rand.nextInt(3), position.add(enumfacing1.getFrontOffsetX(), i - 5 + l3, enumfacing1.getFrontOffsetZ()), enumfacing);
                                     }
                                 }
                             }
@@ -238,9 +220,9 @@ public class WorldGenAMTrees extends WorldGenTrees
     @Override
     protected void setDirtAt(World world, BlockPos pos)
     {
-        if (world.getBlockState(pos).getBlock() != AMBlocks.soil)
+        if (world.getBlockState(pos).getBlock() != AMBlocks.SOIL)
         {
-            setBlockAndNotifyAdequately(world, pos, AMBlocks.soil.getDefaultState());
+            setBlockAndNotifyAdequately(world, pos, AMBlocks.SOIL.getDefaultState());
         }
     }
 

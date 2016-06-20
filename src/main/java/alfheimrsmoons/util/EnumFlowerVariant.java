@@ -17,7 +17,7 @@ public enum EnumFlowerVariant implements IVariant<EnumFlowerVariant>
     PROMISES_BURDEN("promises_burden"),
     FORGET_ME_NOT("forget_me_not");
 
-    public static final EnumFlowerVariant[] values = values();
+    public static final EnumFlowerVariant[] VARIANTS = values();
     private final String name;
     private final EnumTallFlowerVariant tallVariant;
 

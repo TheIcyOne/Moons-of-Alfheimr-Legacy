@@ -10,6 +10,6 @@ public class RenderSeedPouch extends RenderSnowball<EntitySeedPouch>
 {
     public RenderSeedPouch(RenderManager renderManager)
     {
-        super(renderManager, AMItems.seed_pouch, ProxyClient.getRenderItem());
+        super(renderManager, AMItems.SEED_POUCH, ProxyClient.getRenderItem());
     }
 }

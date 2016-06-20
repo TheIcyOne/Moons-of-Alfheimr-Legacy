@@ -21,15 +21,15 @@ public class WorldGenAMLiquids extends WorldGenLiquids
     @Override
     public boolean generate(World world, Random rand, BlockPos position)
     {
-        if (world.getBlockState(position.up()).getBlock() != AMBlocks.shale)
+        if (world.getBlockState(position.up()).getBlock() != AMBlocks.SHALE)
         {
             return false;
         }
-        else if (world.getBlockState(position.down()).getBlock() != AMBlocks.shale)
+        else if (world.getBlockState(position.down()).getBlock() != AMBlocks.SHALE)
         {
             return false;
         }
-        else if (!world.isAirBlock(position) && world.getBlockState(position).getBlock() != AMBlocks.shale)
+        else if (!world.isAirBlock(position) && world.getBlockState(position).getBlock() != AMBlocks.SHALE)
         {
             return false;
         }
@@ -37,22 +37,22 @@ public class WorldGenAMLiquids extends WorldGenLiquids
         {
             int i = 0;
 
-            if (world.getBlockState(position.west()).getBlock() == AMBlocks.shale)
+            if (world.getBlockState(position.west()).getBlock() == AMBlocks.SHALE)
             {
                 ++i;
             }
 
-            if (world.getBlockState(position.east()).getBlock() == AMBlocks.shale)
+            if (world.getBlockState(position.east()).getBlock() == AMBlocks.SHALE)
             {
                 ++i;
             }
 
-            if (world.getBlockState(position.north()).getBlock() == AMBlocks.shale)
+            if (world.getBlockState(position.north()).getBlock() == AMBlocks.SHALE)
             {
                 ++i;
             }
 
-            if (world.getBlockState(position.south()).getBlock() == AMBlocks.shale)
+            if (world.getBlockState(position.south()).getBlock() == AMBlocks.SHALE)
             {
                 ++i;
             }
@@ -82,7 +82,7 @@ public class WorldGenAMLiquids extends WorldGenLiquids
             if (i == 3 && j == 1)
             {
                 world.setBlockState(position, state, 2);
-                world.forceBlockUpdateTick(state.getBlock(), position, rand);
+                world.func_175637_a(state.getBlock(), position, rand);
             }
 
             return true;

@@ -6,6 +6,6 @@ public class ItemOreDrop extends ItemVariant<EnumOreVariant>
 {
     public ItemOreDrop()
     {
-        super(EnumOreVariant.values);
+        super(EnumOreVariant.VARIANTS);
     }
 }

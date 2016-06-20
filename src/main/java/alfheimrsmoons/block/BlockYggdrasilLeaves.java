@@ -14,9 +14,9 @@ public class BlockYggdrasilLeaves extends BlockEmptyDrops
 {
     public BlockYggdrasilLeaves()
     {
-        super(Material.leaves);
+        super(Material.LEAVES);
         setBlockUnbreakable().setResistance(6000000.0F);
-        setStepSound(SoundType.PLANT);
+        setSoundType(SoundType.PLANT);
         disableStats();
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }

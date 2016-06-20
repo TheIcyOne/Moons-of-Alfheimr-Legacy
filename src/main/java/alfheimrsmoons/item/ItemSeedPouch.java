@@ -25,7 +25,7 @@ public class ItemSeedPouch extends AMItem
             {
                 if (!world.isRemote)
                 {
-                    world.playAuxSFX(2005, pos, 0);
+                    world.playEvent(2005, pos, 0);
                 }
 
                 return EnumActionResult.SUCCESS;
@@ -43,16 +43,16 @@ public class ItemSeedPouch extends AMItem
             --stack.stackSize;
         }
 
-        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.entity_snowball_throw, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if (!world.isRemote)
         {
             EntitySeedPouch seedPouchEntity = new EntitySeedPouch(world, player);
-            seedPouchEntity.func_184538_a(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+            seedPouchEntity.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
             world.spawnEntityInWorld(seedPouchEntity);
         }
 
-        player.addStat(StatList.func_188057_b(this));
+        player.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
     }
 }

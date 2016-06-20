@@ -30,13 +30,13 @@ import java.util.Random;
 
 public class ChunkGeneratorAlfheimr implements IChunkGenerator
 {
-    public static final ImmutableSet<Block> OCEAN_BLOCKS = ImmutableSet.<Block>of(Blocks.flowing_water, Blocks.water);
-    private IBlockState waterBlock = Blocks.water.getDefaultState();
-    private IBlockState iceBlock = Blocks.ice.getDefaultState();
-    private IBlockState snowLayerBlock = Blocks.snow_layer.getDefaultState();
+    public static final ImmutableSet<Block> OCEAN_BLOCKS = ImmutableSet.<Block>of(Blocks.FLOWING_WATER, Blocks.WATER);
+    private IBlockState waterBlock = Blocks.WATER.getDefaultState();
+    private IBlockState iceBlock = Blocks.ICE.getDefaultState();
+    private IBlockState snowLayerBlock = Blocks.SNOW_LAYER.getDefaultState();
     private WorldGenerator waterLakeGen = new WorldGenAMLakes(waterBlock);
 
-    protected static final IBlockState STONE = VariantHelper.getDefaultStateWithVariant(AMBlocks.shale, EnumShaleVariant.NORMAL);
+    protected static final IBlockState STONE = VariantHelper.getDefaultStateWithVariant(AMBlocks.SHALE, EnumShaleVariant.NORMAL);
     private final Random rand;
     private NoiseGeneratorOctaves minLimitPerlinNoise;
     private NoiseGeneratorOctaves maxLimitPerlinNoise;
@@ -88,7 +88,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
 
         if (generatorOptions != null)
         {
-            settings = ChunkProviderSettings.Factory.jsonToFactory(generatorOptions).func_177864_b();//build()
+            settings = ChunkProviderSettings.Factory.jsonToFactory(generatorOptions).build();
             oceanBlock = waterBlock;
             world.setSeaLevel(settings.seaLevel);
         }
@@ -166,7 +166,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
     public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, BiomeGenBase[] biomes)
     {
         double d0 = 0.03125D;
-        depthBuffer = surfaceNoise.func_151599_a(depthBuffer, (double) (x * 16), (double) (z * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);//getRegion(...)
+        depthBuffer = surfaceNoise.getRegion(depthBuffer, (double) (x * 16), (double) (z * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
 
         for (int i = 0; i < 16; ++i)
         {

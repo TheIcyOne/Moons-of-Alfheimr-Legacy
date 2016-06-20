@@ -31,7 +31,7 @@ public class BlockAMPlanks extends BlockPlanks implements IVariantBlock<EnumWood
         setDefaultState(blockState.getBaseState());
         setHardness(2.0F);
         setResistance(5.0F);
-        setStepSound(SoundType.WOOD);
+        setSoundType(SoundType.WOOD);
         setHarvestLevel("axe", 0);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
@@ -45,7 +45,7 @@ public class BlockAMPlanks extends BlockPlanks implements IVariantBlock<EnumWood
     @Override
     public EnumWoodVariant[] getVariants()
     {
-        return EnumWoodVariant.values;
+        return EnumWoodVariant.VARIANTS;
     }
 
     @Override

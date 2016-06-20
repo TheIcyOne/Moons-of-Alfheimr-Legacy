@@ -28,8 +28,8 @@ public class WorldGenDeadPlant extends WorldGenDeadBush
         }
         while (position.getY() > 0);
 
-        EnumDeadPlantVariant variant = VariantHelper.getRandomVariant(AMBlocks.dead_plant, rand);
-        IBlockState state = VariantHelper.getDefaultStateWithVariant(AMBlocks.dead_plant, variant);
+        EnumDeadPlantVariant variant = VariantHelper.getRandomVariant(AMBlocks.DEAD_PLANT, rand);
+        IBlockState state = VariantHelper.getDefaultStateWithVariant(AMBlocks.DEAD_PLANT, variant);
 
         for (int i = 0; i < 4; ++i)
         {

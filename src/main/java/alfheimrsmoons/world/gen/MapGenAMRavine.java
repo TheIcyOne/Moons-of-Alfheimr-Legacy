@@ -23,15 +23,15 @@ public class MapGenAMRavine extends MapGenRavine
         IBlockState top = biome.topBlock;
         IBlockState filler = biome.fillerBlock;
 
-        if (state.getBlock() == AMBlocks.shale || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == AMBlocks.SHALE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y - 1 < 10)
             {
-                data.setBlockState(x, y, z, field_186135_a);//FLOWING_LAVA
+                data.setBlockState(x, y, z, FLOWING_LAVA);
             }
             else
             {
-                data.setBlockState(x, y, z, field_186136_b);//AIR
+                data.setBlockState(x, y, z, AIR);
 
                 if (foundTop && data.getBlockState(x, y - 1, z).getBlock() == filler.getBlock())
                 {

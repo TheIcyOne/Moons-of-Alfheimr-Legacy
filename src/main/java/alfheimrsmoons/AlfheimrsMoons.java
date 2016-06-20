@@ -26,7 +26,7 @@ public class AlfheimrsMoons
         @Override
         public Item getTabIconItem()
         {
-            return Item.getItemFromBlock(AMBlocks.yggdrasil_leaves);
+            return Item.getItemFromBlock(AMBlocks.YGGDRASIL_LEAVES);
         }
     };
 

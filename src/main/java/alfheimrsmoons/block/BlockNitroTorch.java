@@ -17,7 +17,7 @@ public class BlockNitroTorch extends BlockTorch
     {
         setHardness(0.0F);
         setLightLevel(0.9375F);
-        setStepSound(SoundType.WOOD);
+        setSoundType(SoundType.WOOD);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 

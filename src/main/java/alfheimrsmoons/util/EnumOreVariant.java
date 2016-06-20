@@ -4,12 +4,12 @@ import net.minecraft.block.material.MapColor;
 
 public enum EnumOreVariant implements IVariant<EnumOreVariant>
 {
-    LOREIUM("loreium", MapColor.diamondColor, 0, 0.1F),
-    NITRO("nitro", MapColor.purpleColor, 0, 0.1F),
-    TEKTITE("tektite", MapColor.purpleColor, 2, 0.7F),
-    SYLVANITE("sylvanite", MapColor.emeraldColor, 3, 1.0F);
+    LOREIUM("loreium", MapColor.DIAMOND, 0, 0.1F),
+    NITRO("nitro", MapColor.PURPLE, 0, 0.1F),
+    TEKTITE("tektite", MapColor.PURPLE, 2, 0.7F),
+    SYLVANITE("sylvanite", MapColor.EMERALD, 3, 1.0F);
 
-    public static final EnumOreVariant[] values = values();
+    public static final EnumOreVariant[] VARIANTS = values();
     private final String name;
     private final MapColor blockColor;
     private final int harvestLevel;

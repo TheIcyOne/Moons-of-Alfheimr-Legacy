@@ -25,8 +25,8 @@ import java.util.Random;
 
 public abstract class BiomeGenAM extends BiomeGenBase
 {
-    protected static final IBlockState BEDROCK = AMBlocks.yggdrasil_leaves.getDefaultState();
-    protected static final IBlockState STONE = VariantHelper.getDefaultStateWithVariant(AMBlocks.shale, EnumShaleVariant.NORMAL);
+    protected static final IBlockState BEDROCK = AMBlocks.YGGDRASIL_LEAVES.getDefaultState();
+    protected static final IBlockState STONE = VariantHelper.getDefaultStateWithVariant(AMBlocks.SHALE, EnumShaleVariant.NORMAL);
 
     protected final List<EnumTallFlowerVariant> tallFlowerVariants;
 
@@ -34,8 +34,8 @@ public abstract class BiomeGenAM extends BiomeGenBase
     {
         super(properties);
 
-        topBlock = AMBlocks.grassy_soil.getDefaultState();
-        fillerBlock = AMBlocks.soil.getDefaultState();
+        topBlock = AMBlocks.GRASSY_SOIL.getDefaultState();
+        fillerBlock = AMBlocks.SOIL.getDefaultState();
 
         spawnableMonsterList.clear();
         spawnableCreatureList.clear();
@@ -136,7 +136,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
     {
         for (EnumFlowerVariant variant : variants)
         {
-            addFlower(VariantHelper.getDefaultStateWithVariant(AMBlocks.flower, variant), 20);
+            addFlower(VariantHelper.getDefaultStateWithVariant(AMBlocks.FLOWER, variant), 20);
         }
 
         return this;
@@ -240,7 +240,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
             {
                 IBlockState state = chunkPrimer.getBlockState(chunkX, chunkY, chunkZ);
 
-                if (state.getMaterial() == Material.air)
+                if (state.getMaterial() == Material.AIR)
                 {
                     j = -1;
                 }
@@ -259,9 +259,9 @@ public abstract class BiomeGenAM extends BiomeGenBase
                             filler = fillerBlock;
                         }
 
-                        if (chunkY < seaLevel && (top == null || top.getMaterial() == Material.air))
+                        if (chunkY < seaLevel && (top == null || top.getMaterial() == Material.AIR))
                         {
-                            if (getFloatTemperature(pos.set(x, chunkY, z)) < 0.15F)
+                            if (getFloatTemperature(pos.setPos(x, chunkY, z)) < 0.15F)
                             {
                                 top = ICE;
                             }

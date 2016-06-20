@@ -10,10 +10,10 @@ public class BlockCosmotite extends Block
 {
     public BlockCosmotite()
     {
-        super(Material.rock, MapColor.obsidianColor);
+        super(Material.ROCK, MapColor.OBSIDIAN);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(1.5F);
         setResistance(10.0F);
-        setStepSound(SoundType.STONE);
+        setSoundType(SoundType.STONE);
     }
 }

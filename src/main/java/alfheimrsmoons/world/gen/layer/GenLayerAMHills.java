@@ -48,17 +48,17 @@ public class GenLayerAMHills extends GenLayerHills
                 {
                     BiomeGenBase hillsBiome = AMBiomes.getHills(biome);
 
-                    if (biome == AMBiomes.deep_ocean && this.nextInt(3) == 0)
+                    if (biome == AMBiomes.DEEP_OCEAN && this.nextInt(3) == 0)
                     {
                         int i1 = this.nextInt(2);
 
                         if (i1 == 0)
                         {
-                            hillsBiome = AMBiomes.woods;//TODO plains biome
+                            hillsBiome = AMBiomes.WOODS;//TODO plains biome
                         }
                         else
                         {
-                            hillsBiome = AMBiomes.woods;
+                            hillsBiome = AMBiomes.WOODS;
                         }
                     }
 

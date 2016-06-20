@@ -33,7 +33,7 @@ public class WorldGenAMBlockBlob extends WorldGenBlockBlob
 
             Block block = world.getBlockState(position.down()).getBlock();
 
-            if (block != AMBlocks.grassy_soil && block != AMBlocks.soil && block != AMBlocks.shale)
+            if (block != AMBlocks.GRASSY_SOIL && block != AMBlocks.SOIL && block != AMBlocks.SHALE)
             {
                 continue;
             }

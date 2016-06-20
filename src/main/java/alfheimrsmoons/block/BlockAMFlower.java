@@ -35,7 +35,7 @@ public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlow
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
         setDefaultState(blockState.getBaseState());
         setHardness(0.0F);
-        setStepSound(SoundType.PLANT);
+        setSoundType(SoundType.PLANT);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
@@ -48,7 +48,7 @@ public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlow
     @Override
     public EnumFlowerVariant[] getVariants()
     {
-        return EnumFlowerVariant.values;
+        return EnumFlowerVariant.VARIANTS;
     }
 
     @Override
@@ -101,26 +101,26 @@ public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlow
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {
         IBlockState soil = world.getBlockState(pos.down());
-        return state.getBlock() == this ? canSustainFlower(state, soil) : func_185514_i(soil);
+        return state.getBlock() == this ? canSustainFlower(state, soil) : canSustainBush(soil);
     }
 
     protected boolean canSustainFlower(IBlockState flower, IBlockState soil)
     {
         if (flower.getValue(VARIANT_PROPERTY) == EnumFlowerVariant.SNAPDRAGON)
         {
-            return soil.getBlock() == AMBlocks.shale;
+            return soil.getBlock() == AMBlocks.SHALE;
         }
         else
         {
-            return func_185514_i(soil);
+            return canSustainBush(soil);
         }
     }
 
     @Override
-    protected boolean func_185514_i(IBlockState state)
+    protected boolean canSustainBush(IBlockState state)
     {
         Block block = state.getBlock();
-        return block == AMBlocks.soil || block == AMBlocks.grassy_soil || super.func_185514_i(state);
+        return block == AMBlocks.SOIL || block == AMBlocks.GRASSY_SOIL || super.canSustainBush(state);
     }
 
     @Override
@@ -138,10 +138,10 @@ public class BlockAMFlower extends BlockFlower implements IVariantBlock<EnumFlow
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state)
     {
-        if (AMBlocks.tall_flower.canPlaceBlockAt(world, pos))
+        if (AMBlocks.TALL_FLOWER.canPlaceBlockAt(world, pos))
         {
             EnumTallFlowerVariant variant = state.getValue(VARIANT_PROPERTY).getTallVariant();
-            AMBlocks.tall_flower.placeAt(world, pos, variant, 2);
+            AMBlocks.TALL_FLOWER.placeAt(world, pos, variant, 2);
         }
     }
 

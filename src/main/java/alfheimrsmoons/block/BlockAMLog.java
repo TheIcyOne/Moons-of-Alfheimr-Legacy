@@ -26,7 +26,7 @@ public class BlockAMLog extends BlockLog implements IVariantBlock
 
     public BlockAMLog(int startMeta, int endMeta)
     {
-        variants = VariantHelper.getVariantsInRange(EnumWoodVariant.values, startMeta, endMeta);
+        variants = VariantHelper.getVariantsInRange(EnumWoodVariant.VARIANTS, startMeta, endMeta);
         variantProp = PropertyEnum.create("variant", EnumWoodVariant.class, variants);
         blockState = new BlockStateContainer(this, variantProp, LOG_AXIS);
         setDefaultState(blockState.getBaseState().withProperty(LOG_AXIS, EnumAxis.Y));

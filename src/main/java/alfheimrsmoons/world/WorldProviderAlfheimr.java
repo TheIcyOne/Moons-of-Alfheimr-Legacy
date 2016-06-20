@@ -18,9 +18,9 @@ public class WorldProviderAlfheimr extends WorldProvider
     }
 
     @Override
-    protected void registerWorldChunkManager()
+    protected void createBiomeProvider()
     {
-        worldChunkMgr = new AMBiomeProvider(worldObj.getWorldInfo());
+        biomeProvider = new AMBiomeProvider(worldObj.getWorldInfo());
     }
 
     @Override
@@ -32,6 +32,6 @@ public class WorldProviderAlfheimr extends WorldProvider
     @Override
     public boolean canCoordinateBeSpawn(int x, int z)
     {
-        return super.canCoordinateBeSpawn(x, z) || worldObj.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getBlock() == AMBlocks.grassy_soil;
+        return super.canCoordinateBeSpawn(x, z) || worldObj.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getBlock() == AMBlocks.GRASSY_SOIL;
     }
 }

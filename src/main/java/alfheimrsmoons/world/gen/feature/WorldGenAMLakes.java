@@ -104,7 +104,7 @@ public class WorldGenAMLakes extends WorldGenLakes
                     {
                         if (aboolean[(l1 * 16 + i3) * 8 + i4])
                         {
-                            world.setBlockState(position.add(l1, i4, i3), i4 >= 4 ? Blocks.air.getDefaultState() : state, 2);
+                            world.setBlockState(position.add(l1, i4, i3), i4 >= 4 ? Blocks.AIR.getDefaultState() : state, 2);
                         }
                     }
                 }
@@ -120,16 +120,16 @@ public class WorldGenAMLakes extends WorldGenLakes
                         {
                             BlockPos blockpos = position.add(i2, j4 - 1, j3);
 
-                            if (world.getBlockState(blockpos).getBlock() == AMBlocks.soil && world.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
+                            if (world.getBlockState(blockpos).getBlock() == AMBlocks.SOIL && world.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
                             {
-                                world.setBlockState(blockpos, AMBlocks.grassy_soil.getDefaultState(), 2);
+                                world.setBlockState(blockpos, AMBlocks.GRASSY_SOIL.getDefaultState(), 2);
                             }
                         }
                     }
                 }
             }
 
-            if (state.getMaterial() == Material.lava)
+            if (state.getMaterial() == Material.LAVA)
             {
                 for (int j2 = 0; j2 < 16; ++j2)
                 {
@@ -141,14 +141,14 @@ public class WorldGenAMLakes extends WorldGenLakes
 
                             if (flag1 && (k4 < 4 || rand.nextInt(2) != 0) && world.getBlockState(position.add(j2, k4, k3)).getMaterial().isSolid())
                             {
-                                world.setBlockState(position.add(j2, k4, k3), VariantHelper.getDefaultStateWithVariant(AMBlocks.shale, EnumShaleVariant.NORMAL), 2);
+                                world.setBlockState(position.add(j2, k4, k3), VariantHelper.getDefaultStateWithVariant(AMBlocks.SHALE, EnumShaleVariant.NORMAL), 2);
                             }
                         }
                     }
                 }
             }
 
-            if (state.getMaterial() == Material.water)
+            if (state.getMaterial() == Material.WATER)
             {
                 for (int k2 = 0; k2 < 16; ++k2)
                 {
@@ -158,7 +158,7 @@ public class WorldGenAMLakes extends WorldGenLakes
 
                         if (world.canBlockFreezeWater(position.add(k2, l4, l3)))
                         {
-                            world.setBlockState(position.add(k2, l4, l3), Blocks.ice.getDefaultState(), 2);
+                            world.setBlockState(position.add(k2, l4, l3), Blocks.ICE.getDefaultState(), 2);
                         }
                     }
                 }

@@ -40,6 +40,6 @@ public class ItemAMAxe extends ItemTool
     public float getStrVsBlock(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.wood && material != Material.plants && material != Material.vine ? super.getStrVsBlock(stack, state) : efficiencyOnProperMaterial;
+        return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : efficiencyOnProperMaterial;
     }
 }

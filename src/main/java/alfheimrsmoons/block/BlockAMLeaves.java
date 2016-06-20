@@ -12,7 +12,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
@@ -36,7 +35,7 @@ public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
 
     public BlockAMLeaves(int startMeta, int endMeta)
     {
-        variants = VariantHelper.getVariantsInRange(EnumWoodVariant.values, startMeta, endMeta);
+        variants = VariantHelper.getVariantsInRange(EnumWoodVariant.VARIANTS, startMeta, endMeta);
         variantProp = PropertyEnum.create("variant", EnumWoodVariant.class, variants);
         blockState = new BlockStateContainer(this, variantProp, CHECK_DECAY, DECAYABLE);
         setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
@@ -58,7 +57,7 @@ public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(AMBlocks.sapling);
+        return Item.getItemFromBlock(AMBlocks.SAPLING);
     }
 
     @Override
@@ -121,7 +120,7 @@ public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
     {
         if (!world.isRemote && stack != null && stack.getItem() instanceof ItemShears)
         {
-            player.addStat(StatList.func_188055_a(this));
+            player.addStat(StatList.getBlockStats(this));
         }
         else
         {

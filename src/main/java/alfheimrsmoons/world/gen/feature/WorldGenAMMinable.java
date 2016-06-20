@@ -12,12 +12,12 @@ public class WorldGenAMMinable extends WorldGenMinable
 {
     public WorldGenAMMinable(EnumOreVariant oreVariant, int blockCount)
     {
-        this(VariantHelper.getDefaultStateWithVariant(AMBlocks.ore, oreVariant), blockCount);
+        this(VariantHelper.getDefaultStateWithVariant(AMBlocks.ORE, oreVariant), blockCount);
     }
 
     public WorldGenAMMinable(IBlockState state, int blockCount)
     {
-        this(state, blockCount, BlockMatcher.forBlock(AMBlocks.shale));
+        this(state, blockCount, BlockMatcher.forBlock(AMBlocks.SHALE));
     }
 
     public WorldGenAMMinable(IBlockState state, int blockCount, Predicate<IBlockState> predicate)

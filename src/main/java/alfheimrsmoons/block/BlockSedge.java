@@ -35,7 +35,7 @@ public class BlockSedge extends BlockTallGrass implements IVariantBlock<EnumSedg
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
         setDefaultState(blockState.getBaseState());
         setHardness(0.0F);
-        setStepSound(SoundType.PLANT);
+        setSoundType(SoundType.PLANT);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
@@ -48,7 +48,7 @@ public class BlockSedge extends BlockTallGrass implements IVariantBlock<EnumSedg
     @Override
     public EnumSedgeVariant[] getVariants()
     {
-        return EnumSedgeVariant.values;
+        return EnumSedgeVariant.VARIANTS;
     }
 
     @Override

@@ -10,7 +10,7 @@ public enum EnumBioluminescenceVariant implements IVariant<EnumBioluminescenceVa
     BLUE("blue"),
     PURPLE("purple");
 
-    public static final EnumBioluminescenceVariant[] values = values();
+    public static final EnumBioluminescenceVariant[] VARIANTS = values();
     private final String name;
 
     EnumBioluminescenceVariant(String name)

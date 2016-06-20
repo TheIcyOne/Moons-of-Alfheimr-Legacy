@@ -9,9 +9,9 @@ public class BlockSedimentGlass extends BlockGlass
 {
     public BlockSedimentGlass()
     {
-        super(Material.glass, false);
+        super(Material.GLASS, false);
         setHardness(0.3F);
-        setStepSound(SoundType.GLASS);
+        setSoundType(SoundType.GLASS);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 }

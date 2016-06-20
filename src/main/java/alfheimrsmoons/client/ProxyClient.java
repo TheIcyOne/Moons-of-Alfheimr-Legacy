@@ -36,15 +36,15 @@ public class ProxyClient extends Proxy
     {
         RenderFactory.registerRenders();
 
-        ModelLoader.setCustomStateMapper(AMBlocks.log2, new CustomStateMapper("log"));
-        ModelLoader.setCustomStateMapper(AMBlocks.leaves, new StateMap.Builder().ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
-        ModelLoader.setCustomStateMapper(AMBlocks.leaves2, new CustomStateMapper("leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE));
+        ModelLoader.setCustomStateMapper(AMBlocks.LOG2, new CustomStateMapper("log"));
+        ModelLoader.setCustomStateMapper(AMBlocks.LEAVES, new StateMap.Builder().ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(AMBlocks.LEAVES2, new CustomStateMapper("leaves", BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE));
     }
 
     @Override
     public void init()
     {
-        registerItemBlockColor(new ColorGrass(), AMBlocks.grassy_soil, AMBlocks.sedge);
+        registerItemBlockColor(new ColorGrass(), AMBlocks.GRASSY_SOIL, AMBlocks.SEDGE);
     }
 
     @Override

@@ -8,13 +8,13 @@ import net.minecraft.block.state.IBlockState;
 
 public enum EnumWoodVariant implements IVariant<EnumWoodVariant>
 {
-    RUNE("rune", MapColor.lightBlueColor),
-    BEECH("beech", MapColor.woodColor),
-    ELM("elm", MapColor.obsidianColor),
-    REDBUD("redbud", MapColor.sandColor),
-    LARCH("larch", MapColor.dirtColor);
+    RUNE("rune", MapColor.LIGHT_BLUE),
+    BEECH("beech", MapColor.WOOD),
+    ELM("elm", MapColor.OBSIDIAN),
+    REDBUD("redbud", MapColor.SAND),
+    LARCH("larch", MapColor.DIRT);
 
-    public static final EnumWoodVariant[] values = values();
+    public static final EnumWoodVariant[] VARIANTS = values();
     private final String name;
     private final MapColor mapColor;
 
@@ -50,9 +50,9 @@ public enum EnumWoodVariant implements IVariant<EnumWoodVariant>
             case BEECH:
             case ELM:
             case REDBUD:
-                return AMBlocks.log;
+                return AMBlocks.LOG;
             case LARCH:
-                return AMBlocks.log2;
+                return AMBlocks.LOG2;
         }
     }
 
@@ -70,9 +70,9 @@ public enum EnumWoodVariant implements IVariant<EnumWoodVariant>
             case BEECH:
             case ELM:
             case REDBUD:
-                return AMBlocks.leaves;
+                return AMBlocks.LEAVES;
             case LARCH:
-                return AMBlocks.leaves2;
+                return AMBlocks.LEAVES2;
         }
     }
 

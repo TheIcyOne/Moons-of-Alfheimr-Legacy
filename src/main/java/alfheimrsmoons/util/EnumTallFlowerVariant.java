@@ -8,7 +8,7 @@ public enum EnumTallFlowerVariant implements IVariant<EnumTallFlowerVariant>
     BLUEBELL("bluebell"),
     DINANTHUS("dinanthus");
 
-    public static final EnumTallFlowerVariant[] values = values();
+    public static final EnumTallFlowerVariant[] VARIANTS = values();
     private final String name;
 
     EnumTallFlowerVariant(String name)

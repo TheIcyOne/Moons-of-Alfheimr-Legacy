@@ -38,7 +38,7 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY, STAGE);
         setDefaultState(blockState.getBaseState().withProperty(STAGE, 0));
         setHardness(0.0F);
-        setStepSound(SoundType.PLANT);
+        setSoundType(SoundType.PLANT);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
@@ -115,7 +115,7 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
             }
         }
 
-        IBlockState air = Blocks.air.getDefaultState();
+        IBlockState air = Blocks.AIR.getDefaultState();
 
         if (isMegaTree)
         {

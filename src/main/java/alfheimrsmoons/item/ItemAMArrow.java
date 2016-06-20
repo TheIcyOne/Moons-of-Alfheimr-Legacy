@@ -16,7 +16,7 @@ public class ItemAMArrow extends ItemArrow
     }
 
     @Override
-    public EntityAMArrow makeTippedArrow(World world, ItemStack stack, EntityLivingBase shooter)
+    public EntityAMArrow createArrow(World world, ItemStack stack, EntityLivingBase shooter)
     {
         EntityAMArrow arrow = new EntityAMArrow(world, shooter);
         arrow.setArrowStackGetter(new Function<EntityAMArrow, ItemStack>()

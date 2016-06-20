@@ -1,6 +1,7 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.EnumTallFlowerVariant;
 import alfheimrsmoons.util.IVariantBlock;
 import alfheimrsmoons.util.VariantHelper;
@@ -59,14 +60,14 @@ public class BlockTallFlower extends BlockDoublePlant implements IVariantBlock<E
     @Override
     public EnumTallFlowerVariant[] getVariants()
     {
-        return EnumTallFlowerVariant.values;
+        return EnumTallFlowerVariant.VARIANTS;
     }
 
     @Override
-    protected boolean func_185514_i(IBlockState state)
+    protected boolean canSustainBush(IBlockState state)
     {
         Block block = state.getBlock();
-        return block instanceof BlockSoil || block instanceof BlockGrassySoil || super.func_185514_i(state);
+        return block == AMBlocks.SOIL || block == AMBlocks.GRASSY_SOIL || super.canSustainBush(state);
     }
 
     @Override
@@ -156,7 +157,7 @@ public class BlockTallFlower extends BlockDoublePlant implements IVariantBlock<E
         }
         else if (world.getBlockState(pos.up()).getBlock() == this)
         {
-            world.setBlockState(pos.up(), Blocks.air.getDefaultState(), 2);
+            world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
         }
 
         super.onBlockHarvested(world, pos, state, player);
@@ -172,7 +173,7 @@ public class BlockTallFlower extends BlockDoublePlant implements IVariantBlock<E
         }
         else
         {
-            player.addStat(StatList.func_188055_a(this));
+            player.addStat(StatList.getBlockStats(this));
             return true;
         }
     }

@@ -25,12 +25,12 @@ public class BlockOreBlock extends Block implements IVariantBlock<EnumOreVariant
 
     public BlockOreBlock()
     {
-        super(Material.iron);
+        super(Material.IRON);
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
         setDefaultState(blockState.getBaseState());
         setHardness(5.0F);
         setResistance(10.0F);
-        setStepSound(SoundType.METAL);
+        setSoundType(SoundType.METAL);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         for (int meta = 0; meta < getVariants().length; meta++)
         {
@@ -47,7 +47,7 @@ public class BlockOreBlock extends Block implements IVariantBlock<EnumOreVariant
     @Override
     public EnumOreVariant[] getVariants()
     {
-        return EnumOreVariant.values;
+        return EnumOreVariant.VARIANTS;
     }
 
     @Override

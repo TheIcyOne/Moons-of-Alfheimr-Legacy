@@ -6,7 +6,7 @@ public enum EnumShaleVariant implements IVariant<EnumShaleVariant>
     MOSSY("mossy"),
     SMOOTH("smooth");
 
-    public static final EnumShaleVariant[] values = values();
+    public static final EnumShaleVariant[] VARIANTS = values();
     private final String name;
 
     EnumShaleVariant(String name)

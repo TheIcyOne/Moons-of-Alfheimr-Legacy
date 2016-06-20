@@ -39,7 +39,7 @@ public class GenLayerAMRiver extends GenLayerRiver
                 }
                 else
                 {
-                    aint1[j1 + i1 * areaWidth] = BiomeGenBase.getIdForBiome(AMBiomes.river);
+                    aint1[j1 + i1 * areaWidth] = BiomeGenBase.getIdForBiome(AMBiomes.RIVER);
                 }
             }
         }

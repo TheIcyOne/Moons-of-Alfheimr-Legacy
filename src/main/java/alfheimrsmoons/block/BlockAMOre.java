@@ -33,7 +33,7 @@ public class BlockAMOre extends BlockOre implements IVariantBlock<EnumOreVariant
         setDefaultState(blockState.getBaseState());
         setHardness(3.0F);
         setResistance(5.0F);
-        setStepSound(SoundType.STONE);
+        setSoundType(SoundType.STONE);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         for (int meta = 0; meta < getVariants().length; meta++)
         {
@@ -50,7 +50,7 @@ public class BlockAMOre extends BlockOre implements IVariantBlock<EnumOreVariant
     @Override
     public EnumOreVariant[] getVariants()
     {
-        return EnumOreVariant.values;
+        return EnumOreVariant.VARIANTS;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BlockAMOre extends BlockOre implements IVariantBlock<EnumOreVariant
         {
             case NITRO:
             case SYLVANITE:
-                return AMItems.ore_drop;
+                return AMItems.ORE_DROP;
             default:
                 return Item.getItemFromBlock(this);
         }

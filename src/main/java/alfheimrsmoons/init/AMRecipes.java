@@ -2,7 +2,6 @@ package alfheimrsmoons.init;
 
 import alfheimrsmoons.AMFuelHandler;
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.util.EnumOreVariant;
 import alfheimrsmoons.util.EnumShaleVariant;
 import alfheimrsmoons.util.EnumWoodVariant;
@@ -33,40 +32,40 @@ public class AMRecipes
         RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapedore", AMShapedOreRecipe.class, Category.SHAPED, "after:minecraft:shaped before:forge:shapedore");
         RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapelessore", AMShapelessOreRecipe.class, Category.SHAPELESS, "after:minecraft:shapeless before:forge:shapelessore");
 
-        AMItems.timber_tools.addRecipes(new ItemStack(AMBlocks.planks, 1, OreDictionary.WILDCARD_VALUE));
-        AMItems.shale_tools.addRecipes(VariantHelper.createStack(AMBlocks.shale, EnumShaleVariant.NORMAL));
-        AMItems.tektite_tools.addRecipes(VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.TEKTITE));
-        AMItems.sylvanite_tools.addRecipes(VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.SYLVANITE));
+        AMItems.TIMBER_TOOLS.addRecipes(new ItemStack(AMBlocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE));
+        AMItems.SHALE_TOOLS.addRecipes(VariantHelper.createStack(AMBlocks.SHALE, EnumShaleVariant.NORMAL));
+        AMItems.TEKTITE_TOOLS.addRecipes(VariantHelper.createStack(AMItems.ORE_DROP, EnumOreVariant.TEKTITE));
+        AMItems.SYLVANITE_TOOLS.addRecipes(VariantHelper.createStack(AMItems.ORE_DROP, EnumOreVariant.SYLVANITE));
 
-        addShapedRecipe(AMBlocks.rune_bookshelf, "###", "XXX", "###", '#', VariantHelper.createStack(EnumWoodVariant.RUNE.getLogBlock(), EnumWoodVariant.RUNE), 'X', Items.book);
-        addShapedRecipe(new ItemStack(AMBlocks.nitro_torch, 4), "X", "#", 'X', VariantHelper.createStack(AMItems.ore_drop, EnumOreVariant.NITRO), '#', AMItems.branch);
+        addShapedRecipe(AMBlocks.RUNE_BOOKSHELF, "###", "XXX", "###", '#', VariantHelper.createStack(EnumWoodVariant.RUNE.getLogBlock(), EnumWoodVariant.RUNE), 'X', Items.BOOK);
+        addShapedRecipe(new ItemStack(AMBlocks.NITRO_TORCH, 4), "X", "#", 'X', VariantHelper.createStack(AMItems.ORE_DROP, EnumOreVariant.NITRO), '#', AMItems.BRANCH);
 
-        for (int meta = 0; meta < EnumOreVariant.values.length; meta++)
+        for (int meta = 0; meta < EnumOreVariant.VARIANTS.length; meta++)
         {
-            addShapedRecipe(AMBlocks.ore_block, "###", "###", "###", '#', AMItems.ore_drop);
+            addShapedRecipe(AMBlocks.ORE_BLOCK, "###", "###", "###", '#', AMItems.ORE_DROP);
         }
 
-        for (EnumWoodVariant variant : EnumWoodVariant.values)
+        for (EnumWoodVariant variant : EnumWoodVariant.VARIANTS)
         {
-            addShapelessRecipe(VariantHelper.createStack(AMBlocks.planks, 4, variant), VariantHelper.createStack(variant.getLogBlock(), variant));
+            addShapelessRecipe(VariantHelper.createStack(AMBlocks.PLANKS, 4, variant), VariantHelper.createStack(variant.getLogBlock(), variant));
         }
     }
 
     private static void addSmeltingRecipes()
     {
-        addSmelting(AMBlocks.sediment, AMBlocks.sediment_glass, 0.1F);
+        addSmelting(AMBlocks.SEDIMENT, AMBlocks.SEDIMENT_GLASS, 0.1F);
 
-        for (EnumOreVariant variant : EnumOreVariant.values)
+        for (EnumOreVariant variant : EnumOreVariant.VARIANTS)
         {
-            GameRegistry.addSmelting(VariantHelper.createStack(AMBlocks.ore, variant), VariantHelper.createStack(AMItems.ore_drop, variant), variant.getSmeltingXP());
+            GameRegistry.addSmelting(VariantHelper.createStack(AMBlocks.ORE, variant), VariantHelper.createStack(AMItems.ORE_DROP, variant), variant.getSmeltingXP());
         }
     }
 
     private static void setFuelBurnTimes()
     {
         AMFuelHandler fuelHandler = new AMFuelHandler();
-        fuelHandler.setBurnTime(AMItems.branch, 100);
-        fuelHandler.setBurnTime(AMBlocks.sapling, 100);
+        fuelHandler.setBurnTime(AMItems.BRANCH, 100);
+        fuelHandler.setBurnTime(AMBlocks.SAPLING, 100);
         GameRegistry.registerFuelHandler(fuelHandler);
     }
 

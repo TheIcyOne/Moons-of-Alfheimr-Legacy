@@ -13,7 +13,7 @@ public class BlockRuneBookshelf extends BlockBookshelf
     public BlockRuneBookshelf()
     {
         setHardness(1.5F);
-        setStepSound(SoundType.WOOD);
+        setSoundType(SoundType.WOOD);
         setHarvestLevel("axe", 0);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }

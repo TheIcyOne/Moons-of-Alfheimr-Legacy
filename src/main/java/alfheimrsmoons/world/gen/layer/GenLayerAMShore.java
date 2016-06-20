@@ -27,7 +27,7 @@ public class GenLayerAMShore extends GenLayerShore
                 int biomeID = aint[j + 1 + (i + 1) * (areaWidth + 2)];
                 BiomeGenBase biome = BiomeGenBase.getBiome(biomeID);
 
-                if (!isBiomeOceanic(biomeID) && biomeID != BiomeGenBase.getIdForBiome(AMBiomes.river))
+                if (!isBiomeOceanic(biomeID) && biomeID != BiomeGenBase.getIdForBiome(AMBiomes.RIVER))
                 {
                     int l1 = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                     int k2 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
@@ -40,7 +40,7 @@ public class GenLayerAMShore extends GenLayerShore
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = BiomeGenBase.getIdForBiome(AMBiomes.beach);
+                        aint1[j + i * areaWidth] = BiomeGenBase.getIdForBiome(AMBiomes.BEACH);
                     }
                 }
                 else

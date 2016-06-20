@@ -14,13 +14,13 @@ import net.minecraft.world.gen.MapGenCaves;
 public class MapGenAMCaves extends MapGenCaves
 {
     // TODO add Alfheimr equivalents: Blocks.hardened_clay, Blocks.stained_hardened_clay, Blocks.sandstone, Blocks.red_sandstone, Blocks.mycelium
-    private static final ImmutableSet<Block> REPLACEABLE_BLOCKS = ImmutableSet.of(AMBlocks.shale, AMBlocks.soil, AMBlocks.grassy_soil, Blocks.snow_layer);
+    private static final ImmutableSet<Block> REPLACEABLE_BLOCKS = ImmutableSet.of(AMBlocks.SHALE, AMBlocks.SOIL, AMBlocks.GRASSY_SOIL, Blocks.SNOW_LAYER);
 
     @Override
-    protected boolean func_175793_a(IBlockState state, IBlockState up)//canReplaceBlock(state, up)
+    protected boolean canReplaceBlock(IBlockState state, IBlockState up)
     {
         Block block = state.getBlock();
-        return REPLACEABLE_BLOCKS.contains(block) || ((block instanceof BlockSand || block instanceof BlockGravel) && up.getMaterial() != Material.water);
+        return REPLACEABLE_BLOCKS.contains(block) || ((block instanceof BlockSand || block instanceof BlockGravel) && up.getMaterial() != Material.WATER);
     }
 
     @Override

@@ -2,7 +2,6 @@ package alfheimrsmoons.world.gen.feature;
 
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.EnumTallFlowerVariant;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -27,9 +26,9 @@ public class WorldGenTallFlower extends WorldGenerator
         {
             BlockPos flowerPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 254) && AMBlocks.tall_flower.canPlaceBlockAt(world, flowerPos))
+            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 254) && AMBlocks.TALL_FLOWER.canPlaceBlockAt(world, flowerPos))
             {
-                AMBlocks.tall_flower.placeAt(world, flowerPos, variant, 2);
+                AMBlocks.TALL_FLOWER.placeAt(world, flowerPos, variant, 2);
                 generated = true;
             }
         }

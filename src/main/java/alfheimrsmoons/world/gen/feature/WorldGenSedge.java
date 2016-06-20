@@ -1,6 +1,5 @@
 package alfheimrsmoons.world.gen.feature;
 
-import alfheimrsmoons.block.BlockSedge;
 import alfheimrsmoons.util.EnumSedgeVariant;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.VariantHelper;
@@ -29,9 +28,9 @@ public class WorldGenSedge extends WorldGenerator
         {
             BlockPos blockPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
             EnumSedgeVariant sedgeVariant = rand.nextBoolean() ? EnumSedgeVariant.SHORT : EnumSedgeVariant.NORMAL;
-            IBlockState sedgeState = VariantHelper.getDefaultStateWithVariant(AMBlocks.sedge, sedgeVariant);
+            IBlockState sedgeState = VariantHelper.getDefaultStateWithVariant(AMBlocks.SEDGE, sedgeVariant);
 
-            if (world.isAirBlock(blockPos) && AMBlocks.sedge.canBlockStay(world, blockPos, sedgeState))
+            if (world.isAirBlock(blockPos) && AMBlocks.SEDGE.canBlockStay(world, blockPos, sedgeState))
             {
                 world.setBlockState(blockPos, sedgeState, 2);
             }

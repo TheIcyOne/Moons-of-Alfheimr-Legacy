@@ -1,6 +1,7 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.init.AMItems;
 import alfheimrsmoons.util.EnumDeadPlantVariant;
 import alfheimrsmoons.util.IVariantBlock;
@@ -33,7 +34,7 @@ public class BlockDeadPlant extends BlockDeadBush implements IVariantBlock<EnumD
         blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
         setDefaultState(blockState.getBaseState());
         setHardness(0.0F);
-        setStepSound(SoundType.PLANT);
+        setSoundType(SoundType.PLANT);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
@@ -46,7 +47,7 @@ public class BlockDeadPlant extends BlockDeadBush implements IVariantBlock<EnumD
     @Override
     public EnumDeadPlantVariant[] getVariants()
     {
-        return EnumDeadPlantVariant.values;
+        return EnumDeadPlantVariant.VARIANTS;
     }
 
     @Override
@@ -69,10 +70,10 @@ public class BlockDeadPlant extends BlockDeadBush implements IVariantBlock<EnumD
     }
 
     @Override
-    protected boolean func_185514_i(IBlockState state)
+    protected boolean canSustainBush(IBlockState state)
     {
         Block block = state.getBlock();
-        return block instanceof BlockGrassySoil || block instanceof BlockSoil || super.func_185514_i(state);
+        return block == AMBlocks.GRASSY_SOIL || block == AMBlocks.SOIL || super.canSustainBush(state);
     }
 
     @Override
@@ -84,7 +85,7 @@ public class BlockDeadPlant extends BlockDeadBush implements IVariantBlock<EnumD
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return state.getValue(VARIANT_PROPERTY) == EnumDeadPlantVariant.ELM_SAPLING ? AMItems.branch : null;
+        return state.getValue(VARIANT_PROPERTY) == EnumDeadPlantVariant.ELM_SAPLING ? AMItems.BRANCH : null;
     }
 
     @Override

@@ -54,7 +54,7 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
     protected void entityInit()
     {
         super.entityInit();
-        dataWatcher.register(CLIMBING, (byte) 0);
+        dataManager.register(CLIMBING, (byte) 0);
     }
 
     @Override
@@ -103,18 +103,18 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
         double d3 = (double) MathHelper.sqrt_double(d0 * d0 + d2 * d2);
         arrow.setThrowableHeading(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - worldObj.getDifficulty().getDifficultyId() * 4));
         arrow.setDamage((double) (p_82196_2_ * 2.0F) + rand.nextGaussian() * 0.25D + (double) ((float) worldObj.getDifficulty().getDifficultyId() * 0.11F));
-        playSound(SoundEvents.entity_skeleton_shoot, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
+        playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
         worldObj.spawnEntityInWorld(arrow);
     }
 
     public boolean isBesideClimbableBlock()
     {
-        return (dataWatcher.get(CLIMBING) & 1) != 0;
+        return (dataManager.get(CLIMBING) & 1) != 0;
     }
 
     public void setBesideClimbableBlock(boolean climbing)
     {
-        byte value = dataWatcher.get(CLIMBING);
+        byte value = dataManager.get(CLIMBING);
 
         if (climbing)
         {
@@ -125,7 +125,7 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
             value = (byte) (value & -2);
         }
 
-        dataWatcher.set(CLIMBING, value);
+        dataManager.set(CLIMBING, value);
     }
 
     public static class AINitroWraithAttack extends EntityAIAttackRanged

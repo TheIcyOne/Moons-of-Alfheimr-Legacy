@@ -1,14 +1,10 @@
 package alfheimrsmoons.world.gen.feature;
 
-import alfheimrsmoons.block.BlockAMLeaves;
-import alfheimrsmoons.block.BlockAMLog;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.EnumWoodVariant;
-import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -37,11 +33,11 @@ public class WorldGenAMBigTree extends WorldGenBigTree
     {
         for (int i = 0; i < leafDistanceLimit; ++i)
         {
-            func_181631_a(pos.up(i), leafSize(i), leavesState.withProperty(BlockLeaves.CHECK_DECAY, false));
+            crosSection(pos.up(i), leafSize(i), leavesState.withProperty(BlockLeaves.CHECK_DECAY, false));
         }
     }
 
-    public void generateBranch(BlockPos pos1, BlockPos pos2, IBlockState woodState)
+    public void limb(BlockPos pos1, BlockPos pos2, IBlockState woodState)
     {
         BlockPos blockpos = pos2.subtract(pos1);
         int i = getGreatestDistance(blockpos);
@@ -52,7 +48,7 @@ public class WorldGenAMBigTree extends WorldGenBigTree
         for (int j = 0; j <= i; ++j)
         {
             BlockPos blockpos1 = pos1.add((double) (0.5F + (float) j * f), (double) (0.5F + (float) j * f1), (double) (0.5F + (float) j * f2));
-            BlockLog.EnumAxis blocklog$enumaxis = func_175938_b(pos1, blockpos1);
+            BlockLog.EnumAxis blocklog$enumaxis = getLogAxis(pos1, blockpos1);
             setBlockAndNotifyAdequately(world, blockpos1, woodState.withProperty(BlockLog.LOG_AXIS, blocklog$enumaxis));
         }
     }
@@ -63,27 +59,27 @@ public class WorldGenAMBigTree extends WorldGenBigTree
         BlockPos pos = basePos;
         BlockPos topPos = basePos.up(height);
         IBlockState state = woodState;
-        generateBranch(pos, topPos, state);
+        limb(pos, topPos, state);
 
         if (trunkSize == 2)
         {
-            generateBranch(pos.east(), topPos.east(), state);
-            generateBranch(pos.east().south(), topPos.east().south(), state);
-            generateBranch(pos.south(), topPos.south(), state);
+            limb(pos.east(), topPos.east(), state);
+            limb(pos.east().south(), topPos.east().south(), state);
+            limb(pos.south(), topPos.south(), state);
         }
     }
 
     @Override
     public void generateLeafNodeBases()
     {
-        for (WorldGenBigTree.FoliageCoordinates coords : field_175948_j)
+        for (WorldGenBigTree.FoliageCoordinates coords : foliageCoords)
         {
-            int i = coords.func_177999_q();
+            int i = coords.getBranchBase();
             BlockPos pos = new BlockPos(basePos.getX(), i, basePos.getZ());
 
             if (!pos.equals(coords) && leafNodeNeedsBase(i - basePos.getY()))
             {
-                generateBranch(pos, coords, woodState);
+                limb(pos, coords, woodState);
             }
         }
     }
@@ -93,7 +89,7 @@ public class WorldGenAMBigTree extends WorldGenBigTree
     {
         BlockPos down = basePos.down();
         IBlockState state = world.getBlockState(down);
-        boolean isSoil = state.getBlock().canSustainPlant(state, world, down, EnumFacing.UP, AMBlocks.sapling);
+        boolean isSoil = state.getBlock().canSustainPlant(state, world, down, EnumFacing.UP, AMBlocks.SAPLING);
 
         if (!isSoil)
         {
@@ -122,9 +118,9 @@ public class WorldGenAMBigTree extends WorldGenBigTree
     @Override
     protected void setDirtAt(World world, BlockPos pos)
     {
-        if (world.getBlockState(pos).getBlock() != AMBlocks.soil)
+        if (world.getBlockState(pos).getBlock() != AMBlocks.SOIL)
         {
-            setBlockAndNotifyAdequately(world, pos, AMBlocks.soil.getDefaultState());
+            setBlockAndNotifyAdequately(world, pos, AMBlocks.SOIL.getDefaultState());
         }
     }
 

@@ -31,7 +31,7 @@ public class BlockSoil extends BlockDirt
         blockState = new BlockStateContainer(this);
         setDefaultState(blockState.getBaseState());
         setHardness(0.5F);
-        setStepSound(SoundType.GROUND);
+        setSoundType(SoundType.GROUND);
         setHarvestLevel("shovel", 0);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         EntityEnderman.setCarriable(this, true);
@@ -50,7 +50,7 @@ public class BlockSoil extends BlockDirt
             case Beach:
                 for (EnumFacing horizontal : EnumFacing.HORIZONTALS)
                 {
-                    if (world.getBlockState(pos.offset(horizontal)).getMaterial() == Material.water)
+                    if (world.getBlockState(pos.offset(horizontal)).getMaterial() == Material.WATER)
                     {
                         return true;
                     }
@@ -63,7 +63,7 @@ public class BlockSoil extends BlockDirt
     @Override
     public MapColor getMapColor(IBlockState state)
     {
-        return MapColor.dirtColor;
+        return MapColor.DIRT;
     }
 
     @Override

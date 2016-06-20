@@ -13,10 +13,10 @@ public class BlockMeteorite extends Block
 {
     public BlockMeteorite()
     {
-        super(Material.rock, MapColor.obsidianColor);
+        super(Material.ROCK, MapColor.OBSIDIAN);
         setHardness(1.5F);
         setResistance(10.0F);
-        setStepSound(SoundType.STONE);
+        setSoundType(SoundType.STONE);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 

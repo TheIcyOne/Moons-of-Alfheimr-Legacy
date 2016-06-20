@@ -24,7 +24,7 @@ public class BlockSediment extends BlockSand
         blockState = new BlockStateContainer(this);
         setDefaultState(blockState.getBaseState());
         setHardness(0.5F);
-        setStepSound(SoundType.SAND);
+        setSoundType(SoundType.SAND);
         setHarvestLevel("shovel", 0);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         EntityEnderman.setCarriable(this, true);
@@ -46,7 +46,7 @@ public class BlockSediment extends BlockSand
     @Override
     public MapColor getMapColor(IBlockState state)
     {
-        return MapColor.sandColor;
+        return MapColor.SAND;
     }
 
     @Override
