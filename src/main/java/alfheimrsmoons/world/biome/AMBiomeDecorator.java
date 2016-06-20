@@ -61,7 +61,7 @@ public class AMBiomeDecorator extends BiomeDecorator
             sedimentGen.generate(world, random, world.getTopSolidOrLiquidBlock(chunkPos.add(xOffset, 0, yOffset)));
         }
 
-        if (alfheimrBiome.hasTreeGen())
+        if (alfheimrBiome.hasTrees())
         {
             int trees = treesPerChunk;
 

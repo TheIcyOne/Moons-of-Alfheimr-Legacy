@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class BiomeGenWoods extends BiomeGenAM
 {
-    private static final EnumFlowerVariant[] FLOWER_VARIANTS =
+    public static final EnumFlowerVariant[] FLOWER_VARIANTS =
             {
                     EnumFlowerVariant.PHILODENDRON,
                     EnumFlowerVariant.CARNATION,
@@ -17,7 +17,7 @@ public class BiomeGenWoods extends BiomeGenAM
                     EnumFlowerVariant.STARSINGER
             };
 
-    private static final EnumTallFlowerVariant[] TALL_FLOWER_VARIANTS =
+    public static final EnumTallFlowerVariant[] TALL_FLOWER_VARIANTS =
             {
                     EnumTallFlowerVariant.DINANTHUS,
                     EnumTallFlowerVariant.COLOMBINE

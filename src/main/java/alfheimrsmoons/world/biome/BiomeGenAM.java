@@ -59,7 +59,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
      *
      * @return true if the biome generates trees
      */
-    public boolean hasTreeGen()
+    public boolean hasTrees()
     {
         return true;
     }
