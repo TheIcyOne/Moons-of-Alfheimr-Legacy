@@ -16,6 +16,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class AMItems
 {
     public static final Item branch = new AMItem().setUnlocalizedName("alfheimrsmoons.branch").setRegistryName("branch").setFull3D();
+    public static final Item twine = new AMItem().setUnlocalizedName("alfheimrsmoons.twine").setRegistryName("twine");
     public static final ItemOreDrop ore_drop = (ItemOreDrop) new ItemOreDrop().setUnlocalizedName("alfheimrsmoons.ore_drop").setRegistryName("ore_drop");
     public static final ItemBioluminescence bioluminescence = (ItemBioluminescence) new ItemBioluminescence().setUnlocalizedName("alfheimrsmoons.bioluminescence").setRegistryName("bioluminescence");
     public static final Item stardust = new AMItem().setUnlocalizedName("alfheimrsmoons.stardust").setRegistryName("stardust");
@@ -30,6 +31,7 @@ public class AMItems
     public static void registerItems()
     {
         AlfheimrsMoons.proxy.registerItem(branch);
+        AlfheimrsMoons.proxy.registerItem(twine);
         AlfheimrsMoons.proxy.registerItemWithVariants(ore_drop, "_ore_drop");
         AlfheimrsMoons.proxy.registerItemWithVariants(bioluminescence, "bioluminescence_");
         AlfheimrsMoons.proxy.registerItem(stardust);
