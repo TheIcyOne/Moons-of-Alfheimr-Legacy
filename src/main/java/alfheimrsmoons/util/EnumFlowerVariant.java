@@ -8,6 +8,7 @@ public enum EnumFlowerVariant implements IVariant<EnumFlowerVariant>
     WARM_VIOLET("warm_violet"),
     STARSINGER("starsinger"),
     PHILODENDRON("philodendron"),
+    KNOTLEAF("knotleaf"),
     FURCREA("furcrea", EnumTallFlowerVariant.FURCREA),
     BLUEBELL("bluebell", EnumTallFlowerVariant.BLUEBELL),
     PURPLE_PACIFIST("purple_pacifist"),
