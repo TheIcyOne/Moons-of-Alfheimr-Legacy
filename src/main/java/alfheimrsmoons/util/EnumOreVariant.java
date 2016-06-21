@@ -4,8 +4,8 @@ import net.minecraft.block.material.MapColor;
 
 public enum EnumOreVariant implements IVariant<EnumOreVariant>
 {
-    LOREIUM("loreium", MapColor.DIAMOND, 0, 0.1F),
-    NITRO("nitro", MapColor.PURPLE, 0, 0.1F),
+    LOREIUM("loreium", MapColor.DIAMOND, 1, 0.1F),
+    NITRO("nitro", MapColor.PURPLE, 1, 0.1F),
     TEKTITE("tektite", MapColor.PURPLE, 2, 0.7F),
     SYLVANITE("sylvanite", MapColor.EMERALD, 3, 1.0F);
 

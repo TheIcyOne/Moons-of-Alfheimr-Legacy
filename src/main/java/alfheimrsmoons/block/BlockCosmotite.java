@@ -15,5 +15,6 @@ public class BlockCosmotite extends Block
         setHardness(1.5F);
         setResistance(10.0F);
         setSoundType(SoundType.STONE);
+        setHarvestLevel("pickaxe", 1);
     }
 }

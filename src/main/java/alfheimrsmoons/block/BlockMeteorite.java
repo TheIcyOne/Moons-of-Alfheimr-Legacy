@@ -18,6 +18,7 @@ public class BlockMeteorite extends Block
         setResistance(10.0F);
         setSoundType(SoundType.STONE);
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
+        setHarvestLevel("pickaxe", 1);
     }
 
     @Override
