@@ -1,6 +1,6 @@
 package alfheimrsmoons.world.gen.layer;
 
-import alfheimrsmoons.init.AMBiomes;
+import alfheimrsmoons.world.biome.AMBiomeManager;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -23,7 +23,7 @@ public class GenLayerAMBiome extends GenLayer
 
         for (BiomeType type : BiomeType.values())
         {
-            biomes.put(type, AMBiomes.getBiomes(type));
+            biomes.put(type, AMBiomeManager.getBiomes(type));
         }
     }
 
@@ -61,9 +61,6 @@ public class GenLayerAMBiome extends GenLayer
                             break;
                         case 3:
                             type = BiomeType.COOL;
-                            break;
-                        case 4:
-                            type = BiomeType.ICY;
                             break;
                     }
 

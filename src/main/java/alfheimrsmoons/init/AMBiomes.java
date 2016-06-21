@@ -5,20 +5,15 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.BiomeProperties;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.BiomeManager.BiomeEntry;
-import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 public class AMBiomes
 {
-    private static final Map<BiomeType, List<BiomeEntry>> BIOMES;
     private static final Map<BiomeGenBase, BiomeGenBase> BIOMES_HILLS;
 
     public static final BiomeGenBase OCEAN = new BiomeGenAMOcean(new BiomeProperties("Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F)).setRegistryName("ocean");
@@ -45,8 +40,6 @@ public class AMBiomes
         BIOMES_HILLS = new HashMap<BiomeGenBase, BiomeGenBase>();
         BIOMES_HILLS.put(OCEAN, DEEP_OCEAN);
         BIOMES_HILLS.put(WOODS, WOODS_HILLS);
-
-        BIOMES = setupBiomes();
     }
 
     public static void registerBiomes()
@@ -68,38 +61,6 @@ public class AMBiomes
     {
         GameRegistry.register(biome);
         BiomeDictionary.registerBiomeType(biome, dictTypes);
-    }
-
-    private static HashMap<BiomeType, List<BiomeEntry>> setupBiomes()
-    {
-        HashMap<BiomeType, List<BiomeEntry>> biomes = new HashMap<BiomeType, List<BiomeEntry>>();
-
-        List<BiomeEntry> list = new ArrayList<BiomeEntry>();
-        list.add(new BiomeEntry(MEADOW, 10));
-        list.add(new BiomeEntry(WOODS, 10));
-        list.add(new BiomeEntry(RUNEWOOD_FOREST, 10));//TODO generate only at spawn
-        biomes.put(BiomeType.WARM, list);
-
-        list = new ArrayList<BiomeEntry>();
-        list.add(new BiomeEntry(MEADOW, 10));
-        list.add(new BiomeEntry(WOODS, 10));
-        biomes.put(BiomeType.COOL, list);
-
-        list = new ArrayList<BiomeEntry>();
-        list.add(new BiomeEntry(WOODS, 10));//TODO delete placeholder
-        biomes.put(BiomeType.ICY, list);
-
-        list = new ArrayList<BiomeEntry>();
-        list.add(new BiomeEntry(MEADOW, 10));
-        list.add(new BiomeEntry(VELD, 30));
-        biomes.put(BiomeType.DESERT, list);
-
-        return biomes;
-    }
-
-    public static List<BiomeEntry> getBiomes(BiomeType type)
-    {
-        return BIOMES.get(type);
     }
 
     public static BiomeGenBase getHills(BiomeGenBase biome)
