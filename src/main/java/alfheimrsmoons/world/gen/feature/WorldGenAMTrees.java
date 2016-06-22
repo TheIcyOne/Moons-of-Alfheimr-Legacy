@@ -41,180 +41,188 @@ public class WorldGenAMTrees extends WorldGenTrees
     @Override
     public boolean generate(World world, Random rand, BlockPos position)
     {
-        int i = rand.nextInt(3) + minTreeHeight;
-        boolean flag = true;
+        int height = rand.nextInt(3) + minTreeHeight;
+        int x = position.getX();
+        int y = position.getY();
+        int z = position.getZ();
+        int maxY = y + height;
 
-        if (position.getY() >= 1 && position.getY() + i + 1 <= world.getHeight())
-        {
-            for (int j = position.getY(); j <= position.getY() + 1 + i; ++j)
-            {
-                int k = 1;
-
-                if (j == position.getY())
-                {
-                    k = 0;
-                }
-
-                if (j >= position.getY() + 1 + i - 2)
-                {
-                    k = 2;
-                }
-
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-
-                for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
-                {
-                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
-                    {
-                        if (j >= 0 && j < world.getHeight())
-                        {
-                            if (!isReplaceable(world, blockpos$mutableblockpos.setPos(l, j, i1)))
-                            {
-                                flag = false;
-                            }
-                        }
-                        else
-                        {
-                            flag = false;
-                        }
-                    }
-                }
-            }
-
-            if (!flag)
-            {
-                return false;
-            }
-            else
-            {
-                IBlockState state = world.getBlockState(position.down());
-
-                if (state.getBlock().canSustainPlant(state, world, position.down(), EnumFacing.UP, AMBlocks.SAPLING) && position.getY() < world.getHeight() - i - 1)
-                {
-                    setDirtAt(world, position.down());
-                    int k2 = 3;
-                    int l2 = 0;
-
-                    for (int i3 = position.getY() - k2 + i; i3 <= position.getY() + i; ++i3)
-                    {
-                        int i4 = i3 - (position.getY() + i);
-                        int j1 = l2 + 1 - i4 / 2;
-
-                        for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; ++k1)
-                        {
-                            int l1 = k1 - position.getX();
-
-                            for (int i2 = position.getZ() - j1; i2 <= position.getZ() + j1; ++i2)
-                            {
-                                int j2 = i2 - position.getZ();
-
-                                if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
-                                {
-                                    BlockPos blockpos = new BlockPos(k1, i3, i2);
-                                    state = world.getBlockState(blockpos);
-
-                                    if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getMaterial() == Material.VINE)
-                                    {
-                                        setBlockAndNotifyAdequately(world, blockpos, metaLeaves);
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    for (int j3 = 0; j3 < i; ++j3)
-                    {
-                        BlockPos upN = position.up(j3);
-                        state = world.getBlockState(upN);
-
-                        if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() == Material.VINE)
-                        {
-                            setBlockAndNotifyAdequately(world, position.up(j3), metaWood);
-
-                            if (vinesGrow && j3 > 0)
-                            {
-                                if (rand.nextInt(3) > 0 && world.isAirBlock(position.add(-1, j3, 0)))
-                                {
-                                    addVine(world, position.add(-1, j3, 0), BlockVine.EAST);
-                                }
-
-                                if (rand.nextInt(3) > 0 && world.isAirBlock(position.add(1, j3, 0)))
-                                {
-                                    addVine(world, position.add(1, j3, 0), BlockVine.WEST);
-                                }
-
-                                if (rand.nextInt(3) > 0 && world.isAirBlock(position.add(0, j3, -1)))
-                                {
-                                    addVine(world, position.add(0, j3, -1), BlockVine.SOUTH);
-                                }
-
-                                if (rand.nextInt(3) > 0 && world.isAirBlock(position.add(0, j3, 1)))
-                                {
-                                    addVine(world, position.add(0, j3, 1), BlockVine.NORTH);
-                                }
-                            }
-                        }
-                    }
-
-                    if (vinesGrow)
-                    {
-                        for (int k3 = position.getY() - 3 + i; k3 <= position.getY() + i; ++k3)
-                        {
-                            int j4 = k3 - (position.getY() + i);
-                            int k4 = 2 - j4 / 2;
-                            BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
-
-                            for (int l4 = position.getX() - k4; l4 <= position.getX() + k4; ++l4)
-                            {
-                                for (int i5 = position.getZ() - k4; i5 <= position.getZ() + k4; ++i5)
-                                {
-                                    blockpos$mutableblockpos1.setPos(l4, k3, i5);
-
-                                    state = world.getBlockState(blockpos$mutableblockpos1);
-                                    if (state.getBlock().isLeaves(state, world, blockpos$mutableblockpos1))
-                                    {
-                                        BlockPos blockpos2 = blockpos$mutableblockpos1.west();
-                                        BlockPos blockpos3 = blockpos$mutableblockpos1.east();
-                                        BlockPos blockpos4 = blockpos$mutableblockpos1.north();
-                                        BlockPos blockpos1 = blockpos$mutableblockpos1.south();
-
-                                        if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos2))
-                                        {
-                                            addHangingVine(world, blockpos2, BlockVine.EAST);
-                                        }
-
-                                        if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos3))
-                                        {
-                                            addHangingVine(world, blockpos3, BlockVine.WEST);
-                                        }
-
-                                        if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos4))
-                                        {
-                                            addHangingVine(world, blockpos4, BlockVine.SOUTH);
-                                        }
-
-                                        if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos1))
-                                        {
-                                            addHangingVine(world, blockpos1, BlockVine.NORTH);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        else
+        if (y < 1 || maxY + 1 > world.getHeight())
         {
             return false;
         }
+
+        for (int blockY = y; blockY <= maxY + 1; ++blockY)
+        {
+            int radius = 1;
+
+            if (blockY == y)
+            {
+                radius = 0;
+            }
+
+            if (blockY >= maxY + 1 - 2)
+            {
+                radius = 2;
+            }
+
+            int minX = x - radius;
+            int maxX = x + radius;
+            int minZ = z - radius;
+            int maxZ = z + radius;
+
+            for (int blockX = minX; blockX <= maxX; ++blockX)
+            {
+                for (int blockZ = minZ; blockZ <= maxZ; ++blockZ)
+                {
+                    if (blockY < 0 || blockY >= world.getHeight())
+                    {
+                        return false;
+                    }
+
+                    if (!isReplaceable(world, new BlockPos(blockX, blockY, blockZ)))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        BlockPos down = position.down();
+        IBlockState downState = world.getBlockState(down);
+
+        if (!downState.getBlock().canSustainPlant(downState, world, down, EnumFacing.UP, AMBlocks.SAPLING) || y >= world.getHeight() - height - 1)
+        {
+            return false;
+        }
+
+        setDirtAt(world, down);
+
+        for (int blockY = maxY - 3; blockY <= maxY; ++blockY)
+        {
+            int yDistance = blockY - maxY;
+
+            int radius = 1 - yDistance / 2;
+            int minX = x - radius;
+            int maxX = x + radius;
+            int minZ = z - radius;
+            int maxZ = z + radius;
+
+            for (int blockX = minX; blockX <= maxX; ++blockX)
+            {
+                int xDistance = Math.abs(blockX - x);
+
+                for (int blockZ = minZ; blockZ <= maxZ; ++blockZ)
+                {
+                    int zDistance = Math.abs(blockZ - z);
+
+                    if (xDistance != radius || zDistance != radius || rand.nextInt(2) != 0 && yDistance != 0)
+                    {
+                        BlockPos blockPos = new BlockPos(blockX, blockY, blockZ);
+                        IBlockState blockState = world.getBlockState(blockPos);
+                        Block block = blockState.getBlock();
+
+                        if (block.isAir(blockState, world, blockPos) || block.isLeaves(blockState, world, blockPos) || blockState.getMaterial() == Material.VINE)
+                        {
+                            setBlockAndNotifyAdequately(world, blockPos, metaLeaves);
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int yOffset = 0; yOffset < height; ++yOffset)
+        {
+            BlockPos up = position.up(yOffset);
+            IBlockState upState = world.getBlockState(up);
+            Block upBlock = upState.getBlock();
+
+            if (upBlock.isAir(upState, world, up) || upBlock.isLeaves(upState, world, up) || upState.getMaterial() == Material.VINE)
+            {
+                setBlockAndNotifyAdequately(world, up, metaWood);
+
+                if (vinesGrow && yOffset > 0)
+                {
+                    BlockPos west = position.add(-1, yOffset, 0);
+                    BlockPos east = position.add(1, yOffset, 0);
+                    BlockPos north = position.add(0, yOffset, -1);
+                    BlockPos south = position.add(0, yOffset, 1);
+
+                    if (rand.nextInt(3) > 0 && world.isAirBlock(west))
+                    {
+                        addVine(world, west, BlockVine.EAST);
+                    }
+
+                    if (rand.nextInt(3) > 0 && world.isAirBlock(east))
+                    {
+                        addVine(world, east, BlockVine.WEST);
+                    }
+
+                    if (rand.nextInt(3) > 0 && world.isAirBlock(north))
+                    {
+                        addVine(world, north, BlockVine.SOUTH);
+                    }
+
+                    if (rand.nextInt(3) > 0 && world.isAirBlock(south))
+                    {
+                        addVine(world, south, BlockVine.NORTH);
+                    }
+                }
+            }
+        }
+
+        if (vinesGrow)
+        {
+            for (int blockY = maxY - 3; blockY <= maxY; ++blockY)
+            {
+                int yDistance = blockY - maxY;
+
+                int radius = 2 - yDistance / 2;
+                int minX = x - radius;
+                int maxX = x + radius;
+                int minZ = z - radius;
+                int maxZ = z + radius;
+
+                for (int blockX = minX; blockX <= maxX; ++blockX)
+                {
+                    for (int blockZ = minZ; blockZ <= maxZ; ++blockZ)
+                    {
+                        BlockPos blockPos = new BlockPos(blockX, blockY, blockZ);
+                        IBlockState blockState = world.getBlockState(blockPos);
+
+                        if (blockState.getBlock().isLeaves(blockState, world, blockPos))
+                        {
+                            BlockPos west = blockPos.west();
+                            BlockPos east = blockPos.east();
+                            BlockPos north = blockPos.north();
+                            BlockPos south = blockPos.south();
+
+                            if (rand.nextInt(4) == 0 && world.isAirBlock(west))
+                            {
+                                addHangingVine(world, west, BlockVine.EAST);
+                            }
+
+                            if (rand.nextInt(4) == 0 && world.isAirBlock(east))
+                            {
+                                addHangingVine(world, east, BlockVine.WEST);
+                            }
+
+                            if (rand.nextInt(4) == 0 && world.isAirBlock(north))
+                            {
+                                addHangingVine(world, north, BlockVine.SOUTH);
+                            }
+
+                            if (rand.nextInt(4) == 0 && world.isAirBlock(south))
+                            {
+                                addHangingVine(world, south, BlockVine.NORTH);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     @Override

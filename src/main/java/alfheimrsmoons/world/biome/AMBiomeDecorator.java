@@ -74,7 +74,7 @@ public class AMBiomeDecorator extends BiomeDecorator
             {
                 int xOffset = random.nextInt(16) + 8;
                 int yOffset = random.nextInt(16) + 8;
-                WorldGenAbstractTree treeGen = biome.genBigTreeChance(random);
+                WorldGenAbstractTree treeGen = alfheimrBiome.genBigTreeChance(random);
                 treeGen.setDecorationDefaults();
                 BlockPos pos = world.getHeight(chunkPos.add(xOffset, 0, yOffset));
 
@@ -111,16 +111,19 @@ public class AMBiomeDecorator extends BiomeDecorator
             snapdragonGen.generate(world, random, pos);
         }
 
-        for (int i = 0; i < grassPerChunk; ++i)
+        if (alfheimrBiome.hasGrass())
         {
-            int xOffset = random.nextInt(16) + 8;
-            int zOffset = random.nextInt(16) + 8;
-            int height = world.getHeight(chunkPos.add(xOffset, 0, zOffset)).getY() * 2;
-
-            if (height > 0)
+            for (int i = 0; i < grassPerChunk; ++i)
             {
-                int yOffset = random.nextInt(height);
-                biome.getRandomWorldGenForGrass(random).generate(world, random, chunkPos.add(xOffset, yOffset, zOffset));
+                int xOffset = random.nextInt(16) + 8;
+                int zOffset = random.nextInt(16) + 8;
+                int height = world.getHeight(chunkPos.add(xOffset, 0, zOffset)).getY() * 2;
+
+                if (height > 0)
+                {
+                    int yOffset = random.nextInt(height);
+                    alfheimrBiome.getRandomWorldGenForGrass(random).generate(world, random, chunkPos.add(xOffset, yOffset, zOffset));
+                }
             }
         }
 

@@ -82,6 +82,16 @@ public abstract class BiomeGenAM extends BiomeGenBase
         return EnumWoodVariant.BEECH;
     }
 
+    /**
+     * Used for grass generation
+     *
+     * @return true if the biome generates grass (AKA sedges)
+     */
+    public boolean hasGrass()
+    {
+        return true;
+    }
+
     @Override
     public WorldGenerator getRandomWorldGenForGrass(Random rand)
     {
@@ -127,7 +137,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
     }
 
     /**
-     * Adds flower variants for flower generation
+     * Adds flower variants for flower generation with a weight of 20
      *
      * @param variants flower variants
      * @return this biome instance
@@ -136,9 +146,22 @@ public abstract class BiomeGenAM extends BiomeGenBase
     {
         for (EnumFlowerVariant variant : variants)
         {
-            addFlower(VariantHelper.getDefaultStateWithVariant(AMBlocks.FLOWER, variant), 20);
+            addFlowerVariant(variant, 20);
         }
 
+        return this;
+    }
+
+    /**
+     * Adds a flower variant for flower generation
+     *
+     * @param variant flower variant
+     * @param weight  flower weight (higher number is higher chance (lower is lower))
+     * @return this biome instance
+     */
+    public BiomeGenAM addFlowerVariant(EnumFlowerVariant variant, int weight)
+    {
+        addFlower(VariantHelper.getDefaultStateWithVariant(AMBlocks.FLOWER, variant), weight);
         return this;
     }
 

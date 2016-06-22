@@ -18,13 +18,14 @@ public class AMBiomes
 
     public static final BiomeGenBase OCEAN = new BiomeGenAMOcean(new BiomeProperties("Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F)).setRegistryName("ocean");
     public static final BiomeGenBase DEEP_OCEAN = new BiomeGenAMOcean(new BiomeProperties("Deep Ocean").setBaseHeight(-1.8F).setHeightVariation(0.1F)).setRegistryName("deep_ocean");
-    public static final BiomeGenBase MEADOW = new BiomeGenMeadow(new BiomeProperties("Meadow").setBaseHeight(0.125F).setHeightVariation(0.05F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("meadow");
     public static final BiomeGenBase RIVER = new BiomeGenAMRiver(new BiomeProperties("River").setBaseHeight(-0.5F).setHeightVariation(0.0F)).setRegistryName("river");
     public static final BiomeGenBase BEACH = new BiomeGenAMBeach(new BiomeProperties("Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("beach");
+    public static final BiomeGenBase MEADOW = new BiomeGenMeadow(new BiomeProperties("Meadow").setBaseHeight(0.125F).setHeightVariation(0.05F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("meadow");
     public static final BiomeGenBase WOODS = new BiomeGenWoods(new BiomeProperties("Woods").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods");
     public static final BiomeGenBase WOODS_HILLS = new BiomeGenWoods(new BiomeProperties("Woods Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods_hills");
     public static final BiomeGenBase BLUEBELL_FOREST = new BiomeGenBluebellForest(new BiomeProperties("Bluebell Forest").setBaseBiome("woods").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("bluebell_forest");
     public static final BiomeGenBase RUNEWOOD_FOREST = new BiomeGenRunewoodForest(new BiomeProperties("Runewood Forest").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("runewood_forest");
+    public static final BiomeGenBase FLOODED_FOREST = new BiomeGenFloodedForest(new BiomeGenBase.BiomeProperties("Flooded Forest").setBaseHeight(-0.2F).setHeightVariation(0.1F).setTemperature(0.8F).setRainfall(0.9F)).setRegistryName("flooded_forest");
     public static final BiomeGenBase VELD = new BiomeGenVeld(new BiomeProperties("Veld").setBaseHeight(0.125F).setHeightVariation(0.05F).setTemperature(2.0F).setRainfall(0.0F).setRainDisabled()).setRegistryName("veld");
 
     static
@@ -46,14 +47,14 @@ public class AMBiomes
     {
         registerBiome(OCEAN, BiomeDictionary.Type.OCEAN);
         registerBiome(DEEP_OCEAN, BiomeDictionary.Type.OCEAN);
-        registerBiome(MEADOW, PLAINS);
-        registerBiome(MEADOW, BiomeDictionary.Type.OCEAN);
         registerBiome(RIVER, BiomeDictionary.Type.RIVER);
         registerBiome(BEACH, BiomeDictionary.Type.BEACH);
+        registerBiome(MEADOW, PLAINS);
         registerBiome(WOODS, FOREST);
         registerBiome(WOODS_HILLS, FOREST, HILLS);
         registerBiome(BLUEBELL_FOREST, FOREST);
         registerBiome(RUNEWOOD_FOREST, FOREST);
+        registerBiome(FLOODED_FOREST, WET, SWAMP);
         registerBiome(VELD, HOT, DRY, SANDY);
     }
 

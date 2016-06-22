@@ -20,6 +20,7 @@ public class AMBiomeManager
         List<BiomeEntry> list = new ArrayList<BiomeEntry>();
         list.add(new BiomeEntry(AMBiomes.MEADOW, 10));
         list.add(new BiomeEntry(AMBiomes.WOODS, 10));
+        list.add(new BiomeEntry(AMBiomes.FLOODED_FOREST, 10));
         list.add(new BiomeEntry(AMBiomes.RUNEWOOD_FOREST, 10));//TODO generate only at spawn
         biomes.put(BiomeType.WARM, list);
 
