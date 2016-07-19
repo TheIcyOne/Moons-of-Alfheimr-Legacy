@@ -40,8 +40,8 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
         tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(6, new EntityAILookIdle(this));
         targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        targetTasks.addTask(2, new AINitroWraithTarget<EntityPlayer>(this, EntityPlayer.class));
-        targetTasks.addTask(3, new AINitroWraithTarget<EntityIronGolem>(this, EntityIronGolem.class));
+        targetTasks.addTask(2, new AINitroWraithTarget<>(this, EntityPlayer.class));
+        targetTasks.addTask(3, new AINitroWraithTarget<>(this, EntityIronGolem.class));
     }
 
     @Override

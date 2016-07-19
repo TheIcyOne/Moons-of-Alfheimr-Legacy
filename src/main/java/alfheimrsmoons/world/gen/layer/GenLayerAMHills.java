@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.gen.layer;
 
 import alfheimrsmoons.init.AMBiomes;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerHills;
 import net.minecraft.world.gen.layer.IntCache;
@@ -32,13 +32,13 @@ public class GenLayerAMHills extends GenLayerHills
                 int l = aint1[j + 1 + (i + 1) * (areaWidth + 2)];
                 boolean flag = (l - 2) % 29 == 0;
 
-                BiomeGenBase biome = BiomeGenBase.getBiomeForId(biomeID);
+                Biome biome = Biome.getBiomeForId(biomeID);
                 boolean isMutation = biome != null && biome.isMutation();
 
                 if (biomeID != 0 && l >= 2 && (l - 2) % 29 == 1 && !isMutation)
                 {
-                    BiomeGenBase mutation = BiomeGenBase.getMutationForBiome(biome);
-                    aint2[j + i * areaWidth] = mutation == null ? biomeID : BiomeGenBase.getIdForBiome(mutation);
+                    Biome mutation = Biome.getMutationForBiome(biome);
+                    aint2[j + i * areaWidth] = mutation == null ? biomeID : Biome.getIdForBiome(mutation);
                 }
                 else if (nextInt(3) != 0 && !flag)
                 {
@@ -46,7 +46,7 @@ public class GenLayerAMHills extends GenLayerHills
                 }
                 else
                 {
-                    BiomeGenBase hillsBiome;
+                    Biome hillsBiome;
 
                     if (biome == AMBiomes.MEADOW)
                     {
@@ -80,12 +80,12 @@ public class GenLayerAMHills extends GenLayerHills
                         }
                     }
 
-                    int hillsBiomeID = BiomeGenBase.getIdForBiome(hillsBiome);
+                    int hillsBiomeID = Biome.getIdForBiome(hillsBiome);
 
                     if (flag && hillsBiomeID != biomeID)
                     {
-                        BiomeGenBase hillsMutation = BiomeGenBase.getMutationForBiome(hillsBiome);
-                        hillsBiomeID = hillsMutation == null ? biomeID : BiomeGenBase.getIdForBiome(hillsMutation);
+                        Biome hillsMutation = Biome.getMutationForBiome(hillsBiome);
+                        hillsBiomeID = hillsMutation == null ? biomeID : Biome.getIdForBiome(hillsMutation);
                     }
 
                     if (hillsBiomeID == biomeID)

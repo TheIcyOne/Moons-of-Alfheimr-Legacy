@@ -13,7 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -23,14 +23,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public abstract class BiomeGenAM extends BiomeGenBase
+public abstract class AMBiome extends Biome
 {
     protected static final IBlockState BEDROCK = AMBlocks.YGGDRASIL_LEAVES.getDefaultState();
     protected static final IBlockState STONE = VariantHelper.getDefaultStateWithVariant(AMBlocks.SHALE, EnumShaleVariant.NORMAL);
 
     protected final List<EnumTallFlowerVariant> tallFlowerVariants;
 
-    public BiomeGenAM(BiomeProperties properties)
+    public AMBiome(BiomeProperties properties)
     {
         super(properties);
 
@@ -42,9 +42,9 @@ public abstract class BiomeGenAM extends BiomeGenBase
         spawnableWaterCreatureList.clear();
         spawnableCaveCreatureList.clear();
 
-        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNitroWraith.class, 100, 4, 4));
+        spawnableMonsterList.add(new Biome.SpawnListEntry(EntityNitroWraith.class, 100, 4, 4));
 
-        tallFlowerVariants = new ArrayList<EnumTallFlowerVariant>();
+        tallFlowerVariants = new ArrayList<>();
         addFlowerVariants();
     }
 
@@ -132,8 +132,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
      */
     public IBlockState getRandomFlower(Random rand)
     {
-        FlowerEntry flower = WeightedRandom.getRandomItem(rand, flowers);
-        return flower != null ? flower.state : null;
+        return hasFlowers() ? WeightedRandom.getRandomItem(rand, flowers).state : null;
     }
 
     /**
@@ -142,7 +141,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
      * @param variants flower variants
      * @return this biome instance
      */
-    public BiomeGenAM addFlowerVariants(EnumFlowerVariant... variants)
+    public AMBiome addFlowerVariants(EnumFlowerVariant... variants)
     {
         for (EnumFlowerVariant variant : variants)
         {
@@ -159,7 +158,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
      * @param weight  flower weight (higher number is higher chance (lower is lower))
      * @return this biome instance
      */
-    public BiomeGenAM addFlowerVariant(EnumFlowerVariant variant, int weight)
+    public AMBiome addFlowerVariant(EnumFlowerVariant variant, int weight)
     {
         addFlower(VariantHelper.getDefaultStateWithVariant(AMBlocks.FLOWER, variant), weight);
         return this;
@@ -201,7 +200,7 @@ public abstract class BiomeGenAM extends BiomeGenBase
      * @param variants tall flower variants
      * @return this biome instance
      */
-    public BiomeGenAM addTallFlowerVariants(EnumTallFlowerVariant... variants)
+    public AMBiome addTallFlowerVariants(EnumTallFlowerVariant... variants)
     {
         Collections.addAll(tallFlowerVariants, variants);
         return this;

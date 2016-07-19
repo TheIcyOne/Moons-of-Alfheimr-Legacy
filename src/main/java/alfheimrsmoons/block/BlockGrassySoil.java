@@ -16,7 +16,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
@@ -103,7 +103,7 @@ public class BlockGrassySoil extends BlockGrass
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            BiomeGenBase biome = world.getBiomeGenForCoords(plantPos);
+                            Biome biome = world.getBiomeGenForCoords(plantPos);
                             biome.plantFlower(world, rand, pos);
                         }
                         else

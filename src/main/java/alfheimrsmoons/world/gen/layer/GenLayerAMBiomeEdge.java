@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.gen.layer;
 
 import alfheimrsmoons.init.AMBiomes;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerBiomeEdge;
 import net.minecraft.world.gen.layer.IntCache;
@@ -26,20 +26,20 @@ public class GenLayerAMBiomeEdge extends GenLayerBiomeEdge
                 initChunkSeed((long) (j + areaX), (long) (i + areaY));
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];
 
-                if (k == BiomeGenBase.getIdForBiome(AMBiomes.FLOODED_FOREST))
+                if (k == Biome.getIdForBiome(AMBiomes.FLOODED_FOREST))
                 {
                     int l = aint[j + 1 + (i + 1 - 1) * (areaWidth + 2)];
                     int i1 = aint[j + 1 + 1 + (i + 1) * (areaWidth + 2)];
                     int j1 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
                     int k1 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                    if (l != BiomeGenBase.getIdForBiome(AMBiomes.VELD) && i1 != BiomeGenBase.getIdForBiome(AMBiomes.VELD) && j1 != BiomeGenBase.getIdForBiome(AMBiomes.VELD) && k1 != BiomeGenBase.getIdForBiome(AMBiomes.VELD))
+                    if (l != Biome.getIdForBiome(AMBiomes.VELD) && i1 != Biome.getIdForBiome(AMBiomes.VELD) && j1 != Biome.getIdForBiome(AMBiomes.VELD) && k1 != Biome.getIdForBiome(AMBiomes.VELD))
                     {
                         aint1[j + i * areaWidth] = k;
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = BiomeGenBase.getIdForBiome(AMBiomes.MEADOW);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(AMBiomes.MEADOW);
                     }
                 }
                 else

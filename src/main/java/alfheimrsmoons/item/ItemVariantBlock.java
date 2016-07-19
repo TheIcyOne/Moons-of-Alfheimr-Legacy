@@ -13,16 +13,9 @@ public class ItemVariantBlock<V extends IVariant<V>, B extends Block & IVariantB
 {
     private final B block;
 
-    public ItemVariantBlock(final B block)
+    public ItemVariantBlock(B block)
     {
-        super(block, block, new Function<ItemStack, String>()
-        {
-            @Override
-            public String apply(ItemStack stack)
-            {
-                return VariantHelper.getVariantFromMeta(block, stack.getMetadata()).getName();
-            }
-        });
+        super(block, block, stack -> VariantHelper.getVariantFromMeta(block, stack.getMetadata()).getName());
         this.block = block;
     }
 

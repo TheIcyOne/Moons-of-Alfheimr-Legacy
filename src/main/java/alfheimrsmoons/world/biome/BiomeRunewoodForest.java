@@ -6,9 +6,9 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.Random;
 
-public class BiomeGenRunewoodForest extends BiomeGenWoods
+public class BiomeRunewoodForest extends BiomeWoods
 {
-    public BiomeGenRunewoodForest(BiomeProperties properties)
+    public BiomeRunewoodForest(BiomeProperties properties)
     {
         super(properties);
     }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AMFuelHandler implements IFuelHandler
 {
-    private final List<Fuel> fuels = new ArrayList<Fuel>();
+    private final List<Fuel> fuels = new ArrayList<>();
 
     @Override
     public int getBurnTime(ItemStack stack)

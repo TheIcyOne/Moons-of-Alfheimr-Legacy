@@ -10,11 +10,11 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
 
-public class BiomeGenFloodedForest extends BiomeGenAM
+public class BiomeFloodedForest extends AMBiome
 {
     private static final WorldGenFloodedTree FLOODED_TREE_GEN = new WorldGenFloodedTree();
 
-    public BiomeGenFloodedForest(BiomeProperties properties)
+    public BiomeFloodedForest(BiomeProperties properties)
     {
         super(properties);
         theBiomeDecorator.treesPerChunk = 2;

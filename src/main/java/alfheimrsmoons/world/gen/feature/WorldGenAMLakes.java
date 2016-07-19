@@ -26,9 +26,11 @@ public class WorldGenAMLakes extends WorldGenLakes
     @Override
     public boolean generate(World world, Random rand, BlockPos position)
     {
-        for (position = position.add(-8, 0, -8); position.getY() > 5 && world.isAirBlock(position); position = position.down())
+        position = position.add(-8, 0, -8);
+
+        while (position.getY() > 5 && world.isAirBlock(position))
         {
-            ;
+            position = position.down();
         }
 
         if (position.getY() <= 4)

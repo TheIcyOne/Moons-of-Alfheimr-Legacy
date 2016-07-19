@@ -2,9 +2,9 @@ package alfheimrsmoons.world.biome;
 
 import alfheimrsmoons.init.AMBlocks;
 
-public class BiomeGenAMBeach extends BiomeGenAM
+public class BiomeAMBeach extends AMBiome
 {
-    public BiomeGenAMBeach(BiomeProperties properties)
+    public BiomeAMBeach(BiomeProperties properties)
     {
         super(properties);
         spawnableCreatureList.clear();

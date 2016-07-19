@@ -2,7 +2,7 @@ package alfheimrsmoons.world.gen.layer;
 
 import alfheimrsmoons.world.biome.AMBiomeManager;
 import net.minecraft.util.WeightedRandom;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class GenLayerAMBiome extends GenLayer
 {
-    private Map<BiomeType, List<BiomeEntry>> biomes = new HashMap<BiomeType, List<BiomeEntry>>();
+    private Map<BiomeType, List<BiomeEntry>> biomes = new HashMap<>();
 
     public GenLayerAMBiome(long baseSeed, GenLayer parentLayer)
     {
@@ -49,7 +49,7 @@ public class GenLayerAMBiome extends GenLayer
                 else
                 {
                     BiomeType type = null;
-                    BiomeGenBase biome = null;
+                    Biome biome = null;
 
                     switch (k)
                     {
@@ -71,7 +71,7 @@ public class GenLayerAMBiome extends GenLayer
                             biome = getWeightedBiomeEntry(type).biome;
                         }
 
-                        aint1[j + i * areaWidth] = BiomeGenBase.getIdForBiome(biome);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(biome);
                     }
                 }
             }

@@ -15,21 +15,21 @@ public class AMBiomeManager
 
     private static HashMap<BiomeType, List<BiomeEntry>> setupBiomes()
     {
-        HashMap<BiomeType, List<BiomeEntry>> biomes = new HashMap<BiomeType, List<BiomeEntry>>();
+        HashMap<BiomeType, List<BiomeEntry>> biomes = new HashMap<>();
 
-        List<BiomeEntry> list = new ArrayList<BiomeEntry>();
+        List<BiomeEntry> list = new ArrayList<>();
         list.add(new BiomeEntry(AMBiomes.MEADOW, 10));
         list.add(new BiomeEntry(AMBiomes.WOODS, 10));
         list.add(new BiomeEntry(AMBiomes.FLOODED_FOREST, 10));
         list.add(new BiomeEntry(AMBiomes.RUNEWOOD_FOREST, 10));//TODO generate only at spawn
         biomes.put(BiomeType.WARM, list);
 
-        list = new ArrayList<BiomeEntry>();
+        list = new ArrayList<>();
         list.add(new BiomeEntry(AMBiomes.MEADOW, 10));
         list.add(new BiomeEntry(AMBiomes.WOODS, 10));
         biomes.put(BiomeType.COOL, list);
 
-        list = new ArrayList<BiomeEntry>();
+        list = new ArrayList<>();
         list.add(new BiomeEntry(AMBiomes.MEADOW, 10));
         list.add(new BiomeEntry(AMBiomes.VELD, 30));
         biomes.put(BiomeType.DESERT, list);

@@ -82,7 +82,7 @@ public class WorldGenAMLiquids extends WorldGenLiquids
             if (i == 3 && j == 1)
             {
                 world.setBlockState(position, state, 2);
-                world.func_175637_a(state.getBlock(), position, rand);
+                world.immediateBlockTick(position, state, rand);
             }
 
             return true;

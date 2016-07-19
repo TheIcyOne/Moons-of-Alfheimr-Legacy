@@ -8,8 +8,8 @@ import alfheimrsmoons.world.gen.feature.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
@@ -27,7 +27,7 @@ public class AMBiomeDecorator extends BiomeDecorator
     private final WorldGenAMLiquids waterGen = new WorldGenAMLiquids(Blocks.FLOWING_WATER.getDefaultState());
 
     @Override
-    public void decorate(World world, Random random, BiomeGenBase biome, BlockPos pos)
+    public void decorate(World world, Random random, Biome biome, BlockPos pos)
     {
         if (decorating)
         {
@@ -42,15 +42,15 @@ public class AMBiomeDecorator extends BiomeDecorator
     }
 
     @Override
-    protected void genDecorations(BiomeGenBase biome, World world, Random random)
+    protected void genDecorations(Biome biome, World world, Random random)
     {
-        if (!(biome instanceof BiomeGenAM))
+        if (!(biome instanceof AMBiome))
         {
             super.genDecorations(biome, world, random);
             return;
         }
 
-        BiomeGenAM alfheimrBiome = (BiomeGenAM) biome;
+        AMBiome alfheimrBiome = (AMBiome) biome;
 
         generateOres(world, random);
 

@@ -6,9 +6,9 @@ import alfheimrsmoons.util.EnumWoodVariant;
 
 import java.util.Random;
 
-public class BiomeGenBluebellForest extends BiomeGenWoods
+public class BiomeBluebellForest extends BiomeWoods
 {
-    public BiomeGenBluebellForest(BiomeProperties properties)
+    public BiomeBluebellForest(BiomeProperties properties)
     {
         super(properties);
         theBiomeDecorator.treesPerChunk = 6;

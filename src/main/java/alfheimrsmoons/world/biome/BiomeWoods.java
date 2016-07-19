@@ -6,7 +6,7 @@ import alfheimrsmoons.util.EnumWoodVariant;
 
 import java.util.Random;
 
-public class BiomeGenWoods extends BiomeGenAM
+public class BiomeWoods extends AMBiome
 {
     public static final EnumFlowerVariant[] FLOWER_VARIANTS =
             {
@@ -23,7 +23,7 @@ public class BiomeGenWoods extends BiomeGenAM
                     EnumTallFlowerVariant.COLOMBINE
             };
 
-    public BiomeGenWoods(BiomeProperties properties)
+    public BiomeWoods(BiomeProperties properties)
     {
         super(properties);
         theBiomeDecorator.treesPerChunk = 10;

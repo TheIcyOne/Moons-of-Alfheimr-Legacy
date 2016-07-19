@@ -1,8 +1,8 @@
 package alfheimrsmoons.world.biome;
 
-public class BiomeGenMeadow extends BiomeGenAM
+public class BiomeMeadow extends AMBiome
 {
-    public BiomeGenMeadow(BiomeProperties properties)
+    public BiomeMeadow(BiomeProperties properties)
     {
         super(properties);
         theBiomeDecorator.treesPerChunk = -999;
@@ -19,7 +19,7 @@ public class BiomeGenMeadow extends BiomeGenAM
     @Override
     protected void addFlowerVariants()
     {
-        addFlowerVariants(BiomeGenWoods.FLOWER_VARIANTS);
-        addTallFlowerVariants(BiomeGenWoods.TALL_FLOWER_VARIANTS);
+        addFlowerVariants(BiomeWoods.FLOWER_VARIANTS);
+        addTallFlowerVariants(BiomeWoods.TALL_FLOWER_VARIANTS);
     }
 }

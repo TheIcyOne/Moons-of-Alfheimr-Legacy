@@ -1,45 +1,24 @@
 package alfheimrsmoons.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
+import net.minecraft.item.ItemAxe;
 
-import java.util.HashSet;
-
-public class ItemAMAxe extends ItemTool
+public class ItemAMAxe extends ItemAxe
 {
     public ItemAMAxe(Item.ToolMaterial material)
     {
-        super(material, new HashSet<Block>());
-        setHarvestLevel("axe", material.getHarvestLevel());
+        super(material, 0.0F, 0.0F);
     }
 
-    public ItemAMAxe(Item.ToolMaterial material, float attackDamage, float attackSpeed)
+    public ItemAMAxe setAttackDamage(float damage)
     {
-        this(material);
-        setAttackDamage(attackDamage);
-        setAttackSpeed(attackSpeed);
-    }
-
-    public ItemAMAxe setAttackDamage(float attackDamage)
-    {
-        damageVsEntity = attackDamage;
+        damageVsEntity = damage;
         return this;
     }
 
-    public ItemAMAxe setAttackSpeed(float attackSpeed)
+    public ItemAMAxe setAttackSpeed(float speed)
     {
-        this.attackSpeed = attackSpeed;
+        attackSpeed = speed;
         return this;
-    }
-
-    @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
-    {
-        Material material = state.getMaterial();
-        return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : efficiencyOnProperMaterial;
     }
 }

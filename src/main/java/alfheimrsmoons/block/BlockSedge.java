@@ -100,9 +100,9 @@ public class BlockSedge extends BlockTallGrass implements IVariantBlock<EnumSedg
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        List<ItemStack> ret = new ArrayList<ItemStack>();
-        ret.add(VariantHelper.createStack(this, world.getBlockState(pos)));
-        return ret;
+        List<ItemStack> drops = new ArrayList<>();
+        drops.add(VariantHelper.createStack(this, world.getBlockState(pos)));
+        return drops;
     }
 
     @Override

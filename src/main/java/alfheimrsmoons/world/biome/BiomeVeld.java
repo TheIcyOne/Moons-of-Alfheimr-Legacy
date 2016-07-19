@@ -2,9 +2,9 @@ package alfheimrsmoons.world.biome;
 
 import net.minecraft.util.math.BlockPos;
 
-public class BiomeGenVeld extends BiomeGenAM
+public class BiomeVeld extends AMBiome
 {
-    public BiomeGenVeld(BiomeProperties properties)
+    public BiomeVeld(BiomeProperties properties)
     {
         super(properties);
         spawnableCreatureList.clear();

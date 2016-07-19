@@ -1,8 +1,8 @@
 package alfheimrsmoons.world.biome;
 
-public class BiomeGenAMRiver extends BiomeGenAM
+public class BiomeAMRiver extends AMBiome
 {
-    public BiomeGenAMRiver(BiomeProperties properties)
+    public BiomeAMRiver(BiomeProperties properties)
     {
         super(properties);
         spawnableCreatureList.clear();

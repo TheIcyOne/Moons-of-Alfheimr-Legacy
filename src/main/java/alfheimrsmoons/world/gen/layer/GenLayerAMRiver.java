@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.gen.layer;
 
 import alfheimrsmoons.init.AMBiomes;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerRiver;
 import net.minecraft.world.gen.layer.IntCache;
@@ -39,7 +39,7 @@ public class GenLayerAMRiver extends GenLayerRiver
                 }
                 else
                 {
-                    aint1[j1 + i1 * areaWidth] = BiomeGenBase.getIdForBiome(AMBiomes.RIVER);
+                    aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(AMBiomes.RIVER);
                 }
             }
         }

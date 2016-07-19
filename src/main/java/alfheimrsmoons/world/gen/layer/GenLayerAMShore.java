@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.gen.layer;
 
 import alfheimrsmoons.init.AMBiomes;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerShore;
 import net.minecraft.world.gen.layer.IntCache;
@@ -25,7 +25,7 @@ public class GenLayerAMShore extends GenLayerShore
             {
                 initChunkSeed((long) (j + areaX), (long) (i + areaY));
                 int biomeID = aint[j + 1 + (i + 1) * (areaWidth + 2)];
-                BiomeGenBase biome = BiomeGenBase.getBiome(biomeID);
+                Biome biome = Biome.getBiome(biomeID);
 
                 if (!isBiomeOceanic(biomeID) && biome != AMBiomes.RIVER && biome != AMBiomes.FLOODED_FOREST)
                 {
@@ -40,7 +40,7 @@ public class GenLayerAMShore extends GenLayerShore
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = BiomeGenBase.getIdForBiome(AMBiomes.BEACH);
+                        aint1[j + i * areaWidth] = Biome.getIdForBiome(AMBiomes.BEACH);
                     }
                 }
                 else

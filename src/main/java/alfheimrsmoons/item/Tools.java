@@ -66,7 +66,7 @@ public class Tools
         return pickaxe;
     }
 
-    public ItemAMAxe getAxe()
+    public ItemAxe getAxe()
     {
         return axe;
     }

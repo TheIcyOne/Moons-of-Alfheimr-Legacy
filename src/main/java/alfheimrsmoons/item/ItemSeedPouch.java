@@ -53,6 +53,6 @@ public class ItemSeedPouch extends AMItem
         }
 
         player.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 }

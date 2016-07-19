@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -131,7 +131,7 @@ public class BlockAMLeaves extends BlockLeaves implements IVariantBlock
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return Arrays.asList(VariantHelper.createStack(this, world.getBlockState(pos)));
+        return Collections.singletonList(VariantHelper.createStack(this, world.getBlockState(pos)));
     }
 
     @Override

@@ -42,7 +42,7 @@ public class AMRecipes
 
         for (int meta = 0; meta < EnumOreVariant.VARIANTS.length; meta++)
         {
-            addShapedRecipe(AMBlocks.ORE_BLOCK, "###", "###", "###", '#', AMItems.ORE_DROP);
+            addShapedRecipe(new ItemStack(AMBlocks.ORE_BLOCK, 1, meta), "###", "###", "###", '#', new ItemStack(AMItems.ORE_DROP, 1, meta));
         }
 
         for (EnumWoodVariant variant : EnumWoodVariant.VARIANTS)

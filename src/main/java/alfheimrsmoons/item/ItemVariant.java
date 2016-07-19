@@ -15,7 +15,7 @@ public class ItemVariant<V extends IVariant<V>> extends AMItem implements IVaria
 {
     private final V[] variants;
 
-    public ItemVariant(V... variants)
+    public ItemVariant(V[] variants)
     {
         this.variants = variants;
         setHasSubtypes(true);

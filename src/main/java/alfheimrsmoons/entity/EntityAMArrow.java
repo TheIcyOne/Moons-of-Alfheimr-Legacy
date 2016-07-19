@@ -1,6 +1,5 @@
 package alfheimrsmoons.entity;
 
-import com.google.common.base.Function;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
@@ -9,7 +8,7 @@ import net.minecraft.world.World;
 
 public class EntityAMArrow extends EntityArrow
 {
-    private Function<EntityAMArrow, ItemStack> arrowStackGetter;
+    private ItemStack arrowStack;
 
     public EntityAMArrow(World world)
     {
@@ -30,37 +29,22 @@ public class EntityAMArrow extends EntityArrow
     public void writeEntityToNBT(NBTTagCompound tag)
     {
         super.writeEntityToNBT(tag);
-        tag.setTag("arrowStack", getArrowStack().writeToNBT(new NBTTagCompound()));
+        tag.setTag("arrow", getArrowStack().writeToNBT(new NBTTagCompound()));
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound tag)
     {
         super.readEntityFromNBT(tag);
-        final ItemStack arrowStack = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("arrowStack"));
-        arrowStackGetter = new Function<EntityAMArrow, ItemStack>()
-        {
-            @Override
-            public ItemStack apply(EntityAMArrow input)
-            {
-                return arrowStack;
-            }
-        };
+        arrowStack = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("arrow"));
     }
 
     @Override
-    public ItemStack getArrowStack()
-    {
-        return getArrowStackGetter().apply(this);
+    public ItemStack getArrowStack() {
+        return arrowStack;
     }
 
-    public Function<EntityAMArrow, ItemStack> getArrowStackGetter()
-    {
-        return arrowStackGetter;
-    }
-
-    public void setArrowStackGetter(Function<EntityAMArrow, ItemStack> arrowStackGetter)
-    {
-        this.arrowStackGetter = arrowStackGetter;
+    public void setArrowStack(ItemStack stack) {
+        arrowStack = stack;
     }
 }

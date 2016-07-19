@@ -256,15 +256,15 @@ public class BlockTallFlower extends BlockDoublePlant implements IVariantBlock<E
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        List<ItemStack> stacks = new ArrayList<ItemStack>();
+        List<ItemStack> drops = new ArrayList<>();
         EnumTallFlowerVariant variant = world.getBlockState(pos).getValue(VARIANT_PROPERTY);
 
         if (variant == EnumTallFlowerVariant.EELGRASS)
         {
-            stacks.add(VariantHelper.createStack(this, variant));
+            drops.add(VariantHelper.createStack(this, variant));
         }
 
-        return stacks;
+        return drops;
     }
 
     @Override

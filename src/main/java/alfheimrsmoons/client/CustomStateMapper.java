@@ -23,7 +23,7 @@ public class CustomStateMapper extends StateMapperBase
     @Override
     protected ModelResourceLocation getModelResourceLocation(IBlockState state)
     {
-        Map<IProperty<?>, Comparable<?>> properties = new HashMap<IProperty<?>, Comparable<?>>(state.getProperties());
+        Map<IProperty<?>, Comparable<?>> properties = new HashMap<>(state.getProperties());
         for (IProperty<?> property : ignored)
         {
             properties.remove(property);

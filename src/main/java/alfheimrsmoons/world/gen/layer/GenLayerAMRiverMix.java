@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.gen.layer;
 
 import alfheimrsmoons.init.AMBiomes;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerRiverMix;
 import net.minecraft.world.gen.layer.IntCache;
@@ -29,7 +29,7 @@ public class GenLayerAMRiverMix extends GenLayerRiverMix
         {
             if (!isBiomeOceanic(aint[i]))
             {
-                if (aint1[i] == BiomeGenBase.getIdForBiome(AMBiomes.RIVER))
+                if (aint1[i] == Biome.getIdForBiome(AMBiomes.RIVER))
                 {
                     aint2[i] = aint1[i] & 255;
                 }

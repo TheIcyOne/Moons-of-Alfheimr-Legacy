@@ -19,7 +19,7 @@ public class Proxy
 
     public <V extends IVariant<V>, B extends Block & IVariantBlock<V>> void registerBlockWithVariants(B block)
     {
-        registerBlockWithVariants(block, new ItemVariantBlock<V, B>(block));
+        registerBlockWithVariants(block, new ItemVariantBlock<>(block));
     }
 
     public <V extends IVariant<V>, B extends Block & IVariantBlock<V>, I extends Item & IVariantObject<V>> void registerBlockWithVariants(B block, I item)
@@ -29,7 +29,7 @@ public class Proxy
 
     public <V extends IVariant<V>, B extends Block & IVariantBlock<V>> void registerBlockWithVariants(B block, String base)
     {
-        registerBlockWithVariants(block, new ItemVariantBlock<V, B>(block), base);
+        registerBlockWithVariants(block, new ItemVariantBlock<>(block), base);
     }
 
     public <V extends IVariant<V>, B extends Block & IVariantBlock<V>, I extends Item & IVariantObject<V>> void registerBlockWithVariants(B block, I item, String base)
