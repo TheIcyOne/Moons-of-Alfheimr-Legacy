@@ -1,5 +1,8 @@
 package alfheimrsmoons.world.gen.feature;
 
+import alfheimrsmoons.combo.ComboFlowers;
+import alfheimrsmoons.combo.VariantFlower;
+import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
@@ -11,7 +14,12 @@ import java.util.Random;
 
 public class WorldGenAMFlowers extends WorldGenerator
 {
-    private IBlockState state;
+    private final IBlockState state;
+
+    public WorldGenAMFlowers(VariantFlower variant)
+    {
+        this(AMBlocks.FLOWERS.getBlockState(ComboFlowers.FLOWER, variant));
+    }
 
     public WorldGenAMFlowers(IBlockState state)
     {

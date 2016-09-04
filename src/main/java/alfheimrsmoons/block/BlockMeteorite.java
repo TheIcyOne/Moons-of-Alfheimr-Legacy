@@ -14,10 +14,12 @@ public class BlockMeteorite extends Block
     public BlockMeteorite()
     {
         super(Material.ROCK, MapColor.OBSIDIAN);
+        setRegistryName("meteorite");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "meteorite");
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(1.5F);
         setResistance(10.0F);
         setSoundType(SoundType.STONE);
-        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHarvestLevel("pickaxe", 1);
     }
 

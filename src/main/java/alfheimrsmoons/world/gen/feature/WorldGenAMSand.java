@@ -1,23 +1,24 @@
 package alfheimrsmoons.world.gen.feature;
 
+import alfheimrsmoons.block.BlockGrassySoil;
+import alfheimrsmoons.block.BlockSoil;
 import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenSand;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class WorldGenAMSand extends WorldGenSand
+public class WorldGenAMSand extends WorldGenerator
 {
-    private IBlockState state;
-    private int radius;
+    private final IBlockState state;
+    private final int radius;
 
     public WorldGenAMSand(IBlockState state, int radius)
     {
-        super(state.getBlock(), radius);
         this.state = state;
         this.radius = radius;
     }
@@ -48,7 +49,7 @@ public class WorldGenAMSand extends WorldGenSand
                             BlockPos blockpos = new BlockPos(k, k1, l);
                             Block block = world.getBlockState(blockpos).getBlock();
 
-                            if (block == AMBlocks.SOIL || block == AMBlocks.GRASSY_SOIL)
+                            if (block instanceof BlockSoil || block instanceof BlockGrassySoil)
                             {
                                 world.setBlockState(blockpos, state, 2);
                             }

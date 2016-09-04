@@ -1,9 +1,8 @@
 package alfheimrsmoons.world.biome;
 
+import alfheimrsmoons.combo.VariantFlower;
+import alfheimrsmoons.combo.VariantOre;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.util.EnumFlowerVariant;
-import alfheimrsmoons.util.EnumOreVariant;
-import alfheimrsmoons.util.VariantHelper;
 import alfheimrsmoons.world.gen.feature.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -19,10 +18,10 @@ public class AMBiomeDecorator extends BiomeDecorator
     // TODO configurable ore sizes, counts, and heights
     private final WorldGenAMSand sedimentGen = new WorldGenAMSand(AMBlocks.SEDIMENT.getDefaultState(), 7);
     private final WorldGenAMMinable soilGen = new WorldGenAMMinable(AMBlocks.SOIL.getDefaultState(), 33);
-    private final WorldGenAMMinable nitroGen = new WorldGenAMMinable(EnumOreVariant.NITRO, 17);
-    private final WorldGenAMMinable tektiteGen = new WorldGenAMMinable(EnumOreVariant.TEKTITE, 9);
-    private final WorldGenAMMinable sylvaniteGen = new WorldGenAMMinable(EnumOreVariant.SYLVANITE, 8);
-    private final WorldGenAMFlowers snapdragonGen = new WorldGenAMFlowers(VariantHelper.getDefaultStateWithVariant(AMBlocks.FLOWER, EnumFlowerVariant.SNAPDRAGON));
+    private final WorldGenAMMinable nitroGen = new WorldGenAMMinable(VariantOre.NITRO, 17);
+    private final WorldGenAMMinable tektiteGen = new WorldGenAMMinable(VariantOre.TEKTITE, 9);
+    private final WorldGenAMMinable sylvaniteGen = new WorldGenAMMinable(VariantOre.SYLVANITE, 8);
+    private final WorldGenAMFlowers snapdragonGen = new WorldGenAMFlowers(VariantFlower.SNAPDRAGON);
     private final WorldGenDeadPlant deadPlantGen = new WorldGenDeadPlant();
     private final WorldGenAMLiquids waterGen = new WorldGenAMLiquids(Blocks.FLOWING_WATER.getDefaultState());
 

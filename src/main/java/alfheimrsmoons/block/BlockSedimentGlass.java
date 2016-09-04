@@ -10,8 +10,10 @@ public class BlockSedimentGlass extends BlockGlass
     public BlockSedimentGlass()
     {
         super(Material.GLASS, false);
+        setRegistryName("sediment_glass");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "sediment_glass");
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(0.3F);
         setSoundType(SoundType.GLASS);
-        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 }

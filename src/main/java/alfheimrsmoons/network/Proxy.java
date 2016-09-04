@@ -1,15 +1,13 @@
 package alfheimrsmoons.network;
 
-import alfheimrsmoons.item.ItemVariantBlock;
-import alfheimrsmoons.util.IVariant;
-import alfheimrsmoons.util.IVariantBlock;
-import alfheimrsmoons.util.IVariantObject;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import zaggy1024.proxy.IProxy;
 
-public class Proxy
+public abstract class Proxy implements IProxy
 {
     public void preInit() {}
 
@@ -17,56 +15,50 @@ public class Proxy
 
     public void postInit() {}
 
-    public <V extends IVariant<V>, B extends Block & IVariantBlock<V>> void registerBlockWithVariants(B block)
+    @Override
+    public void registerItem(Item item, ResourceLocation name, boolean doModel)
     {
-        registerBlockWithVariants(block, new ItemVariantBlock<>(block));
+        registerItem(item.setRegistryName(name), doModel);
     }
 
-    public <V extends IVariant<V>, B extends Block & IVariantBlock<V>, I extends Item & IVariantObject<V>> void registerBlockWithVariants(B block, I item)
-    {
-        registerBlockWithVariants(block, item, null);
-    }
-
-    public <V extends IVariant<V>, B extends Block & IVariantBlock<V>> void registerBlockWithVariants(B block, String base)
-    {
-        registerBlockWithVariants(block, new ItemVariantBlock<>(block), base);
-    }
-
-    public <V extends IVariant<V>, B extends Block & IVariantBlock<V>, I extends Item & IVariantObject<V>> void registerBlockWithVariants(B block, I item, String base)
-    {
-        GameRegistry.register(block);
-        item.setRegistryName(block.getRegistryName());
-        registerItemWithVariants(item, base);
-    }
-
-    public void registerBlockWithItem(Block block)
-    {
-        registerBlockWithItem(block, new ItemBlock(block));
-    }
-
-    public void registerBlockWithItem(Block block, Item item)
-    {
-        registerBlock(block);
-        registerItem(item.setRegistryName(block.getRegistryName()));
-    }
-
-    public void registerBlock(Block block)
-    {
-        GameRegistry.register(block);
-    }
-
-    public <V extends IVariant<V>, I extends Item & IVariantObject<V>> void registerItemWithVariants(I item)
-    {
-        registerItemWithVariants(item, null);
-    }
-
-    public <V extends IVariant<V>, I extends Item & IVariantObject<V>> void registerItemWithVariants(I item, String base)
+    public void registerItem(Item item, boolean doModel)
     {
         GameRegistry.register(item);
     }
 
     public void registerItem(Item item)
     {
-        GameRegistry.register(item);
+        registerItem(item, true);
+    }
+
+    @Override
+    public void registerBlock(Block block, Item item, ResourceLocation name, boolean doModel)
+    {
+        registerBlock(block.setRegistryName(name), item, doModel);
+    }
+
+    public void registerBlock(Block block, Item item, boolean doModel)
+    {
+        GameRegistry.register(block);
+
+        if (item != null)
+        {
+            registerItem(item.setRegistryName(block.getRegistryName()), doModel);
+        }
+    }
+
+    public void registerBlock(Block block, Item item)
+    {
+        registerBlock(block, item, true);
+    }
+
+    public void registerBlock(Block block, boolean doModel)
+    {
+        registerBlock(block, new ItemBlock(block), doModel);
+    }
+
+    public void registerBlock(Block block)
+    {
+        registerBlock(block, true);
     }
 }

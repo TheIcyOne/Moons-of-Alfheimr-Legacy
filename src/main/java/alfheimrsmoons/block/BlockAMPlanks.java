@@ -1,13 +1,12 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.util.EnumWoodVariant;
-import alfheimrsmoons.util.IVariantBlock;
-import alfheimrsmoons.util.VariantHelper;
-import net.minecraft.block.BlockPlanks;
+import alfheimrsmoons.combo.VariantTree;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,65 +17,77 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import zaggy1024.combo.ObjectType;
+import zaggy1024.combo.VariantsOfTypesCombo;
+import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
+import zaggy1024.combo.variant.PropertyIMetadata;
+import zaggy1024.item.ItemBlockMulti;
+import zaggy1024.util.BlockStateToMetadata;
 
 import java.util.List;
 
-public class BlockAMPlanks extends BlockPlanks implements IVariantBlock<EnumWoodVariant>
+public class BlockAMPlanks extends Block
 {
-    public static final PropertyEnum<EnumWoodVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumWoodVariant.class);
+    @BlockProperties
+    public static final IProperty<?>[] PROPERTIES = new IProperty[0];
 
-    public BlockAMPlanks()
+    public final VariantsOfTypesCombo<VariantTree> owner;
+    public final ObjectType<VariantTree, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantTree>> type;
+
+    public final List<VariantTree> variants;
+    public final PropertyIMetadata<VariantTree> variantProperty;
+
+    public BlockAMPlanks(VariantsOfTypesCombo<VariantTree> owner,
+                         ObjectType<VariantTree, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantTree>> type,
+                         List<VariantTree> variants, Class<VariantTree> variantClass)
     {
-        blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
+        super(Material.WOOD);
+
+        this.owner = owner;
+        this.type = type;
+
+        this.variants = variants;
+        variantProperty = new PropertyIMetadata<>("variant", variants, variantClass);
+
+        blockState = new BlockStateContainer(this, variantProperty);
         setDefaultState(blockState.getBaseState());
+
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(2.0F);
         setResistance(5.0F);
         setSoundType(SoundType.WOOD);
         setHarvestLevel("axe", 0);
-        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
-    }
-
-    @Override
-    public PropertyEnum<EnumWoodVariant> getVariantProperty()
-    {
-        return VARIANT_PROPERTY;
-    }
-
-    @Override
-    public EnumWoodVariant[] getVariants()
-    {
-        return EnumWoodVariant.VARIANTS;
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return VariantHelper.getMetaFromState(this, state);
+        return owner.getItemMetadata(type, state.getValue(variantProperty));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        VariantHelper.addSubItems(this, item, list);
+        owner.fillSubItems(type, variants, list);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return VariantHelper.getDefaultStateWithMeta(this, meta);
+        return BlockStateToMetadata.getBlockStateFromMeta(getDefaultState(), meta, variantProperty);
     }
 
     @Override
     public MapColor getMapColor(IBlockState state)
     {
-        return state.getValue(VARIANT_PROPERTY).getMapColor();
+        return state.getValue(variantProperty).getMapColor();
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return VariantHelper.getMetaFromState(this, state);
+        return BlockStateToMetadata.getMetaForBlockState(state, variantProperty);
     }
 
     @Override
@@ -90,5 +101,4 @@ public class BlockAMPlanks extends BlockPlanks implements IVariantBlock<EnumWood
     {
         return 20;
     }
-
 }

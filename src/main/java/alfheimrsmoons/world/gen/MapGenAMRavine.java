@@ -1,6 +1,7 @@
 package alfheimrsmoons.world.gen;
 
-import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.block.BlockShale;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -12,7 +13,7 @@ public class MapGenAMRavine extends MapGenRavine
     @Override
     protected boolean isOceanBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
     {
-        return ChunkGeneratorAlfheimr.OCEAN_BLOCKS.contains(data.getBlockState(x, y, z).getBlock());
+        return data.getBlockState(x, y, z).getMaterial() == Material.WATER;
     }
 
     @Override
@@ -23,7 +24,7 @@ public class MapGenAMRavine extends MapGenRavine
         IBlockState top = biome.topBlock;
         IBlockState filler = biome.fillerBlock;
 
-        if (state.getBlock() == AMBlocks.SHALE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() instanceof BlockShale || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y - 1 < 10)
             {

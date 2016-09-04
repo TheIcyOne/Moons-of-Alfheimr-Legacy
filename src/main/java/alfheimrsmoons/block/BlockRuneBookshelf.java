@@ -12,10 +12,12 @@ public class BlockRuneBookshelf extends BlockBookshelf
 {
     public BlockRuneBookshelf()
     {
+        setRegistryName("rune_bookshelf");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "rune_bookshelf");
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(1.5F);
         setSoundType(SoundType.WOOD);
         setHarvestLevel("axe", 0);
-        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

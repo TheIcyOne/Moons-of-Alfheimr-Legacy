@@ -26,11 +26,13 @@ public class ItemBranchBow extends ItemBow
     public ItemBranchBow()
     {
         super();
+        setRegistryName("branch_bow");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "branch_bow");
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
         {
-            @SideOnly(Side.CLIENT)
             @Override
+            @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, World world, EntityLivingBase entity)
             {
                 if (entity == null)

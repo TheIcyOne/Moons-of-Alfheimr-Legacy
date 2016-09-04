@@ -1,10 +1,14 @@
 package alfheimrsmoons.world.biome;
 
+import alfheimrsmoons.combo.ComboFlowers;
+import alfheimrsmoons.combo.VariantFlower;
+import alfheimrsmoons.combo.VariantShale;
+import alfheimrsmoons.combo.VariantTree;
 import alfheimrsmoons.entity.EntityNitroWraith;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.util.*;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
-import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
+import alfheimrsmoons.world.gen.feature.WorldGenAMTree;
 import alfheimrsmoons.world.gen.feature.WorldGenSedge;
 import alfheimrsmoons.world.gen.feature.WorldGenTallFlower;
 import net.minecraft.block.BlockBush;
@@ -26,9 +30,9 @@ import java.util.Random;
 public abstract class AMBiome extends Biome
 {
     protected static final IBlockState BEDROCK = AMBlocks.YGGDRASIL_LEAVES.getDefaultState();
-    protected static final IBlockState STONE = VariantHelper.getDefaultStateWithVariant(AMBlocks.SHALE, EnumShaleVariant.NORMAL);
+    protected static final IBlockState STONE = AMBlocks.SHALE.getBlockState(VariantShale.NORMAL);
 
-    protected final List<EnumTallFlowerVariant> tallFlowerVariants;
+    protected final List<VariantFlower> tallFlowerVariants;
 
     public AMBiome(BiomeProperties properties)
     {
@@ -67,19 +71,19 @@ public abstract class AMBiome extends Biome
     @Override
     public WorldGenAbstractTree genBigTreeChance(Random rand)
     {
-        EnumWoodVariant variant = getRandomTreeVariant(rand);
-        return rand.nextInt(10) == 0 ? new WorldGenAMBigTree(false, variant) : new WorldGenAMTrees(false, variant);
+        VariantTree variant = getRandomTreeVariant(rand);
+        return rand.nextInt(10) == 0 ? new WorldGenAMBigTree(false, variant) : new WorldGenAMTree(false, variant);
     }
 
     /**
-     * Gets a random {@link EnumWoodVariant} for tree generation
+     * Gets a random {@link VariantTree} for tree generation
      *
      * @param rand Random number generator
      * @return A random tree variant
      */
-    protected EnumWoodVariant getRandomTreeVariant(Random rand)
+    protected VariantTree getRandomTreeVariant(Random rand)
     {
-        return EnumWoodVariant.BEECH;
+        return VariantTree.BEECH;
     }
 
     /**
@@ -108,8 +112,8 @@ public abstract class AMBiome extends Biome
     /**
      * Init method for adding flower variants
      *
-     * @see #addFlowerVariants(EnumFlowerVariant...)
-     * @see #addTallFlowerVariants(EnumTallFlowerVariant...)
+     * @see #addFlowerVariants(VariantFlower...)
+     * @see #addTallFlowerVariants(VariantFlower...)
      */
     protected void addFlowerVariants() {}
 
@@ -141,9 +145,9 @@ public abstract class AMBiome extends Biome
      * @param variants flower variants
      * @return this biome instance
      */
-    public AMBiome addFlowerVariants(EnumFlowerVariant... variants)
+    public AMBiome addFlowerVariants(VariantFlower... variants)
     {
-        for (EnumFlowerVariant variant : variants)
+        for (VariantFlower variant : variants)
         {
             addFlowerVariant(variant, 20);
         }
@@ -158,9 +162,9 @@ public abstract class AMBiome extends Biome
      * @param weight  flower weight (higher number is higher chance (lower is lower))
      * @return this biome instance
      */
-    public AMBiome addFlowerVariant(EnumFlowerVariant variant, int weight)
+    public AMBiome addFlowerVariant(VariantFlower variant, int weight)
     {
-        addFlower(VariantHelper.getDefaultStateWithVariant(AMBlocks.FLOWER, variant), weight);
+        addFlower(AMBlocks.FLOWERS.getBlockState(ComboFlowers.FLOWER, variant), weight);
         return this;
     }
 
@@ -200,7 +204,7 @@ public abstract class AMBiome extends Biome
      * @param variants tall flower variants
      * @return this biome instance
      */
-    public AMBiome addTallFlowerVariants(EnumTallFlowerVariant... variants)
+    public AMBiome addTallFlowerVariants(VariantFlower... variants)
     {
         Collections.addAll(tallFlowerVariants, variants);
         return this;
@@ -221,7 +225,7 @@ public abstract class AMBiome extends Biome
 
             for (int i = 0; i < flowersPerChunk; ++i)
             {
-                EnumTallFlowerVariant variant = VariantHelper.getRandomVariant(tallFlowerVariants, rand);
+                VariantFlower variant = tallFlowerVariants.get(rand.nextInt(tallFlowerVariants.size()));
                 WorldGenTallFlower gen = new WorldGenTallFlower(variant);
 
                 for (int j = 0; j < 5; ++j)

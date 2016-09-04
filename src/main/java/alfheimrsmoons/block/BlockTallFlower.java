@@ -2,230 +2,259 @@ package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.util.EnumTallFlowerVariant;
-import alfheimrsmoons.util.IVariantBlock;
-import alfheimrsmoons.util.VariantHelper;
+import alfheimrsmoons.combo.VariantFlower;
+import alfheimrsmoons.combo.EnumHalf;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import zaggy1024.combo.ObjectType;
+import zaggy1024.combo.VariantsOfTypesCombo;
+import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
+import zaggy1024.combo.variant.PropertyIMetadata;
+import zaggy1024.item.ItemBlockMulti;
+import zaggy1024.util.BlockStateToMetadata;
 
-import java.util.ArrayList;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class BlockTallFlower extends BlockDoublePlant implements IVariantBlock<EnumTallFlowerVariant>
+public class BlockTallFlower extends BlockBush implements IGrowable
 {
-    public static final PropertyEnum<EnumTallFlowerVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumTallFlowerVariant.class);
+    @BlockProperties
+    public static final IProperty<?>[] PROPERTIES = {EnumHalf.PROPERTY};
 
-    public BlockTallFlower()
+    public final VariantsOfTypesCombo<VariantFlower> owner;
+    public final ObjectType<VariantFlower, ? extends BlockTallFlower, ? extends ItemBlockMulti<VariantFlower>> type;
+
+    public final List<VariantFlower> variants;
+    public final PropertyIMetadata<VariantFlower> variantProperty;
+
+    public BlockTallFlower(VariantsOfTypesCombo<VariantFlower> owner,
+                           ObjectType<VariantFlower, ? extends BlockTallFlower, ? extends ItemBlockMulti<VariantFlower>> type,
+                           List<VariantFlower> variants, Class<VariantFlower> variantClass)
     {
-        blockState = new BlockStateContainer(this, VARIANT_PROPERTY, HALF);
-        setDefaultState(blockState.getBaseState().withProperty(HALF, EnumBlockHalf.LOWER));
+        super(Material.VINE);
+
+        this.owner = owner;
+        this.type = type;
+
+        this.variants = variants;
+        variantProperty = new PropertyIMetadata<>("variant", variants, variantClass);
+
+        blockState = new BlockStateContainer(this, variantProperty, EnumHalf.PROPERTY);
+        setDefaultState(blockState.getBaseState().withProperty(EnumHalf.PROPERTY, EnumHalf.BOTTOM));
+
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
-    }
-
-    private EnumTallFlowerVariant getVariant(IBlockAccess world, BlockPos pos, IBlockState state)
-    {
-        if (state.getBlock() == this)
-        {
-            return state.getActualState(world, pos).getValue(VARIANT_PROPERTY);
-        }
-        else
-        {
-            return EnumTallFlowerVariant.EELGRASS;
-        }
-    }
-
-    @Override
-    public PropertyEnum<EnumTallFlowerVariant> getVariantProperty()
-    {
-        return VARIANT_PROPERTY;
-    }
-
-    @Override
-    public EnumTallFlowerVariant[] getVariants()
-    {
-        return EnumTallFlowerVariant.VARIANTS;
+        setHardness(0.0F);
+        setSoundType(SoundType.PLANT);
     }
 
     @Override
     protected boolean canSustainBush(IBlockState state)
     {
         Block block = state.getBlock();
-        return block == AMBlocks.SOIL || block == AMBlocks.GRASSY_SOIL || super.canSustainBush(state);
+        return block instanceof BlockSoil || block instanceof BlockGrassySoil || super.canSustainBush(state);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return FULL_BLOCK_AABB;
+    }
+
+    protected VariantFlower getVariant(IBlockAccess world, BlockPos pos, IBlockState state)
+    {
+        if (state.getBlock() == this)
+        {
+            return state.getActualState(world, pos).getValue(variantProperty);
+        }
+        else
+        {
+            return VariantFlower.COLOMBINE;
+        }
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        return super.canPlaceBlockAt(world, pos) && world.isAirBlock(pos.up());
     }
 
     @Override
     public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
-        IBlockState state = world.getBlockState(pos);
+        return world.getBlockState(pos).getBlock() != this;
+    }
 
-        if (state.getBlock() != this)
+    @Override
+    protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state)
+    {
+        if (!canBlockStay(world, pos, state))
         {
-            return true;
-        }
-        else
-        {
-            EnumTallFlowerVariant variant = state.getActualState(world, pos).getValue(VARIANT_PROPERTY);
-            return variant == EnumTallFlowerVariant.EELGRASS;
+            boolean isTop = state.getValue(EnumHalf.PROPERTY).isTop();
+            BlockPos topPos = isTop ? pos : pos.up();
+            BlockPos bottomPos = isTop ? pos.down() : pos;
+            Block topBlock = isTop ? this : world.getBlockState(topPos).getBlock();
+            Block bottomBlock = isTop ? world.getBlockState(bottomPos).getBlock() : this;
+
+            if (!isTop)
+            {
+                dropBlockAsItem(world, pos, state, 0); //Forge move above the setting to air.
+            }
+
+            if (topBlock == this)
+            {
+                world.setBlockState(topPos, Blocks.AIR.getDefaultState(), 2);
+            }
+
+            if (bottomBlock == this)
+            {
+                world.setBlockState(bottomPos, Blocks.AIR.getDefaultState(), 3);
+            }
         }
     }
 
     @Override
+    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    {
+        if (state.getBlock() != this)
+        {
+            return super.canBlockStay(world, pos, state); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+        }
+
+        if (state.getValue(EnumHalf.PROPERTY).isTop())
+        {
+            return world.getBlockState(pos.down()).getBlock() == this;
+        }
+        else
+        {
+            return world.getBlockState(pos.up()).getBlock() == this && super.canBlockStay(world, pos, state);
+        }
+    }
+
+    @Override
+    @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        if (state.getValue(HALF) == EnumBlockHalf.UPPER)
+        if (state.getValue(EnumHalf.PROPERTY).isTop())
         {
             return null;
         }
         else
         {
-            EnumTallFlowerVariant variant = state.getValue(VARIANT_PROPERTY);
-            return variant == EnumTallFlowerVariant.EELGRASS ? null : Item.getItemFromBlock(this);
+            return super.getItemDropped(state, rand, fortune);
         }
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return state.getValue(HALF) != EnumBlockHalf.UPPER && state.getValue(VARIANT_PROPERTY) != EnumTallFlowerVariant.EELGRASS ? VariantHelper.getMetaFromState(this, state) : 0;
+        return !state.getValue(EnumHalf.PROPERTY).isTop() ? owner.getItemMetadata(type, state.getValue(variantProperty)) : 0;
     }
 
-    public void placeAt(World world, BlockPos lowerPos, EnumTallFlowerVariant variant, int flags)
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        world.setBlockState(lowerPos, getDefaultState().withProperty(HALF, EnumBlockHalf.LOWER).withProperty(VARIANT_PROPERTY, variant), flags);
-        world.setBlockState(lowerPos.up(), getDefaultState().withProperty(HALF, EnumBlockHalf.UPPER), flags);
+        world.setBlockState(pos.up(), getDefaultState().withProperty(EnumHalf.PROPERTY, EnumHalf.TOP), 2);
     }
 
     @Override
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        if (state.getValue(HALF) == EnumBlockHalf.UPPER)
+        if (state.getValue(EnumHalf.PROPERTY).isTop())
         {
-            BlockPos lowerPos = pos.down();
+            BlockPos bottomPos = pos.down();
 
-            if (world.getBlockState(lowerPos).getBlock() == this)
+            if (world.getBlockState(bottomPos).getBlock() == this)
             {
-                boolean destroyBlock = false;
-
-                if (!player.capabilities.isCreativeMode)
+                if (player.capabilities.isCreativeMode)
                 {
-                    IBlockState lowerState = world.getBlockState(lowerPos);
-                    EnumTallFlowerVariant variant = lowerState.getValue(VARIANT_PROPERTY);
-
-                    if (variant != EnumTallFlowerVariant.EELGRASS)
-                    {
-                        destroyBlock = true;
-                    }
-                    else if (!world.isRemote)
-                    {
-                        if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemShears)
-                        {
-                            onHarvest(world, pos, lowerState, player);
-                        }
-                        else
-                        {
-                            destroyBlock = true;
-                        }
-                    }
-                }
-
-                if (destroyBlock)
-                {
-                    world.destroyBlock(lowerPos, true);
+                    world.setBlockToAir(bottomPos);
                 }
                 else
                 {
-                    world.setBlockToAir(lowerPos);
+                    world.destroyBlock(bottomPos, true);
                 }
             }
         }
-        else if (world.getBlockState(pos.up()).getBlock() == this)
+        else
         {
-            world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
+            BlockPos topPos = pos.up();
+
+            if (world.getBlockState(topPos).getBlock() == this)
+            {
+                world.setBlockState(topPos, Blocks.AIR.getDefaultState(), 2);
+            }
         }
 
         super.onBlockHarvested(world, pos, state, player);
-    }
-
-    private boolean onHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
-    {
-        EnumTallFlowerVariant variant = state.getValue(VARIANT_PROPERTY);
-
-        if (variant != EnumTallFlowerVariant.EELGRASS)
-        {
-            return false;
-        }
-        else
-        {
-            player.addStat(StatList.getBlockStats(this));
-            return true;
-        }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        VariantHelper.addSubItems(this, item, list);
+        owner.fillSubItems(type, variants, list);
     }
 
     @Override
     public ItemStack getItem(World world, BlockPos pos, IBlockState state)
     {
-        return new ItemStack(this, 1, VariantHelper.getMetaFromVariant(this, getVariant(world, pos, state)));
+        return owner.getStack(type, getVariant(world, pos, state));
     }
 
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
     {
-        return getVariant(world, pos, state) != EnumTallFlowerVariant.EELGRASS;
+        return true;
+    }
+
+    @Override
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        return true;
     }
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state)
     {
-        spawnAsEntity(world, pos, getItem(world, pos, state));
+        spawnAsEntity(world, pos, owner.getStack(type, getVariant(world, pos, state)));
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
+    public IBlockState getStateFromMeta(int metadata)
     {
-        if ((meta & 8) > 0)
-        {
-            return getDefaultState().withProperty(HALF, EnumBlockHalf.UPPER);
-        }
-        else
-        {
-            return VariantHelper.getDefaultStateWithMeta(this, meta & 7).withProperty(HALF, EnumBlockHalf.LOWER);
-        }
+        return BlockStateToMetadata.getBlockStateFromMeta(getDefaultState(), metadata, variantProperty, EnumHalf.PROPERTY);
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if (state.getValue(HALF) == EnumBlockHalf.UPPER)
+        if (state.getValue(EnumHalf.PROPERTY).isTop())
         {
-            IBlockState lowerState = world.getBlockState(pos.down());
+            IBlockState bottomState = world.getBlockState(pos.down());
 
-            if (lowerState.getBlock() == this)
+            if (bottomState.getBlock() == this)
             {
-                state = state.withProperty(VARIANT_PROPERTY, lowerState.getValue(VARIANT_PROPERTY));
+                state = bottomState.withProperty(EnumHalf.PROPERTY, EnumHalf.TOP);
             }
         }
 
@@ -235,36 +264,31 @@ public class BlockTallFlower extends BlockDoublePlant implements IVariantBlock<E
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        if (state.getValue(HALF) == EnumBlockHalf.UPPER)
-        {
-            return 8;
-        }
-        else
-        {
-            return VariantHelper.getMetaFromState(this, state);
-        }
+        return BlockStateToMetadata.getMetaForBlockState(state, variantProperty, EnumHalf.PROPERTY);
     }
 
     @Override
-    public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos)
+    @SideOnly(Side.CLIENT)
+    public EnumOffsetType getOffsetType()
     {
-        IBlockState state = world.getBlockState(pos);
-        EnumTallFlowerVariant variant = state.getValue(VARIANT_PROPERTY);
-        return state.getValue(HALF) == EnumBlockHalf.LOWER && variant == EnumTallFlowerVariant.EELGRASS;
+        return EnumOffsetType.XZ;
     }
 
     @Override
-    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {
-        List<ItemStack> drops = new ArrayList<>();
-        EnumTallFlowerVariant variant = world.getBlockState(pos).getValue(VARIANT_PROPERTY);
-
-        if (variant == EnumTallFlowerVariant.EELGRASS)
+        //Forge: Break both parts on the client to prevent the top part flickering as default type for a few frames.
+        if (state.getBlock() == this && state.getValue(EnumHalf.PROPERTY).isBottom())
         {
-            drops.add(VariantHelper.createStack(this, variant));
+            BlockPos topPos = pos.up();
+
+            if (world.getBlockState(topPos).getBlock() == this)
+            {
+                world.setBlockToAir(topPos);
+            }
         }
 
-        return drops;
+        return world.setBlockToAir(pos);
     }
 
     @Override

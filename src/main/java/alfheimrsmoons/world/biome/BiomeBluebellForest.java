@@ -1,8 +1,7 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.util.EnumFlowerVariant;
-import alfheimrsmoons.util.EnumTallFlowerVariant;
-import alfheimrsmoons.util.EnumWoodVariant;
+import alfheimrsmoons.combo.VariantFlower;
+import alfheimrsmoons.combo.VariantTree;
 
 import java.util.Random;
 
@@ -19,13 +18,13 @@ public class BiomeBluebellForest extends BiomeWoods
     @Override
     protected void addFlowerVariants()
     {
-        addFlowerVariants(EnumFlowerVariant.BLUEBELL);
-        addTallFlowerVariants(EnumTallFlowerVariant.BLUEBELL);
+        addFlowerVariants(VariantFlower.BLUEBELL);
+        addTallFlowerVariants(VariantFlower.BLUEBELL);
     }
 
     @Override
-    protected EnumWoodVariant getRandomTreeVariant(Random rand)
+    protected VariantTree getRandomTreeVariant(Random rand)
     {
-        return rand.nextInt(10) == 0 ? EnumWoodVariant.ELM : EnumWoodVariant.BEECH;
+        return rand.nextInt(10) == 0 ? VariantTree.ELM : VariantTree.BEECH;
     }
 }

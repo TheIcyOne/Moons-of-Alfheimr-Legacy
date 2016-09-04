@@ -34,11 +34,11 @@
             }
         },
         "half": {
-            "lower": {
+            "bottom": {
                 "model": "cross",
                 "textures": { "cross": "#bottom" }
             },
-            "upper": {
+            "top": {
                 "model": "cross",
                 "textures": { "cross": "#top" }
             }

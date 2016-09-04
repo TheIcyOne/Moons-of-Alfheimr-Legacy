@@ -1,8 +1,10 @@
 package alfheimrsmoons.item;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.entity.EntitySeedPouch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
@@ -10,8 +12,15 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemSeedPouch extends AMItem
+public class ItemSeedPouch extends Item
 {
+    public ItemSeedPouch()
+    {
+        setRegistryName("seed_pouch");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "seed_pouch");
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
+    }
+
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {

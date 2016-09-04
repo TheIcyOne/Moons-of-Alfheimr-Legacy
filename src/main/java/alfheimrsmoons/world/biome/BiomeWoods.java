@@ -1,26 +1,25 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.util.EnumFlowerVariant;
-import alfheimrsmoons.util.EnumTallFlowerVariant;
-import alfheimrsmoons.util.EnumWoodVariant;
+import alfheimrsmoons.combo.VariantFlower;
+import alfheimrsmoons.combo.VariantTree;
 
 import java.util.Random;
 
 public class BiomeWoods extends AMBiome
 {
-    public static final EnumFlowerVariant[] FLOWER_VARIANTS =
+    public static final VariantFlower[] FLOWER_VARIANTS =
             {
-                    EnumFlowerVariant.PHILODENDRON,
-                    EnumFlowerVariant.CARNATION,
-                    EnumFlowerVariant.PURPLE_PACIFIST,
-                    EnumFlowerVariant.PINK_PRESTIGE,
-                    EnumFlowerVariant.STARSINGER
+                    VariantFlower.PHILODENDRON,
+                    VariantFlower.CARNATION,
+                    VariantFlower.PURPLE_PACIFIST,
+                    VariantFlower.PINK_PRESTIGE,
+                    VariantFlower.STARSINGER
             };
 
-    public static final EnumTallFlowerVariant[] TALL_FLOWER_VARIANTS =
+    public static final VariantFlower[] TALL_FLOWER_VARIANTS =
             {
-                    EnumTallFlowerVariant.DINANTHUS,
-                    EnumTallFlowerVariant.COLOMBINE
+                    VariantFlower.DINANTHUS,
+                    VariantFlower.COLOMBINE
             };
 
     public BiomeWoods(BiomeProperties properties)
@@ -38,8 +37,8 @@ public class BiomeWoods extends AMBiome
     }
 
     @Override
-    protected EnumWoodVariant getRandomTreeVariant(Random rand)
+    protected VariantTree getRandomTreeVariant(Random rand)
     {
-        return rand.nextInt(3) == 0 ? EnumWoodVariant.BEECH : EnumWoodVariant.ELM;
+        return rand.nextInt(3) == 0 ? VariantTree.BEECH : VariantTree.ELM;
     }
 }

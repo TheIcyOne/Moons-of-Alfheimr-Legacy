@@ -15,10 +15,12 @@ public class BlockNitroTorch extends BlockTorch
 {
     public BlockNitroTorch()
     {
+        setRegistryName("nitro_torch");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "nitro_torch");
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(0.0F);
         setLightLevel(0.9375F);
         setSoundType(SoundType.WOOD);
-        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.gen.feature;
 
+import alfheimrsmoons.combo.VariantFlower;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.util.EnumTallFlowerVariant;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -10,9 +10,9 @@ import java.util.Random;
 
 public class WorldGenTallFlower extends WorldGenerator
 {
-    private EnumTallFlowerVariant variant;
+    private final VariantFlower variant;
 
-    public WorldGenTallFlower(EnumTallFlowerVariant variant)
+    public WorldGenTallFlower(VariantFlower variant)
     {
         this.variant = variant;
     }
@@ -26,10 +26,12 @@ public class WorldGenTallFlower extends WorldGenerator
         {
             BlockPos flowerPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 254) && AMBlocks.TALL_FLOWER.canPlaceBlockAt(world, flowerPos))
+            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 254))
             {
-                AMBlocks.TALL_FLOWER.placeAt(world, flowerPos, variant, 2);
-                generated = true;
+                if (AMBlocks.FLOWERS.placeTallFlower(world, flowerPos, variant))
+                {
+                    generated = true;
+                }
             }
         }
 

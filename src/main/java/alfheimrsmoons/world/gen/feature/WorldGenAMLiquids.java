@@ -1,6 +1,6 @@
 package alfheimrsmoons.world.gen.feature;
 
-import alfheimrsmoons.init.AMBlocks;
+import alfheimrsmoons.block.BlockShale;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class WorldGenAMLiquids extends WorldGenLiquids
 {
-    private IBlockState state;
+    private final IBlockState state;
 
     public WorldGenAMLiquids(IBlockState state)
     {
@@ -21,71 +21,71 @@ public class WorldGenAMLiquids extends WorldGenLiquids
     @Override
     public boolean generate(World world, Random rand, BlockPos position)
     {
-        if (world.getBlockState(position.up()).getBlock() != AMBlocks.SHALE)
+        if (!(world.getBlockState(position.up()).getBlock() instanceof BlockShale))
         {
             return false;
         }
-        else if (world.getBlockState(position.down()).getBlock() != AMBlocks.SHALE)
+
+        if (!(world.getBlockState(position.down()).getBlock() instanceof BlockShale))
         {
             return false;
         }
-        else if (!world.isAirBlock(position) && world.getBlockState(position).getBlock() != AMBlocks.SHALE)
+
+        if (!world.isAirBlock(position) && !(world.getBlockState(position).getBlock() instanceof BlockShale))
         {
             return false;
         }
-        else
+
+        int stoneCount = 0;
+
+        if (world.getBlockState(position.west()).getBlock() instanceof BlockShale)
         {
-            int i = 0;
-
-            if (world.getBlockState(position.west()).getBlock() == AMBlocks.SHALE)
-            {
-                ++i;
-            }
-
-            if (world.getBlockState(position.east()).getBlock() == AMBlocks.SHALE)
-            {
-                ++i;
-            }
-
-            if (world.getBlockState(position.north()).getBlock() == AMBlocks.SHALE)
-            {
-                ++i;
-            }
-
-            if (world.getBlockState(position.south()).getBlock() == AMBlocks.SHALE)
-            {
-                ++i;
-            }
-
-            int j = 0;
-
-            if (world.isAirBlock(position.west()))
-            {
-                ++j;
-            }
-
-            if (world.isAirBlock(position.east()))
-            {
-                ++j;
-            }
-
-            if (world.isAirBlock(position.north()))
-            {
-                ++j;
-            }
-
-            if (world.isAirBlock(position.south()))
-            {
-                ++j;
-            }
-
-            if (i == 3 && j == 1)
-            {
-                world.setBlockState(position, state, 2);
-                world.immediateBlockTick(position, state, rand);
-            }
-
-            return true;
+            ++stoneCount;
         }
+
+        if (world.getBlockState(position.east()).getBlock() instanceof BlockShale)
+        {
+            ++stoneCount;
+        }
+
+        if (world.getBlockState(position.north()).getBlock() instanceof BlockShale)
+        {
+            ++stoneCount;
+        }
+
+        if (world.getBlockState(position.south()).getBlock() instanceof BlockShale)
+        {
+            ++stoneCount;
+        }
+
+        int airCount = 0;
+
+        if (world.isAirBlock(position.west()))
+        {
+            ++airCount;
+        }
+
+        if (world.isAirBlock(position.east()))
+        {
+            ++airCount;
+        }
+
+        if (world.isAirBlock(position.north()))
+        {
+            ++airCount;
+        }
+
+        if (world.isAirBlock(position.south()))
+        {
+            ++airCount;
+        }
+
+        if (stoneCount == 3 && airCount == 1)
+        {
+            world.setBlockState(position, state, 2);
+            world.immediateBlockTick(position, state, rand);
+        }
+
+        return true;
     }
 }

@@ -1,7 +1,7 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.util.EnumFlowerVariant;
-import alfheimrsmoons.util.EnumWoodVariant;
+import alfheimrsmoons.combo.VariantFlower;
+import alfheimrsmoons.combo.VariantTree;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.Random;
@@ -16,13 +16,13 @@ public class BiomeRunewoodForest extends BiomeWoods
     @Override
     protected void addFlowerVariants()
     {
-        addFlowerVariants(EnumFlowerVariant.FORGET_ME_NOT);
+        addFlowerVariants(VariantFlower.FORGET_ME_NOT);
     }
 
     @Override
-    protected EnumWoodVariant getRandomTreeVariant(Random rand)
+    protected VariantTree getRandomTreeVariant(Random rand)
     {
-        return rand.nextInt(10) == 0 ? EnumWoodVariant.BEECH : EnumWoodVariant.RUNE;
+        return rand.nextInt(10) == 0 ? VariantTree.BEECH : VariantTree.RUNE;
     }
 
     @Override

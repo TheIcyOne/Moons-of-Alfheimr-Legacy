@@ -1,17 +1,14 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.combo.VariantSedge;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.util.DefaultBlockHelper;
-import alfheimrsmoons.util.EnumSedgeVariant;
-import alfheimrsmoons.util.VariantHelper;
-import net.minecraft.block.BlockGrass;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -19,26 +16,22 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockGrassySoil extends BlockGrass
+public class BlockGrassySoil extends Block implements IGrowable
 {
     public BlockGrassySoil()
     {
-        blockState = new BlockStateContainer(this);
-        setDefaultState(blockState.getBaseState());
-        setHardness(0.6F);
-        setSoundType(SoundType.PLANT);
-        setHarvestLevel("shovel", 0);
+        super(Material.GRASS);
+        setRegistryName("grassy_soil");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "grassy_soil");
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
-        EntityEnderman.setCarriable(this, true);
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return DefaultBlockHelper.getActualState(this, state, world, pos);
+        setDefaultState(blockState.getBaseState());
+        setTickRandomly(true);
     }
 
     @Override
@@ -46,15 +39,13 @@ public class BlockGrassySoil extends BlockGrass
     {
         if (!world.isRemote)
         {
-            BlockPos upPos = pos.up();
-
-            if (world.getLightFromNeighbors(upPos) < 4 && world.getBlockState(upPos).getLightOpacity(world, upPos) > 2)
+            if (world.getLightFromNeighbors(pos.up()) < 4 && world.getBlockState(pos.up()).getLightOpacity(world, pos.up()) > 2)
             {
                 world.setBlockState(pos, AMBlocks.SOIL.getDefaultState());
             }
             else
             {
-                if (world.getLightFromNeighbors(upPos) >= 9)
+                if (world.getLightFromNeighbors(pos.up()) >= 9)
                 {
                     for (int i = 0; i < 4; ++i)
                     {
@@ -65,11 +56,10 @@ public class BlockGrassySoil extends BlockGrass
                             return;
                         }
 
-                        BlockPos upSpreadPos = spreadPos.up();
-                        IBlockState upSpreadState = world.getBlockState(upSpreadPos);
-                        IBlockState spreadState = world.getBlockState(spreadPos);
+                        IBlockState iblockstate = world.getBlockState(spreadPos.up());
+                        IBlockState iblockstate1 = world.getBlockState(spreadPos);
 
-                        if (spreadState.getBlock() == AMBlocks.SOIL && world.getLightFromNeighbors(upSpreadPos) >= 4 && upSpreadState.getLightOpacity(world, upPos) <= 2)
+                        if (iblockstate1.getBlock() instanceof BlockSoil && world.getLightFromNeighbors(spreadPos.up()) >= 4 && iblockstate.getLightOpacity(world, pos.up()) <= 2)
                         {
                             world.setBlockState(spreadPos, AMBlocks.GRASSY_SOIL.getDefaultState());
                         }
@@ -80,9 +70,22 @@ public class BlockGrassySoil extends BlockGrass
     }
 
     @Override
+    @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return AMBlocks.SOIL.getItemDropped(AMBlocks.SOIL.getDefaultState(), rand, fortune);
+    }
+
+    @Override
+    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        return true;
     }
 
     @Override
@@ -108,12 +111,13 @@ public class BlockGrassySoil extends BlockGrass
                         }
                         else
                         {
-                            EnumSedgeVariant tallgrassVariant = rand.nextBoolean() ? EnumSedgeVariant.SHORT : EnumSedgeVariant.NORMAL;
-                            IBlockState tallgrassState = VariantHelper.getDefaultStateWithVariant(AMBlocks.SEDGE, tallgrassVariant);
+                            VariantSedge sedgeVariant = rand.nextBoolean() ? VariantSedge.SHORT : VariantSedge.NORMAL;
+                            BlockSedge sedgeBlock = AMBlocks.SEDGES.getBlock(sedgeVariant);
+                            IBlockState sedgeState = sedgeBlock.getDefaultState().withProperty(AMBlocks.SEDGES.getVariantProperty(sedgeBlock), sedgeVariant);
 
-                            if (AMBlocks.SEDGE.canBlockStay(world, plantPos, tallgrassState))
+                            if (sedgeBlock.canBlockStay(world, plantPos, sedgeState))
                             {
-                                world.setBlockState(plantPos, tallgrassState, 3);
+                                world.setBlockState(plantPos, sedgeState, 3);
                             }
                         }
                     }
@@ -123,14 +127,22 @@ public class BlockGrassySoil extends BlockGrass
 
                 plantPos = plantPos.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
 
-                if (world.getBlockState(plantPos.down()).getBlock() != AMBlocks.GRASSY_SOIL || world.getBlockState(plantPos).isNormalCube())
+                if (world.getBlockState(plantPos.down()).getBlock() instanceof BlockGrassySoil && !world.getBlockState(plantPos).isNormalCube())
                 {
-                    break;
+                    ++j;
+                    continue;
                 }
 
-                ++j;
+                break;
             }
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override
@@ -144,12 +156,8 @@ public class BlockGrassySoil extends BlockGrass
                 return true;
             case Beach:
                 for (EnumFacing horizontal : EnumFacing.HORIZONTALS)
-                {
                     if (world.getBlockState(pos.offset(horizontal)).getMaterial() == Material.WATER)
-                    {
                         return true;
-                    }
-                }
         }
 
         return false;

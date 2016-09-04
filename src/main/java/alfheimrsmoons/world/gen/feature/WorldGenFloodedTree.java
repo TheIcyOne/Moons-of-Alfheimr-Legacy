@@ -1,23 +1,29 @@
 package alfheimrsmoons.world.gen.feature;
 
-import alfheimrsmoons.block.BlockAMLeaves;
+import alfheimrsmoons.combo.ComboTrees;
+import alfheimrsmoons.combo.VariantTree;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.util.EnumWoodVariant;
-import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenSwamp;
+import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class WorldGenFloodedTree extends WorldGenSwamp
+public class WorldGenFloodedTree extends WorldGenAMAbstractTree
 {
-    private static final IBlockState LOG = VariantHelper.getDefaultStateWithVariant(AMBlocks.LOG, EnumWoodVariant.ELM);
-    private static final IBlockState LEAVES = VariantHelper.getDefaultStateWithVariant(AMBlocks.LEAVES, EnumWoodVariant.ELM).withProperty(BlockAMLeaves.CHECK_DECAY, false);
+    private static final IBlockState LOG = AMBlocks.TREES.getBlockState(ComboTrees.LOG, VariantTree.ELM);
+    private static final IBlockState LEAVES = AMBlocks.TREES.getBlockState(ComboTrees.LEAVES, VariantTree.ELM).withProperty(BlockLeaves.CHECK_DECAY, false);
+    private static final IPlantable SAPLING = AMBlocks.TREES.getBlock(ComboTrees.SAPLING, VariantTree.ELM);
+
+    public WorldGenFloodedTree()
+    {
+        super(false);
+    }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos position)
@@ -92,7 +98,7 @@ public class WorldGenFloodedTree extends WorldGenSwamp
         IBlockState downState = world.getBlockState(down);
         Block downBlock = downState.getBlock();
 
-        if (!downBlock.canSustainPlant(downState, world, down, EnumFacing.UP, AMBlocks.SAPLING) || y >= world.getHeight() - height - 1)
+        if (!downBlock.canSustainPlant(downState, world, down, EnumFacing.UP, SAPLING) || y >= world.getHeight() - height - 1)
         {
             return false;
         }
@@ -144,20 +150,5 @@ public class WorldGenFloodedTree extends WorldGenSwamp
         }
 
         return true;
-    }
-
-    @Override
-    protected void setDirtAt(World world, BlockPos pos)
-    {
-        if (world.getBlockState(pos).getBlock() != AMBlocks.SOIL)
-        {
-            setBlockAndNotifyAdequately(world, pos, AMBlocks.SOIL.getDefaultState());
-        }
-    }
-
-    @Override
-    protected boolean canGrowInto(Block block)
-    {
-        return super.canGrowInto(block) || WorldGenAMTrees.isReplaceable(block);
     }
 }

@@ -1,71 +1,88 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.util.EnumWoodVariant;
-import alfheimrsmoons.util.IVariantBlock;
-import alfheimrsmoons.util.VariantHelper;
+import alfheimrsmoons.combo.VariantTree;
 import alfheimrsmoons.world.gen.feature.WorldGenAMBigTree;
-import alfheimrsmoons.world.gen.feature.WorldGenAMTrees;
+import alfheimrsmoons.world.gen.feature.WorldGenAMTree;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.EnumPlantType;
+import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import zaggy1024.combo.ObjectType;
+import zaggy1024.combo.VariantsOfTypesCombo;
+import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
+import zaggy1024.combo.variant.PropertyIMetadata;
+import zaggy1024.item.ItemBlockMulti;
+import zaggy1024.util.BlockStateToMetadata;
 
 import java.util.List;
 import java.util.Random;
 
-public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWoodVariant>
+public class BlockAMSapling extends BlockBush implements IGrowable
 {
-    public static final PropertyEnum<EnumWoodVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumWoodVariant.class);
+    @BlockProperties
+    public static final IProperty<?>[] PROPERTIES = {BlockSapling.STAGE};
 
-    public BlockAMSapling()
+    public static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+
+    public final VariantsOfTypesCombo<VariantTree> owner;
+    public final ObjectType<VariantTree, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantTree>> type;
+
+    public final List<VariantTree> variants;
+    public final PropertyIMetadata<VariantTree> variantProperty;
+
+    public BlockAMSapling(VariantsOfTypesCombo<VariantTree> owner,
+                          ObjectType<VariantTree, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantTree>> type,
+                          List<VariantTree> variants, Class<VariantTree> variantClass)
     {
-        blockState = new BlockStateContainer(this, VARIANT_PROPERTY, STAGE);
-        setDefaultState(blockState.getBaseState().withProperty(STAGE, 0));
-        setHardness(0.0F);
-        setSoundType(SoundType.PLANT);
+        super();
+
+        this.owner = owner;
+        this.type = type;
+
+        this.variants = variants;
+        variantProperty = new PropertyIMetadata<>("variant", variants, variantClass);
+
+        blockState = new BlockStateContainer(this, variantProperty, BlockSapling.STAGE);
+        setDefaultState(blockState.getBaseState().withProperty(BlockSapling.STAGE, 0));
+
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override
-    public PropertyEnum<EnumWoodVariant> getVariantProperty()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return VARIANT_PROPERTY;
+        return SAPLING_AABB;
     }
 
     @Override
-    public EnumWoodVariant[] getVariants()
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        return EnumWoodVariant.values();
+        if (!world.isRemote)
+        {
+            super.updateTick(world, pos, state, rand);
+
+            if (world.getLightFromNeighbors(pos.up()) >= 9 && rand.nextInt(7) == 0)
+            {
+                grow(world, rand, pos, state);
+            }
+        }
     }
 
-    @Override
-    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
-    {
-        return EnumPlantType.Plains;
-    }
-
-    @Override
-    public String getLocalizedName()
-    {
-        return I18n.translateToLocal(getUnlocalizedName() + "." + getDefaultState().getValue(VARIANT_PROPERTY).getName() + ".name");
-    }
-
-    @Override
     public void generateTree(World world, BlockPos pos, IBlockState state, Random rand)
     {
         if (!TerrainGen.saplingGrowTree(world, rand, pos))
@@ -73,7 +90,7 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
             return;
         }
 
-        EnumWoodVariant variant = state.getValue(VARIANT_PROPERTY);
+        VariantTree variant = state.getValue(variantProperty);
         WorldGenerator worldGen = null;
         int xOffset = 0;
         int yOffset = 0;
@@ -110,7 +127,7 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
             }
             else
             {
-                worldGen = new WorldGenAMTrees(true, variant);
+                worldGen = new WorldGenAMTree(true, variant);
             }
         }
 
@@ -144,42 +161,64 @@ public class BlockAMSapling extends BlockSapling implements IVariantBlock<EnumWo
         }
     }
 
-    private boolean isTwoByTwoOfVariant(World world, BlockPos pos, int xOffset, int zOffset, EnumWoodVariant variant)
+    private boolean isTwoByTwoOfVariant(World world, BlockPos pos, int xOffset, int zOffset, VariantTree variant)
     {
         return isVariantAt(world, pos.add(xOffset, 0, zOffset), variant) && isVariantAt(world, pos.add(xOffset + 1, 0, zOffset), variant) && isVariantAt(world, pos.add(xOffset, 0, zOffset + 1), variant) && isVariantAt(world, pos.add(xOffset + 1, 0, zOffset + 1), variant);
     }
 
-    public boolean isVariantAt(World world, BlockPos pos, EnumWoodVariant variant)
+    public boolean isVariantAt(World world, BlockPos pos, VariantTree variant)
     {
         IBlockState state = world.getBlockState(pos);
-        return state.getBlock() == this && state.getValue(VARIANT_PROPERTY) == variant;
+        return state.getBlock() == this && state.getValue(variantProperty) == variant;
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return VariantHelper.getMetaFromState(this, state);
+        return owner.getItemMetadata(type, state.getValue(variantProperty));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        VariantHelper.addSubItems(this, item, list);
+        owner.fillSubItems(type, variants, list);
+    }
+
+    @Override
+    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        return (double) world.rand.nextFloat() < 0.45D;
+    }
+
+    @Override
+    public void grow(World world, Random rand, BlockPos pos, IBlockState state)
+    {
+        if (state.getValue(BlockSapling.STAGE) == 0)
+        {
+            world.setBlockState(pos, state.cycleProperty(BlockSapling.STAGE), 4);
+        }
+        else
+        {
+            generateTree(world, pos, state, rand);
+        }
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return VariantHelper.getDefaultStateWithMeta(this, meta & 7).withProperty(STAGE, (meta & 8) >> 3);
+        return BlockStateToMetadata.getBlockStateFromMeta(getDefaultState(), meta, variantProperty, BlockSapling.STAGE);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        int i = 0;
-        i = i | VariantHelper.getMetaFromState(this, state);
-        i = i | state.getValue(STAGE) << 3;
-        return i;
+        return BlockStateToMetadata.getMetaForBlockState(state, variantProperty, BlockSapling.STAGE);
     }
 }

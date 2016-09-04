@@ -1,63 +1,33 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.util.DefaultBlockHelper;
+import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
-public class BlockSediment extends BlockSand
+public class BlockSediment extends BlockFalling
 {
     public BlockSediment()
     {
-        super();
-        blockState = new BlockStateContainer(this);
-        setDefaultState(blockState.getBaseState());
+        super(Material.SAND);
+        setRegistryName("sediment");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "sediment");
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(0.5F);
         setSoundType(SoundType.SAND);
         setHarvestLevel("shovel", 0);
-        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         EntityEnderman.setCarriable(this, true);
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return DefaultBlockHelper.damageDropped(this, state);
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public int func_189876_x(IBlockState state) // getDustColor
     {
-        DefaultBlockHelper.getSubBlocks(this, item, tab, list);
-    }
-
-    @Override
-    public MapColor getMapColor(IBlockState state)
-    {
-        return MapColor.SAND;
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return DefaultBlockHelper.getStateFromMeta(this, meta);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return DefaultBlockHelper.getMetaFromState(this, state);
+        return BlockSand.EnumType.SAND.func_189865_a();
     }
 }

@@ -2,77 +2,106 @@ package alfheimrsmoons.init;
 
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.*;
-import alfheimrsmoons.item.ItemAMLeaves;
+import alfheimrsmoons.combo.*;
+import alfheimrsmoons.network.Proxy;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-
-/*
-    Adding a block:
-    - Registration (you are here)
-    - Block state JSON (assets/alfheimrsmoons/blockstates)
-    - Model JSON's (assets/alfheimrsmoons/models)
-    - Texture(s) (assets/alfheimrsmoons/textures/blocks)
-    - Localization (assets/alfheimrsmoons/lang)
-    - OPTIONAL: State mapper (alfheimrsmoons.client.ProxyClient)
-*/
+import zaggy1024.combo.ObjectType;
+import zaggy1024.combo.VariantsCombo;
+import zaggy1024.combo.VariantsOfTypesCombo;
+import zaggy1024.combo.VariantsOfTypesCombo.TypeNamePosition;
+import zaggy1024.combo.variant.IMetadata;
+import zaggy1024.item.ItemBlockMulti;
 
 public class AMBlocks
 {
-    public static final Block YGGDRASIL_LEAVES = new BlockYggdrasilLeaves().setUnlocalizedName("alfheimrsmoons.yggdrasil_leaves").setRegistryName("yggdrasil_leaves");
-    public static final Block SOIL = new BlockSoil().setUnlocalizedName("alfheimrsmoons.soil").setRegistryName("soil");
-    public static final Block GRASSY_SOIL = new BlockGrassySoil().setUnlocalizedName("alfheimrsmoons.grassy_soil").setRegistryName("grassy_soil");
-    public static final BlockSedge SEDGE = (BlockSedge) new BlockSedge().setUnlocalizedName("alfheimrsmoons.sedge").setRegistryName("sedge");
-    public static final BlockDeadPlant DEAD_PLANT = (BlockDeadPlant) new BlockDeadPlant().setUnlocalizedName("alfheimrsmoons.dead_plant").setRegistryName("dead_plant");
-    public static final BlockAMFlower FLOWER = (BlockAMFlower) new BlockAMFlower().setUnlocalizedName("alfheimrsmoons.flower").setRegistryName("flower");
-    public static final BlockTallFlower TALL_FLOWER = (BlockTallFlower) new BlockTallFlower().setUnlocalizedName("alfheimrsmoons.tall_flower").setRegistryName("tall_flower");
-    public static final Block SEDIMENT = new BlockSediment().setUnlocalizedName("alfheimrsmoons.sediment").setRegistryName("sediment");
-    public static final Block SEDIMENT_GLASS = new BlockSedimentGlass().setUnlocalizedName("alfheimrsmoons.sediment_glass").setRegistryName("sediment_glass");
-    public static final BlockShale SHALE = (BlockShale) new BlockShale().setUnlocalizedName("alfheimrsmoons.shale").setRegistryName("shale");
-    public static final BlockAMOre ORE = (BlockAMOre) new BlockAMOre().setUnlocalizedName("alfheimrsmoons.ore").setRegistryName("ore");
-    public static final BlockOreBlock ORE_BLOCK = (BlockOreBlock) new BlockOreBlock().setUnlocalizedName("alfheimrsmoons.ore_block").setRegistryName("ore_block");
-    public static final Block METEORITE = new BlockMeteorite().setUnlocalizedName("alfheimrsmoons.meteorite").setRegistryName("meteorite");
-    public static final Block COSMOTITE = new BlockCosmotite().setUnlocalizedName("alfheimrsmoons.cosmotite").setRegistryName("cosmotite");
-    public static final BlockAMLog LOG = (BlockAMLog) new BlockAMLog(0, 3).setUnlocalizedName("alfheimrsmoons.log").setRegistryName("log");
-    public static final BlockAMLog LOG2 = (BlockAMLog) new BlockAMLog(4, 4).setUnlocalizedName("alfheimrsmoons.log").setRegistryName("log2");
-    public static final BlockAMLeaves LEAVES = (BlockAMLeaves) new BlockAMLeaves(0, 3).setUnlocalizedName("alfheimrsmoons.leaves").setRegistryName("leaves");
-    public static final BlockAMLeaves LEAVES2 = (BlockAMLeaves) new BlockAMLeaves(4, 4).setUnlocalizedName("alfheimrsmoons.leaves").setRegistryName("leaves2");
-    public static final BlockAMSapling SAPLING = (BlockAMSapling) new BlockAMSapling().setUnlocalizedName("alfheimrsmoons.sapling").setRegistryName("sapling");
-    public static final BlockAMPlanks PLANKS = (BlockAMPlanks) new BlockAMPlanks().setUnlocalizedName("alfheimrsmoons.wood").setRegistryName("planks");
-    public static final Block RUNE_BOOKSHELF = new BlockRuneBookshelf().setUnlocalizedName("alfheimrsmoons.rune_bookshelf").setRegistryName("rune_bookshelf");
-    public static final Block NITRO_TORCH = new BlockNitroTorch().setUnlocalizedName("alfheimrsmoons.nitro_torch").setRegistryName("nitro_torch");
+    public static final BlockYggdrasilLeaves YGGDRASIL_LEAVES = new BlockYggdrasilLeaves();
+
+    public static final BlockSoil SOIL = new BlockSoil();
+
+    public static final BlockGrassySoil GRASSY_SOIL = new BlockGrassySoil();
+
+    public static final VariantsCombo<VariantSedge, BlockSedge, ItemBlockMulti<VariantSedge>> SEDGES =
+            new VariantsCombo<>(
+                    "sedges",
+                    ObjectType.createBlock(VariantSedge.class, "sedge", BlockSedge.class)
+                            .setUseSeparateVariantJsons(false)
+                            .setVariantNameFunction((v, n) -> v == VariantSedge.NORMAL ? n : v.getName() + "_" + n),
+                    VariantSedge.class,
+                    VariantSedge.values()
+            ).setNames(AlfheimrsMoons.MOD_ID, AlfheimrsMoons.UNLOCALIZED_PREFIX);
+
+    public static final VariantsCombo<VariantDeadPlant, BlockDeadPlant, ItemBlockMulti<VariantDeadPlant>> DEAD_PLANTS =
+            new VariantsCombo<>(
+                    "dead_plants",
+                    ObjectType.createBlock(VariantDeadPlant.class, "dead_plant", BlockDeadPlant.class)
+                            .setUseSeparateVariantJsons(false)
+                            .setVariantNameFunction((v, n) -> "dead_" + v.getName()),
+                    VariantDeadPlant.class,
+                    VariantDeadPlant.values()
+            ).setNames(AlfheimrsMoons.MOD_ID, AlfheimrsMoons.UNLOCALIZED_PREFIX);
+
+    public static final ComboFlowers FLOWERS = new ComboFlowers();
+
+    public static final BlockSediment SEDIMENT = new BlockSediment();
+
+    public static final BlockSedimentGlass SEDIMENT_GLASS = new BlockSedimentGlass();
+
+    public static final VariantsCombo<VariantShale, BlockShale, ItemBlockMulti<VariantShale>> SHALE =
+            new VariantsCombo<>(
+                    "shale",
+                    ObjectType.createBlock(VariantShale.class, "shale", BlockShale.class)
+                            .setUseSeparateVariantJsons(false)
+                            .setVariantNameFunction((v, n) -> v == VariantShale.NORMAL ? n : v.getName() + "_" + n),
+                    VariantShale.class,
+                    VariantShale.values()
+            ).setNames(AlfheimrsMoons.MOD_ID, AlfheimrsMoons.UNLOCALIZED_PREFIX);
+
+    public static final ComboOres ORES = new ComboOres();
+
+    public static final BlockMeteorite METEORITE = new BlockMeteorite();
+
+    public static final BlockCosmotite COSMOTITE = new BlockCosmotite();
+
+    public static final ComboTrees TREES = new ComboTrees();
+
+    public static final BlockRuneBookshelf RUNE_BOOKSHELF = new BlockRuneBookshelf();
+
+    public static final BlockNitroTorch NITRO_TORCH = new BlockNitroTorch();
 
     public static void registerBlocks()
     {
-        AlfheimrsMoons.proxy.registerBlockWithItem(YGGDRASIL_LEAVES);
-        AlfheimrsMoons.proxy.registerBlockWithItem(SOIL);
-        AlfheimrsMoons.proxy.registerBlockWithItem(GRASSY_SOIL);
-        AlfheimrsMoons.proxy.registerBlockWithVariants(SEDGE, "_sedge");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(DEAD_PLANT, "_dead");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(FLOWER);
-        AlfheimrsMoons.proxy.registerBlockWithVariants(TALL_FLOWER, "tall_");
-        AlfheimrsMoons.proxy.registerBlockWithItem(SEDIMENT);
-        AlfheimrsMoons.proxy.registerBlockWithItem(SEDIMENT_GLASS);
-        AlfheimrsMoons.proxy.registerBlockWithVariants(SHALE, "_shale");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(ORE, "_ore");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(ORE_BLOCK, "_ore_block");
-        AlfheimrsMoons.proxy.registerBlockWithItem(METEORITE);
-        AlfheimrsMoons.proxy.registerBlockWithItem(COSMOTITE);
-        AlfheimrsMoons.proxy.registerBlockWithVariants(LOG, "_log");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(LOG2, "_log");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(LEAVES, new ItemAMLeaves(LEAVES), "_leaves");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(LEAVES2, new ItemAMLeaves(LEAVES2), "_leaves");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(SAPLING, "_sapling");
-        AlfheimrsMoons.proxy.registerBlockWithVariants(PLANKS, "_planks");
-        AlfheimrsMoons.proxy.registerBlockWithItem(RUNE_BOOKSHELF);
-        AlfheimrsMoons.proxy.registerBlockWithItem(NITRO_TORCH);
+        Proxy proxy = AlfheimrsMoons.proxy;
+        proxy.registerBlock(YGGDRASIL_LEAVES);
+        proxy.registerBlock(SOIL);
+        proxy.registerBlock(GRASSY_SOIL);
+        SEDGES.registerAll(proxy);
+        DEAD_PLANTS.registerAll(proxy);
+        FLOWERS.registerAll(proxy);
+        proxy.registerBlock(SEDIMENT);
+        proxy.registerBlock(SEDIMENT_GLASS);
+        SHALE.registerAll(proxy);
+        ORES.registerVariants(proxy, ComboOres.ORE);
+        ORES.registerVariants(proxy, ComboOres.BLOCK);
+        proxy.registerBlock(METEORITE);
+        proxy.registerBlock(COSMOTITE);
+        TREES.registerAll(proxy);
+        proxy.registerBlock(RUNE_BOOKSHELF);
+        proxy.registerBlock(NITRO_TORCH);
 
-        OreDictionary.registerOre("logWood", new ItemStack(LOG, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("logWood", new ItemStack(LOG2, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("plankWood", new ItemStack(PLANKS, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("treeSapling", new ItemStack(SAPLING, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("treeLeaves", new ItemStack(LEAVES, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("treeLeaves", new ItemStack(LEAVES2, 1, OreDictionary.WILDCARD_VALUE));
+        registerVariantOres("logWood", TREES, ComboTrees.LOG);
+        registerVariantOres("plankWood", TREES, ComboTrees.PLANKS);
+        registerVariantOres("treeSapling", TREES, ComboTrees.SAPLING);
+        registerVariantOres("treeLeaves", TREES, ComboTrees.LEAVES);
         OreDictionary.registerOre("torch", NITRO_TORCH);
+    }
+
+    private static <V extends IMetadata<V>> void registerVariantOres(String name, VariantsOfTypesCombo<V> combo, ObjectType<V, ?, ?> type)
+    {
+        for (Block block : combo.getBlocks(type))
+        {
+            OreDictionary.registerOre(name, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
+        }
     }
 }

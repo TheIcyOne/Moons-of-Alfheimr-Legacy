@@ -11,6 +11,8 @@ public class BlockCosmotite extends Block
     public BlockCosmotite()
     {
         super(Material.ROCK, MapColor.OBSIDIAN);
+        setRegistryName("cosmotite");
+        setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "cosmotite");
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(1.5F);
         setResistance(10.0F);

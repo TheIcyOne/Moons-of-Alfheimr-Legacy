@@ -1,151 +1,137 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.init.AMItems;
-import alfheimrsmoons.util.EnumOreVariant;
-import alfheimrsmoons.util.IVariantBlock;
-import alfheimrsmoons.util.VariantHelper;
+import alfheimrsmoons.combo.ComboOres;
+import alfheimrsmoons.combo.VariantOre;
+import alfheimrsmoons.util.AMUtils;
+import alfheimrsmoons.util.IntRange;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import zaggy1024.combo.ObjectType;
+import zaggy1024.combo.VariantsOfTypesCombo;
+import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
+import zaggy1024.combo.variant.PropertyIMetadata;
+import zaggy1024.item.ItemBlockMulti;
+import zaggy1024.util.BlockStateToMetadata;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class BlockAMOre extends BlockOre implements IVariantBlock<EnumOreVariant>
+public class BlockAMOre extends BlockOre
 {
-    public static final PropertyEnum<EnumOreVariant> VARIANT_PROPERTY = PropertyEnum.create("variant", EnumOreVariant.class);
+    @BlockProperties
+    public static final IProperty<?>[] PROPERTIES = new IProperty[0];
 
-    public BlockAMOre()
+    public final VariantsOfTypesCombo<VariantOre> owner;
+    public final ObjectType<VariantOre, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantOre>> type;
+
+    public final List<VariantOre> variants;
+    public final PropertyIMetadata<VariantOre> variantProperty;
+
+    public BlockAMOre(VariantsOfTypesCombo<VariantOre> owner,
+                      ObjectType<VariantOre, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantOre>> type,
+                      List<VariantOre> variants, Class<VariantOre> variantClass)
     {
-        blockState = new BlockStateContainer(this, VARIANT_PROPERTY);
+        super();
+
+        this.owner = owner;
+        this.type = type;
+
+        this.variants = variants;
+        variantProperty = new PropertyIMetadata<>("variant", variants, variantClass);
+
+        blockState = new BlockStateContainer(this, variantProperty);
         setDefaultState(blockState.getBaseState());
+
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHardness(3.0F);
         setResistance(5.0F);
         setSoundType(SoundType.STONE);
-        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
-        for (int meta = 0; meta < getVariants().length; meta++)
+    }
+
+    @Override
+    public MapColor getMapColor(IBlockState state)
+    {
+        return state.getValue(variantProperty).getMapColor();
+    }
+
+    @Override
+    public int getHarvestLevel(IBlockState state)
+    {
+        return state.getValue(variantProperty).getHarvestLevel();
+    }
+
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        VariantOre variant = state.getValue(variantProperty);
+        IntRange range = variant.getDropSize();
+
+        if (range == null)
         {
-            setHarvestLevel("pickaxe", getVariants()[meta].getHarvestLevel());
+            return Collections.singletonList(owner.getStack(type, variant));
         }
-    }
 
-    @Override
-    public PropertyEnum<EnumOreVariant> getVariantProperty()
-    {
-        return VARIANT_PROPERTY;
-    }
+        Random rand = AMUtils.getWorldRandom(world, RANDOM);
+        int size = range.get(rand);
 
-    @Override
-    public EnumOreVariant[] getVariants()
-    {
-        return EnumOreVariant.VARIANTS;
-    }
-
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        switch (state.getValue(VARIANT_PROPERTY))
+        if (fortune > 0)
         {
-            case NITRO:
-            case SYLVANITE:
-                return AMItems.ORE_DROP;
-            default:
-                return Item.getItemFromBlock(this);
-        }
-    }
+            int i = rand.nextInt(fortune + 2) - 1;
 
-    @Override
-    public int quantityDropped(IBlockState state, int fortune, Random random)
-    {
-        if (Item.getItemFromBlock(this) != getItemDropped(state, random, fortune))
-        {
-            int quantity;
-
-            switch (state.getValue(VARIANT_PROPERTY))
+            if (i < 0)
             {
-                case NITRO:
-                    quantity = 2;
-                    break;
-                default:
-                    quantity = 1;
-                    break;
+                i = 0;
             }
 
-            if (fortune > 0)
-            {
-                int i = random.nextInt(fortune + 2) - 1;
-
-                if (i < 0)
-                {
-                    i = 0;
-                }
-
-                quantity *= (i + 1);
-            }
-
-            return quantity;
+            size *= (i + 1);
         }
-        else
-        {
-            return 1;
-        }
+
+        return Collections.singletonList(owner.getStack(ComboOres.DROP, variant, size));
     }
 
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        Random rand = world instanceof World ? ((World) world).rand : RANDOM;
-        switch (state.getValue(VARIANT_PROPERTY))
-        {
-            case NITRO:
-                return MathHelper.getRandomIntegerInRange(rand, 0, 2);
-            case SYLVANITE:
-                return MathHelper.getRandomIntegerInRange(rand, 3, 7);
-            default:
-                return 0;
-        }
+        IntRange range = state.getValue(variantProperty).getDropXP();
+        return range != null ? range.get(AMUtils.getWorldRandom(world, RANDOM)) : 0;
     }
 
     @Override
     public ItemStack getItem(World world, BlockPos pos, IBlockState state)
     {
-        return VariantHelper.createStack(this, state);
-    }
-
-    @Override
-    public int damageDropped(IBlockState state)
-    {
-        return VariantHelper.getMetaFromState(this, state);
+        return owner.getStack(type, state.getValue(variantProperty));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        VariantHelper.addSubItems(this, item, list);
+        owner.fillSubItems(type, variants, list);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return VariantHelper.getDefaultStateWithMeta(this, meta);
+        return BlockStateToMetadata.getBlockStateFromMeta(getDefaultState(), meta, variantProperty);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return VariantHelper.getMetaFromState(this, state);
+        return BlockStateToMetadata.getMetaForBlockState(state, variantProperty);
     }
 }

@@ -1,25 +1,24 @@
 package alfheimrsmoons.world.gen.feature;
 
+import alfheimrsmoons.block.BlockSoil;
+import alfheimrsmoons.combo.VariantShale;
 import alfheimrsmoons.init.AMBlocks;
-import alfheimrsmoons.util.EnumShaleVariant;
-import alfheimrsmoons.util.VariantHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class WorldGenAMLakes extends WorldGenLakes
+public class WorldGenAMLakes extends WorldGenerator
 {
-    private IBlockState state;
+    private final IBlockState state;
 
     public WorldGenAMLakes(IBlockState state)
     {
-        super(state.getBlock());
         this.state = state;
     }
 
@@ -122,7 +121,7 @@ public class WorldGenAMLakes extends WorldGenLakes
                         {
                             BlockPos blockpos = position.add(i2, j4 - 1, j3);
 
-                            if (world.getBlockState(blockpos).getBlock() == AMBlocks.SOIL && world.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
+                            if (world.getBlockState(blockpos).getBlock() instanceof BlockSoil && world.getLightFor(EnumSkyBlock.SKY, position.add(i2, j4, j3)) > 0)
                             {
                                 world.setBlockState(blockpos, AMBlocks.GRASSY_SOIL.getDefaultState(), 2);
                             }
@@ -143,7 +142,7 @@ public class WorldGenAMLakes extends WorldGenLakes
 
                             if (flag1 && (k4 < 4 || rand.nextInt(2) != 0) && world.getBlockState(position.add(j2, k4, k3)).getMaterial().isSolid())
                             {
-                                world.setBlockState(position.add(j2, k4, k3), VariantHelper.getDefaultStateWithVariant(AMBlocks.SHALE, EnumShaleVariant.NORMAL), 2);
+                                world.setBlockState(position.add(j2, k4, k3), AMBlocks.SHALE.getBlockState(VariantShale.NORMAL), 2);
                             }
                         }
                     }

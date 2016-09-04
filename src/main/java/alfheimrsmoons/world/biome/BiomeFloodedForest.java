@@ -1,6 +1,6 @@
 package alfheimrsmoons.world.biome;
 
-import alfheimrsmoons.util.EnumFlowerVariant;
+import alfheimrsmoons.combo.VariantFlower;
 import alfheimrsmoons.world.gen.feature.WorldGenFloodedTree;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -38,8 +38,8 @@ public class BiomeFloodedForest extends AMBiome
     @Override
     protected void addFlowerVariants()
     {
-        addFlowerVariant(EnumFlowerVariant.SKULLCAP, 20);
-        addFlowerVariant(EnumFlowerVariant.PHILODENDRON, 10);
+        addFlowerVariant(VariantFlower.SKULLCAP, 20);
+        addFlowerVariant(VariantFlower.PHILODENDRON, 10);
     }
 
     @Override
