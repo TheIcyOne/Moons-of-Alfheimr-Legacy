@@ -1,5 +1,6 @@
 package alfheimrsmoons.item;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantToolMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemPickaxe;
@@ -24,6 +25,8 @@ public class ItemPickaxeAM extends ItemPickaxe
         this.owner = owner;
         this.type = type;
         this.variant = variant;
+
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

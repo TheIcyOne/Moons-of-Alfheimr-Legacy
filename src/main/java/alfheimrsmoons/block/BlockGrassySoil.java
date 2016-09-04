@@ -5,8 +5,10 @@ import alfheimrsmoons.combo.VariantSedge;
 import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -32,6 +34,10 @@ public class BlockGrassySoil extends Block implements IGrowable
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setDefaultState(blockState.getBaseState());
         setTickRandomly(true);
+        setHardness(0.6F);
+        setSoundType(SoundType.PLANT);
+        setHarvestLevel("shovel", 0);
+        EntityEnderman.setCarriable(this, true);
     }
 
     @Override

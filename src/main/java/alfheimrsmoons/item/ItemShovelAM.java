@@ -1,5 +1,6 @@
 package alfheimrsmoons.item;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantToolMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemSpade;
@@ -24,6 +25,8 @@ public class ItemShovelAM extends ItemSpade
         this.owner = owner;
         this.type = type;
         this.variant = variant;
+
+        setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
     }
 
     @Override

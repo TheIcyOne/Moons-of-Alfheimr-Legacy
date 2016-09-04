@@ -7,6 +7,7 @@ import alfheimrsmoons.world.gen.feature.WorldGenTreeAM;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -61,6 +62,8 @@ public class BlockSaplingAM extends BlockBush implements IGrowable
         setDefaultState(blockState.getBaseState().withProperty(BlockSapling.STAGE, 0));
 
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
+        setHardness(0.0F);
+        setSoundType(SoundType.PLANT);
     }
 
     @Override

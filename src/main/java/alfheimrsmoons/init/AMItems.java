@@ -31,7 +31,8 @@ public class AMItems
     public static final VariantsCombo<VariantBioluminescence, Block, ItemMulti<VariantBioluminescence>> BIOLUMINESCENCE =
             new VariantsCombo<>(
                     "bioluminescence",
-                    ObjectType.createItem(VariantBioluminescence.class, "bioluminescence"),
+                    ObjectType.createItem(VariantBioluminescence.class, "bioluminescence")
+                            .setCreativeTab(AlfheimrsMoons.CREATIVE_TAB),
                     VariantBioluminescence.class,
                     VariantBioluminescence.values()
             ).setNames(AlfheimrsMoons.MOD_ID, AlfheimrsMoons.UNLOCALIZED_PREFIX);
@@ -48,7 +49,6 @@ public class AMItems
     public static final ItemBranchBow BRANCH_BOW = new ItemBranchBow();
 
     public static final Item ROCK_ARROW = new ItemArrowAM()
-            .setCreativeTab(AlfheimrsMoons.CREATIVE_TAB)
             .setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "rock_arrow")
             .setRegistryName("rock_arrow");
 
