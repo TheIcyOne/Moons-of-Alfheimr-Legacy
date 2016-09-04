@@ -12,7 +12,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "0.0.1.${System.env.CI_BUILD_ID}"
+version = "0.0.1.${System.env.CI_BUILD_ID ?: 0}"
 group = "alfheimrsmoons"
 archivesBaseName = "AlfheimrsMoons"
 
