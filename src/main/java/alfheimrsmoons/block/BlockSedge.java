@@ -2,7 +2,6 @@ package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantSedge;
-import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -43,13 +42,13 @@ public class BlockSedge extends BlockBush implements IGrowable, IShearable
     public static final AxisAlignedBB SHORT_SEDGE_AABB = NORMAL_SEDGE_AABB.setMaxY(NORMAL_SEDGE_AABB.maxY / 2);
 
     public final VariantsOfTypesCombo<VariantSedge> owner;
-    public final ObjectType<VariantSedge, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantSedge>> type;
+    public final ObjectType<VariantSedge, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantSedge>> type;
 
     public final List<VariantSedge> variants;
     public final PropertyIMetadata<VariantSedge> variantProperty;
 
     public BlockSedge(VariantsOfTypesCombo<VariantSedge> owner,
-                      ObjectType<VariantSedge, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantSedge>> type,
+                      ObjectType<VariantSedge, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantSedge>> type,
                       List<VariantSedge> variants, Class<VariantSedge> variantClass)
     {
         super(Material.VINE);

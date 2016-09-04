@@ -2,7 +2,7 @@ package alfheimrsmoons.world;
 
 import alfheimrsmoons.block.BlockGrassySoil;
 import alfheimrsmoons.init.AMDimensions;
-import alfheimrsmoons.world.biome.AMBiomeProvider;
+import alfheimrsmoons.world.biome.BiomeProviderAM;
 import alfheimrsmoons.world.gen.ChunkGeneratorAlfheimr;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
@@ -20,7 +20,7 @@ public class WorldProviderAlfheimr extends WorldProvider
     @Override
     protected void createBiomeProvider()
     {
-        biomeProvider = new AMBiomeProvider(worldObj.getWorldInfo());
+        biomeProvider = new BiomeProviderAM(worldObj.getWorldInfo());
     }
 
     @Override

@@ -1,17 +1,22 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.combo.ComboOres;
 import alfheimrsmoons.combo.VariantOre;
-import net.minecraft.block.Block;
+import alfheimrsmoons.util.AMUtils;
+import alfheimrsmoons.util.IntRange;
+import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import zaggy1024.combo.ObjectType;
@@ -21,9 +26,11 @@ import zaggy1024.combo.variant.PropertyIMetadata;
 import zaggy1024.item.ItemBlockMulti;
 import zaggy1024.util.BlockStateToMetadata;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
-public class BlockOreBlock extends Block
+public class BlockOreAM extends BlockOre
 {
     @BlockProperties
     public static final IProperty<?>[] PROPERTIES = new IProperty[0];
@@ -34,11 +41,11 @@ public class BlockOreBlock extends Block
     public final List<VariantOre> variants;
     public final PropertyIMetadata<VariantOre> variantProperty;
 
-    public BlockOreBlock(VariantsOfTypesCombo<VariantOre> owner,
-                         ObjectType<VariantOre, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantOre>> type,
-                         List<VariantOre> variants, Class<VariantOre> variantClass)
+    public BlockOreAM(VariantsOfTypesCombo<VariantOre> owner,
+                      ObjectType<VariantOre, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantOre>> type,
+                      List<VariantOre> variants, Class<VariantOre> variantClass)
     {
-        super(Material.IRON);
+        super();
 
         this.owner = owner;
         this.type = type;
@@ -50,9 +57,15 @@ public class BlockOreBlock extends Block
         setDefaultState(blockState.getBaseState());
 
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
-        setHardness(5.0F);
-        setResistance(10.0F);
-        setSoundType(SoundType.METAL);
+        setHardness(3.0F);
+        setResistance(5.0F);
+        setSoundType(SoundType.STONE);
+    }
+
+    @Override
+    public MapColor getMapColor(IBlockState state)
+    {
+        return state.getValue(variantProperty).getMapColor();
     }
 
     @Override
@@ -62,9 +75,45 @@ public class BlockOreBlock extends Block
     }
 
     @Override
-    public int damageDropped(IBlockState state)
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        return owner.getItemMetadata(type, state.getValue(variantProperty));
+        VariantOre variant = state.getValue(variantProperty);
+        IntRange range = variant.getDropSize();
+
+        if (range == null)
+        {
+            return Collections.singletonList(owner.getStack(type, variant));
+        }
+
+        Random rand = AMUtils.getWorldRandom(world, RANDOM);
+        int size = range.get(rand);
+
+        if (fortune > 0)
+        {
+            int i = rand.nextInt(fortune + 2) - 1;
+
+            if (i < 0)
+            {
+                i = 0;
+            }
+
+            size *= (i + 1);
+        }
+
+        return Collections.singletonList(owner.getStack(ComboOres.DROP, variant, size));
+    }
+
+    @Override
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
+    {
+        IntRange range = state.getValue(variantProperty).getDropXP();
+        return range != null ? range.get(AMUtils.getWorldRandom(world, RANDOM)) : 0;
+    }
+
+    @Override
+    public ItemStack getItem(World world, BlockPos pos, IBlockState state)
+    {
+        return owner.getStack(type, state.getValue(variantProperty));
     }
 
     @Override
@@ -78,12 +127,6 @@ public class BlockOreBlock extends Block
     public IBlockState getStateFromMeta(int meta)
     {
         return BlockStateToMetadata.getBlockStateFromMeta(getDefaultState(), meta, variantProperty);
-    }
-
-    @Override
-    public MapColor getMapColor(IBlockState state)
-    {
-        return state.getValue(variantProperty).getMapColor();
     }
 
     @Override

@@ -13,24 +13,24 @@ import java.util.List;
 
 public class ComboTools extends VariantsOfTypesCombo<VariantToolMaterial>
 {
-    public static final ObjectType<VariantToolMaterial, Block, ItemAMSword> SWORD =
-            ObjectType.createItem(VariantToolMaterial.class, "sword", ItemAMSword.class)
+    public static final ObjectType<VariantToolMaterial, Block, ItemSwordAM> SWORD =
+            ObjectType.createItem(VariantToolMaterial.class, "sword", ItemSwordAM.class)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 
-    public static final ObjectType<VariantToolMaterial, Block, ItemAMShovel> SHOVEL =
-            ObjectType.createItem(VariantToolMaterial.class, "shovel", ItemAMShovel.class)
+    public static final ObjectType<VariantToolMaterial, Block, ItemShovelAM> SHOVEL =
+            ObjectType.createItem(VariantToolMaterial.class, "shovel", ItemShovelAM.class)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 
-    public static final ObjectType<VariantToolMaterial, Block, ItemAMPickaxe> PICKAXE =
-            ObjectType.createItem(VariantToolMaterial.class, "pickaxe", ItemAMPickaxe.class)
+    public static final ObjectType<VariantToolMaterial, Block, ItemPickaxeAM> PICKAXE =
+            ObjectType.createItem(VariantToolMaterial.class, "pickaxe", ItemPickaxeAM.class)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 
-    public static final ObjectType<VariantToolMaterial, Block, ItemAMAxe> AXE =
-            ObjectType.createItem(VariantToolMaterial.class, "axe", ItemAMAxe.class)
+    public static final ObjectType<VariantToolMaterial, Block, ItemAxeAM> AXE =
+            ObjectType.createItem(VariantToolMaterial.class, "axe", ItemAxeAM.class)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 
-    public static final ObjectType<VariantToolMaterial, Block, ItemAMHoe> HOE =
-            ObjectType.createItem(VariantToolMaterial.class, "hoe", ItemAMHoe.class)
+    public static final ObjectType<VariantToolMaterial, Block, ItemHoeAM> HOE =
+            ObjectType.createItem(VariantToolMaterial.class, "hoe", ItemHoeAM.class)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 
     public static final List<? extends ObjectType<VariantToolMaterial, ?, ?>> TYPES = Arrays.asList(SWORD, SHOVEL, PICKAXE, AXE, HOE);

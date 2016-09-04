@@ -14,26 +14,46 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class WorldGenFloodedTree extends WorldGenAbstractTreeAM
+public class WorldGenTreeAM extends WorldGenAbstractTreeAM
 {
-    private static final IBlockState LOG = AMBlocks.TREES.getBlockState(ComboTrees.LOG, VariantTree.ELM);
-    private static final IBlockState LEAVES = AMBlocks.TREES.getBlockState(ComboTrees.LEAVES, VariantTree.ELM).withProperty(BlockLeaves.CHECK_DECAY, false);
-    private static final IPlantable SAPLING = AMBlocks.TREES.getBlock(ComboTrees.SAPLING, VariantTree.ELM);
+    public static final int DEFAULT_HEIGHT = 4;
 
-    public WorldGenFloodedTree()
+    /** The minimum height of a generated tree. */
+    private final int minHeight;
+    /** The block state of the wood to use in tree generation. */
+    private final IBlockState woodState;
+    /** The block state of the leaves to use in tree generation. */
+    private final IBlockState leavesState;
+    /** The sapling used to check if a tree can generate. */
+    private final IPlantable sapling;
+
+    public WorldGenTreeAM(boolean notify, VariantTree variant)
     {
-        super(false);
+        this(notify, DEFAULT_HEIGHT, variant);
+    }
+
+    public WorldGenTreeAM(boolean notify, int minHeight, VariantTree variant)
+    {
+        super(notify);
+        this.minHeight = minHeight;
+        this.woodState = AMBlocks.TREES.getBlockState(ComboTrees.LOG, variant);
+        this.leavesState = AMBlocks.TREES.getBlockState(ComboTrees.LEAVES, variant).withProperty(BlockLeaves.CHECK_DECAY, false);
+        this.sapling = AMBlocks.TREES.getBlock(ComboTrees.SAPLING, variant);
+    }
+
+    public WorldGenTreeAM(boolean notify, int minHeight, IBlockState woodState, IBlockState leavesState, IPlantable sapling)
+    {
+        super(notify);
+        this.minHeight = minHeight;
+        this.woodState = woodState;
+        this.leavesState = leavesState;
+        this.sapling = sapling;
     }
 
     @Override
     public boolean generate(World world, Random rand, BlockPos position)
     {
-        while (world.getBlockState(position.down()).getMaterial() == Material.WATER)
-        {
-            position = position.down();
-        }
-
-        int height = rand.nextInt(4) + 5;
+        int height = rand.nextInt(3) + minHeight;
         int x = position.getX();
         int y = position.getY();
         int z = position.getZ();
@@ -55,7 +75,7 @@ public class WorldGenFloodedTree extends WorldGenAbstractTreeAM
 
             if (blockY >= maxY + 1 - 2)
             {
-                radius = 2;//radius = 3 with vines
+                radius = 2;
             }
 
             int minX = x - radius;
@@ -72,21 +92,7 @@ public class WorldGenFloodedTree extends WorldGenAbstractTreeAM
                         return false;
                     }
 
-                    BlockPos blockPos = new BlockPos(blockX, blockY, blockZ);
-                    IBlockState blockState = world.getBlockState(blockPos);
-                    Block block = blockState.getBlock();
-
-                    if (block.isAir(blockState, world, blockPos) || block.isLeaves(blockState, world, blockPos))
-                    {
-                        continue;
-                    }
-
-                    if (blockState.getMaterial() != Material.WATER)
-                    {
-                        return false;
-                    }
-
-                    if (blockY > y)
+                    if (!isReplaceable(world, new BlockPos(blockX, blockY, blockZ)))
                     {
                         return false;
                     }
@@ -96,20 +102,19 @@ public class WorldGenFloodedTree extends WorldGenAbstractTreeAM
 
         BlockPos down = position.down();
         IBlockState downState = world.getBlockState(down);
-        Block downBlock = downState.getBlock();
 
-        if (!downBlock.canSustainPlant(downState, world, down, EnumFacing.UP, SAPLING) || y >= world.getHeight() - height - 1)
+        if (!downState.getBlock().canSustainPlant(downState, world, down, EnumFacing.UP, sapling) || y >= world.getHeight() - height - 1)
         {
             return false;
         }
 
-        downBlock.onPlantGrow(downState, world, down, position);
+        setDirtAt(world, down);
 
         for (int blockY = maxY - 3; blockY <= maxY; ++blockY)
         {
             int yDistance = blockY - maxY;
 
-            int radius = 2 - yDistance / 2;
+            int radius = 1 - yDistance / 2;
             int minX = x - radius;
             int maxX = x + radius;
             int minZ = z - radius;
@@ -127,10 +132,11 @@ public class WorldGenFloodedTree extends WorldGenAbstractTreeAM
                     {
                         BlockPos blockPos = new BlockPos(blockX, blockY, blockZ);
                         IBlockState blockState = world.getBlockState(blockPos);
+                        Block block = blockState.getBlock();
 
-                        if (blockState.getBlock().canBeReplacedByLeaves(blockState, world, blockPos))
+                        if (block.isAir(blockState, world, blockPos) || block.isLeaves(blockState, world, blockPos) || blockState.getMaterial() == Material.VINE)
                         {
-                            setBlockAndNotifyAdequately(world, blockPos, LEAVES);
+                            setBlockAndNotifyAdequately(world, blockPos, leavesState);
                         }
                     }
                 }
@@ -143,9 +149,9 @@ public class WorldGenFloodedTree extends WorldGenAbstractTreeAM
             IBlockState upState = world.getBlockState(up);
             Block upBlock = upState.getBlock();
 
-            if (upBlock.isAir(upState, world, up) || upBlock.isLeaves(upState, world, up) || upState.getMaterial() == Material.WATER)
+            if (upBlock.isAir(upState, world, up) || upBlock.isLeaves(upState, world, up) || upState.getMaterial() == Material.VINE)
             {
-                setBlockAndNotifyAdequately(world, up, LOG);
+                setBlockAndNotifyAdequately(world, up, woodState);
             }
         }
 

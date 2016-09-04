@@ -1,9 +1,9 @@
 package alfheimrsmoons.client;
 
-import alfheimrsmoons.client.renderer.RenderAMArrow;
+import alfheimrsmoons.client.renderer.RenderArrowAM;
 import alfheimrsmoons.client.renderer.RenderNitroWraith;
 import alfheimrsmoons.client.renderer.RenderSeedPouch;
-import alfheimrsmoons.entity.EntityAMArrow;
+import alfheimrsmoons.entity.EntityArrowAM;
 import alfheimrsmoons.entity.EntityNitroWraith;
 import alfheimrsmoons.entity.EntitySeedPouch;
 import net.minecraft.client.renderer.entity.Render;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public enum RenderFactory implements IRenderFactory
 {
-    ARROW(EntityAMArrow.class, RenderAMArrow.class),
+    ARROW(EntityArrowAM.class, RenderArrowAM.class),
     NITRO_WRAITH(EntityNitroWraith.class, RenderNitroWraith.class),
     SEED_POUCH(EntitySeedPouch.class, RenderSeedPouch.class);
 

@@ -3,7 +3,7 @@ package alfheimrsmoons.world.gen;
 import alfheimrsmoons.combo.VariantShale;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.world.biome.BiomeVeld;
-import alfheimrsmoons.world.gen.feature.WorldGenAMLakes;
+import alfheimrsmoons.world.gen.feature.WorldGenLakesAM;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -33,7 +33,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
     private IBlockState waterBlock = Blocks.WATER.getDefaultState();
     private IBlockState iceBlock = Blocks.ICE.getDefaultState();
     private IBlockState snowLayerBlock = Blocks.SNOW_LAYER.getDefaultState();
-    private WorldGenerator waterLakeGen = new WorldGenAMLakes(waterBlock);
+    private WorldGenerator waterLakeGen = new WorldGenLakesAM(waterBlock);
 
     protected static final IBlockState STONE = AMBlocks.SHALE.getBlockState(VariantShale.NORMAL);
     private final Random rand;
@@ -52,8 +52,8 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
     private ChunkProviderSettings settings;
     private IBlockState oceanBlock = waterBlock;
     private double[] depthBuffer = new double[256];
-    private MapGenBase caveGenerator = new MapGenAMCaves();
-    private MapGenBase ravineGenerator = new MapGenAMRavine();
+    private MapGenBase caveGenerator = new MapGenCavesAM();
+    private MapGenBase ravineGenerator = new MapGenRavineAM();
     private Biome[] biomesForGeneration;
     double[] mainNoiseRegion;
     double[] minLimitRegion;

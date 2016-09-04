@@ -5,7 +5,7 @@ import alfheimrsmoons.network.Proxy;
 import alfheimrsmoons.combo.ComboOres;
 import alfheimrsmoons.combo.ComboTools;
 import alfheimrsmoons.combo.VariantBioluminescence;
-import alfheimrsmoons.item.ItemAMArrow;
+import alfheimrsmoons.item.ItemArrowAM;
 import alfheimrsmoons.item.ItemBranchBow;
 import alfheimrsmoons.item.ItemSeedPouch;
 import net.minecraft.block.Block;
@@ -47,7 +47,7 @@ public class AMItems
 
     public static final ItemBranchBow BRANCH_BOW = new ItemBranchBow();
 
-    public static final Item ROCK_ARROW = new ItemAMArrow()
+    public static final Item ROCK_ARROW = new ItemArrowAM()
             .setCreativeTab(AlfheimrsMoons.CREATIVE_TAB)
             .setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "rock_arrow")
             .setRegistryName("rock_arrow");

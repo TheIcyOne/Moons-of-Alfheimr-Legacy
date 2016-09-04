@@ -16,10 +16,10 @@ public class AMBiomes
 {
     private static final Map<Biome, Biome> BIOMES_HILLS;
 
-    public static final Biome OCEAN = new BiomeAMOcean(new BiomeProperties("Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F)).setRegistryName("ocean");
-    public static final Biome DEEP_OCEAN = new BiomeAMOcean(new BiomeProperties("Deep Ocean").setBaseHeight(-1.8F).setHeightVariation(0.1F)).setRegistryName("deep_ocean");
-    public static final Biome RIVER = new BiomeAMRiver(new BiomeProperties("River").setBaseHeight(-0.5F).setHeightVariation(0.0F)).setRegistryName("river");
-    public static final Biome BEACH = new BiomeAMBeach(new BiomeProperties("Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("beach");
+    public static final Biome OCEAN = new BiomeOceanAM(new BiomeProperties("Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F)).setRegistryName("ocean");
+    public static final Biome DEEP_OCEAN = new BiomeOceanAM(new BiomeProperties("Deep Ocean").setBaseHeight(-1.8F).setHeightVariation(0.1F)).setRegistryName("deep_ocean");
+    public static final Biome RIVER = new BiomeRiverAM(new BiomeProperties("River").setBaseHeight(-0.5F).setHeightVariation(0.0F)).setRegistryName("river");
+    public static final Biome BEACH = new BiomeBeachAM(new BiomeProperties("Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("beach");
     public static final Biome MEADOW = new BiomeMeadow(new BiomeProperties("Meadow").setBaseHeight(0.125F).setHeightVariation(0.05F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("meadow");
     public static final Biome WOODS = new BiomeWoods(new BiomeProperties("Woods").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods");
     public static final Biome WOODS_HILLS = new BiomeWoods(new BiomeProperties("Woods Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods_hills");

@@ -5,7 +5,7 @@ import alfheimrsmoons.combo.VariantTree;
 
 import java.util.Random;
 
-public class BiomeWoods extends AMBiome
+public class BiomeWoods extends BiomeAM
 {
     public static final VariantFlower[] FLOWER_VARIANTS =
             {

@@ -1,7 +1,7 @@
 package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.combo.VariantOre;
+import alfheimrsmoons.combo.VariantTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -12,6 +12,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import zaggy1024.combo.ObjectType;
@@ -23,22 +26,22 @@ import zaggy1024.util.BlockStateToMetadata;
 
 import java.util.List;
 
-public class BlockOreBlock extends Block
+public class BlockPlanksAM extends Block
 {
     @BlockProperties
     public static final IProperty<?>[] PROPERTIES = new IProperty[0];
 
-    public final VariantsOfTypesCombo<VariantOre> owner;
-    public final ObjectType<VariantOre, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantOre>> type;
+    public final VariantsOfTypesCombo<VariantTree> owner;
+    public final ObjectType<VariantTree, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantTree>> type;
 
-    public final List<VariantOre> variants;
-    public final PropertyIMetadata<VariantOre> variantProperty;
+    public final List<VariantTree> variants;
+    public final PropertyIMetadata<VariantTree> variantProperty;
 
-    public BlockOreBlock(VariantsOfTypesCombo<VariantOre> owner,
-                         ObjectType<VariantOre, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantOre>> type,
-                         List<VariantOre> variants, Class<VariantOre> variantClass)
+    public BlockPlanksAM(VariantsOfTypesCombo<VariantTree> owner,
+                         ObjectType<VariantTree, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantTree>> type,
+                         List<VariantTree> variants, Class<VariantTree> variantClass)
     {
-        super(Material.IRON);
+        super(Material.WOOD);
 
         this.owner = owner;
         this.type = type;
@@ -50,15 +53,10 @@ public class BlockOreBlock extends Block
         setDefaultState(blockState.getBaseState());
 
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
-        setHardness(5.0F);
-        setResistance(10.0F);
-        setSoundType(SoundType.METAL);
-    }
-
-    @Override
-    public int getHarvestLevel(IBlockState state)
-    {
-        return state.getValue(variantProperty).getHarvestLevel();
+        setHardness(2.0F);
+        setResistance(5.0F);
+        setSoundType(SoundType.WOOD);
+        setHarvestLevel("axe", 0);
     }
 
     @Override
@@ -69,7 +67,7 @@ public class BlockOreBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }
@@ -90,5 +88,17 @@ public class BlockOreBlock extends Block
     public int getMetaFromState(IBlockState state)
     {
         return BlockStateToMetadata.getMetaForBlockState(state, variantProperty);
+    }
+
+    @Override
+    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
+        return 5;
+    }
+
+    @Override
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
+        return 20;
     }
 }

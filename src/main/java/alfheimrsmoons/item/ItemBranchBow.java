@@ -1,7 +1,7 @@
 package alfheimrsmoons.item;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.entity.EntityAMArrow;
+import alfheimrsmoons.entity.EntityArrowAM;
 import alfheimrsmoons.init.AMItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -72,12 +72,12 @@ public class ItemBranchBow extends ItemBow
 
                 if ((double) f >= 0.1D)
                 {
-                    boolean infiniteArrows = infinite && arrowStack.getItem() instanceof ItemAMArrow;
+                    boolean infiniteArrows = infinite && arrowStack.getItem() instanceof ItemArrowAM;
 
                     if (!world.isRemote)
                     {
-                        ItemAMArrow arrowItem = (ItemAMArrow) (arrowStack.getItem() instanceof ItemAMArrow ? arrowStack.getItem() : AMItems.ROCK_ARROW);
-                        EntityAMArrow arrowEntity = arrowItem.createArrow(world, arrowStack, player);
+                        ItemArrowAM arrowItem = (ItemArrowAM) (arrowStack.getItem() instanceof ItemArrowAM ? arrowStack.getItem() : AMItems.ROCK_ARROW);
+                        EntityArrowAM arrowEntity = arrowItem.createArrow(world, arrowStack, player);
                         arrowEntity.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
                         if (f == 1.0F)

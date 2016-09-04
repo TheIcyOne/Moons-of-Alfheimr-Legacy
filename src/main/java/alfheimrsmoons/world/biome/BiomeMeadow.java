@@ -1,6 +1,6 @@
 package alfheimrsmoons.world.biome;
 
-public class BiomeMeadow extends AMBiome
+public class BiomeMeadow extends BiomeAM
 {
     public BiomeMeadow(BiomeProperties properties)
     {

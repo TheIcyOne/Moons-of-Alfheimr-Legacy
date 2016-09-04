@@ -2,7 +2,7 @@ package alfheimrsmoons.world.biome;
 
 import net.minecraft.util.math.BlockPos;
 
-public class BiomeVeld extends AMBiome
+public class BiomeVeld extends BiomeAM
 {
     public BiomeVeld(BiomeProperties properties)
     {

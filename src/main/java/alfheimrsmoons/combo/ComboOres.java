@@ -1,7 +1,7 @@
 package alfheimrsmoons.combo;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.block.BlockAMOre;
+import alfheimrsmoons.block.BlockOreAM;
 import alfheimrsmoons.block.BlockOreBlock;
 import net.minecraft.block.Block;
 import zaggy1024.combo.ObjectType;
@@ -14,8 +14,8 @@ import java.util.List;
 
 public class ComboOres extends VariantsOfTypesCombo<VariantOre>
 {
-    public static final ObjectType<VariantOre, BlockAMOre, ItemBlockMulti<VariantOre>> ORE =
-            ObjectType.createBlock(VariantOre.class, "ore", BlockAMOre.class)
+    public static final ObjectType<VariantOre, BlockOreAM, ItemBlockMulti<VariantOre>> ORE =
+            ObjectType.createBlock(VariantOre.class, "ore", BlockOreAM.class)
                     .setUseSeparateVariantJsons(false)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 

@@ -10,7 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
 
-public class BiomeFloodedForest extends AMBiome
+public class BiomeFloodedForest extends BiomeAM
 {
     private static final WorldGenFloodedTree FLOODED_TREE_GEN = new WorldGenFloodedTree();
 

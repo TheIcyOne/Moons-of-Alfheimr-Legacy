@@ -1,10 +1,10 @@
 package alfheimrsmoons.combo;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.block.BlockAMLeaves;
-import alfheimrsmoons.block.BlockAMLog;
-import alfheimrsmoons.block.BlockAMPlanks;
-import alfheimrsmoons.block.BlockAMSapling;
+import alfheimrsmoons.block.BlockLeavesAM;
+import alfheimrsmoons.block.BlockLogAM;
+import alfheimrsmoons.block.BlockPlanksAM;
+import alfheimrsmoons.block.BlockSaplingAM;
 import net.minecraft.block.BlockLeaves;
 import zaggy1024.combo.ObjectType;
 import zaggy1024.combo.VariantsOfTypesCombo;
@@ -15,24 +15,24 @@ import java.util.List;
 
 public class ComboTrees extends VariantsOfTypesCombo<VariantTree>
 {
-    public static final ObjectType<VariantTree, BlockAMLog, ItemBlockMulti<VariantTree>> LOG =
-            ObjectType.createBlock(VariantTree.class, "log", BlockAMLog.class)
+    public static final ObjectType<VariantTree, BlockLogAM, ItemBlockMulti<VariantTree>> LOG =
+            ObjectType.createBlock(VariantTree.class, "log", BlockLogAM.class)
                     .setUseSeparateVariantJsons(false)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 
-    public static final ObjectType<VariantTree, BlockAMLeaves, ItemBlockMulti<VariantTree>> LEAVES =
-            ObjectType.createBlock(VariantTree.class, "leaves", BlockAMLeaves.class)
+    public static final ObjectType<VariantTree, BlockLeavesAM, ItemBlockMulti<VariantTree>> LEAVES =
+            ObjectType.createBlock(VariantTree.class, "leaves", BlockLeavesAM.class)
                     .setIgnoredProperties(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE)
                     .setUseSeparateVariantJsons(false)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 
-    public static final ObjectType<VariantTree, BlockAMSapling, ItemBlockMulti<VariantTree>> SAPLING =
-            ObjectType.createBlock(VariantTree.class, "sapling", BlockAMSapling.class)
+    public static final ObjectType<VariantTree, BlockSaplingAM, ItemBlockMulti<VariantTree>> SAPLING =
+            ObjectType.createBlock(VariantTree.class, "sapling", BlockSaplingAM.class)
                     .setUseSeparateVariantJsons(false)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 
-    public static final ObjectType<VariantTree, BlockAMPlanks, ItemBlockMulti<VariantTree>> PLANKS =
-            ObjectType.createBlock(VariantTree.class, "planks", "wood", BlockAMPlanks.class)
+    public static final ObjectType<VariantTree, BlockPlanksAM, ItemBlockMulti<VariantTree>> PLANKS =
+            ObjectType.createBlock(VariantTree.class, "planks", "wood", BlockPlanksAM.class)
                     .setUseSeparateVariantJsons(false)
                     .setTypeNamePosition(TypeNamePosition.POSTFIX);
 

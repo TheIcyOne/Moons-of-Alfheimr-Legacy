@@ -1,7 +1,7 @@
 package alfheimrsmoons.combo;
 
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.block.BlockAMFlower;
+import alfheimrsmoons.block.BlockFlowerAM;
 import alfheimrsmoons.block.BlockTallFlower;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -15,8 +15,8 @@ import java.util.List;
 
 public class ComboFlowers extends VariantsOfTypesCombo<VariantFlower>
 {
-    public static final ObjectType<VariantFlower, BlockAMFlower, ItemBlockMulti<VariantFlower>> FLOWER =
-            ObjectType.createBlock(VariantFlower.class, "flower", BlockAMFlower.class)
+    public static final ObjectType<VariantFlower, BlockFlowerAM, ItemBlockMulti<VariantFlower>> FLOWER =
+            ObjectType.createBlock(VariantFlower.class, "flower", BlockFlowerAM.class)
                     .setVariantFilter(VariantFlower::hasNormalFlower)
                     .setUseSeparateVariantJsons(false)
                     .setTypeNamePosition(TypeNamePosition.NONE);

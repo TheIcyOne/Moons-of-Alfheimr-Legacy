@@ -2,7 +2,6 @@ package alfheimrsmoons.block;
 
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantDeadPlant;
-import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.init.AMItems;
 import net.minecraft.block.BlockDeadBush;
 import net.minecraft.block.SoundType;
@@ -34,13 +33,13 @@ public class BlockDeadPlant extends BlockDeadBush
     public static final IProperty<?>[] PROPERTIES = new IProperty[0];
 
     public final VariantsOfTypesCombo<VariantDeadPlant> owner;
-    public final ObjectType<VariantDeadPlant, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantDeadPlant>> type;
+    public final ObjectType<VariantDeadPlant, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantDeadPlant>> type;
 
     public final List<VariantDeadPlant> variants;
     public final PropertyIMetadata<VariantDeadPlant> variantProperty;
 
     public BlockDeadPlant(VariantsOfTypesCombo<VariantDeadPlant> owner,
-                          ObjectType<VariantDeadPlant, ? extends BlockAMFlower, ? extends ItemBlockMulti<VariantDeadPlant>> type,
+                          ObjectType<VariantDeadPlant, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantDeadPlant>> type,
                           List<VariantDeadPlant> variants, Class<VariantDeadPlant> variantClass)
     {
         super();

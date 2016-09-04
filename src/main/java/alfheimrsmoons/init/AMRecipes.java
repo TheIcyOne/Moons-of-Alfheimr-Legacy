@@ -3,15 +3,14 @@ package alfheimrsmoons.init;
 import alfheimrsmoons.AMFuelHandler;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.*;
-import alfheimrsmoons.crafting.AMShapedOreRecipe;
-import alfheimrsmoons.crafting.AMShapelessOreRecipe;
+import alfheimrsmoons.crafting.ShapedOreRecipeAM;
+import alfheimrsmoons.crafting.ShapelessOreRecipeAM;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 
@@ -26,8 +25,8 @@ public class AMRecipes
 
     private static void addCraftingRecipes()
     {
-        RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapedore", AMShapedOreRecipe.class, Category.SHAPED, "after:minecraft:shaped before:forge:shapedore");
-        RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapelessore", AMShapelessOreRecipe.class, Category.SHAPELESS, "after:minecraft:shapeless before:forge:shapelessore");
+        RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapedore", ShapedOreRecipeAM.class, Category.SHAPED, "after:minecraft:shaped before:forge:shapedore");
+        RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapelessore", ShapelessOreRecipeAM.class, Category.SHAPELESS, "after:minecraft:shapeless before:forge:shapelessore");
 
         for (VariantTree variant : AMBlocks.TREES.getValidVariants(ComboTrees.PLANKS))
         {
@@ -87,32 +86,32 @@ public class AMRecipes
 
     public static void addShapelessRecipe(Block output, Object... params)
     {
-        addRecipe(new AMShapelessOreRecipe(output, params));
+        addRecipe(new ShapelessOreRecipeAM(output, params));
     }
 
     public static void addShapelessRecipe(Item output, Object... params)
     {
-        addRecipe(new AMShapelessOreRecipe(output, params));
+        addRecipe(new ShapelessOreRecipeAM(output, params));
     }
 
     public static void addShapelessRecipe(ItemStack output, Object... params)
     {
-        addRecipe(new AMShapelessOreRecipe(output, params));
+        addRecipe(new ShapelessOreRecipeAM(output, params));
     }
 
     public static void addShapedRecipe(Block output, Object... params)
     {
-        addRecipe(new AMShapedOreRecipe(output, params));
+        addRecipe(new ShapedOreRecipeAM(output, params));
     }
 
     public static void addShapedRecipe(Item output, Object... params)
     {
-        addRecipe(new AMShapedOreRecipe(output, params));
+        addRecipe(new ShapedOreRecipeAM(output, params));
     }
 
     public static void addShapedRecipe(ItemStack output, Object... params)
     {
-        addRecipe(new AMShapedOreRecipe(output, params));
+        addRecipe(new ShapedOreRecipeAM(output, params));
     }
 
     public static void addSmelting(Block input, ItemStack output, float xp)
