@@ -68,7 +68,7 @@ public class AMBlocks
 
     public static final BlockRuneBookshelf RUNE_BOOKSHELF = new BlockRuneBookshelf();
 
-    public static final BlockNitroTorch NITRO_TORCH = new BlockNitroTorch();
+    public static final ComboBioluminescence BIOLUMINESCENCE = new ComboBioluminescence();
 
     public static void registerBlocks()
     {
@@ -88,13 +88,13 @@ public class AMBlocks
         proxy.registerBlock(COSMOTITE);
         TREES.registerAll(proxy);
         proxy.registerBlock(RUNE_BOOKSHELF);
-        proxy.registerBlock(NITRO_TORCH);
+        BIOLUMINESCENCE.registerVariants(proxy, ComboBioluminescence.TORCH);
 
         registerVariantOres("logWood", TREES, ComboTrees.LOG);
         registerVariantOres("plankWood", TREES, ComboTrees.PLANKS);
         registerVariantOres("treeSapling", TREES, ComboTrees.SAPLING);
         registerVariantOres("treeLeaves", TREES, ComboTrees.LEAVES);
-        OreDictionary.registerOre("torch", NITRO_TORCH);
+        registerVariantOres("torch", BIOLUMINESCENCE, ComboBioluminescence.TORCH);
     }
 
     private static <V extends IMetadata<V>> void registerVariantOres(String name, VariantsOfTypesCombo<V> combo, ObjectType<V, ?, ?> type)

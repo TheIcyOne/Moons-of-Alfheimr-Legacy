@@ -1,6 +1,7 @@
 package alfheimrsmoons.init;
 
 import alfheimrsmoons.AlfheimrsMoons;
+import alfheimrsmoons.combo.ComboBioluminescence;
 import alfheimrsmoons.network.Proxy;
 import alfheimrsmoons.combo.ComboOres;
 import alfheimrsmoons.combo.ComboTools;
@@ -28,15 +29,6 @@ public class AMItems
             .setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "twine")
             .setRegistryName("twine");
 
-    public static final VariantsCombo<VariantBioluminescence, Block, ItemMulti<VariantBioluminescence>> BIOLUMINESCENCE =
-            new VariantsCombo<>(
-                    "bioluminescence",
-                    ObjectType.createItem(VariantBioluminescence.class, "bioluminescence")
-                            .setCreativeTab(AlfheimrsMoons.CREATIVE_TAB),
-                    VariantBioluminescence.class,
-                    VariantBioluminescence.values()
-            ).setNames(AlfheimrsMoons.MOD_ID, AlfheimrsMoons.UNLOCALIZED_PREFIX);
-
     public static final Item STARDUST = new Item()
             .setCreativeTab(AlfheimrsMoons.CREATIVE_TAB)
             .setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "stardust")
@@ -58,7 +50,7 @@ public class AMItems
         proxy.registerItem(BRANCH);
         proxy.registerItem(TWINE);
         AMBlocks.ORES.registerVariants(proxy, ComboOres.DROP);
-        BIOLUMINESCENCE.registerAll(proxy);
+        AMBlocks.BIOLUMINESCENCE.registerVariants(proxy, ComboBioluminescence.BIOLUMINESCENCE);
         proxy.registerItem(STARDUST);
         proxy.registerItem(SEED_POUCH);
         TOOLS.registerAll(proxy);

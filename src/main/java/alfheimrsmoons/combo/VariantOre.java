@@ -9,7 +9,6 @@ import javax.annotation.Nullable;
 public enum VariantOre implements IMetadata<VariantOre>
 {
     LOREIUM("loreium", MapColor.DIAMOND, 1, 0.1F),
-    NITRO("nitro", MapColor.PURPLE, 1, 0.1F, IntRange.create(2), IntRange.create(0, 2)),
     TEKTITE("tektite", MapColor.PURPLE, 2, 0.7F),
     SYLVANITE("sylvanite", MapColor.EMERALD, 3, 1.0F, IntRange.create(1), IntRange.create(3, 7));
 

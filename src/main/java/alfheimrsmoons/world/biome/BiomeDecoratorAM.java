@@ -18,7 +18,6 @@ public class BiomeDecoratorAM extends BiomeDecorator
     // TODO configurable ore sizes, counts, and heights
     private final WorldGenSandAM sedimentGen = new WorldGenSandAM(AMBlocks.SEDIMENT.getDefaultState(), 7);
     private final WorldGenMinableAM soilGen = new WorldGenMinableAM(AMBlocks.SOIL.getDefaultState(), 33);
-    private final WorldGenMinableAM nitroGen = new WorldGenMinableAM(VariantOre.NITRO, 17);
     private final WorldGenMinableAM tektiteGen = new WorldGenMinableAM(VariantOre.TEKTITE, 9);
     private final WorldGenMinableAM sylvaniteGen = new WorldGenMinableAM(VariantOre.SYLVANITE, 8);
     private final WorldGenFlowersAM snapdragonGen = new WorldGenFlowersAM(VariantFlower.SNAPDRAGON);
@@ -161,7 +160,6 @@ public class BiomeDecoratorAM extends BiomeDecorator
     protected void generateOres(World world, Random random)
     {
         genStandardOre1(world, random, 10, soilGen, 0, 256);
-        genStandardOre1(world, random, 20, nitroGen, 0, 128);
         genStandardOre1(world, random, 20, tektiteGen, 0, 64);
         genStandardOre1(world, random, 1, sylvaniteGen, 0, 16);
     }

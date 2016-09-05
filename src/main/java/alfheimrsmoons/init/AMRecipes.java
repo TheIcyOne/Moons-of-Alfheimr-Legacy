@@ -37,7 +37,13 @@ public class AMRecipes
         AMItems.TOOLS.addRecipes(VariantToolMaterial.SYLVANITE, AMBlocks.ORES.getStack(ComboOres.DROP, VariantOre.SYLVANITE));
 
         addShapedRecipe(AMBlocks.RUNE_BOOKSHELF, "###", "XXX", "###", '#', AMBlocks.TREES.getStack(ComboTrees.PLANKS, VariantTree.RUNE), 'X', Items.BOOK);
-        addShapedRecipe(new ItemStack(AMBlocks.NITRO_TORCH, 4), "X", "#", 'X', AMBlocks.ORES.getStack(ComboOres.DROP, VariantOre.NITRO), '#', AMItems.BRANCH);
+
+        for (VariantBioluminescence variant : AMBlocks.BIOLUMINESCENCE.getVariants())
+        {
+            ItemStack torches = AMBlocks.BIOLUMINESCENCE.getStack(ComboBioluminescence.TORCH, variant, 4);
+            ItemStack bioluminescence = AMBlocks.BIOLUMINESCENCE.getStack(ComboBioluminescence.BIOLUMINESCENCE, variant);
+            addShapedRecipe(torches, "X", "#", 'X', bioluminescence, '#', "stickWood");
+        }
 
         for(VariantOre variant : AMBlocks.ORES.getVariants())
         {
