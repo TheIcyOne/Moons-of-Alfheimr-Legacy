@@ -38,8 +38,8 @@ public class BlockSedge extends BlockBush implements IGrowable, IShearable
     @BlockProperties
     public static final IProperty<?>[] PROPERTIES = new IProperty[0];
 
-    public static final AxisAlignedBB NORMAL_SEDGE_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
-    public static final AxisAlignedBB SHORT_SEDGE_AABB = NORMAL_SEDGE_AABB.setMaxY(NORMAL_SEDGE_AABB.maxY / 2);
+    public static final AxisAlignedBB NORMAL_SEDGE_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
+    public static final AxisAlignedBB SHORT_SEDGE_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.4D, 0.9D);
 
     public final VariantsOfTypesCombo<VariantSedge> owner;
     public final ObjectType<VariantSedge, ? extends BlockFlowerAM, ? extends ItemBlockMulti<VariantSedge>> type;

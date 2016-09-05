@@ -15,6 +15,7 @@ import java.util.Random;
 public class WorldGenFlowersAM extends WorldGenerator
 {
     private final IBlockState state;
+    private final Block block;
 
     public WorldGenFlowersAM(VariantFlower variant)
     {
@@ -24,6 +25,7 @@ public class WorldGenFlowersAM extends WorldGenerator
     public WorldGenFlowersAM(IBlockState state)
     {
         this.state = state;
+        this.block = state.getBlock();
     }
 
     @Override
@@ -33,27 +35,17 @@ public class WorldGenFlowersAM extends WorldGenerator
         {
             BlockPos flowerPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 255))
+            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 255) && canPlaceFlower(world, flowerPos))
             {
-                Block block = state.getBlock();
-                boolean canPlace;
-
-                if (block instanceof BlockBush)
-                {
-                    canPlace = ((BlockBush) block).canBlockStay(world, flowerPos, state);
-                }
-                else
-                {
-                    canPlace = block.canPlaceBlockAt(world, flowerPos);
-                }
-
-                if (canPlace)
-                {
-                    world.setBlockState(flowerPos, state, 2);
-                }
+                world.setBlockState(flowerPos, state, 2);
             }
         }
 
         return true;
+    }
+
+    private boolean canPlaceFlower(World world, BlockPos pos)
+    {
+        return block instanceof BlockBush ?  ((BlockBush) block).canBlockStay(world, pos, state) : block.canPlaceBlockAt(world, pos);
     }
 }
