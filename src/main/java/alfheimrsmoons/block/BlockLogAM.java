@@ -48,7 +48,7 @@ public class BlockLogAM extends BlockLog
         variantProperty = new PropertyIMetadata<>("variant", variants, variantClass);
 
         blockState = new BlockStateContainer(this, variantProperty, LOG_AXIS);
-        setDefaultState(blockState.getBaseState());
+        setDefaultState(blockState.getBaseState().withProperty(LOG_AXIS, EnumAxis.Y));
 
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
         setHarvestLevel("axe", 0);
