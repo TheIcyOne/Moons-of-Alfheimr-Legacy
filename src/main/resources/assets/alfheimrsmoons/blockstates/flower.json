@@ -1,22 +1,25 @@
 {
     "forge_marker": 1,
+    "defaults": {
+        "model": "cross"
+    },
     "variants": {
         "variant": {
-            "snapdragon": { "model": "alfheimrsmoons:flower_snapdragon" },
-            "carnation": { "model": "alfheimrsmoons:flower_carnation" },
-            "burstbloom": { "model": "alfheimrsmoons:flower_burstbloom" },
-            "warm_violet": { "model": "alfheimrsmoons:flower_warm_violet" },
-            "starsinger": { "model": "alfheimrsmoons:flower_starsinger" },
-            "philodendron": { "model": "alfheimrsmoons:flower_philodendron" },
-            "knotleaf": { "model": "alfheimrsmoons:flower_knotleaf" },
-            "furcrea": { "model": "alfheimrsmoons:flower_furcrea" },
-            "bluebell": { "model": "alfheimrsmoons:flower_bluebell" },
-            "purple_pacifist": { "model": "alfheimrsmoons:flower_purple_pacifist" },
-            "skullcap": { "model": "alfheimrsmoons:flower_skullcap" },
-            "pink_prestige": { "model": "alfheimrsmoons:flower_pink_prestige" },
-            "aster": { "model": "alfheimrsmoons:flower_aster" },
-            "promises_burden": { "model": "alfheimrsmoons:flower_promises_burden" },
-            "forget_me_not": { "model": "alfheimrsmoons:flower_forget_me_not" }
+            "snapdragon": { "textures": { "cross": "alfheimrsmoons:blocks/flower_snapdragon" } },
+            "carnation": { "textures": { "cross": "alfheimrsmoons:blocks/flower_carnation" } },
+            "burstbloom": { "textures": { "cross": "alfheimrsmoons:blocks/flower_burstbloom" } },
+            "warm_violet": { "textures": { "cross": "alfheimrsmoons:blocks/flower_warm_violet" } },
+            "starsinger": { "textures": { "cross": "alfheimrsmoons:blocks/flower_starsinger" } },
+            "philodendron": { "textures": { "cross": "alfheimrsmoons:blocks/flower_philodendron" } },
+            "knotleaf": { "textures": { "cross": "alfheimrsmoons:blocks/flower_knotleaf" } },
+            "furcrea": { "textures": { "cross": "alfheimrsmoons:blocks/flower_furcrea" } },
+            "bluebell": { "textures": { "cross": "alfheimrsmoons:blocks/flower_bluebell" } },
+            "purple_pacifist": { "textures": { "cross": "alfheimrsmoons:blocks/flower_purple_pacifist" } },
+            "skullcap": { "textures": { "cross": "alfheimrsmoons:blocks/flower_skullcap" } },
+            "pink_prestige": { "textures": { "cross": "alfheimrsmoons:blocks/flower_pink_prestige" } },
+            "aster": { "textures": { "cross": "alfheimrsmoons:blocks/flower_aster" } },
+            "promises_burden": { "textures": { "cross": "alfheimrsmoons:blocks/flower_promises_burden" } },
+            "forget_me_not": { "textures": { "cross": "alfheimrsmoons:blocks/flower_forget_me_not" } }
         }
     }
 }

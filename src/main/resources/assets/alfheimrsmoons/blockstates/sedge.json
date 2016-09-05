@@ -1,9 +1,12 @@
 {
     "forge_marker": 1,
+    "defaults": {
+        "model": "tinted_cross"
+    },
     "variants": {
         "variant": {
-            "normal": { "model": "alfheimrsmoons:sedge_normal" },
-            "short": { "model": "alfheimrsmoons:sedge_short" }
+            "normal": { "textures": { "cross": "alfheimrsmoons:blocks/sedge" } },
+            "short": { "textures": { "cross": "alfheimrsmoons:blocks/sedge_short" } }
         }
     }
 }
