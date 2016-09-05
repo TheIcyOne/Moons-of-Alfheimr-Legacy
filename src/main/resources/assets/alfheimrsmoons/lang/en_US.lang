@@ -68,6 +68,13 @@ tile.alfheimrsmoons.bioluminescence_torch.green.name=Green Bioluminescence Torch
 tile.alfheimrsmoons.bioluminescence_torch.blue.name=Blue Bioluminescence Torch
 tile.alfheimrsmoons.bioluminescence_torch.purple.name=Purple Bioluminescence Torch
 tile.alfheimrsmoons.bioluminescence_torch.pink.name=Pink Bioluminescence Torch
+tile.alfheimrsmoons.bioluminescence_lamp.red.name=Red Bioluminescence Lamp
+tile.alfheimrsmoons.bioluminescence_lamp.orange.name=Orange Bioluminescence Lamp
+tile.alfheimrsmoons.bioluminescence_lamp.yellow.name=Yellow Bioluminescence Lamp
+tile.alfheimrsmoons.bioluminescence_lamp.green.name=Green Bioluminescence Lamp
+tile.alfheimrsmoons.bioluminescence_lamp.blue.name=Blue Bioluminescence Lamp
+tile.alfheimrsmoons.bioluminescence_lamp.purple.name=Purple Bioluminescence Lamp
+tile.alfheimrsmoons.bioluminescence_lamp.pink.name=Pink Bioluminescence Lamp
 
 item.alfheimrsmoons.branch.name=Branch
 item.alfheimrsmoons.twine.name=Twine

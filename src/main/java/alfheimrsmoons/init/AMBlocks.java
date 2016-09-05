@@ -10,7 +10,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import zaggy1024.combo.ObjectType;
 import zaggy1024.combo.VariantsCombo;
 import zaggy1024.combo.VariantsOfTypesCombo;
-import zaggy1024.combo.VariantsOfTypesCombo.TypeNamePosition;
 import zaggy1024.combo.variant.IMetadata;
 import zaggy1024.item.ItemBlockMulti;
 
@@ -89,6 +88,7 @@ public class AMBlocks
         TREES.registerAll(proxy);
         proxy.registerBlock(RUNE_BOOKSHELF);
         BIOLUMINESCENCE.registerVariants(proxy, ComboBioluminescence.TORCH);
+        BIOLUMINESCENCE.registerVariants(proxy, ComboBioluminescence.LAMP);
 
         registerVariantOres("logWood", TREES, ComboTrees.LOG);
         registerVariantOres("plankWood", TREES, ComboTrees.PLANKS);

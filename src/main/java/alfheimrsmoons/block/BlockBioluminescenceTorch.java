@@ -4,7 +4,6 @@ import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantBioluminescence;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -56,12 +55,6 @@ public class BlockBioluminescenceTorch extends BlockTorch
         setHardness(0.0F);
         setLightLevel(0.9375F);
         setSoundType(SoundType.WOOD);
-    }
-
-    @Override
-    public MapColor getMapColor(IBlockState state)
-    {
-        return state.getValue(variantProperty).getMapColor();
     }
 
     @Override

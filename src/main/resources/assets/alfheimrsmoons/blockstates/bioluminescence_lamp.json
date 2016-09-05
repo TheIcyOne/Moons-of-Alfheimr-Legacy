@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "variant": {
+            "pink": { "model": "alfheimrsmoons:bioluminescence_lamp_pink" },
+            "red": { "model": "alfheimrsmoons:bioluminescence_lamp_red" },
+            "orange": { "model": "alfheimrsmoons:bioluminescence_lamp_orange" },
+            "yellow": { "model": "alfheimrsmoons:bioluminescence_lamp_yellow" },
+            "green": { "model": "alfheimrsmoons:bioluminescence_lamp_green" },
+            "blue": { "model": "alfheimrsmoons:bioluminescence_lamp_blue" },
+            "purple": { "model": "alfheimrsmoons:bioluminescence_lamp_purple" }
+        }
+    }
+}
