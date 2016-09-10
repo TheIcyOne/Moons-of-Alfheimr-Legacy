@@ -9,7 +9,9 @@ public enum VariantToolMaterial implements IMetadata<VariantToolMaterial>
     TIMBER("timber", 0, 59, 2.0F, 0.0F, 15, /* Axe: */ 6.0F, -3.2F),
     SHALE("shale", 1, 131, 4.0F, 1.0F, 5, /* Axe: */ 8.0F, -3.2F),
     TEKTITE("tektite", 2, 250, 6.0F, 2.0F, 14, /* Axe: */ 8.0F, -3.1F),
-    SYLVANITE("sylvanite", 3, 1561, 8.0F, 3.0F, 10, /* Axe: */ 8.0F, -3.0F);
+    SYLVANITE("sylvanite", 3, 1561, 8.0F, 3.0F, 10, /* Axe: */ 8.0F, -3.0F),
+    MOONSTEEL("moonsteel", 4, 2119, 10.0F, 4.0F, 8, /* Axe: */ 9.0F, -2.9F),
+    SUNSTEEL("sunsteel", 4, 2119, 10.0F, 4.0F, 8, /* Axe: */ 9.0F, -2.9F);
 
     private final String name;
     private final ToolMaterial material;

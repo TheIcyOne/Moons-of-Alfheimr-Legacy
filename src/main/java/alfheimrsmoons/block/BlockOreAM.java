@@ -78,13 +78,13 @@ public class BlockOreAM extends BlockOre
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         VariantOre variant = state.getValue(variantProperty);
-        IntRange range = variant.getDropSize();
 
-        if (range == null)
+        if (!variant.hasDrop())
         {
             return Collections.singletonList(owner.getStack(type, variant));
         }
 
+        IntRange range = variant.getDropSize();
         Random rand = AMUtils.getWorldRandom(world, RANDOM);
         int size = range.get(rand);
 
@@ -106,8 +106,8 @@ public class BlockOreAM extends BlockOre
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        IntRange range = state.getValue(variantProperty).getDropXP();
-        return range != null ? range.get(AMUtils.getWorldRandom(world, RANDOM)) : 0;
+        VariantOre variant = state.getValue(variantProperty);
+        return variant.hasDrop() ? variant.getDropXP().get(AMUtils.getWorldRandom(world, RANDOM)) : 0;
     }
 
     @Override

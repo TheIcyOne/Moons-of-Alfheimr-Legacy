@@ -5,16 +5,11 @@ import alfheimrsmoons.combo.ComboBioluminescence;
 import alfheimrsmoons.network.Proxy;
 import alfheimrsmoons.combo.ComboOres;
 import alfheimrsmoons.combo.ComboTools;
-import alfheimrsmoons.combo.VariantBioluminescence;
 import alfheimrsmoons.item.ItemArrowAM;
 import alfheimrsmoons.item.ItemBranchBow;
 import alfheimrsmoons.item.ItemSeedPouch;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
-import zaggy1024.combo.ObjectType;
-import zaggy1024.combo.VariantsCombo;
-import zaggy1024.item.ItemMulti;
 
 public class AMItems
 {
@@ -50,6 +45,7 @@ public class AMItems
         proxy.registerItem(BRANCH);
         proxy.registerItem(TWINE);
         AMBlocks.ORES.registerVariants(proxy, ComboOres.DROP);
+        AMBlocks.ORES.registerVariants(proxy, ComboOres.INGOT);
         AMBlocks.BIOLUMINESCENCE.registerVariants(proxy, ComboBioluminescence.BIOLUMINESCENCE);
         proxy.registerItem(STARDUST);
         proxy.registerItem(SEED_POUCH);

@@ -2,10 +2,11 @@
     "forge_marker": 1,
     "variants": {
         "variant": {
-            "sylvanite": { "model": "alfheimrsmoons:ore_sylvanite" },
-            "nitro": { "model": "alfheimrsmoons:ore_nitro" },
             "loreium": { "model": "alfheimrsmoons:ore_loreium" },
-            "tektite": { "model": "alfheimrsmoons:ore_tektite" }
+            "tektite": { "model": "alfheimrsmoons:ore_tektite" },
+            "sylvanite": { "model": "alfheimrsmoons:ore_sylvanite" },
+            "moonstone": { "model": "alfheimrsmoons:ore_moonstone" },
+            "sunstone": { "model": "alfheimrsmoons:ore_sunstone" }
         }
     }
 }

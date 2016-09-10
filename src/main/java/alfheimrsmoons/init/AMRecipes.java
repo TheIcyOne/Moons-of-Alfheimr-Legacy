@@ -28,13 +28,15 @@ public class AMRecipes
         RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapedore", ShapedOreRecipeAM.class, Category.SHAPED, "after:minecraft:shaped before:forge:shapedore");
         RecipeSorter.register(AlfheimrsMoons.MOD_ID + ":shapelessore", ShapelessOreRecipeAM.class, Category.SHAPELESS, "after:minecraft:shapeless before:forge:shapelessore");
 
-        for (VariantTree variant : AMBlocks.TREES.getValidVariants(ComboTrees.PLANKS))
+        for (VariantTree variant : AMBlocks.TREES.getVariants())
         {
             AMItems.TOOLS.addRecipes(VariantToolMaterial.TIMBER, AMBlocks.TREES.getStack(ComboTrees.PLANKS, variant));
         }
         AMItems.TOOLS.addRecipes(VariantToolMaterial.SHALE, AMBlocks.SHALE.getStack(VariantShale.NORMAL));
-        AMItems.TOOLS.addRecipes(VariantToolMaterial.TEKTITE, AMBlocks.ORES.getStack(ComboOres.DROP, VariantOre.TEKTITE));
+        AMItems.TOOLS.addRecipes(VariantToolMaterial.TEKTITE, AMBlocks.ORES.getStack(ComboOres.INGOT, VariantOre.TEKTITE));
         AMItems.TOOLS.addRecipes(VariantToolMaterial.SYLVANITE, AMBlocks.ORES.getStack(ComboOres.DROP, VariantOre.SYLVANITE));
+        AMItems.TOOLS.addRecipes(VariantToolMaterial.MOONSTEEL, AMBlocks.ORES.getStack(ComboOres.INGOT, VariantOre.MOONSTONE));
+        AMItems.TOOLS.addRecipes(VariantToolMaterial.SUNSTEEL, AMBlocks.ORES.getStack(ComboOres.INGOT, VariantOre.SUNSTONE));
 
         addShapedRecipe(AMBlocks.RUNE_BOOKSHELF, "###", "XXX", "###", '#', AMBlocks.TREES.getStack(ComboTrees.PLANKS, VariantTree.RUNE), 'X', Items.BOOK);
 
@@ -48,8 +50,8 @@ public class AMRecipes
         for(VariantOre variant : AMBlocks.ORES.getVariants())
         {
             ItemStack block = AMBlocks.ORES.getStack(ComboOres.BLOCK, variant);
-            ItemStack drop = AMBlocks.ORES.getStack(ComboOres.DROP, variant);
-            addShapedRecipe(block, "###", "###", "###", '#', drop);
+            ItemStack ingot = AMBlocks.ORES.getSmeltingOutput(variant);
+            addShapedRecipe(block, "###", "###", "###", '#', ingot);
         }
 
         for (VariantTree variant : AMBlocks.TREES.getVariants())
@@ -67,8 +69,14 @@ public class AMRecipes
         for (VariantOre variant : AMBlocks.ORES.getVariants())
         {
             ItemStack ore = AMBlocks.ORES.getStack(ComboOres.ORE, variant);
-            ItemStack drop = AMBlocks.ORES.getStack(ComboOres.DROP, variant);
-            addSmelting(ore, drop, variant.getSmeltingXP());
+            ItemStack ingot = AMBlocks.ORES.getSmeltingOutput(variant);
+            addSmelting(ore, ingot, variant.getSmeltingXP());
+
+            if (variant.hasDrop() && variant.hasIngot())
+            {
+                ItemStack drop = AMBlocks.ORES.getStack(ComboOres.DROP, variant);
+                addSmelting(drop, ingot, variant.getSmeltingXP());
+            }
         }
     }
 
