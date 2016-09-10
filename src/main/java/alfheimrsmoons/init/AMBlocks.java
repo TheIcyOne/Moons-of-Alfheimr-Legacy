@@ -52,7 +52,7 @@ public class AMBlocks
                     "shale",
                     ObjectType.createBlock(VariantShale.class, "shale", BlockShale.class)
                             .setUseSeparateVariantJsons(false)
-                            .setVariantNameFunction((v, n) -> v == VariantShale.NORMAL ? n : v.getName() + "_" + n),
+                            .setVariantNameFunction((v, n) -> v.getResourceName()),
                     VariantShale.class,
                     VariantShale.values()
             ).setNames(AlfheimrsMoons.MOD_ID, AlfheimrsMoons.UNLOCALIZED_PREFIX);
@@ -61,7 +61,15 @@ public class AMBlocks
 
     public static final BlockMeteorite METEORITE = new BlockMeteorite();
 
-    public static final BlockCosmotite COSMOTITE = new BlockCosmotite();
+    public static final VariantsCombo<VariantCosmotite, BlockCosmotite, ItemBlockMulti<VariantCosmotite>> COSMOTITE =
+            new VariantsCombo<>(
+                    "cosmotite",
+                    ObjectType.createBlock(VariantCosmotite.class, "cosmotite", BlockCosmotite.class)
+                            .setUseSeparateVariantJsons(false)
+                            .setVariantNameFunction((v, n) -> v.getResourceName()),
+                    VariantCosmotite.class,
+                    VariantCosmotite.values()
+            ).setNames(AlfheimrsMoons.MOD_ID, AlfheimrsMoons.UNLOCALIZED_PREFIX);
 
     public static final ComboTrees TREES = new ComboTrees();
 
@@ -84,7 +92,7 @@ public class AMBlocks
         ORES.registerVariants(proxy, ComboOres.ORE);
         ORES.registerVariants(proxy, ComboOres.BLOCK);
         proxy.registerBlock(METEORITE);
-        proxy.registerBlock(COSMOTITE);
+        COSMOTITE.registerAll(proxy);
         TREES.registerAll(proxy);
         proxy.registerBlock(RUNE_BOOKSHELF);
         BIOLUMINESCENCE.registerVariants(proxy, ComboBioluminescence.TORCH);

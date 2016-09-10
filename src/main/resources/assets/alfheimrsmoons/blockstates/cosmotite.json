@@ -1,5 +1,11 @@
 {
+    "forge_marker": 1,
     "variants": {
-        "normal": { "model": "alfheimrsmoons:cosmotite" }
+        "variant": {
+            "normal": { "model": "alfheimrsmoons:cosmotite" },
+            "bricks": { "model": "alfheimrsmoons:cosmotite_bricks" },
+            "chiseled": { "model": "alfheimrsmoons:cosmotite_chiseled" },
+            "smooth": { "model": "alfheimrsmoons:cosmotite_smooth" }
+        }
     }
 }

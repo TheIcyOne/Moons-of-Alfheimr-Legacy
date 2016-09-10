@@ -4,7 +4,8 @@
         "variant": {
             "normal": { "model": "alfheimrsmoons:shale" },
             "mossy": { "model": "alfheimrsmoons:shale_mossy" },
-            "smooth": { "model": "alfheimrsmoons:shale_smooth" }
+            "smooth": { "model": "alfheimrsmoons:shale_smooth" },
+            "bricks": { "model": "alfheimrsmoons:shale_bricks" }
         }
     }
 }
