@@ -3,6 +3,7 @@ package alfheimrsmoons.block;
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.ComboTrees;
 import alfheimrsmoons.combo.VariantTree;
+import alfheimrsmoons.init.AMItems;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.MapColor;
@@ -60,6 +61,15 @@ public class BlockLeavesAM extends BlockLeaves
         setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
 
         setCreativeTab(AlfheimrsMoons.CREATIVE_TAB);
+    }
+
+    @Override
+    protected void dropApple(World world, BlockPos pos, IBlockState state, int chance)
+    {
+        if (state.getValue(variantProperty) == VariantTree.RUNE && world.rand.nextInt(chance) == 0)
+        {
+            spawnAsEntity(world, pos, new ItemStack(AMItems.KNOWLEDGE_FRUIT));
+        }
     }
 
     @Override

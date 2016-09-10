@@ -9,6 +9,7 @@ import alfheimrsmoons.item.ItemArrowAM;
 import alfheimrsmoons.item.ItemBranchBow;
 import alfheimrsmoons.item.ItemSeedPouch;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class AMItems
@@ -39,6 +40,11 @@ public class AMItems
             .setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "rock_arrow")
             .setRegistryName("rock_arrow");
 
+    public static final Item KNOWLEDGE_FRUIT = new ItemFood(4, 0.3F, false)
+            .setCreativeTab(AlfheimrsMoons.CREATIVE_TAB)
+            .setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "knowledge_fruit")
+            .setRegistryName("knowledge_fruit");
+
     public static void registerItems()
     {
         Proxy proxy = AlfheimrsMoons.proxy;
@@ -52,6 +58,7 @@ public class AMItems
         TOOLS.registerAll(proxy);
         proxy.registerItem(BRANCH_BOW);
         proxy.registerItem(ROCK_ARROW);
+        proxy.registerItem(KNOWLEDGE_FRUIT);
 
         OreDictionary.registerOre("stickWood", BRANCH);
     }
