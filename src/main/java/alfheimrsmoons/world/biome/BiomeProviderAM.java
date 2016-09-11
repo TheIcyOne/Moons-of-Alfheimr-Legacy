@@ -1,12 +1,22 @@
 package alfheimrsmoons.world.biome;
 
+import alfheimrsmoons.init.AMBiomes;
 import alfheimrsmoons.world.gen.layer.*;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.*;
 import net.minecraft.world.storage.WorldInfo;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import net.minecraftforge.common.BiomeManager.BiomeType;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BiomeProviderAM extends BiomeProvider
 {
+    private static final Map<BiomeType, List<BiomeEntry>> BIOMES = setupBiomes();
+
     public BiomeProviderAM(long seed)
     {
         super();
@@ -20,6 +30,49 @@ public class BiomeProviderAM extends BiomeProvider
         this(worldInfo.getSeed());
     }
 
+    public static List<BiomeEntry> getBiomes(BiomeType type)
+    {
+        return BIOMES.get(type);
+    }
+
+    public static BiomeType getBiomeTypeByID(int id)
+    {
+        for (BiomeType type : BIOMES.keySet())
+        {
+            if (type.ordinal() == id)
+            {
+                return type;
+            }
+        }
+        return null;
+    }
+
+    // BiomeManager.setupBiomes
+    private static HashMap<BiomeType, List<BiomeEntry>> setupBiomes()
+    {
+        HashMap<BiomeType, List<BiomeEntry>> biomes = new HashMap<>();
+
+        List<BiomeEntry> list = new ArrayList<>();
+        list.add(new BiomeEntry(AMBiomes.MEADOW, 10));
+        list.add(new BiomeEntry(AMBiomes.WOODS, 10));
+        list.add(new BiomeEntry(AMBiomes.FLOODED_FOREST, 10));
+        list.add(new BiomeEntry(AMBiomes.RUNEWOOD_FOREST, 10));//TODO generate only at spawn
+        biomes.put(BiomeType.WARM, list);
+
+        list = new ArrayList<>();
+        list.add(new BiomeEntry(AMBiomes.MEADOW, 10));
+        list.add(new BiomeEntry(AMBiomes.WOODS, 10));
+        biomes.put(BiomeType.COOL, list);
+
+        list = new ArrayList<>();
+        list.add(new BiomeEntry(AMBiomes.MEADOW, 10));
+        list.add(new BiomeEntry(AMBiomes.VELD, 30));
+        biomes.put(BiomeType.DESERT, list);
+
+        return biomes;
+    }
+
+    // GenLayer.initializeAllBiomeGenerators
     private static GenLayer[] initializeAllBiomeGenerators(long seed)
     {
         GenLayer genlayer = new GenLayerIsland(1L);
@@ -39,7 +92,7 @@ public class BiomeProviderAM extends BiomeProvider
         genlayerzoom1 = new GenLayerZoom(2003L, genlayerzoom1);
         GenLayerAddIsland genlayeraddisland3 = new GenLayerAddIsland(4L, genlayerzoom1);
         GenLayerAddMushroomIsland genlayeraddmushroomisland = new GenLayerAddMushroomIsland(5L, genlayeraddisland3);
-        GenLayerDeepOcean genlayerdeepocean = new GenLayerDeepOceanAM(4L, genlayeraddmushroomisland);
+        GenLayerDeepOceanAM genlayerdeepocean = new GenLayerDeepOceanAM(4L, genlayeraddmushroomisland);
         GenLayer genlayer4 = GenLayerZoom.magnify(1000L, genlayerdeepocean, 0);
         int i = 4;
         int j = i;
@@ -49,11 +102,11 @@ public class BiomeProviderAM extends BiomeProvider
         GenLayer lvt_10_1_ = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
         GenLayer ret = new GenLayerBiomeAM(200L, genlayer4);
         ret = GenLayerZoom.magnify(1000L, ret, 2);
-        ret = new GenLayerBiomeEdgeAM(1000L, ret);
-        GenLayer genlayerhills = new GenLayerHillsAM(1000L, ret, lvt_10_1_);
+        GenLayer genlayerbiomeedge = new GenLayerBiomeEdgeAM(1000L, ret);
+        GenLayer genlayerhills = new GenLayerHillsAM(1000L, genlayerbiomeedge, lvt_10_1_);
         GenLayer genlayer5 = GenLayerZoom.magnify(1000L, genlayerriverinit, 2);
         genlayer5 = GenLayerZoom.magnify(1000L, genlayer5, j);
-        GenLayerRiver genlayerriver = new GenLayerRiverAM(1L, genlayer5);
+        GenLayerRiverAM genlayerriver = new GenLayerRiverAM(1L, genlayer5);
         GenLayerSmooth genlayersmooth = new GenLayerSmooth(1000L, genlayerriver);
         genlayerhills = new GenLayerRareBiome(1001L, genlayerhills);
 
@@ -73,7 +126,7 @@ public class BiomeProviderAM extends BiomeProvider
         }
 
         GenLayerSmooth genlayersmooth1 = new GenLayerSmooth(1000L, genlayerhills);
-        GenLayerRiverMix genlayerrivermix = new GenLayerRiverMixAM(100L, genlayersmooth1, genlayersmooth);
+        GenLayerRiverMixAM genlayerrivermix = new GenLayerRiverMixAM(100L, genlayersmooth1, genlayersmooth);
         GenLayer genlayer3 = new GenLayerVoronoiZoom(10L, genlayerrivermix);
         genlayerrivermix.initWorldGenSeed(seed);
         genlayer3.initWorldGenSeed(seed);

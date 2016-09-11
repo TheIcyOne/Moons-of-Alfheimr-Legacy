@@ -3,17 +3,16 @@ package alfheimrsmoons.world.gen.layer;
 import alfheimrsmoons.init.AMBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.GenLayerRiverMix;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerRiverMixAM extends GenLayerRiverMix
+public class GenLayerRiverMixAM extends GenLayer
 {
-    private GenLayer biomePatternGeneratorChain;
-    private GenLayer riverPatternGeneratorChain;
+    private final GenLayer biomePatternGeneratorChain;
+    private final GenLayer riverPatternGeneratorChain;
 
     public GenLayerRiverMixAM(long seed, GenLayer biomePattern, GenLayer riverPattern)
     {
-        super(seed, biomePattern, riverPattern);
+        super(seed);
         biomePatternGeneratorChain = biomePattern;
         riverPatternGeneratorChain = riverPattern;
     }
@@ -21,29 +20,29 @@ public class GenLayerRiverMixAM extends GenLayerRiverMix
     @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
-        int[] aint = this.biomePatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] aint1 = this.riverPatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] aint2 = IntCache.getIntCache(areaWidth * areaHeight);
+        int[] inputBiomeIDs = biomePatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
+        int[] inputRiverIDs = riverPatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
+        int[] outputBiomeIDs = IntCache.getIntCache(areaWidth * areaHeight);
 
         for (int i = 0; i < areaWidth * areaHeight; ++i)
         {
-            if (!isBiomeOceanic(aint[i]))
+            if (!isBiomeOceanic(inputBiomeIDs[i]))
             {
-                if (aint1[i] == Biome.getIdForBiome(AMBiomes.RIVER))
+                if (inputRiverIDs[i] == Biome.getIdForBiome(AMBiomes.RIVER))
                 {
-                    aint2[i] = aint1[i] & 255;
+                    outputBiomeIDs[i] = inputRiverIDs[i] & 255;
                 }
                 else
                 {
-                    aint2[i] = aint[i];
+                    outputBiomeIDs[i] = inputBiomeIDs[i];
                 }
             }
             else
             {
-                aint2[i] = aint[i];
+                outputBiomeIDs[i] = inputBiomeIDs[i];
             }
         }
 
-        return aint2;
+        return outputBiomeIDs;
     }
 }

@@ -66,6 +66,6 @@ public class AMBiomes
 
     public static Biome getHills(Biome biome)
     {
-        return BIOMES_HILLS.get(biome);
+        return BIOMES_HILLS.getOrDefault(biome, biome);
     }
 }

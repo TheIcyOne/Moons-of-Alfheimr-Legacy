@@ -3,14 +3,14 @@ package alfheimrsmoons.world.gen.layer;
 import alfheimrsmoons.init.AMBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.GenLayerRiver;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerRiverAM extends GenLayerRiver
+public class GenLayerRiverAM extends GenLayer
 {
     public GenLayerRiverAM(long seed, GenLayer parent)
     {
-        super(seed, parent);
+        super(seed);
+        this.parent = parent;
     }
 
     @Override

@@ -6,11 +6,12 @@ import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerDeepOcean;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerDeepOceanAM extends GenLayerDeepOcean
+public class GenLayerDeepOceanAM extends GenLayer
 {
     public GenLayerDeepOceanAM(long seed, GenLayer parent)
     {
-        super(seed, parent);
+        super(seed);
+        this.parent = parent;
     }
 
     @Override
@@ -20,7 +21,7 @@ public class GenLayerDeepOceanAM extends GenLayerDeepOcean
         int j = areaY - 1;
         int k = areaWidth + 2;
         int l = areaHeight + 2;
-        int[] aint = this.parent.getInts(i, j, k, l);
+        int[] aint = parent.getInts(i, j, k, l);
         int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
 
         for (int i1 = 0; i1 < areaHeight; ++i1)

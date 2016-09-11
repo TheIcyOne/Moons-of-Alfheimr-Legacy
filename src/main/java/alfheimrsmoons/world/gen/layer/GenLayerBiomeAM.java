@@ -1,6 +1,6 @@
 package alfheimrsmoons.world.gen.layer;
 
-import alfheimrsmoons.world.biome.AMBiomeManager;
+import alfheimrsmoons.world.biome.BiomeProviderAM;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -8,81 +8,53 @@ import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GenLayerBiomeAM extends GenLayer
 {
-    private Map<BiomeType, List<BiomeEntry>> biomes = new HashMap<>();
-
     public GenLayerBiomeAM(long baseSeed, GenLayer parentLayer)
     {
         super(baseSeed);
         parent = parentLayer;
-
-        for (BiomeType type : BiomeType.values())
-        {
-            biomes.put(type, AMBiomeManager.getBiomes(type));
-        }
     }
 
     @Override
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
-        int[] aint = parent.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
+        int[] inputBiomeIDs = parent.getInts(areaX, areaY, areaWidth, areaHeight);
+        int[] outputBiomeIDs = IntCache.getIntCache(areaWidth * areaHeight);
 
         for (int i = 0; i < areaHeight; ++i)
         {
             for (int j = 0; j < areaWidth; ++j)
             {
                 initChunkSeed((long) (j + areaX), (long) (i + areaY));
-                int k = aint[j + i * areaWidth];
-                int l = (k & 3840) >> 8;
-                k = k & -3841;
+                int biomeID = inputBiomeIDs[j + i * areaWidth];
+                int l = (biomeID & 3840) >> 8;
+                biomeID &= -3841;
 
-                if (isBiomeOceanic(k))
+                if (isBiomeOceanic(biomeID))
                 {
-                    aint1[j + i * areaWidth] = k;
+                    outputBiomeIDs[j + i * areaWidth] = biomeID;
                 }
                 else
                 {
-                    BiomeType type = null;
-                    Biome biome = null;
+                    BiomeType biomeType = BiomeProviderAM.getBiomeTypeByID(biomeID);
 
-                    switch (k)
+                    if (biomeType != null)
                     {
-                        case 1:
-                            type = BiomeType.DESERT;
-                            break;
-                        case 2:
-                            type = BiomeType.WARM;
-                            break;
-                        case 3:
-                            type = BiomeType.COOL;
-                            break;
-                    }
-
-                    if (type != null)
-                    {
-                        if (biome == null)
-                        {
-                            biome = getWeightedBiomeEntry(type).biome;
-                        }
-
-                        aint1[j + i * areaWidth] = Biome.getIdForBiome(biome);
+                        outputBiomeIDs[j + i * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(biomeType).biome);
                     }
                 }
             }
         }
 
-        return aint1;
+        return outputBiomeIDs;
     }
 
-    protected BiomeEntry getWeightedBiomeEntry(BiomeType type)
+    private BiomeEntry getWeightedBiomeEntry(BiomeType type)
     {
-        List<BiomeEntry> biomeList = biomes.get(type);
+        List<BiomeEntry> biomeList = BiomeProviderAM.getBiomes(type);
         int totalWeight = WeightedRandom.getTotalWeight(biomeList);
         int weight = nextInt(totalWeight);
         return WeightedRandom.getRandomItem(biomeList, weight);
