@@ -3,52 +3,55 @@ package alfheimrsmoons.world.gen.layer;
 import alfheimrsmoons.init.AMBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
+import net.minecraft.world.gen.layer.GenLayerRiver;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerRiverAM extends GenLayer
+public class GenLayerRiverAM extends GenLayerAM
 {
     public GenLayerRiverAM(long seed, GenLayer parent)
     {
-        super(seed);
-        this.parent = parent;
+        super(seed, parent);
     }
 
     @Override
-    public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
+    public int[] getInts(int offsetX, int offsetY, int width, int height)
     {
-        int i = areaX - 1;
-        int j = areaY - 1;
-        int k = areaWidth + 2;
-        int l = areaHeight + 2;
-        int[] aint = parent.getInts(i, j, k, l);
-        int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
+        int inputOffsetX = offsetX - 1;
+        int inputOffsetY = offsetY - 1;
+        int inputWidth = width + 2;
+        int inputHeight = height + 2;
+        int[] input = parent.getInts(inputOffsetX, inputOffsetY, inputWidth, inputHeight);
+        int[] output = IntCache.getIntCache(width * height);
 
-        for (int i1 = 0; i1 < areaHeight; ++i1)
+        for (int y = 0; y < height; ++y)
         {
-            for (int j1 = 0; j1 < areaWidth; ++j1)
-            {
-                int k1 = riverFilter(aint[j1 + 0 + (i1 + 1) * k]);
-                int l1 = riverFilter(aint[j1 + 2 + (i1 + 1) * k]);
-                int i2 = riverFilter(aint[j1 + 1 + (i1 + 0) * k]);
-                int j2 = riverFilter(aint[j1 + 1 + (i1 + 2) * k]);
-                int k2 = riverFilter(aint[j1 + 1 + (i1 + 1) * k]);
+            int inputY = y + 1;
 
-                if (k2 == k1 && k2 == i2 && k2 == l1 && k2 == j2)
+            for (int x = 0; x < width; ++x)
+            {
+                int inputX = x + 1;
+                int biomeID1 = riverFilter(input[inputX - 1 + (inputY + 0) * inputWidth]);
+                int biomeID2 = riverFilter(input[inputX + 1 + (inputY + 0) * inputWidth]);
+                int biomeID3 = riverFilter(input[inputX + 0 + (inputY - 1) * inputWidth]);
+                int biomeID4 = riverFilter(input[inputX + 0 + (inputY + 1) * inputWidth]);
+                int biomeID = riverFilter(input[inputX + 0 + (inputY + 0) * inputWidth]);
+
+                if (biomeID == biomeID1 && biomeID == biomeID3 && biomeID == biomeID2 && biomeID == biomeID4)
                 {
-                    aint1[j1 + i1 * areaWidth] = -1;
+                    output[x + y * width] = -1;
                 }
                 else
                 {
-                    aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(AMBiomes.RIVER);
+                    output[x + y * width] = Biome.getIdForBiome(AMBiomes.RIVER);
                 }
             }
         }
 
-        return aint1;
+        return output;
     }
 
-    private int riverFilter(int p_151630_1_)
+    private int riverFilter(int i)
     {
-        return p_151630_1_ >= 2 ? 2 + (p_151630_1_ & 1) : p_151630_1_;
+        return i >= 2 ? 2 + (i & 1) : i;
     }
 }

@@ -5,32 +5,41 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerRiverMixAM extends GenLayer
+public class GenLayerRiverMixAM extends GenLayerAM
 {
-    private final GenLayer biomePatternGeneratorChain;
-    private final GenLayer riverPatternGeneratorChain;
+    private static final int MAX_BIOME_ID = 255;
+    private final GenLayer biomeLayer;
+    private final GenLayer riverLayer;
 
-    public GenLayerRiverMixAM(long seed, GenLayer biomePattern, GenLayer riverPattern)
+    public GenLayerRiverMixAM(long seed, GenLayer biomeLayer, GenLayer riverLayer)
     {
         super(seed);
-        biomePatternGeneratorChain = biomePattern;
-        riverPatternGeneratorChain = riverPattern;
+        this.biomeLayer = biomeLayer;
+        this.riverLayer = riverLayer;
     }
 
     @Override
-    public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
+    public void initWorldGenSeed(long seed)
     {
-        int[] inputBiomeIDs = biomePatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] inputRiverIDs = riverPatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] outputBiomeIDs = IntCache.getIntCache(areaWidth * areaHeight);
+        biomeLayer.initWorldGenSeed(seed);
+        riverLayer.initWorldGenSeed(seed);
+        super.initWorldGenSeed(seed);
+    }
 
-        for (int i = 0; i < areaWidth * areaHeight; ++i)
+    @Override
+    public int[] getInts(int offsetX, int offsetY, int width, int height)
+    {
+        int[] inputBiomeIDs = biomeLayer.getInts(offsetX, offsetY, width, height);
+        int[] inputRiverIDs = riverLayer.getInts(offsetX, offsetY, width, height);
+        int[] outputBiomeIDs = IntCache.getIntCache(width * height);
+
+        for (int i = 0; i < width * height; ++i)
         {
             if (!isBiomeOceanic(inputBiomeIDs[i]))
             {
                 if (inputRiverIDs[i] == Biome.getIdForBiome(AMBiomes.RIVER))
                 {
-                    outputBiomeIDs[i] = inputRiverIDs[i] & 255;
+                    outputBiomeIDs[i] = inputRiverIDs[i] & MAX_BIOME_ID;
                 }
                 else
                 {

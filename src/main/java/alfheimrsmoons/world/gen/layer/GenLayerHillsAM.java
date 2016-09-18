@@ -5,44 +5,54 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerHillsAM extends GenLayer
+public class GenLayerHillsAM extends GenLayerAM
 {
-    private final GenLayer riverLayer;
+    private GenLayer riverLayer;
 
     public GenLayerHillsAM(long seed, GenLayer parent, GenLayer riverLayer)
     {
-        super(seed);
-        this.parent = parent;
+        super(seed, parent);
         this.riverLayer = riverLayer;
     }
 
     @Override
-    public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
+    public int[] getInts(int offsetX, int offsetY, int width, int height)
     {
-        int[] inputBiomeIDs = parent.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
-        int[] aint1 = riverLayer.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
-        int[] outputBiomeIDs = IntCache.getIntCache(areaWidth * areaHeight);
+        int inputOffsetX = offsetX - 1;
+        int inputOffsetY = offsetY - 1;
+        int inputWidth = width + 2;
+        int inputHeight = height + 2;
+        int[] inputBiomeIDs = parent.getInts(inputOffsetX, inputOffsetY, inputWidth, inputHeight);
+        int[] inputRiverIDs = riverLayer.getInts(inputOffsetX, inputOffsetY, inputWidth, inputHeight);
+        int[] outputBiomeIDs = IntCache.getIntCache(width * height);
 
-        for (int i = 0; i < areaHeight; ++i)
+        for (int y = 0; y < height; ++y)
         {
-            for (int j = 0; j < areaWidth; ++j)
+            int inputY = y + 1;
+            
+            for (int x = 0; x < width; ++x)
             {
-                initChunkSeed((long) (j + areaX), (long) (i + areaY));
-                int biomeID = inputBiomeIDs[j + 1 + (i + 1) * (areaWidth + 2)];
-                int l = aint1[j + 1 + (i + 1) * (areaWidth + 2)];
-                boolean flag = (l - 2) % 29 == 0;
+                initChunkSeed((long) (x + offsetX), (long) (y + offsetY));
+                
+                int inputX = x + 1;
 
+                int biomeID = inputBiomeIDs[inputX + inputY * inputWidth];
                 Biome biome = Biome.getBiomeForId(biomeID);
                 boolean isMutation = biome != null && biome.isMutation();
 
-                if (biomeID != 0 && l >= 2 && (l - 2) % 29 == 1 && !isMutation)
+                int riverID = inputRiverIDs[inputX + inputY * inputWidth];
+                int i = (riverID - 2) % 29;
+                boolean flag1 = riverID >= 2 && i == 1;
+                boolean flag2 = i == 0;
+
+                if (biomeID != 0 && flag1 && !isMutation)
                 {
                     Biome mutation = Biome.getMutationForBiome(biome);
-                    outputBiomeIDs[j + i * areaWidth] = mutation == null ? biomeID : Biome.getIdForBiome(mutation);
+                    outputBiomeIDs[x + y * width] = mutation != null ? Biome.getIdForBiome(mutation) : biomeID;
                 }
-                else if (nextInt(3) != 0 && !flag)
+                else if (nextInt(3) != 0 && !flag2)
                 {
-                    outputBiomeIDs[j + i * areaWidth] = biomeID;
+                    outputBiomeIDs[x + y * width] = biomeID;
                 }
                 else
                 {
@@ -77,51 +87,51 @@ public class GenLayerHillsAM extends GenLayer
 
                     int hillsBiomeID = Biome.getIdForBiome(hillsBiome);
 
-                    if (flag && hillsBiomeID != biomeID)
+                    if (flag2 && hillsBiomeID != biomeID)
                     {
                         Biome hillsMutation = Biome.getMutationForBiome(hillsBiome);
-                        hillsBiomeID = hillsMutation == null ? biomeID : Biome.getIdForBiome(hillsMutation);
+                        hillsBiomeID = hillsMutation != null ? Biome.getIdForBiome(hillsMutation) : biomeID;
                     }
 
                     if (hillsBiomeID == biomeID)
                     {
-                        outputBiomeIDs[j + i * areaWidth] = biomeID;
+                        outputBiomeIDs[x + y * width] = biomeID;
                     }
                     else
                     {
-                        int biomeID1 = inputBiomeIDs[j + 1 + (i + 0) * (areaWidth + 2)];
-                        int biomeID2 = inputBiomeIDs[j + 2 + (i + 1) * (areaWidth + 2)];
-                        int biomeID3 = inputBiomeIDs[j + 0 + (i + 1) * (areaWidth + 2)];
-                        int biomeID4 = inputBiomeIDs[j + 1 + (i + 2) * (areaWidth + 2)];
-                        int i2 = 0;
+                        int biomeID1 = inputBiomeIDs[inputX + 0 + (inputY - 1) * inputWidth];
+                        int biomeID2 = inputBiomeIDs[inputX + 1 + (inputY + 0) * inputWidth];
+                        int biomeID3 = inputBiomeIDs[inputX - 1 + (inputY + 0) * inputWidth];
+                        int biomeID4 = inputBiomeIDs[inputX + 0 + (inputY + 1) * inputWidth];
+                        int numEqualBiomes = 0;
 
-                        if (biomesEqualOrMesaPlateau(biomeID1, biomeID))
+                        if (biomeID1 == biomeID)
                         {
-                            ++i2;
+                            ++numEqualBiomes;
                         }
 
-                        if (biomesEqualOrMesaPlateau(biomeID2, biomeID))
+                        if (biomeID2 == biomeID)
                         {
-                            ++i2;
+                            ++numEqualBiomes;
                         }
 
-                        if (biomesEqualOrMesaPlateau(biomeID3, biomeID))
+                        if (biomeID3 == biomeID)
                         {
-                            ++i2;
+                            ++numEqualBiomes;
                         }
 
-                        if (biomesEqualOrMesaPlateau(biomeID4, biomeID))
+                        if (biomeID4 == biomeID)
                         {
-                            ++i2;
+                            ++numEqualBiomes;
                         }
 
-                        if (i2 >= 3)
+                        if (numEqualBiomes >= 3)
                         {
-                            outputBiomeIDs[j + i * areaWidth] = hillsBiomeID;
+                            outputBiomeIDs[x + y * width] = hillsBiomeID;
                         }
                         else
                         {
-                            outputBiomeIDs[j + i * areaWidth] = biomeID;
+                            outputBiomeIDs[x + y * width] = biomeID;
                         }
                     }
                 }

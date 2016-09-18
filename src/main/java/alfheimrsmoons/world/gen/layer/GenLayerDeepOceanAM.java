@@ -3,69 +3,70 @@ package alfheimrsmoons.world.gen.layer;
 import alfheimrsmoons.init.AMBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.GenLayerDeepOcean;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerDeepOceanAM extends GenLayer
+public class GenLayerDeepOceanAM extends GenLayerAM
 {
     public GenLayerDeepOceanAM(long seed, GenLayer parent)
     {
-        super(seed);
-        this.parent = parent;
+        super(seed, parent);
     }
 
     @Override
-    public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
+    public int[] getInts(int offsetX, int offsetY, int width, int height)
     {
-        int i = areaX - 1;
-        int j = areaY - 1;
-        int k = areaWidth + 2;
-        int l = areaHeight + 2;
-        int[] aint = parent.getInts(i, j, k, l);
-        int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
+        int inputOffsetX = offsetX - 1;
+        int inputOffsetY = offsetY - 1;
+        int inputWidth = width + 2;
+        int inputHeight = height + 2;
+        int[] input = parent.getInts(inputOffsetX, inputOffsetY, inputWidth, inputHeight);
+        int[] output = IntCache.getIntCache(width * height);
 
-        for (int i1 = 0; i1 < areaHeight; ++i1)
+        for (int y = 0; y < height; ++y)
         {
-            for (int j1 = 0; j1 < areaWidth; ++j1)
+            int inputY = y + 1;
+
+            for (int x = 0; x < width; ++x)
             {
-                int k1 = aint[j1 + 1 + (i1 + 1 - 1) * (areaWidth + 2)];
-                int l1 = aint[j1 + 1 + 1 + (i1 + 1) * (areaWidth + 2)];
-                int i2 = aint[j1 + 1 - 1 + (i1 + 1) * (areaWidth + 2)];
-                int j2 = aint[j1 + 1 + (i1 + 1 + 1) * (areaWidth + 2)];
-                int k2 = aint[j1 + 1 + (i1 + 1) * k];
-                int l2 = 0;
+                int inputX = x + 1;
+                int i1 = input[inputX + 0 + (inputY - 1) * inputWidth];
+                int i2 = input[inputX + 1 + (inputY + 0) * inputWidth];
+                int i3 = input[inputX - 1 + (inputY + 0) * inputWidth];
+                int i4 = input[inputX + 0 + (inputY + 1) * inputWidth];
+                int i = input[inputX + inputY * inputWidth];
+                int numOceans = 0;
 
-                if (k1 == 0)
+                if (i1 == 0)
                 {
-                    ++l2;
-                }
-
-                if (l1 == 0)
-                {
-                    ++l2;
+                    ++numOceans;
                 }
 
                 if (i2 == 0)
                 {
-                    ++l2;
+                    ++numOceans;
                 }
 
-                if (j2 == 0)
+                if (i3 == 0)
                 {
-                    ++l2;
+                    ++numOceans;
                 }
 
-                if (k2 == 0 && l2 > 3)
+                if (i4 == 0)
                 {
-                    aint1[j1 + i1 * areaWidth] = Biome.getIdForBiome(AMBiomes.DEEP_OCEAN);
+                    ++numOceans;
+                }
+
+                if (i == 0 && numOceans > 3)
+                {
+                    output[x + y * width] = Biome.getIdForBiome(AMBiomes.DEEP_OCEAN);
                 }
                 else
                 {
-                    aint1[j1 + i1 * areaWidth] = k2;
+                    output[x + y * width] = i;
                 }
             }
         }
 
-        return aint1;
+        return output;
     }
 }

@@ -10,40 +10,39 @@ import net.minecraftforge.common.BiomeManager.BiomeType;
 
 import java.util.List;
 
-public class GenLayerBiomeAM extends GenLayer
+public class GenLayerBiomeAM extends GenLayerAM
 {
-    public GenLayerBiomeAM(long baseSeed, GenLayer parentLayer)
+    public GenLayerBiomeAM(long seed, GenLayer parent)
     {
-        super(baseSeed);
-        parent = parentLayer;
+        super(seed, parent);
     }
 
     @Override
-    public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
+    public int[] getInts(int offsetX, int offsetY, int width, int height)
     {
-        int[] inputBiomeIDs = parent.getInts(areaX, areaY, areaWidth, areaHeight);
-        int[] outputBiomeIDs = IntCache.getIntCache(areaWidth * areaHeight);
+        int[] input = parent.getInts(offsetX, offsetY, width, height);
+        int[] outputBiomeIDs = IntCache.getIntCache(width * height);
 
-        for (int i = 0; i < areaHeight; ++i)
+        for (int y = 0; y < height; ++y)
         {
-            for (int j = 0; j < areaWidth; ++j)
+            for (int x = 0; x < width; ++x)
             {
-                initChunkSeed((long) (j + areaX), (long) (i + areaY));
-                int biomeID = inputBiomeIDs[j + i * areaWidth];
-                int l = (biomeID & 3840) >> 8;
-                biomeID &= -3841;
+                initChunkSeed((long) (x + offsetX), (long) (y + offsetY));
+                int i = input[x + y * width];
+                int l = (i & 3840) >> 8;
+                i &= -3841;
 
-                if (isBiomeOceanic(biomeID))
+                if (isBiomeOceanic(i))
                 {
-                    outputBiomeIDs[j + i * areaWidth] = biomeID;
+                    outputBiomeIDs[x + y * width] = i;
                 }
                 else
                 {
-                    BiomeType biomeType = BiomeProviderAM.getBiomeTypeByID(biomeID);
+                    BiomeType type = BiomeProviderAM.getBiomeTypeByID(i - 1);
 
-                    if (biomeType != null)
+                    if (type != null)
                     {
-                        outputBiomeIDs[j + i * areaWidth] = Biome.getIdForBiome(getWeightedBiomeEntry(biomeType).biome);
+                        outputBiomeIDs[x + y * width] = Biome.getIdForBiome(getWeightedBiomeEntry(type).biome);
                     }
                 }
             }
