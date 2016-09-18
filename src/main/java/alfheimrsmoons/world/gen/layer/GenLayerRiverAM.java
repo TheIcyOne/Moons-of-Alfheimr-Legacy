@@ -3,7 +3,6 @@ package alfheimrsmoons.world.gen.layer;
 import alfheimrsmoons.init.AMBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.GenLayerRiver;
 import net.minecraft.world.gen.layer.IntCache;
 
 public class GenLayerRiverAM extends GenLayerAM
@@ -42,7 +41,7 @@ public class GenLayerRiverAM extends GenLayerAM
                 }
                 else
                 {
-                    output[x + y * width] = Biome.getIdForBiome(AMBiomes.RIVER);
+                    output[x + y * width] = Biome.getIdForBiome(AMBiomes.STREAM);
                 }
             }
         }

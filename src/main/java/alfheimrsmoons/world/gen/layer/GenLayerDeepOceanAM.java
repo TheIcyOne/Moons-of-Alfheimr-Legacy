@@ -58,7 +58,7 @@ public class GenLayerDeepOceanAM extends GenLayerAM
 
                 if (i == 0 && numOceans > 3)
                 {
-                    output[x + y * width] = Biome.getIdForBiome(AMBiomes.DEEP_OCEAN);
+                    output[x + y * width] = Biome.getIdForBiome(AMBiomes.DEEP_LAKE);
                 }
                 else
                 {

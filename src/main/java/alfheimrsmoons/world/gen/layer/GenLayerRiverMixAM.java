@@ -37,7 +37,7 @@ public class GenLayerRiverMixAM extends GenLayerAM
         {
             if (!isBiomeOceanic(inputBiomeIDs[i]))
             {
-                if (inputRiverIDs[i] == Biome.getIdForBiome(AMBiomes.RIVER))
+                if (inputRiverIDs[i] == Biome.getIdForBiome(AMBiomes.STREAM))
                 {
                     outputBiomeIDs[i] = inputRiverIDs[i] & MAX_BIOME_ID;
                 }

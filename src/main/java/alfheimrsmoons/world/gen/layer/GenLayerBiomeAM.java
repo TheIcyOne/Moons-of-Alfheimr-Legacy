@@ -1,6 +1,8 @@
 package alfheimrsmoons.world.gen.layer;
 
+import alfheimrsmoons.init.AMBiomes;
 import alfheimrsmoons.world.biome.BiomeProviderAM;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -32,7 +34,11 @@ public class GenLayerBiomeAM extends GenLayerAM
                 int l = (i & 3840) >> 8;
                 i &= -3841;
 
-                if (isBiomeOceanic(i))
+                if (i == Biome.getIdForBiome(Biomes.OCEAN))
+                {
+                    outputBiomeIDs[x + y * width] = Biome.getIdForBiome(AMBiomes.LAKE);
+                }
+                else if (isBiomeOceanic(i))
                 {
                     outputBiomeIDs[x + y * width] = i;
                 }

@@ -16,10 +16,10 @@ public class AMBiomes
 {
     private static final Map<Biome, Biome> BIOMES_HILLS;
 
-    public static final Biome OCEAN = new BiomeOceanAM(new BiomeProperties("Ocean").setBaseHeight(-1.0F).setHeightVariation(0.1F)).setRegistryName("ocean");
-    public static final Biome DEEP_OCEAN = new BiomeOceanAM(new BiomeProperties("Deep Ocean").setBaseHeight(-1.8F).setHeightVariation(0.1F)).setRegistryName("deep_ocean");
-    public static final Biome RIVER = new BiomeRiverAM(new BiomeProperties("River").setBaseHeight(-0.5F).setHeightVariation(0.0F)).setRegistryName("river");
-    public static final Biome BEACH = new BiomeBeachAM(new BiomeProperties("Beach").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("beach");
+    public static final Biome LAKE = new BiomeOceanAM(new BiomeProperties("Lake").setBaseHeight(-1.0F).setHeightVariation(0.1F)).setRegistryName("lake");
+    public static final Biome DEEP_LAKE = new BiomeOceanAM(new BiomeProperties("Deep Lake").setBaseHeight(-1.8F).setHeightVariation(0.1F)).setRegistryName("deep_lake");
+    public static final Biome STREAM = new BiomeRiverAM(new BiomeProperties("Stream").setBaseHeight(-0.5F).setHeightVariation(0.0F)).setRegistryName("stream");
+    public static final Biome BEACH = new BiomeBeachAM(new BiomeProperties("Shore").setBaseHeight(0.0F).setHeightVariation(0.025F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("shore");
     public static final Biome MEADOW = new BiomeMeadow(new BiomeProperties("Meadow").setBaseHeight(0.125F).setHeightVariation(0.05F).setTemperature(0.8F).setRainfall(0.4F)).setRegistryName("meadow");
     public static final Biome WOODS = new BiomeWoods(new BiomeProperties("Woods").setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods");
     public static final Biome WOODS_HILLS = new BiomeWoods(new BiomeProperties("Woods Hills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)).setRegistryName("woods_hills");
@@ -30,8 +30,8 @@ public class AMBiomes
 
     static
     {
-        BiomeManager.oceanBiomes.add(OCEAN);
-        BiomeManager.oceanBiomes.add(DEEP_OCEAN);
+        BiomeManager.oceanBiomes.add(LAKE);
+        BiomeManager.oceanBiomes.add(DEEP_LAKE);
 
         BiomeManager.addSpawnBiome(MEADOW);
         BiomeManager.addSpawnBiome(WOODS);
@@ -39,15 +39,15 @@ public class AMBiomes
         BiomeManager.addSpawnBiome(BLUEBELL_FOREST);
 
         BIOMES_HILLS = new HashMap<>();
-        BIOMES_HILLS.put(OCEAN, DEEP_OCEAN);
+        BIOMES_HILLS.put(LAKE, DEEP_LAKE);
         BIOMES_HILLS.put(WOODS, WOODS_HILLS);
     }
 
     public static void registerBiomes()
     {
-        registerBiome(OCEAN, BiomeDictionary.Type.OCEAN);
-        registerBiome(DEEP_OCEAN, BiomeDictionary.Type.OCEAN);
-        registerBiome(RIVER, BiomeDictionary.Type.RIVER);
+        registerBiome(LAKE, BiomeDictionary.Type.OCEAN);
+        registerBiome(DEEP_LAKE, BiomeDictionary.Type.OCEAN);
+        registerBiome(STREAM, BiomeDictionary.Type.RIVER);
         registerBiome(BEACH, BiomeDictionary.Type.BEACH);
         registerBiome(MEADOW, PLAINS);
         registerBiome(WOODS, FOREST);

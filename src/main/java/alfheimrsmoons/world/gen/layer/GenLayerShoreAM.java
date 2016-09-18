@@ -34,7 +34,7 @@ public class GenLayerShoreAM extends GenLayerAM
                 int biomeID = inputBiomeIDs[inputX + inputY * inputWidth];
                 Biome biome = Biome.getBiome(biomeID);
 
-                if (!isBiomeOceanic(biomeID) && biome != AMBiomes.RIVER && biome != AMBiomes.FLOODED_FOREST)
+                if (!isBiomeOceanic(biomeID) && biome != AMBiomes.STREAM && biome != AMBiomes.FLOODED_FOREST)
                 {
                     int biomeID1 = inputBiomeIDs[inputX + 0 + (inputY - 1) * inputWidth];
                     int biomeID2 = inputBiomeIDs[inputX + 1 + (inputY + 0) * inputWidth];

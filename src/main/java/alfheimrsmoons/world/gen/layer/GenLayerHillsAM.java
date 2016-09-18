@@ -69,7 +69,7 @@ public class GenLayerHillsAM extends GenLayerAM
                             hillsBiome = AMBiomes.WOODS;
                         }
                     }
-                    else if (biome == AMBiomes.DEEP_OCEAN && nextInt(3) == 0)
+                    else if (biome == AMBiomes.DEEP_LAKE && nextInt(3) == 0)
                     {
                         if (nextInt(2) == 0)
                         {
