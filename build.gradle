@@ -20,10 +20,14 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    version = "1.10.2-12.18.1.2011"
-    runDir = "run"
+    version = "1.10.2-12.18.2.2125"
+    if(file('../run').exists()) {
+        runDir = "../run"
+    } else {
+        runDir = "run"
+    }
     mappings = "snapshot_20160518"
-    // makeObfSourceJar = false
+    makeObfSourceJar = false
 }
 
 dependencies {
