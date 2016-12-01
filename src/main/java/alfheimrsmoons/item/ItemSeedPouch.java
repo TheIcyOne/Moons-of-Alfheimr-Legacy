@@ -22,8 +22,9 @@ public class ItemSeedPouch extends Item
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+    	ItemStack stack = player.getHeldItem(hand);
         if (!player.canPlayerEdit(pos.offset(facing), facing, stack))
         {
             return EnumActionResult.FAIL;
@@ -45,11 +46,12 @@ public class ItemSeedPouch extends Item
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+    	ItemStack stack = player.getHeldItem(hand);
         if (!player.capabilities.isCreativeMode)
         {
-            --stack.stackSize;
+            stack.setCount(stack.getCount() - 1);;
         }
 
         world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -58,10 +60,10 @@ public class ItemSeedPouch extends Item
         {
             EntitySeedPouch seedPouchEntity = new EntitySeedPouch(world, player);
             seedPouchEntity.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
-            world.spawnEntityInWorld(seedPouchEntity);
+            world.spawnEntity(seedPouchEntity);
         }
 
         player.addStat(StatList.getObjectUseStats(this));
-        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
     }
 }

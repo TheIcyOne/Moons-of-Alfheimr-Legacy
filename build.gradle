@@ -20,13 +20,13 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    version = "1.10.2-12.18.2.2125"
+    version = project.forge_version
     if(file('../run').exists()) {
         runDir = "../run"
     } else {
         runDir = "run"
     }
-    mappings = "snapshot_20160518"
+    mappings = project.forge_mappings
     makeObfSourceJar = false
 }
 

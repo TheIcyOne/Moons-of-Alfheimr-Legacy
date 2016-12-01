@@ -35,7 +35,7 @@ public class WorldGenFlowersAM extends WorldGenerator
         {
             BlockPos flowerPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 255) && canPlaceFlower(world, flowerPos))
+            if (world.isAirBlock(flowerPos) && (!world.provider.hasNoSky() || flowerPos.getY() < 255) && canPlaceFlower(world, flowerPos))
             {
                 world.setBlockState(flowerPos, state, 2);
             }

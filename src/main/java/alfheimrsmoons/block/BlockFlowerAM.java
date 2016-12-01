@@ -1,8 +1,11 @@
 package alfheimrsmoons.block;
 
+import java.util.List;
+import java.util.Random;
+
 import alfheimrsmoons.AlfheimrsMoons;
-import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.combo.VariantFlower;
+import alfheimrsmoons.init.AMBlocks;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -14,6 +17,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -25,10 +29,6 @@ import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
 import zaggy1024.combo.variant.PropertyIMetadata;
 import zaggy1024.item.ItemBlockMulti;
 import zaggy1024.util.BlockStateToMetadata;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
 
 public class BlockFlowerAM extends BlockBush implements IGrowable
 {
@@ -75,7 +75,7 @@ public class BlockFlowerAM extends BlockBush implements IGrowable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }
@@ -98,7 +98,8 @@ public class BlockFlowerAM extends BlockBush implements IGrowable
     {
         return EnumOffsetType.XZ;
     }
-
+    
+/* FIXME canReplace
     @Override
     public boolean canReplace(World world, BlockPos pos, EnumFacing side, @Nullable ItemStack stack)
     {
@@ -113,7 +114,7 @@ public class BlockFlowerAM extends BlockBush implements IGrowable
             return super.canReplace(world, pos, side, stack);
         }
     }
-
+*/
     @Override
     public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
     {

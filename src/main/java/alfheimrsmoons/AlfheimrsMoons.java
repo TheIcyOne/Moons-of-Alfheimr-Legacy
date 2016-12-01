@@ -4,6 +4,7 @@ import alfheimrsmoons.init.*;
 import alfheimrsmoons.network.Proxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -18,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class AlfheimrsMoons
 {
     public static final String MOD_ID = "alfheimrsmoons";
-    public static final String MOD_NAME = "Álfheimr's Moons";
+    public static final String MOD_NAME = "Ã�lfheimr's Moons";
     public static final String MOD_VERSION = "@VERSION@";
 
     public static final String UNLOCALIZED_PREFIX = MOD_ID + ".";
@@ -26,9 +27,9 @@ public class AlfheimrsMoons
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID)
     {
         @Override
-        public Item getTabIconItem()
+        public ItemStack getTabIconItem()
         {
-            return Item.getItemFromBlock(AMBlocks.YGGDRASIL_LEAVES);
+            return new ItemStack(Item.getItemFromBlock(AMBlocks.YGGDRASIL_LEAVES));
         }
     };
 

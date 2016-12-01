@@ -1,5 +1,7 @@
 package alfheimrsmoons.block;
 
+import java.util.List;
+
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantTree;
 import net.minecraft.block.Block;
@@ -13,6 +15,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,8 +26,6 @@ import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
 import zaggy1024.combo.variant.PropertyIMetadata;
 import zaggy1024.item.ItemBlockMulti;
 import zaggy1024.util.BlockStateToMetadata;
-
-import java.util.List;
 
 public class BlockPlanksAM extends Block
 {
@@ -67,7 +68,7 @@ public class BlockPlanksAM extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }

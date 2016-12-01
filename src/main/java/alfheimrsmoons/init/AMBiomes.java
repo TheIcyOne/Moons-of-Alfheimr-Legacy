@@ -61,7 +61,7 @@ public class AMBiomes
     private static void registerBiome(Biome biome, BiomeDictionary.Type... dictTypes)
     {
         GameRegistry.register(biome);
-        BiomeDictionary.registerBiomeType(biome, dictTypes);
+        BiomeDictionary.addTypes(biome, dictTypes);
     }
 
     public static Biome getHills(Biome biome)

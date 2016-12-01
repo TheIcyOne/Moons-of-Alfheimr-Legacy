@@ -7,6 +7,7 @@ import alfheimrsmoons.world.gen.ChunkGeneratorAlfheimr;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.chunk.IChunkGenerator;
 
 public class WorldProviderAlfheimr extends WorldProvider
@@ -16,22 +17,21 @@ public class WorldProviderAlfheimr extends WorldProvider
     {
         return AMDimensions.alfheimr;
     }
-
+    
     @Override
-    protected void createBiomeProvider()
-    {
-        biomeProvider = new BiomeProviderAM(worldObj.getWorldInfo());
+    public BiomeProvider getBiomeProvider() {
+    	return new BiomeProviderAM(world.getWorldInfo());
     }
 
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorAlfheimr(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled(), worldObj.getWorldInfo().getGeneratorOptions());
+        return new ChunkGeneratorAlfheimr(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled(), world.getWorldInfo().getGeneratorOptions());
     }
 
     @Override
     public boolean canCoordinateBeSpawn(int x, int z)
     {
-        return super.canCoordinateBeSpawn(x, z) || worldObj.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getBlock() instanceof BlockGrassySoil;
+        return super.canCoordinateBeSpawn(x, z) || world.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getBlock() instanceof BlockGrassySoil;
     }
 }

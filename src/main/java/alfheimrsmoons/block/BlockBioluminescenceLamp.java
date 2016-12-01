@@ -1,5 +1,7 @@
 package alfheimrsmoons.block;
 
+import java.util.List;
+
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantBioluminescence;
 import net.minecraft.block.Block;
@@ -11,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import zaggy1024.combo.ObjectType;
@@ -19,8 +22,6 @@ import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
 import zaggy1024.combo.variant.PropertyIMetadata;
 import zaggy1024.item.ItemBlockMulti;
 import zaggy1024.util.BlockStateToMetadata;
-
-import java.util.List;
 
 public class BlockBioluminescenceLamp extends Block
 {
@@ -62,7 +63,7 @@ public class BlockBioluminescenceLamp extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }

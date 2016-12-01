@@ -23,11 +23,11 @@ public class BlockSediment extends BlockFalling
         setHarvestLevel("shovel", 0);
         EntityEnderman.setCarriable(this, true);
     }
-
-    @Override
+    
     @SideOnly(Side.CLIENT)
-    public int func_189876_x(IBlockState state) // getDustColor
-    {
-        return BlockSand.EnumType.SAND.func_189865_a();
+    @Override
+    public int getDustColor(IBlockState p_189876_1_) {
+    	return BlockSand.EnumType.SAND.getDustColor();
     }
+
 }

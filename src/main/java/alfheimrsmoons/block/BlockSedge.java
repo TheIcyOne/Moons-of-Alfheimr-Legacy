@@ -1,5 +1,11 @@
 package alfheimrsmoons.block;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantSedge;
 import net.minecraft.block.BlockBush;
@@ -13,6 +19,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -27,11 +34,6 @@ import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
 import zaggy1024.combo.variant.PropertyIMetadata;
 import zaggy1024.item.ItemBlockMulti;
 import zaggy1024.util.BlockStateToMetadata;
-
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 public class BlockSedge extends BlockBush implements IGrowable, IShearable
 {
@@ -106,7 +108,7 @@ public class BlockSedge extends BlockBush implements IGrowable, IShearable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }

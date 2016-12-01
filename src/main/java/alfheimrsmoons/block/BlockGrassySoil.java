@@ -1,5 +1,9 @@
 package alfheimrsmoons.block;
 
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantSedge;
 import alfheimrsmoons.init.AMBlocks;
@@ -20,9 +24,6 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.Random;
 
 public class BlockGrassySoil extends Block implements IGrowable
 {
@@ -112,7 +113,7 @@ public class BlockGrassySoil extends Block implements IGrowable
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            Biome biome = world.getBiomeGenForCoords(plantPos);
+                            Biome biome = world.getBiome(plantPos);
                             biome.plantFlower(world, rand, pos);
                         }
                         else
@@ -151,7 +152,8 @@ public class BlockGrassySoil extends Block implements IGrowable
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
-    @Override
+    @SuppressWarnings("incomplete-switch")
+	@Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
     {
         EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));

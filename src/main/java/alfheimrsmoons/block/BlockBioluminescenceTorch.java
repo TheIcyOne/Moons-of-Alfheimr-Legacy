@@ -1,5 +1,7 @@
 package alfheimrsmoons.block;
 
+import java.util.List;
+
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.combo.VariantBioluminescence;
 import net.minecraft.block.BlockTorch;
@@ -12,6 +14,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,8 +26,6 @@ import zaggy1024.combo.VariantsOfTypesCombo.BlockProperties;
 import zaggy1024.combo.variant.PropertyIMetadata;
 import zaggy1024.item.ItemBlockMulti;
 import zaggy1024.util.BlockStateToMetadata;
-
-import java.util.List;
 
 public class BlockBioluminescenceTorch extends BlockTorch
 {
@@ -65,7 +67,7 @@ public class BlockBioluminescenceTorch extends BlockTorch
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }
@@ -81,11 +83,11 @@ public class BlockBioluminescenceTorch extends BlockTorch
     {
         return BlockStateToMetadata.getMetaForBlockState(state, variantProperty, FACING);
     }
-
+    
     @Override
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    {
-        IBlockState state = getStateFromMeta(meta);
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+    		float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+    	IBlockState state = getStateFromMeta(meta);
 
         if (canPlaceAt(world, pos, facing))
         {
@@ -104,8 +106,8 @@ public class BlockBioluminescenceTorch extends BlockTorch
             return state;
         }
     }
-
-    /* ======================================== BlockTorch START ===================================== */
+    
+    /** ======================================== BlockTorch START ===================================== **/
 
     private boolean canPlaceAt(World world, BlockPos pos, EnumFacing facing)
     {
@@ -119,5 +121,5 @@ public class BlockBioluminescenceTorch extends BlockTorch
         return state.isSideSolid(world, pos, EnumFacing.UP) || state.getBlock().canPlaceTorchOnTop(state, world, pos);
     }
 
-    /* ========================================= BlockTorch END ====================================== */
+    /** ========================================= BlockTorch END ====================================== **/
 }

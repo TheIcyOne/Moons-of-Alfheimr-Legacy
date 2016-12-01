@@ -36,19 +36,19 @@ public class EntitySeedPouch extends EntityThrowable
         if (result.typeOfHit == RayTraceResult.Type.BLOCK)
         {
             BlockPos pos = result.getBlockPos();
-            IBlockState state = worldObj.getBlockState(pos);
+            IBlockState state = world.getBlockState(pos);
 
             if (state.getBlock() instanceof IGrowable)
             {
                 IGrowable growable = (IGrowable) state.getBlock();
 
-                if (growable.canGrow(worldObj, pos, state, worldObj.isRemote))
+                if (growable.canGrow(world, pos, state, world.isRemote))
                 {
-                    if (!worldObj.isRemote)
+                    if (!world.isRemote)
                     {
-                        if (growable.canUseBonemeal(worldObj, worldObj.rand, pos, state))
+                        if (growable.canUseBonemeal(world, world.rand, pos, state))
                         {
-                            growable.grow(worldObj, worldObj.rand, pos, state);
+                            growable.grow(world, world.rand, pos, state);
                         }
                     }
 
@@ -57,17 +57,17 @@ public class EntitySeedPouch extends EntityThrowable
             }
         }
 
-        if (!worldObj.isRemote)
+        if (!world.isRemote)
         {
             setDead();
 
             if (success)
             {
-                worldObj.playEvent(2005, result.getBlockPos(), 0);
+                world.playEvent(2005, result.getBlockPos(), 0);
             }
             else
             {
-                worldObj.spawnEntityInWorld(new EntityItem(worldObj, posX, posY, posZ, new ItemStack(AMItems.SEED_POUCH)));
+                world.spawnEntity(new EntityItem(world, posX, posY, posZ, new ItemStack(AMItems.SEED_POUCH)));
             }
         }
     }

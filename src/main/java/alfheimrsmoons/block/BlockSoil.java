@@ -27,7 +27,8 @@ public class BlockSoil extends Block
         EntityEnderman.setCarriable(this, true);
     }
 
-    @Override
+    @SuppressWarnings("incomplete-switch")
+	@Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
     {
         EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));

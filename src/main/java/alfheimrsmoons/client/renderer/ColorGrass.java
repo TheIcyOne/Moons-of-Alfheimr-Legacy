@@ -48,7 +48,7 @@ public class ColorGrass implements IBlockColor, IItemColor
     @Override
     public int getColorFromItemstack(ItemStack stack, int tintIndex)
     {
-        IBlockState state = Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getMetadata());
+        IBlockState state = Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getMetadata()); //TODO deprecated
         return colorMultiplier(state, null, null, tintIndex);
     }
 }

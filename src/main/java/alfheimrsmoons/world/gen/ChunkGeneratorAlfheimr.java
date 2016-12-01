@@ -80,7 +80,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
         {
             for (int j = -2; j <= 2; ++j)
             {
-                float f = 10.0F / MathHelper.sqrt_float((float) (i * i + j * j) + 0.2F);
+                float f = 10.0F / MathHelper.sqrt((float) (i * i + j * j) + 0.2F);
                 biomeWeights[i + 2 + (j + 2) * 5] = f;
             }
         }
@@ -183,7 +183,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
         rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer primer = new ChunkPrimer();
         setBlocksInChunk(x, z, primer);
-        biomesForGeneration = worldObj.getBiomeProvider().loadBlockGeneratorData(biomesForGeneration, x * 16, z * 16, 16, 16);
+        biomesForGeneration = worldObj.getBiomeProvider().getBiomes(biomesForGeneration, x * 16, z * 16, 16, 16);
         replaceBiomeBlocks(x, z, primer, biomesForGeneration);
 
         if (settings.useCaves)
@@ -317,7 +317,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
                     double d2 = minLimitRegion[i] / (double) settings.lowerLimitScale;
                     double d3 = maxLimitRegion[i] / (double) settings.upperLimitScale;
                     double d4 = (mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
-                    double d5 = MathHelper.denormalizeClamp(d2, d3, d4) - d1;
+                    double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
 
                     if (l1 > 29)
                     {
@@ -339,13 +339,13 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
         int blockX = x * 16;
         int blockZ = z * 16;
         BlockPos pos = new BlockPos(blockX, 0, blockZ);
-        Biome biome = worldObj.getBiomeGenForCoords(pos.add(16, 0, 16));
+        Biome biome = worldObj.getBiome(pos.add(16, 0, 16));
         rand.setSeed(worldObj.getSeed());
         long k = rand.nextLong() / 2L * 2L + 1L;
         long l = rand.nextLong() / 2L * 2L + 1L;
         rand.setSeed((long) x * k + (long) z * l ^ worldObj.getSeed());
         boolean hasVillageGenerated = false;
-        ChunkPos chunkPos = new ChunkPos(x, z);
+        ChunkPos chunkPos = new ChunkPos(x, z); //TODO what is this for??
 
         if (mapFeaturesEnabled)
         {
@@ -408,7 +408,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
-        Biome biome = worldObj.getBiomeGenForCoords(pos);
+        Biome biome = worldObj.getBiome(pos);
 
         if (mapFeaturesEnabled)
         {
@@ -417,11 +417,10 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
 
         return biome.getSpawnableList(creatureType);
     }
-
+    
     @Override
-    public BlockPos getStrongholdGen(World world, String structureName, BlockPos position)
-    {
-        return null;
+    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean p_180513_4_) {
+    	return null;
     }
 
     @Override

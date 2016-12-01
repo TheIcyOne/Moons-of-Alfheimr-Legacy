@@ -43,11 +43,10 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
         targetTasks.addTask(2, new AINitroWraithTarget<>(this, EntityPlayer.class));
         targetTasks.addTask(3, new AINitroWraithTarget<>(this, EntityIronGolem.class));
     }
-
+    
     @Override
-    protected PathNavigate getNewNavigator(World world)
-    {
-        return new PathNavigateClimber(this, world);
+    protected PathNavigate createNavigator(World worldIn) {
+    	return new PathNavigateClimber(this, world);
     }
 
     @Override
@@ -62,7 +61,7 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
     {
         super.onUpdate();
 
-        if (!worldObj.isRemote)
+        if (!world.isRemote)
         {
             setBesideClimbableBlock(isCollidedHorizontally);
         }
@@ -96,15 +95,15 @@ public class EntityNitroWraith extends EntityMob implements IRangedAttackMob
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float p_82196_2_)
     {
-        EntityArrow arrow = new EntityTippedArrow(worldObj, this);
+        EntityArrow arrow = new EntityTippedArrow(world, this);
         double d0 = target.posX - posX;
         double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - arrow.posY;
         double d2 = target.posZ - posZ;
-        double d3 = (double) MathHelper.sqrt_double(d0 * d0 + d2 * d2);
-        arrow.setThrowableHeading(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - worldObj.getDifficulty().getDifficultyId() * 4));
-        arrow.setDamage((double) (p_82196_2_ * 2.0F) + rand.nextGaussian() * 0.25D + (double) ((float) worldObj.getDifficulty().getDifficultyId() * 0.11F));
+        double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+        arrow.setThrowableHeading(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float) (14 - world.getDifficulty().getDifficultyId() * 4));
+        arrow.setDamage((double) (p_82196_2_ * 2.0F) + rand.nextGaussian() * 0.25D + (double) ((float) world.getDifficulty().getDifficultyId() * 0.11F));
         playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
-        worldObj.spawnEntityInWorld(arrow);
+        world.spawnEntity(arrow);
     }
 
     public boolean isBesideClimbableBlock()

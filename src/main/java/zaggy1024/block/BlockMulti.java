@@ -10,6 +10,7 @@ import net.minecraft.block.properties.*;
 import net.minecraft.block.state.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 
@@ -97,7 +98,7 @@ public class BlockMulti<V extends IMetadata<V>> extends Block
 	}
 	
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
 	{
 		owner.fillSubItems(type, variants, list);
 	}

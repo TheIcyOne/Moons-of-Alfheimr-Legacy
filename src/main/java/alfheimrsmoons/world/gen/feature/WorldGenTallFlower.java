@@ -26,7 +26,7 @@ public class WorldGenTallFlower extends WorldGenerator
         {
             BlockPos flowerPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (world.isAirBlock(flowerPos) && (!world.provider.getHasNoSky() || flowerPos.getY() < 254))
+            if (world.isAirBlock(flowerPos) && (!world.provider.hasNoSky() || flowerPos.getY() < 254))
             {
                 if (AMBlocks.FLOWERS.placeTallFlower(world, flowerPos, variant))
                 {

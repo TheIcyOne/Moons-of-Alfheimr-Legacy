@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import zaggy1024.combo.ObjectType;
 import zaggy1024.combo.VariantsOfTypesCombo;
 import zaggy1024.combo.variant.IMetadata;
@@ -42,7 +43,7 @@ public class ItemMulti<V extends IMetadata<V>> extends Item
 	}
 
 	@Override
-	public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems)
+	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems)
 	{
 		owner.fillSubItems(type, variants, subItems);
 	}

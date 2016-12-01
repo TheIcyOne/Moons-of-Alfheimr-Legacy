@@ -35,7 +35,7 @@ public class AMEntities
      */
     private static void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
     {
-        EntityRegistry.registerModEntity(entityClass, entityName, nextEntityId++, AlfheimrsMoons.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
+        EntityRegistry.registerModEntity(new ResourceLocation(AlfheimrsMoons.MOD_ID, entityName), entityClass, entityName, nextEntityId++, AlfheimrsMoons.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 
     /**
@@ -49,8 +49,9 @@ public class AMEntities
      */
     private static void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary)
     {
+    	ResourceLocation registryName = new ResourceLocation(AlfheimrsMoons.MOD_ID, entityName);
         registerEntity(entityClass, entityName, trackingRange, updateFrequency, sendsVelocityUpdates);
-        EntityRegistry.registerEgg(entityClass, eggPrimary, eggSecondary);
+        EntityRegistry.registerEgg(registryName, eggPrimary, eggSecondary);
     }
 
     private static ResourceLocation registerLootTable(String id)
