@@ -64,8 +64,6 @@ public class AMRecipes
 
     private static void addSmeltingRecipes()
     {
-        addSmelting(AMBlocks.SEDIMENT, new ItemStack(AMBlocks.SEDIMENT_GLASS), 0.1F);
-
         for (VariantOre variant : AMBlocks.ORES.getVariants())
         {
             ItemStack ore = AMBlocks.ORES.getStack(ComboOres.ORE, variant);

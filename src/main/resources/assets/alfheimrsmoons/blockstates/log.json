@@ -23,12 +23,6 @@
                     "side": "alfheimrsmoons:blocks/log_redbud"
                 }
             },
-            "larch": {
-                "textures": {
-                    "end": "alfheimrsmoons:blocks/log_larch_top",
-                    "side": "alfheimrsmoons:blocks/log_larch"
-                }
-            },
             "rune": {
                 "textures": {
                     "end": "alfheimrsmoons:blocks/log_rune_top",

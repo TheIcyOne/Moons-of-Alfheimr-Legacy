@@ -5,7 +5,6 @@
             "beech": { "model": "alfheimrsmoons:leaves_beech" },
             "elm": { "model": "alfheimrsmoons:leaves_elm" },
             "redbud": { "model": "alfheimrsmoons:leaves_redbud" },
-            "larch": { "model": "alfheimrsmoons:leaves_larch" },
             "rune": { "model": "alfheimrsmoons:leaves_rune" },
             "glow_bark": { "model": "alfheimrsmoons:leaves_glow_bark" }
         }

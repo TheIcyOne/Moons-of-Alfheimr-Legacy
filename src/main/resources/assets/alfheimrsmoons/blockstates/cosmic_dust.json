@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "normal": { "model": "alfheimrsmoons:cosmic_dust" }
-  }
+    "variants": {
+        "normal": { "model": "alfheimrsmoons:cosmic_dust" }
+    }
 }

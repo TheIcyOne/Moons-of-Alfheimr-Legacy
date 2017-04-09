@@ -49,8 +49,6 @@ public class AMBlocks
 
     public static final BlockSediment SEDIMENT = new BlockSediment();
 
-    public static final BlockSedimentGlass SEDIMENT_GLASS = new BlockSedimentGlass();
-
     public static final BlockEtirGlass ETIR_GLASS = new BlockEtirGlass();
 
     public static final BlockCosmicGlass COSMIC_GLASS = new BlockCosmicGlass();
@@ -101,7 +99,6 @@ public class AMBlocks
         DEAD_PLANTS.registerAll(proxy);
         FLOWERS.registerAll(proxy);
         proxy.registerBlock(SEDIMENT);
-        proxy.registerBlock(SEDIMENT_GLASS);
         proxy.registerBlock(ETIR_GLASS);
         proxy.registerBlock(COSMIC_GLASS);
         proxy.registerBlock(COSMIC_DUST);
