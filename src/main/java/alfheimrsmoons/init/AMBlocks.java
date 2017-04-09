@@ -15,6 +15,8 @@ import zaggy1024.item.ItemBlockMulti;
 
 public class AMBlocks
 {
+    public static final BlockMannaOre MANNA_ORE = new BlockMannaOre();
+
     public static final BlockYggdrasilLeaves YGGDRASIL_LEAVES = new BlockYggdrasilLeaves();
 
     public static final BlockSoil SOIL = new BlockSoil();
@@ -67,6 +69,8 @@ public class AMBlocks
 
     public static final ComboOres ORES = new ComboOres();
 
+    public static final BlockAsteroid ASTEROID = new BlockAsteroid();
+
     public static final BlockMeteorite METEORITE = new BlockMeteorite();
 
     public static final VariantsCombo<VariantCosmotite, BlockCosmotite, ItemBlockMulti<VariantCosmotite>> COSMOTITE =
@@ -88,6 +92,7 @@ public class AMBlocks
     public static void registerBlocks()
     {
         Proxy proxy = AlfheimrsMoons.proxy;
+        proxy.registerBlock(MANNA_ORE);
         proxy.registerBlock(YGGDRASIL_LEAVES);
         proxy.registerBlock(SOIL);
         proxy.registerBlock(GRASSY_SOIL);
@@ -103,6 +108,7 @@ public class AMBlocks
         SHALE.registerAll(proxy);
         ORES.registerVariants(proxy, ComboOres.ORE);
         ORES.registerVariants(proxy, ComboOres.BLOCK);
+        proxy.registerBlock(ASTEROID);
         proxy.registerBlock(METEORITE);
         COSMOTITE.registerAll(proxy);
         TREES.registerAll(proxy);

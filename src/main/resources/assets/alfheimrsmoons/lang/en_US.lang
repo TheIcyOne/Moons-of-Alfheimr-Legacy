@@ -1,5 +1,6 @@
 itemGroup.alfheimrsmoons=Moons of Alfheimr
 
+tile.alfheimrsmoons.manna_ore.name=Manna Ore
 tile.alfheimrsmoons.yggdrasil_leaves.name=Yggdrasil Leaves
 tile.alfheimrsmoons.dry_grass.name=Dry Grass
 tile.alfheimrsmoons.soil.name=Soil
@@ -47,6 +48,7 @@ tile.alfheimrsmoons.ore_block.tektite.name=Tektite Block
 tile.alfheimrsmoons.ore_block.sylvanite.name=Sylvanite Block
 tile.alfheimrsmoons.ore_block.moonstone.name=Moonsteel Block
 tile.alfheimrsmoons.ore_block.sunstone.name=Sunsteel Block
+tile.alfheimrsmoons.asteroid.name=Asteroid
 tile.alfheimrsmoons.meteorite.name=Meteorite
 tile.alfheimrsmoons.cosmotite.normal.name=Cosmotite
 tile.alfheimrsmoons.cosmotite.bricks.name=Cosmotite Bricks
@@ -92,6 +94,7 @@ tile.alfheimrsmoons.bioluminescence_lamp.blue.name=Blue Bioluminescence Lamp
 tile.alfheimrsmoons.bioluminescence_lamp.purple.name=Purple Bioluminescence Lamp
 tile.alfheimrsmoons.bioluminescence_lamp.pink.name=Pink Bioluminescence Lamp
 
+item.alfheimrsmoons.manna_crystal=Manna Crystal
 item.alfheimrsmoons.branch.name=Branch
 item.alfheimrsmoons.twine.name=Twine
 item.alfheimrsmoons.ore_drop.sylvanite.name=Sylvanite Crystal
