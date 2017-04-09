@@ -9,7 +9,8 @@ public enum VariantTree implements IMetadata<VariantTree>
     ELM("elm", MapColor.OBSIDIAN),
     REDBUD("redbud", MapColor.SAND),
     LARCH("larch", MapColor.DIRT),
-    RUNE("rune", MapColor.LIGHT_BLUE);
+    RUNE("rune", MapColor.LIGHT_BLUE),
+    GLOW_BARK("glow_bark", MapColor.PURPLE);
 
     private final String name;
     private final MapColor mapColor;

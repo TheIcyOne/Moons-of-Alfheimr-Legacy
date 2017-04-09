@@ -21,6 +21,8 @@ public class AMBlocks
 
     public static final BlockGrassySoil GRASSY_SOIL = new BlockGrassySoil();
 
+    public static final BlockDryGrass DRY_GRASS = new BlockDryGrass();
+
     public static final VariantsCombo<VariantSedge, BlockSedge, ItemBlockMulti<VariantSedge>> SEDGES =
             new VariantsCombo<>(
                     "sedges",
@@ -46,6 +48,12 @@ public class AMBlocks
     public static final BlockSediment SEDIMENT = new BlockSediment();
 
     public static final BlockSedimentGlass SEDIMENT_GLASS = new BlockSedimentGlass();
+
+    public static final BlockEtirGlass ETIR_GLASS = new BlockEtirGlass();
+
+    public static final BlockCosmicGlass COSMIC_GLASS = new BlockCosmicGlass();
+
+    public static final BlockCosmicDust COSMIC_DUST = new BlockCosmicDust();
 
     public static final VariantsCombo<VariantShale, BlockShale, ItemBlockMulti<VariantShale>> SHALE =
             new VariantsCombo<>(
@@ -83,11 +91,15 @@ public class AMBlocks
         proxy.registerBlock(YGGDRASIL_LEAVES);
         proxy.registerBlock(SOIL);
         proxy.registerBlock(GRASSY_SOIL);
+        proxy.registerBlock(DRY_GRASS);
         SEDGES.registerAll(proxy);
         DEAD_PLANTS.registerAll(proxy);
         FLOWERS.registerAll(proxy);
         proxy.registerBlock(SEDIMENT);
         proxy.registerBlock(SEDIMENT_GLASS);
+        proxy.registerBlock(ETIR_GLASS);
+        proxy.registerBlock(COSMIC_GLASS);
+        proxy.registerBlock(COSMIC_DUST);
         SHALE.registerAll(proxy);
         ORES.registerVariants(proxy, ComboOres.ORE);
         ORES.registerVariants(proxy, ComboOres.BLOCK);

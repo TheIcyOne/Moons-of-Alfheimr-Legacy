@@ -1,0 +1,7 @@
+{
+  "parent": "alfheimrsmoons:block/log",
+  "textures": {
+    "end": "alfheimrsmoons:blocks/log_glow_bark_top",
+    "side": "alfheimrsmoons:blocks/log_glow_bark"
+  }
+}

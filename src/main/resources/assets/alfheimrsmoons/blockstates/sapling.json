@@ -9,7 +9,8 @@
             "elm": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_elm" } },
             "redbud": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_redbud" } },
             "larch": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_larch" } },
-            "rune": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_rune" } }
+            "rune": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_rune" } },
+            "glow_bark": { "textures": { "cross": "alfheimrsmoons:blocks/sapling_glow_bark" } }
         },
         "stage": {
             "0": {},
