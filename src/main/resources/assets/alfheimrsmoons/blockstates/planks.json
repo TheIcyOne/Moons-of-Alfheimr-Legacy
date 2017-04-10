@@ -5,9 +5,9 @@
             "beech": { "model": "alfheimrsmoons:planks_beech" },
             "elm": { "model": "alfheimrsmoons:planks_elm" },
             "redbud": { "model": "alfheimrsmoons:planks_redbud" },
-            "larch": { "model": "alfheimrsmoons:planks_larch" },
             "rune": { "model": "alfheimrsmoons:planks_rune" },
-            "glow_bark": { "model": "alfheimrsmoons:planks_glow_bark" }
+            "glow_bark": { "model": "alfheimrsmoons:planks_glow_bark" },
+            "red_runewood": { "model": "alfheimrsmoons:planks_red_runewood" }
         }
     }
 }

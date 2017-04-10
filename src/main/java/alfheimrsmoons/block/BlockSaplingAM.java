@@ -106,7 +106,6 @@ public class BlockSaplingAM extends BlockBush implements IGrowable
             case BEECH:
             case ELM:
             case REDBUD:
-            case LARCH:
             default:
         }
 
