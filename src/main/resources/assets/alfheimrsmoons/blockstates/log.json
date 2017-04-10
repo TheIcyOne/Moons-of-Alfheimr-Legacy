@@ -34,6 +34,12 @@
                     "end": "alfheimrsmoons:blocks/log_glow_bark_top",
                     "side": "alfheimrsmoons:blocks/log_glow_bark"
                 }
+            },
+            "red_runewood": {
+                "textures": {
+                    "end": "alfheimrsmoons:blocks/log_red_runewood_top",
+                    "side": "alfheimrsmoons:blocks/log_red_runewood"
+                }
             }
         },
         "axis": {

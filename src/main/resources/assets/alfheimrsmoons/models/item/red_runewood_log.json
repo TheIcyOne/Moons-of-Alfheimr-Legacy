@@ -1,0 +1,7 @@
+{
+    "parent": "alfheimrsmoons:block/log",
+    "textures": {
+        "end": "alfheimrsmoons:blocks/log_red_runewood_top",
+        "side": "alfheimrsmoons:blocks/log_red_runewood"
+    }
+}
