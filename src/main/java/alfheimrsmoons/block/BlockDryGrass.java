@@ -92,7 +92,7 @@ public class BlockDryGrass extends Block implements IGrowable {
                 if (j >= i / 16) {
                     if (world.isAirBlock(plantPos)) {
                         if (rand.nextInt(8) == 0) {
-                            Biome biome = world.getBiomeGenForCoords(plantPos);
+                            Biome biome = world.getBiome(plantPos);
                             biome.plantFlower(world, rand, pos);
                         }
                         else {

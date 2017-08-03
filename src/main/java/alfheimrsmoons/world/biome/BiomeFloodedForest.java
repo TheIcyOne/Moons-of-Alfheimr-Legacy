@@ -17,20 +17,20 @@ public class BiomeFloodedForest extends BiomeAM
     public BiomeFloodedForest(BiomeProperties properties)
     {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 2;
-        theBiomeDecorator.flowersPerChunk = 1;
-        theBiomeDecorator.deadBushPerChunk = 0;
-        theBiomeDecorator.mushroomsPerChunk = 8;
-        theBiomeDecorator.reedsPerChunk = 10;
-        theBiomeDecorator.clayPerChunk = 1;
-        theBiomeDecorator.waterlilyPerChunk = 4;
-        theBiomeDecorator.sandPerChunk2 = 0;
-        theBiomeDecorator.sandPerChunk = 0;
-        theBiomeDecorator.grassPerChunk = 5;
+       decorator.treesPerChunk = 2;
+       decorator.flowersPerChunk = 1;
+       decorator.deadBushPerChunk = 0;
+       decorator.mushroomsPerChunk = 8;
+       decorator.reedsPerChunk = 10;
+       decorator.clayPerChunk = 1;
+       decorator.waterlilyPerChunk = 4;
+       decorator.gravelPatchesPerChunk = 0;
+       decorator.sandPatchesPerChunk = 0;
+       decorator.grassPerChunk = 5;
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return FLOODED_TREE_GEN;
     }

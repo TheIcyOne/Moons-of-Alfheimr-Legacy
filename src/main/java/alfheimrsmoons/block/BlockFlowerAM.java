@@ -14,6 +14,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -75,7 +76,7 @@ public class BlockFlowerAM extends BlockBush implements IGrowable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }
@@ -100,18 +101,9 @@ public class BlockFlowerAM extends BlockBush implements IGrowable
     }
 
     @Override
-    public boolean canReplace(World world, BlockPos pos, EnumFacing side, @Nullable ItemStack stack)
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
     {
-        if (world.getBlockState(pos).getBlock().isReplaceable(world, pos))
-        {
-            IBlockState state = owner.getBlockState(type, owner.getVariant(stack));
-            IBlockState soil = world.getBlockState(pos.offset(side.getOpposite()));
-            return canSustainFlower(state, soil);
-        }
-        else
-        {
-            return super.canReplace(world, pos, side, stack);
-        }
+        return true;
     }
 
     @Override

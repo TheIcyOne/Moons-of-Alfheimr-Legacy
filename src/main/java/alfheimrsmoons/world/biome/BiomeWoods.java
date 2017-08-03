@@ -25,8 +25,8 @@ public class BiomeWoods extends BiomeAM
     public BiomeWoods(BiomeProperties properties)
     {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 10;
-        theBiomeDecorator.grassPerChunk = 2;
+       decorator.treesPerChunk = 10;
+       decorator.grassPerChunk = 2;
     }
 
     @Override

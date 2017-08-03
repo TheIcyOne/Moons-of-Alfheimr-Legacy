@@ -26,8 +26,8 @@ public class BlockSediment extends BlockFalling
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int func_189876_x(IBlockState state) // getDustColor
+    public int getDustColor(IBlockState state) // getDustColor
     {
-        return BlockSand.EnumType.SAND.func_189865_a();
+    	return BlockSand.EnumType.SAND.getDustColor();
     }
 }

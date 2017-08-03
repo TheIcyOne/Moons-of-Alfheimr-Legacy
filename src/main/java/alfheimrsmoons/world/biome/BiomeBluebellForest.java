@@ -10,9 +10,9 @@ public class BiomeBluebellForest extends BiomeWoods
     public BiomeBluebellForest(BiomeProperties properties)
     {
         super(properties);
-        theBiomeDecorator.treesPerChunk = 6;
-        theBiomeDecorator.flowersPerChunk = 100;
-        theBiomeDecorator.grassPerChunk = 1;
+        decorator.treesPerChunk = 6;
+        decorator.flowersPerChunk = 100;
+        decorator.grassPerChunk = 1;
     }
 
     @Override

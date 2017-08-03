@@ -8,8 +8,8 @@ public class BiomeVeld extends BiomeAM
     {
         super(properties);
         spawnableCreatureList.clear();
-        theBiomeDecorator.treesPerChunk = -999;
-        theBiomeDecorator.deadBushPerChunk = 2;
+       decorator.treesPerChunk = -999;
+       decorator.deadBushPerChunk = 2;
     }
 
     @Override

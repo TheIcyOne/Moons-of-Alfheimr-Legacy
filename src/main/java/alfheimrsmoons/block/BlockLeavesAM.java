@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -86,16 +87,17 @@ public class BlockLeavesAM extends BlockLeaves
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }
 
+    /*//Never actually used this myself, not sure what it was replaced by or what it was used by, I'm sure the compiler will complain about it at me.
     @Override
     protected ItemStack createStackedBlock(IBlockState state)
     {
         return owner.getStack(type, state.getValue(variantProperty));
-    }
+    }*/
 
     @Override
     public IBlockState getStateFromMeta(int meta)

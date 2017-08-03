@@ -142,7 +142,7 @@ public class ModelNitroWraith extends ModelBase
         {
             ModelRenderer modelrenderer = rightArm;
             float f1 = swingProgress;
-            body.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f1) * ((float) Math.PI * 2F)) * 0.2F;
+            body.rotateAngleY = MathHelper.sin(MathHelper.sqrt(f1) * ((float) Math.PI * 2F)) * 0.2F;
 
             rightArm.rotateAngleY += body.rotateAngleY;
             leftArm.rotateAngleY += body.rotateAngleY;

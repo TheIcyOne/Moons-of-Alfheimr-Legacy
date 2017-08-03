@@ -12,6 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
@@ -60,7 +61,7 @@ public class BlockDeadPlant extends BlockDeadBush
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }

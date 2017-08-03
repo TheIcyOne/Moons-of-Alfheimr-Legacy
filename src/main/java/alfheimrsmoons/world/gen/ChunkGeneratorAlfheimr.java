@@ -44,7 +44,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
     public NoiseGeneratorOctaves scaleNoise;
     public NoiseGeneratorOctaves depthNoise;
     public NoiseGeneratorOctaves forestNoise;
-    private final World worldObj;
+    private final World world;
     private final boolean mapFeaturesEnabled;
     private final WorldType terrainType;
     private final double[] heightMap;
@@ -62,7 +62,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
 
     public ChunkGeneratorAlfheimr(World world, long seed, boolean mapFeaturesEnabled, String generatorOptions)
     {
-        this.worldObj = world;
+        this.world = world;
         this.mapFeaturesEnabled = mapFeaturesEnabled;
         this.terrainType = world.getWorldInfo().getTerrainType();
         this.rand = new Random(seed);
@@ -80,7 +80,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
         {
             for (int j = -2; j <= 2; ++j)
             {
-                float f = 10.0F / MathHelper.sqrt_float((float) (i * i + j * j) + 0.2F);
+                float f = 10.0F / MathHelper.sqrt((i * i + j * j) + 0.2F);
                 biomeWeights[i + 2 + (j + 2) * 5] = f;
             }
         }
@@ -95,7 +95,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
 
     public void setBlocksInChunk(int x, int z, ChunkPrimer primer)
     {
-        biomesForGeneration = worldObj.getBiomeProvider().getBiomesForGeneration(biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
+        biomesForGeneration = world.getBiomeProvider().getBiomesForGeneration(biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
         generateHeightmap(x * 4, 0, z * 4);
 
         for (int i = 0; i < 4; ++i)
@@ -172,28 +172,28 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
             for (int j = 0; j < 16; ++j)
             {
                 Biome biome = biomes[j + i * 16];
-                biome.genTerrainBlocks(worldObj, rand, primer, x * 16 + i, z * 16 + j, depthBuffer[j + i * 16]);
+                biome.genTerrainBlocks(world, rand, primer, x * 16 + i, z * 16 + j, depthBuffer[j + i * 16]);
             }
         }
     }
 
     @Override
-    public Chunk provideChunk(int x, int z)
+    public Chunk generateChunk(int x, int z)
     {
-        rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
+    	rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer primer = new ChunkPrimer();
         setBlocksInChunk(x, z, primer);
-        biomesForGeneration = worldObj.getBiomeProvider().loadBlockGeneratorData(biomesForGeneration, x * 16, z * 16, 16, 16);
+        biomesForGeneration = world.getBiomeProvider().getBiomesForGeneration(biomesForGeneration, x * 16, z * 16, 16, 16);
         replaceBiomeBlocks(x, z, primer, biomesForGeneration);
 
         if (settings.useCaves)
         {
-            caveGenerator.generate(worldObj, x, z, primer);
+            caveGenerator.generate(world, x, z, primer);
         }
 
         if (settings.useRavines)
         {
-            ravineGenerator.generate(worldObj, x, z, primer);
+            ravineGenerator.generate(world, x, z, primer);
         }
 
         if (mapFeaturesEnabled)
@@ -201,7 +201,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
             // Generate map features
         }
 
-        Chunk chunk = new Chunk(worldObj, primer, x, z);
+        Chunk chunk = new Chunk(world, primer, x, z);
         byte[] chunkBiomeArray = chunk.getBiomeArray();
 
         for (int i = 0; i < chunkBiomeArray.length; ++i)
@@ -317,7 +317,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
                     double d2 = minLimitRegion[i] / (double) settings.lowerLimitScale;
                     double d3 = maxLimitRegion[i] / (double) settings.upperLimitScale;
                     double d4 = (mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
-                    double d5 = MathHelper.denormalizeClamp(d2, d3, d4) - d1;
+                    double d5 = MathHelper.clamp(d2, d3, d4) - d1;
 
                     if (l1 > 29)
                     {
@@ -339,11 +339,11 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
         int blockX = x * 16;
         int blockZ = z * 16;
         BlockPos pos = new BlockPos(blockX, 0, blockZ);
-        Biome biome = worldObj.getBiomeGenForCoords(pos.add(16, 0, 16));
-        rand.setSeed(worldObj.getSeed());
+        Biome biome = world.getBiome(pos.add(16, 0, 16));
+        rand.setSeed(world.getSeed());
         long k = rand.nextLong() / 2L * 2L + 1L;
         long l = rand.nextLong() / 2L * 2L + 1L;
-        rand.setSeed((long) x * k + (long) z * l ^ worldObj.getSeed());
+        rand.setSeed((long) x * k + (long) z * l ^ world.getSeed());
         boolean hasVillageGenerated = false;
         ChunkPos chunkPos = new ChunkPos(x, z);
 
@@ -357,7 +357,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
             int xOffset = rand.nextInt(16) + 8;
             int yOffset = rand.nextInt(256);
             int zOffset = rand.nextInt(16) + 8;
-            waterLakeGen.generate(worldObj, rand, pos.add(xOffset, yOffset, zOffset));
+            waterLakeGen.generate(world, rand, pos.add(xOffset, yOffset, zOffset));
         }
 
 //        if (settings.useDungeons)
@@ -367,13 +367,13 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
 //                int xOffset = rand.nextInt(16) + 8;
 //                int yOffset = rand.nextInt(256);
 //                int zOffset = rand.nextInt(16) + 8;
-//                (new WorldGenDungeons()).generate(worldObj, rand, pos.add(xOffset, yOffset, zOffset));
+//                (new WorldGenDungeons()).generate(world, rand, pos.add(xOffset, yOffset, zOffset));
 //            }
 //        }
 
-        biome.decorate(worldObj, rand, new BlockPos(blockX, 0, blockZ));
+        biome.decorate(world, rand, new BlockPos(blockX, 0, blockZ));
 
-        WorldEntitySpawner.performWorldGenSpawning(worldObj, biome, blockX + 8, blockZ + 8, 16, 16, rand);
+        WorldEntitySpawner.performWorldGenSpawning(world, biome, blockX + 8, blockZ + 8, 16, 16, rand);
 
         pos = pos.add(8, 0, 8);
 
@@ -381,17 +381,17 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
         {
             for (int zOffset = 0; zOffset < 16; ++zOffset)
             {
-                BlockPos precipitationHeight = worldObj.getPrecipitationHeight(pos.add(xOffset, 0, zOffset));
+                BlockPos precipitationHeight = world.getPrecipitationHeight(pos.add(xOffset, 0, zOffset));
                 BlockPos surfaceHeight = precipitationHeight.down();
 
-                if (worldObj.canBlockFreezeWater(surfaceHeight))
+                if (world.canBlockFreezeWater(surfaceHeight))
                 {
-                    worldObj.setBlockState(surfaceHeight, iceBlock, 2);
+                    world.setBlockState(surfaceHeight, iceBlock, 2);
                 }
 
-                if (worldObj.canSnowAt(precipitationHeight, true))
+                if (world.canSnowAt(precipitationHeight, true))
                 {
-                    worldObj.setBlockState(precipitationHeight, snowLayerBlock, 2);
+                    world.setBlockState(precipitationHeight, snowLayerBlock, 2);
                 }
             }
         }
@@ -408,7 +408,7 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
-        Biome biome = worldObj.getBiomeGenForCoords(pos);
+        Biome biome = world.getBiome(pos);
 
         if (mapFeaturesEnabled)
         {
@@ -419,8 +419,9 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
     }
 
     @Override
-    public BlockPos getStrongholdGen(World world, String structureName, BlockPos position)
+    public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
     {
+    	
         return null;
     }
 

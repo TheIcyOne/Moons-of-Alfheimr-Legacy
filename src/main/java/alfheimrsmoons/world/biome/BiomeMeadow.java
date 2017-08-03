@@ -5,9 +5,9 @@ public class BiomeMeadow extends BiomeAM
     public BiomeMeadow(BiomeProperties properties)
     {
         super(properties);
-        theBiomeDecorator.treesPerChunk = -999;
-        theBiomeDecorator.flowersPerChunk = 4;
-        theBiomeDecorator.grassPerChunk = 10;
+       decorator.treesPerChunk = -999;
+       decorator.flowersPerChunk = 4;
+       decorator.grassPerChunk = 10;
     }
 
     @Override

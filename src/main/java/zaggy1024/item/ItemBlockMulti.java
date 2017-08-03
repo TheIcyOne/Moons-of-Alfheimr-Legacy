@@ -5,6 +5,7 @@ import java.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
+import net.minecraft.util.NonNullList;
 import zaggy1024.combo.*;
 import zaggy1024.combo.variant.IMetadata;
 
@@ -35,7 +36,7 @@ public class ItemBlockMulti<V extends IMetadata<V>> extends ItemBlock
 	}
 	
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subItems)
+	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems)
 	{
 		super.getSubItems(item, tab, subItems);
 	}

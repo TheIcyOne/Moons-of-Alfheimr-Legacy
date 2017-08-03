@@ -112,7 +112,7 @@ public class BlockGrassySoil extends Block implements IGrowable
                     {
                         if (rand.nextInt(8) == 0)
                         {
-                            Biome biome = world.getBiomeGenForCoords(plantPos);
+                            Biome biome = world.getBiome(plantPos);
                             biome.plantFlower(world, rand, pos);
                         }
                         else

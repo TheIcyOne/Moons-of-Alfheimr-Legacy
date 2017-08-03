@@ -36,7 +36,7 @@ public class EntityArrowAM extends EntityArrow
     public void readEntityFromNBT(NBTTagCompound tag)
     {
         super.readEntityFromNBT(tag);
-        arrowStack = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("arrow"));
+        arrowStack = new ItemStack(tag.getCompoundTag("arrow"));
     }
 
     @Override

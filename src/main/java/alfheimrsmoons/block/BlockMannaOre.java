@@ -40,12 +40,13 @@ public class BlockMannaOre extends BlockOre
         return 1;
     }
 
+   
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return MathHelper.getRandomIntegerInRange(AMUtils.getWorldRandom(world, RANDOM), 2, 5);
+    	return new Random().nextInt(5-2) + 2;        
     }
-
+    
     @Override
     public int damageDropped(IBlockState state)
     {

@@ -18,20 +18,21 @@ public class WorldProviderAlfheimr extends WorldProvider
     }
 
     @Override
-    protected void createBiomeProvider()
+    protected void init()
     {
-        biomeProvider = new BiomeProviderAM(worldObj.getWorldInfo());
+    	this.hasSkyLight = true;
+        this.biomeProvider = new BiomeProviderAM(world.getWorldInfo());
     }
 
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorAlfheimr(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled(), worldObj.getWorldInfo().getGeneratorOptions());
+        return new ChunkGeneratorAlfheimr(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled(), world.getWorldInfo().getGeneratorOptions());
     }
 
     @Override
     public boolean canCoordinateBeSpawn(int x, int z)
     {
-        return super.canCoordinateBeSpawn(x, z) || worldObj.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getBlock() instanceof BlockGrassySoil;
+        return super.canCoordinateBeSpawn(x, z) || world.getGroundAboveSeaLevel(new BlockPos(x, 0, z)).getBlock() instanceof BlockGrassySoil;
     }
 }

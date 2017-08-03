@@ -7,7 +7,9 @@ import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class AMEntities
 {
@@ -35,7 +37,7 @@ public class AMEntities
      */
     private static void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
     {
-        EntityRegistry.registerModEntity(entityClass, entityName, nextEntityId++, AlfheimrsMoons.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
+        EntityRegistry.registerModEntity(new ResourceLocation(AlfheimrsMoons.MOD_ID, entityName), entityClass, entityName, nextEntityId++, AlfheimrsMoons.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 
     /**
@@ -50,7 +52,7 @@ public class AMEntities
     private static void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggPrimary, int eggSecondary)
     {
         registerEntity(entityClass, entityName, trackingRange, updateFrequency, sendsVelocityUpdates);
-        EntityRegistry.registerEgg(entityClass, eggPrimary, eggSecondary);
+        EntityRegistry.registerEgg(new ResourceLocation(AlfheimrsMoons.MOD_ID, entityName), eggPrimary, eggSecondary);
     }
 
     private static ResourceLocation registerLootTable(String id)

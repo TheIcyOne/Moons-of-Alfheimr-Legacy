@@ -68,7 +68,7 @@ public abstract class BiomeAM extends Biome
     }
 
     @Override
-    public WorldGenAbstractTree genBigTreeChance(Random rand)
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         VariantTree variant = getRandomTreeVariant(rand);
         return rand.nextInt(10) == 0 ? new WorldGenBigTreeAM(false, variant) : new WorldGenTreeAM(false, variant);

@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -65,7 +66,7 @@ public class BlockBioluminescenceTorch extends BlockTorch
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         owner.fillSubItems(type, variants, list);
     }
@@ -82,28 +83,6 @@ public class BlockBioluminescenceTorch extends BlockTorch
         return BlockStateToMetadata.getMetaForBlockState(state, variantProperty, FACING);
     }
 
-    @Override
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    {
-        IBlockState state = getStateFromMeta(meta);
-
-        if (canPlaceAt(world, pos, facing))
-        {
-            return state.withProperty(FACING, facing);
-        }
-        else
-        {
-            for (EnumFacing face : EnumFacing.Plane.HORIZONTAL)
-            {
-                if (world.isSideSolid(pos.offset(face.getOpposite()), face, true))
-                {
-                    return state.withProperty(FACING, face);
-                }
-            }
-
-            return state;
-        }
-    }
 
     /* ======================================== BlockTorch START ===================================== */
 

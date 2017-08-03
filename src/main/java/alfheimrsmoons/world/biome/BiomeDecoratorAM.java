@@ -52,7 +52,7 @@ public class BiomeDecoratorAM extends BiomeDecorator
 
         generateOres(world, random);
 
-        for (int i = 0; i < sandPerChunk2; ++i)
+        for (int i = 0; i < gravelPatchesPerChunk; ++i)
         {
             int xOffset = random.nextInt(16) + 8;
             int yOffset = random.nextInt(16) + 8;
@@ -72,7 +72,7 @@ public class BiomeDecoratorAM extends BiomeDecorator
             {
                 int xOffset = random.nextInt(16) + 8;
                 int yOffset = random.nextInt(16) + 8;
-                WorldGenAbstractTree treeGen = alfheimrBiome.genBigTreeChance(random);
+                WorldGenAbstractTree treeGen = alfheimrBiome.getRandomTreeFeature(random);
                 treeGen.setDecorationDefaults();
                 BlockPos pos = world.getHeight(chunkPos.add(xOffset, 0, yOffset));
 
@@ -138,7 +138,7 @@ public class BiomeDecoratorAM extends BiomeDecorator
             }
         }
 
-        if (generateLakes)
+        if (generateFalls)
         {
             for (int i = 0; i < 50; ++i)
             {

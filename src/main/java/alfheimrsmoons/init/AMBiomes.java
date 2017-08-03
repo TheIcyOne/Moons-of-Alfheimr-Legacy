@@ -5,6 +5,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.HashMap;
@@ -60,8 +61,9 @@ public class AMBiomes
 
     private static void registerBiome(Biome biome, BiomeDictionary.Type... dictTypes)
     {
-        GameRegistry.register(biome);
-        BiomeDictionary.registerBiomeType(biome, dictTypes);
+    	//I like the future-proofing that will probably last until Lex changes it on a whim tomorrow.
+        ForgeRegistries.BIOMES.register(biome);
+        BiomeDictionary.addTypes(biome, dictTypes);
     }
 
     public static Biome getHills(Biome biome)

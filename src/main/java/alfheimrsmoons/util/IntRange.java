@@ -43,7 +43,7 @@ public abstract class IntRange
 		@Override
 		public int get(Random rand)
 		{
-			return MathHelper.getRandomIntegerInRange(rand, min, max);
+			return rand.nextInt(max - min) + min;
 		}
 		
 		@Override

@@ -10,9 +10,9 @@ public class BiomeBeachAM extends BiomeAM
         spawnableCreatureList.clear();
         topBlock = AMBlocks.SEDIMENT.getDefaultState();
         fillerBlock = AMBlocks.SEDIMENT.getDefaultState();
-        theBiomeDecorator.treesPerChunk = -999;
-        theBiomeDecorator.deadBushPerChunk = 0;
-        theBiomeDecorator.reedsPerChunk = 0;
-        theBiomeDecorator.cactiPerChunk = 0;
+        decorator.treesPerChunk = -999;
+        decorator.deadBushPerChunk = 0;
+        decorator.reedsPerChunk = 0;
+        decorator.cactiPerChunk = 0;
     }
 }
