@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "alfheimrsmoons:dry_grass" },
+            { "model": "alfheimrsmoons:dry_grass", "y": 90 },
+            { "model": "alfheimrsmoons:dry_grass", "y": 180 },
+            { "model": "alfheimrsmoons:dry_grass", "y": 270 }
+        ]
+    }
+}

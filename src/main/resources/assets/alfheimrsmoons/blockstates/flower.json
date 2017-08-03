@@ -19,7 +19,17 @@
             "pink_prestige": { "textures": { "cross": "alfheimrsmoons:blocks/flower_pink_prestige" } },
             "aster": { "textures": { "cross": "alfheimrsmoons:blocks/flower_aster" } },
             "promises_burden": { "textures": { "cross": "alfheimrsmoons:blocks/flower_promises_burden" } },
-            "forget_me_not": { "textures": { "cross": "alfheimrsmoons:blocks/flower_forget_me_not" } }
+            "forget_me_not": { "textures": { "cross": "alfheimrsmoons:blocks/flower_forget_me_not" } },
+            "woodland_star": { "textures": { "cross": "alfheimrsmoons:blocks/flower_woodland_star" } },
+            "blue_sun_kiss": { "textures": { "cross": "alfheimrsmoons:blocks/flower_blue_sun_kiss" } },
+            "candelabra_brush": { "textures": { "cross": "alfheimrsmoons:blocks/flower_candelabra_brush" } },
+            "light_cup": { "textures": { "cross": "alfheimrsmoons:blocks/flower_light_cup" } },
+            "light_lance": { "textures": { "cross": "alfheimrsmoons:blocks/flower_light_lance" } },
+            "manna_plant": { "textures": { "cross": "alfheimrsmoons:blocks/flower_manna_plant" } },
+            "orange_sun_kiss": { "textures": { "cross": "alfheimrsmoons:blocks/flower_orange_sun_kiss" } },
+            "pink_sun_kiss": { "textures": { "cross": "alfheimrsmoons:blocks/flower_pink_sun_kiss" } },
+            "purple_sun_kiss": { "textures": { "cross": "alfheimrsmoons:blocks/flower_purple_sun_kiss" } },
+            "runed_sun_kiss": { "textures": { "cross": "alfheimrsmoons:blocks/flower_runed_sun_kiss" } }
         }
     }
 }

@@ -1,0 +1,4 @@
+{
+    "parent": "block/cube_all",
+    "textures": { "all": "alfheimrsmoons:blocks/etir_glass" }
+}

@@ -14,6 +14,11 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class AMItems
 {
+    public static final Item MANNA_CRYSTAL = new Item()
+            .setCreativeTab(AlfheimrsMoons.CREATIVE_TAB)
+            .setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "manna_crystal")
+            .setRegistryName("manna_crystal");
+
     public static final Item BRANCH = new Item()
             .setCreativeTab(AlfheimrsMoons.CREATIVE_TAB)
             .setUnlocalizedName(AlfheimrsMoons.UNLOCALIZED_PREFIX + "branch")
@@ -48,6 +53,7 @@ public class AMItems
     public static void registerItems()
     {
         Proxy proxy = AlfheimrsMoons.proxy;
+        proxy.registerItem(MANNA_CRYSTAL);
         proxy.registerItem(BRANCH);
         proxy.registerItem(TWINE);
         AMBlocks.ORES.registerVariants(proxy, ComboOres.DROP);

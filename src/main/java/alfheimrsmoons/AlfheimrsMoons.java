@@ -2,6 +2,7 @@ package alfheimrsmoons;
 
 import alfheimrsmoons.init.*;
 import alfheimrsmoons.network.Proxy;
+import alfheimrsmoons.world.gen.AMWorldGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = AlfheimrsMoons.MOD_ID, name = AlfheimrsMoons.MOD_NAME, version = AlfheimrsMoons.MOD_VERSION)
@@ -49,6 +51,7 @@ public class AlfheimrsMoons
         AMEntities.registerEntities();
         AMBiomes.registerBiomes();
         AMDimensions.registerDimensions();
+        GameRegistry.registerWorldGenerator(new AMWorldGenerator(), 0);
         MinecraftForge.EVENT_BUS.register(new AMEventHandler());
         proxy.preInit();
     }

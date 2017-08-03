@@ -23,16 +23,22 @@
                     "side": "alfheimrsmoons:blocks/log_redbud"
                 }
             },
-            "larch": {
-                "textures": {
-                    "end": "alfheimrsmoons:blocks/log_larch_top",
-                    "side": "alfheimrsmoons:blocks/log_larch"
-                }
-            },
             "rune": {
                 "textures": {
                     "end": "alfheimrsmoons:blocks/log_rune_top",
                     "side": "alfheimrsmoons:blocks/log_rune"
+                }
+            },
+            "glow_bark": {
+                "textures": {
+                    "end": "alfheimrsmoons:blocks/log_glow_bark_top",
+                    "side": "alfheimrsmoons:blocks/log_glow_bark"
+                }
+            },
+            "red_runewood": {
+                "textures": {
+                    "end": "alfheimrsmoons:blocks/log_red_runewood_top",
+                    "side": "alfheimrsmoons:blocks/log_red_runewood"
                 }
             }
         },

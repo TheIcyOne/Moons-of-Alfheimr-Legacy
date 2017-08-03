@@ -15,11 +15,15 @@ import zaggy1024.item.ItemBlockMulti;
 
 public class AMBlocks
 {
+    public static final BlockMannaOre MANNA_ORE = new BlockMannaOre();
+
     public static final BlockYggdrasilLeaves YGGDRASIL_LEAVES = new BlockYggdrasilLeaves();
 
     public static final BlockSoil SOIL = new BlockSoil();
 
     public static final BlockGrassySoil GRASSY_SOIL = new BlockGrassySoil();
+
+    public static final BlockDryGrass DRY_GRASS = new BlockDryGrass();
 
     public static final VariantsCombo<VariantSedge, BlockSedge, ItemBlockMulti<VariantSedge>> SEDGES =
             new VariantsCombo<>(
@@ -45,7 +49,11 @@ public class AMBlocks
 
     public static final BlockSediment SEDIMENT = new BlockSediment();
 
-    public static final BlockSedimentGlass SEDIMENT_GLASS = new BlockSedimentGlass();
+    public static final BlockEtirGlass ETIR_GLASS = new BlockEtirGlass();
+
+    public static final BlockCosmicGlass COSMIC_GLASS = new BlockCosmicGlass();
+
+    public static final BlockCosmicDust COSMIC_DUST = new BlockCosmicDust();
 
     public static final VariantsCombo<VariantShale, BlockShale, ItemBlockMulti<VariantShale>> SHALE =
             new VariantsCombo<>(
@@ -58,6 +66,8 @@ public class AMBlocks
             ).setNames(AlfheimrsMoons.MOD_ID, AlfheimrsMoons.UNLOCALIZED_PREFIX);
 
     public static final ComboOres ORES = new ComboOres();
+
+    public static final BlockAsteroid ASTEROID = new BlockAsteroid();
 
     public static final BlockMeteorite METEORITE = new BlockMeteorite();
 
@@ -80,17 +90,22 @@ public class AMBlocks
     public static void registerBlocks()
     {
         Proxy proxy = AlfheimrsMoons.proxy;
+        proxy.registerBlock(MANNA_ORE);
         proxy.registerBlock(YGGDRASIL_LEAVES);
         proxy.registerBlock(SOIL);
         proxy.registerBlock(GRASSY_SOIL);
+        proxy.registerBlock(DRY_GRASS);
         SEDGES.registerAll(proxy);
         DEAD_PLANTS.registerAll(proxy);
         FLOWERS.registerAll(proxy);
         proxy.registerBlock(SEDIMENT);
-        proxy.registerBlock(SEDIMENT_GLASS);
+        proxy.registerBlock(ETIR_GLASS);
+        proxy.registerBlock(COSMIC_GLASS);
+        proxy.registerBlock(COSMIC_DUST);
         SHALE.registerAll(proxy);
         ORES.registerVariants(proxy, ComboOres.ORE);
         ORES.registerVariants(proxy, ComboOres.BLOCK);
+        proxy.registerBlock(ASTEROID);
         proxy.registerBlock(METEORITE);
         COSMOTITE.registerAll(proxy);
         TREES.registerAll(proxy);
