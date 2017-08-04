@@ -418,10 +418,12 @@ public class ChunkGeneratorAlfheimr implements IChunkGenerator
         return biome.getSpawnableList(creatureType);
     }
 
+    
+    //TODO: Structures 'n stuff
+    
     @Override
     public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
     {
-    	
         return null;
     }
 

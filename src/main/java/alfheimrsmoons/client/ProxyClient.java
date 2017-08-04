@@ -1,6 +1,7 @@
 package alfheimrsmoons.client;
 
 import alfheimrsmoons.client.renderer.ColorGrass;
+import alfheimrsmoons.client.renderer.SkyRenderEvent;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.network.Proxy;
 import net.minecraft.block.Block;
@@ -9,6 +10,7 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import zaggy1024.util.ModelUtils;
@@ -42,6 +44,7 @@ public class ProxyClient extends Proxy
     {
         ColorGrass grassColor = new ColorGrass();
         registerItemBlockColor(grassColor, AMBlocks.GRASSY_SOIL);
+        MinecraftForge.EVENT_BUS.register(SkyRenderEvent.class);
 
         for (Block block : AMBlocks.SEDGES.getBlocks())
         {
