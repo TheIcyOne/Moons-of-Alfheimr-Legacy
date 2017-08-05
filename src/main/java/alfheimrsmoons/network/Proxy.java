@@ -1,9 +1,13 @@
 package alfheimrsmoons.network;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import zaggy1024.proxy.IProxy;
 
@@ -61,4 +65,18 @@ public abstract class Proxy implements IProxy
     {
         registerBlock(block, true);
     }
+    
+    public Fluid registerFluid(Fluid fluid){
+    	FluidRegistry.registerFluid(fluid);
+    	FluidRegistry.addBucketForFluid(fluid);
+    	return fluid;
+    }
+    
+    public void registerFluidBlock(Fluid fluid, Block fluidBlock, String name){
+    	ForgeRegistries.BLOCKS.register(fluidBlock);
+    	fluid.setBlock(fluidBlock);
+    	registerFluidRendering(fluidBlock, name);
+    }
+
+	public void registerFluidRendering(Block block, String name) {}
 }

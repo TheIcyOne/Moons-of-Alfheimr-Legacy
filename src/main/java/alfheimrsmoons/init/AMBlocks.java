@@ -2,10 +2,16 @@ package alfheimrsmoons.init;
 
 import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.block.*;
+import alfheimrsmoons.block.fluid.BlockEitr;
+import alfheimrsmoons.block.fluid.BlockSacredWater;
+import alfheimrsmoons.block.fluid.FluidEitr;
+import alfheimrsmoons.block.fluid.FluidSacredWater;
 import alfheimrsmoons.combo.*;
 import alfheimrsmoons.network.Proxy;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import zaggy1024.combo.ObjectType;
 import zaggy1024.combo.VariantsCombo;
@@ -86,6 +92,10 @@ public class AMBlocks
     public static final BlockRuneBookshelf RUNE_BOOKSHELF = new BlockRuneBookshelf();
 
     public static final ComboBioluminescence BIOLUMINESCENCE = new ComboBioluminescence();
+    
+    public static BlockSacredWater SACRED_WATER;
+    public static BlockEitr EITR;
+    
 
     public static void registerBlocks()
     {
@@ -118,6 +128,19 @@ public class AMBlocks
         registerVariantOres("treeSapling", TREES, ComboTrees.SAPLING);
         registerVariantOres("treeLeaves", TREES, ComboTrees.LEAVES);
         registerVariantOres("torch", BIOLUMINESCENCE, ComboBioluminescence.TORCH);
+    }
+    
+    public static void registerFluids(){
+    	 Proxy proxy = AlfheimrsMoons.proxy;
+    	 
+    	 Fluid sacredWaterFluid = proxy.registerFluid(FluidSacredWater.instance);
+    	 SACRED_WATER = new BlockSacredWater(sacredWaterFluid);
+    	 proxy.registerFluidBlock(sacredWaterFluid, SACRED_WATER, "sacred_water");
+    	 
+    	 Fluid eitrFluid = proxy.registerFluid(FluidEitr.instance);
+    	 EITR = new BlockEitr(eitrFluid);
+    	 proxy.registerFluidBlock(eitrFluid, EITR, "eitr");
+    	 
     }
 
     private static <V extends IMetadata<V>> void registerVariantOres(String name, VariantsOfTypesCombo<V> combo, ObjectType<V, ?, ?> type)

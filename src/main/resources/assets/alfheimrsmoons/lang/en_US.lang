@@ -159,3 +159,6 @@ item.alfheimrsmoons.knowledge_fruit.name=Fruit of Knowledge
 entity.alfheimrsmoons.Arrow.name=Arrow
 entity.alfheimrsmoons.NitroWraith.name=Nitro Wraith
 entity.alfheimrsmoons.SeedPouch.name=Seed Pouch
+
+fluid.sacred_water=Sacred Water
+fluid.eitr=Eitr

@@ -6,6 +6,7 @@ import alfheimrsmoons.world.gen.AMWorldGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -35,10 +36,14 @@ public class AlfheimrsMoons
     };
 
     @Instance(MOD_ID)
-    public static AlfheimrsMoons instance;
+    public static AlfheimrsMoons instance = new AlfheimrsMoons();
     @SidedProxy(clientSide = "alfheimrsmoons.client.ProxyClient", serverSide = "alfheimrsmoons.network.ProxyServer")
     public static Proxy proxy;
     public static Logger logger;
+    
+    public AlfheimrsMoons(){
+    	FluidRegistry.enableUniversalBucket();
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -46,6 +51,7 @@ public class AlfheimrsMoons
         logger = event.getModLog();
         AMConfig.load(event.getSuggestedConfigurationFile());
         AMBlocks.registerBlocks();
+        AMBlocks.registerFluids();
         AMItems.registerItems();
         AMRecipes.addRecipes();
         AMEntities.registerEntities();

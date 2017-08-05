@@ -1,15 +1,20 @@
 package alfheimrsmoons.client;
 
+import alfheimrsmoons.AlfheimrsMoons;
 import alfheimrsmoons.client.renderer.ColorGrass;
 import alfheimrsmoons.client.renderer.SkyRenderEvent;
 import alfheimrsmoons.init.AMBlocks;
 import alfheimrsmoons.network.Proxy;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -78,4 +83,20 @@ public class ProxyClient extends Proxy
     {
         getMinecraft().getItemColors().registerItemColorHandler(color, items);
     }
+    
+
+    @Override
+    public void registerFluidRendering(Block block, String name) 
+    {
+        final ModelResourceLocation fluidLocation = new ModelResourceLocation(AlfheimrsMoons.MOD_ID + ":fluids", name);
+        //No levels thanks
+        ModelLoader.setCustomStateMapper(block, new StateMapperBase()
+        {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            {
+                return fluidLocation;
+            }
+        });
+}
 }
