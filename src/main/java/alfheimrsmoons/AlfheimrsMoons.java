@@ -3,6 +3,7 @@ package alfheimrsmoons;
 import alfheimrsmoons.init.*;
 import alfheimrsmoons.network.Proxy;
 import alfheimrsmoons.world.gen.AMWorldGenerator;
+import alfheimrsmoons.world.structure.StructureSacredSpring;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -15,6 +16,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = AlfheimrsMoons.MOD_ID, name = AlfheimrsMoons.MOD_NAME, version = AlfheimrsMoons.MOD_VERSION)
@@ -39,7 +42,7 @@ public class AlfheimrsMoons
     public static AlfheimrsMoons instance = new AlfheimrsMoons();
     @SidedProxy(clientSide = "alfheimrsmoons.client.ProxyClient", serverSide = "alfheimrsmoons.network.ProxyServer")
     public static Proxy proxy;
-    public static Logger logger;
+    public static Logger logger = LogManager.getLogger(MOD_ID);
     
     public AlfheimrsMoons(){
     	FluidRegistry.enableUniversalBucket();
@@ -48,7 +51,6 @@ public class AlfheimrsMoons
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        logger = event.getModLog();
         AMConfig.load(event.getSuggestedConfigurationFile());
         AMBlocks.registerBlocks();
         AMBlocks.registerFluids();
@@ -58,6 +60,7 @@ public class AlfheimrsMoons
         AMBiomes.registerBiomes();
         AMDimensions.registerDimensions();
         GameRegistry.registerWorldGenerator(new AMWorldGenerator(), 0);
+        GameRegistry.registerWorldGenerator(new StructureSacredSpring(), 100);
         MinecraftForge.EVENT_BUS.register(new AMEventHandler());
         proxy.preInit();
     }
